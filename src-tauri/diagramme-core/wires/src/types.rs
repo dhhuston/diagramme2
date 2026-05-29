@@ -58,7 +58,38 @@ pub struct StubEndpoints {
     pub stub: f64,
 }
 
-/// Per-edge wire geometry record (DXF postprocess filled in Task 8).
+/// Quarter-circle fillet corner on an orthogonal polyline (mirrors v6 `SchematicFilletCorner`).
+#[derive(Debug, Clone, Copy, PartialEq)]
+pub struct SchematicFilletCorner {
+    pub corner: FlowXY,
+    pub p: FlowXY,
+    pub q: FlowXY,
+    pub sweep: u8,
+}
+
+/// DXF wire polyline input to postprocess (mirrors v6 `DxfWirePolylineRecord`).
+#[derive(Debug, Clone, PartialEq)]
+pub struct DxfWirePolylineRecord {
+    pub edge_id: String,
+    pub points: Vec<FlowXY>,
+    pub is_schematic: bool,
+    pub is_bundle: bool,
+    pub source_node_id: Option<String>,
+}
+
+/// Line segments and arc segments for Revit DXF emit (mirrors v6 `RevitDxfWirePiece`).
+#[derive(Debug, Clone, PartialEq)]
+pub enum RevitDxfWirePiece {
+    Polyline {
+        points: Vec<FlowXY>,
+        is_bundle: bool,
+    },
+    FilletArc {
+        arc: SchematicFilletCorner,
+    },
+}
+
+/// Per-edge wire geometry record with DXF-ready pieces.
 #[derive(Debug, Clone, PartialEq)]
 pub struct WireGeometryEdgeRecord {
     pub edge_id: String,
@@ -67,4 +98,12 @@ pub struct WireGeometryEdgeRecord {
     pub polyline_source: WirePolylineSource,
     pub is_schematic: bool,
     pub is_bundle: bool,
+    pub dxf_pieces: Vec<RevitDxfWirePiece>,
+}
+
+/// Full wire geometry model (mirrors v6 `WireGeometryModel`).
+#[derive(Debug, Clone, PartialEq)]
+pub struct WireGeometryModel {
+    pub edges: std::collections::HashMap<String, WireGeometryEdgeRecord>,
+    pub dxf_pieces: Vec<RevitDxfWirePiece>,
 }

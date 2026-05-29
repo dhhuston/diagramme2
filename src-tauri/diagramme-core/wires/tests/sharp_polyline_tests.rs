@@ -163,8 +163,8 @@ fn fallback_rejects_stale_device_handles() {
     .is_none());
 
     let model = build_wire_geometry_model(&nodes, &[orphan_edge, valid_edge]);
-    assert!(!model.contains_key("e-orphan-als"));
-    let valid = model.get("e-valid-als").expect("valid edge");
+    assert!(!model.edges.contains_key("e-orphan-als"));
+    let valid = model.edges.get("e-valid-als").expect("valid edge");
     assert!(!valid.sharp_polyline.iter().any(|pt| pt.x == 1008.0));
-    assert!(model.contains_key("e-valid-als"));
+    assert!(model.edges.contains_key("e-valid-als"));
 }

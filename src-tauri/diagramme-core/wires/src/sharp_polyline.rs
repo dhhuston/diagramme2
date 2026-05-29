@@ -8,9 +8,10 @@ use diagramme_geometry::{
 use diagramme_schema::{Edge, Node};
 use std::collections::HashMap;
 
+use crate::postprocess::postprocess_dxf_wire_records_for_revit_by_edge;
 use crate::types::{
-    FlowXY, HandleSide, StubEndpoints, WireGeometryEdgeRecord, WirePolylineResult,
-    WirePolylineSource,
+    DxfWirePolylineRecord, FlowXY, HandleSide, StubEndpoints, WireGeometryEdgeRecord,
+    WireGeometryModel, WirePolylineResult, WirePolylineSource,
 };
 
 const DEFAULT_STUB: f64 = 2.0 * SNAP_GRID_PX;
@@ -354,6 +355,21 @@ pub fn is_schematic_wire_edge_type(edge_type: Option<&str>) -> bool {
     matches!(edge_type, Some("schematic") | Some("avoidNodes") | None)
 }
 
+/// True when the edge is a grouped bundle member (not the representative).
+pub fn is_bundle_member(edge: &Edge) -> bool {
+    edge.data
+        .get("bundledBy")
+        .and_then(|v| v.as_str())
+        .is_some()
+}
+
+fn should_include_for_dxf_postprocess(edge: &Edge, is_schematic: bool) -> bool {
+    if !is_schematic {
+        return true;
+    }
+    !is_bundle_member(edge)
+}
+
 /// True when the handle id is a bundle port (`…-bundle`, `…-bundle-0`, etc.).
 pub fn is_bundle_handle_id(handle_id: Option<&str>) -> bool {
     let Some(handle_id) = handle_id else {
@@ -649,13 +665,11 @@ pub fn wire_sharp_polyline_for_edge(
     })
 }
 
-/// Build per-edge sharp polylines (DXF postprocess deferred to Task 8).
-pub fn build_wire_geometry_model(
-    nodes: &[Node],
-    edges: &[Edge],
-) -> HashMap<String, WireGeometryEdgeRecord> {
+/// Build per-edge sharp polylines and DXF-ready pieces (crossing gaps + bundle fillets).
+pub fn build_wire_geometry_model(nodes: &[Node], edges: &[Edge]) -> WireGeometryModel {
     let lookup = node_lookup_for_wire_geometry(nodes);
     let mut by_edge = HashMap::new();
+    let mut postprocess_input = Vec::new();
 
     for edge in edges {
         let is_schematic = is_schematic_wire_edge_type(edge.edge_type.as_deref());
@@ -669,18 +683,38 @@ pub fn build_wire_geometry_model(
         let is_bundle = is_bundle_handle_id(edge.source_handle.as_deref())
             || is_bundle_handle_id(edge.target_handle.as_deref());
 
-        by_edge.insert(
-            edge.id.clone(),
-            WireGeometryEdgeRecord {
-                edge_id: edge.id.clone(),
-                source_node_id: edge.source.clone(),
-                sharp_polyline: result.polyline,
-                polyline_source: result.source,
-                is_schematic,
-                is_bundle,
-            },
-        );
+        let record = WireGeometryEdgeRecord {
+            edge_id: edge.id.clone(),
+            source_node_id: edge.source.clone(),
+            sharp_polyline: result.polyline.clone(),
+            polyline_source: result.source,
+            is_schematic,
+            is_bundle,
+            dxf_pieces: Vec::new(),
+        };
+        by_edge.insert(edge.id.clone(), record);
+
+        if !should_include_for_dxf_postprocess(edge, is_schematic) {
+            continue;
+        }
+        postprocess_input.push(DxfWirePolylineRecord {
+            edge_id: edge.id.clone(),
+            points: result.polyline,
+            is_schematic,
+            is_bundle,
+            source_node_id: Some(edge.source.clone()),
+        });
     }
 
-    by_edge
+    let dxf_by_edge = postprocess_dxf_wire_records_for_revit_by_edge(&postprocess_input);
+    for (edge_id, dxf_pieces) in dxf_by_edge.iter() {
+        if let Some(edge_record) = by_edge.get_mut(edge_id) {
+            edge_record.dxf_pieces = dxf_pieces.clone();
+        }
+    }
+
+    WireGeometryModel {
+        dxf_pieces: dxf_by_edge.into_values().flatten().collect(),
+        edges: by_edge,
+    }
 }
