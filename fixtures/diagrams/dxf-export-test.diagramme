@@ -1,0 +1,948 @@
+{
+  "format": "diagramme",
+  "version": 2,
+  "sheets": [
+    {
+      "id": "sheet-dxf-export-test",
+      "name": "DXF export test",
+      "state": {
+        "nodes": [
+          {
+            "id": "title-block",
+            "type": "textBlock",
+            "position": {
+              "x": 96,
+              "y": 48
+            },
+            "width": 1456,
+            "height": 72,
+            "data": {
+              "text": "DXF export test — palette shapes (top) and bundles / wire types (bottom). Export via File → Export DXF (Revit).",
+              "fontSizePx": 14
+            }
+          },
+          {
+            "id": "dev-export",
+            "type": "deviceV2",
+            "position": {
+              "x": 96,
+              "y": 120
+            },
+            "data": {
+              "tagCode": "DEV",
+              "tagNumber": "1",
+              "description": "Device block",
+              "leftColumn": [
+                {
+                  "header": "Input",
+                  "rows": [
+                    {
+                      "id": "dxf-test-in",
+                      "label": "1"
+                    }
+                  ]
+                }
+              ],
+              "rightColumn": [
+                {
+                  "header": "Output",
+                  "rows": [
+                    {
+                      "id": "dxf-test-out",
+                      "label": "1"
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "id": "av-export",
+            "type": "avPlate",
+            "position": {
+              "x": 368,
+              "y": 120
+            },
+            "data": {
+              "tagCode": "AVP",
+              "tagNumber": "1",
+              "description": "AV plate",
+              "groups": [
+                {
+                  "header": "Ports",
+                  "rows": [
+                    {
+                      "id": "dxf-test-av-in",
+                      "label": "In",
+                      "direction": "input"
+                    },
+                    {
+                      "id": "dxf-test-av-out",
+                      "label": "Out",
+                      "direction": "output"
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "id": "mic-export",
+            "type": "micBlock",
+            "position": {
+              "x": 640,
+              "y": 120
+            },
+            "data": {
+              "line1": "MIC 1",
+              "line2": "OVERHEAD",
+              "channelNumber": "1"
+            }
+          },
+          {
+            "id": "spk-std",
+            "type": "speakerBlock",
+            "position": {
+              "x": 912,
+              "y": 120
+            },
+            "data": {
+              "line1": "SPK 1",
+              "line2": "STANDARD",
+              "symbolKind": "standard",
+              "passthruEnabled": false
+            }
+          },
+          {
+            "id": "spk-70v",
+            "type": "speakerBlock",
+            "position": {
+              "x": 1184,
+              "y": 120
+            },
+            "data": {
+              "line1": "SPK 2",
+              "line2": "70V",
+              "symbolKind": "70v",
+              "passthruEnabled": true
+            }
+          },
+          {
+            "id": "spk-active",
+            "type": "speakerBlock",
+            "position": {
+              "x": 96,
+              "y": 288
+            },
+            "data": {
+              "line1": "SPK 3",
+              "line2": "ACTIVE",
+              "symbolKind": "active",
+              "passthruEnabled": false
+            }
+          },
+          {
+            "id": "vc-export",
+            "type": "volumeControl",
+            "position": {
+              "x": 368,
+              "y": 288
+            },
+            "width": 72,
+            "height": 13.5,
+            "data": {}
+          },
+          {
+            "id": "ant-tx",
+            "type": "antennaTransmitterSymbol",
+            "position": {
+              "x": 640,
+              "y": 288
+            },
+            "data": {
+              "line1": "ANT TX"
+            }
+          },
+          {
+            "id": "ant-rx",
+            "type": "antennaReceiverSymbol",
+            "position": {
+              "x": 912,
+              "y": 288
+            },
+            "data": {
+              "line1": "ANT RX"
+            }
+          },
+          {
+            "id": "lpp-export",
+            "type": "lppPatchPanel",
+            "position": {
+              "x": 1184,
+              "y": 288
+            },
+            "data": {
+              "tagCode": "LPP",
+              "tagNumber": "1",
+              "descriptionLines": [
+                "Loudspeaker patch"
+              ],
+              "rows": [
+                {
+                  "id": "dxf-test-lpp-a",
+                  "connected": true
+                },
+                {
+                  "id": "dxf-test-lpp-b",
+                  "connected": false
+                }
+              ]
+            }
+          },
+          {
+            "id": "dpp-export",
+            "type": "dppPatchPanel",
+            "position": {
+              "x": 96,
+              "y": 456
+            },
+            "data": {
+              "tagCode": "DPP",
+              "tagNumber": "1",
+              "descriptionLines": [
+                "Data patch"
+              ],
+              "rows": [
+                {
+                  "id": "dxf-test-dpp-a",
+                  "label": "1",
+                  "direction": "output"
+                },
+                {
+                  "id": "dxf-test-dpp-b",
+                  "label": "2",
+                  "direction": "input"
+                }
+              ]
+            }
+          },
+          {
+            "id": "mlp-export",
+            "type": "mlpPatchPanel",
+            "position": {
+              "x": 368,
+              "y": 456
+            },
+            "data": {
+              "tagCode": "APP",
+              "tagNumber": "1",
+              "descriptionLines": [
+                "Mic/line",
+                "Patch panel"
+              ],
+              "rows": [
+                {
+                  "id": "dxf-test-mlp-a",
+                  "normalling": "HN"
+                },
+                {
+                  "id": "dxf-test-mlp-b",
+                  "normalling": ""
+                }
+              ]
+            }
+          },
+          {
+            "id": "vpb-export",
+            "type": "vpbPatchPanel",
+            "position": {
+              "x": 640,
+              "y": 456
+            },
+            "data": {
+              "tagCode": "VPP",
+              "tagNumber": "1",
+              "descriptionLines": [
+                "Video",
+                "Patch panel"
+              ],
+              "rows": [
+                {
+                  "id": "dxf-test-vpb-a",
+                  "normalling": "N"
+                },
+                {
+                  "id": "dxf-test-vpb-b",
+                  "normalling": ""
+                }
+              ]
+            }
+          },
+          {
+            "id": "jbox-export",
+            "type": "junction",
+            "position": {
+              "x": 912,
+              "y": 456
+            },
+            "data": {
+              "tagCode": "JBOX",
+              "tagNumber": "1",
+              "rowCount": 4
+            }
+          },
+          {
+            "id": "flyoff-out",
+            "type": "flyoffNote",
+            "position": {
+              "x": 1184,
+              "y": 456
+            },
+            "width": 60,
+            "height": 12,
+            "data": {
+              "text": "FLYOFF OUT",
+              "portDirection": "output",
+              "wireCategory": "audio"
+            }
+          },
+          {
+            "id": "flyoff-in",
+            "type": "flyoffNote",
+            "position": {
+              "x": 96,
+              "y": 624
+            },
+            "width": 60,
+            "height": 12,
+            "data": {
+              "text": "FLYOFF IN",
+              "portDirection": "input",
+              "wireCategory": "control"
+            }
+          },
+          {
+            "id": "text-anno",
+            "type": "textBlock",
+            "position": {
+              "x": 368,
+              "y": 624
+            },
+            "width": 240,
+            "height": 72,
+            "data": {
+              "text": "Annotation text block",
+              "fontSizePx": 12
+            }
+          },
+          {
+            "id": "wt-a",
+            "type": "wiretag",
+            "position": {
+              "x": 640,
+              "y": 624
+            },
+            "width": 40,
+            "height": 6,
+            "data": {
+              "pairId": "wt-pair-dxf-test",
+              "pairIndex": 1,
+              "end": "a",
+              "tagDescription": "WT-A",
+              "sheetName": "Remote",
+              "showSheetName": true
+            }
+          },
+          {
+            "id": "wt-b",
+            "type": "wiretag",
+            "position": {
+              "x": 704,
+              "y": 624
+            },
+            "width": 40,
+            "height": 6,
+            "data": {
+              "pairId": "wt-pair-dxf-test",
+              "pairIndex": 1,
+              "end": "b",
+              "tagDescription": "WT-B",
+              "sheetName": "",
+              "showSheetName": false
+            }
+          },
+          {
+            "id": "zone-rect",
+            "type": "groupingZone",
+            "position": {
+              "x": 912,
+              "y": 624
+            },
+            "width": 240,
+            "height": 180,
+            "zIndex": -1,
+            "data": {
+              "label": "Rect zone",
+              "shape": "rect"
+            }
+          },
+          {
+            "id": "zone-poly",
+            "type": "groupingZone",
+            "position": {
+              "x": 1184,
+              "y": 624
+            },
+            "width": 200,
+            "height": 132,
+            "zIndex": -1,
+            "data": {
+              "label": "Poly zone",
+              "shape": "polyline",
+              "polylinePoints": [
+                0,
+                0,
+                200,
+                0,
+                200,
+                132,
+                0,
+                132
+              ]
+            }
+          },
+          {
+            "id": "zone-bundles",
+            "type": "groupingZone",
+            "position": {
+              "x": 72,
+              "y": 772
+            },
+            "width": 1432,
+            "height": 432,
+            "zIndex": -2,
+            "data": {
+              "label": "Bundles & wire types",
+              "shape": "rect"
+            }
+          },
+          {
+            "id": "dev-hub",
+            "type": "deviceV2",
+            "position": {
+              "x": 96,
+              "y": 820
+            },
+            "data": {
+              "tagCode": "HUB",
+              "tagNumber": "1",
+              "description": "Bundle hub",
+              "leftColumn": [
+                {
+                  "header": "Inputs",
+                  "rows": [
+                    {
+                      "id": "hub-in-a1",
+                      "label": "Aud 1",
+                      "direction": "input",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "hub-in-a2",
+                      "label": "Aud 2",
+                      "direction": "input",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "hub-in-v",
+                      "label": "Video",
+                      "direction": "input",
+                      "wireCategory": "video"
+                    },
+                    {
+                      "id": "hub-in-c",
+                      "label": "Control",
+                      "direction": "input",
+                      "wireCategory": "control"
+                    },
+                    {
+                      "id": "hub-in-n",
+                      "label": "Network",
+                      "direction": "input",
+                      "wireCategory": "network"
+                    },
+                    {
+                      "id": "hub-in-rf",
+                      "label": "RF",
+                      "direction": "input",
+                      "wireCategory": "rf"
+                    }
+                  ],
+                  "bundledRowIds": [
+                    [
+                      "hub-in-a1",
+                      "hub-in-a2"
+                    ]
+                  ]
+                }
+              ],
+              "rightColumn": [
+                {
+                  "header": "Outputs",
+                  "rows": [
+                    {
+                      "id": "hub-out-a1",
+                      "label": "Aud 1",
+                      "direction": "output",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "hub-out-a2",
+                      "label": "Aud 2",
+                      "direction": "output",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "hub-out-v",
+                      "label": "Video",
+                      "direction": "output",
+                      "wireCategory": "video"
+                    },
+                    {
+                      "id": "hub-out-c",
+                      "label": "Control",
+                      "direction": "output",
+                      "wireCategory": "control"
+                    },
+                    {
+                      "id": "hub-out-n",
+                      "label": "Network",
+                      "direction": "output",
+                      "wireCategory": "network"
+                    },
+                    {
+                      "id": "hub-out-rf",
+                      "label": "RF",
+                      "direction": "output",
+                      "wireCategory": "rf"
+                    }
+                  ],
+                  "bundledRowIds": [
+                    [
+                      "hub-out-a1",
+                      "hub-out-a2"
+                    ]
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "id": "av-hub",
+            "type": "avPlate",
+            "position": {
+              "x": 368,
+              "y": 820
+            },
+            "data": {
+              "tagCode": "AVP",
+              "tagNumber": "2",
+              "description": "AV bundle plate",
+              "groups": [
+                {
+                  "header": "Video in",
+                  "rows": [
+                    {
+                      "id": "av-v1",
+                      "label": "V1",
+                      "direction": "input",
+                      "wireCategory": "video"
+                    },
+                    {
+                      "id": "av-v2",
+                      "label": "V2",
+                      "direction": "input",
+                      "wireCategory": "video"
+                    }
+                  ]
+                },
+                {
+                  "header": "Audio out",
+                  "rows": [
+                    {
+                      "id": "av-a1",
+                      "label": "A1",
+                      "direction": "output",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "av-a2",
+                      "label": "A2",
+                      "direction": "output",
+                      "wireCategory": "audio"
+                    }
+                  ]
+                }
+              ],
+              "bundledLeft": [
+                [
+                  "av-v1",
+                  "av-v2"
+                ]
+              ],
+              "bundledRight": [
+                [
+                  "av-a1",
+                  "av-a2"
+                ]
+              ]
+            }
+          },
+          {
+            "id": "lpp-hub",
+            "type": "lppPatchPanel",
+            "position": {
+              "x": 640,
+              "y": 820
+            },
+            "data": {
+              "tagCode": "LPP",
+              "tagNumber": "2",
+              "descriptionLines": [
+                "Audio patch bundle"
+              ],
+              "rows": [
+                {
+                  "id": "lpp-r1",
+                  "connected": true
+                },
+                {
+                  "id": "lpp-r2",
+                  "connected": true
+                },
+                {
+                  "id": "lpp-r3",
+                  "connected": false
+                }
+              ],
+              "bundledLeft": [
+                [
+                  "lpp-r1",
+                  "lpp-r2"
+                ]
+              ]
+            }
+          },
+          {
+            "id": "dpp-hub",
+            "type": "dppPatchPanel",
+            "position": {
+              "x": 912,
+              "y": 820
+            },
+            "data": {
+              "tagCode": "DPP",
+              "tagNumber": "2",
+              "descriptionLines": [
+                "Network patch bundle"
+              ],
+              "rows": [
+                {
+                  "id": "dpp-r1",
+                  "label": "1",
+                  "direction": "output",
+                  "wireCategory": "network"
+                },
+                {
+                  "id": "dpp-r2",
+                  "label": "2",
+                  "direction": "output",
+                  "wireCategory": "network"
+                },
+                {
+                  "id": "dpp-r3",
+                  "label": "3",
+                  "direction": "input",
+                  "wireCategory": "network"
+                }
+              ],
+              "bundledLeft": [
+                [
+                  "dpp-r1",
+                  "dpp-r2"
+                ]
+              ]
+            }
+          },
+          {
+            "id": "dev-sink",
+            "type": "deviceV2",
+            "position": {
+              "x": 1184,
+              "y": 820
+            },
+            "data": {
+              "tagCode": "SNK",
+              "tagNumber": "1",
+              "description": "Wire-type sink",
+              "leftColumn": [
+                {
+                  "header": "Inputs",
+                  "rows": [
+                    {
+                      "id": "sink-in-a",
+                      "label": "Audio",
+                      "direction": "input",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "sink-in-v",
+                      "label": "Video",
+                      "direction": "input",
+                      "wireCategory": "video"
+                    },
+                    {
+                      "id": "sink-in-c",
+                      "label": "Control",
+                      "direction": "input",
+                      "wireCategory": "control"
+                    },
+                    {
+                      "id": "sink-in-n",
+                      "label": "Network",
+                      "direction": "input",
+                      "wireCategory": "network"
+                    },
+                    {
+                      "id": "sink-in-rf",
+                      "label": "RF",
+                      "direction": "input",
+                      "wireCategory": "rf"
+                    },
+                    {
+                      "id": "sink-in-d",
+                      "label": "Default",
+                      "direction": "input"
+                    }
+                  ]
+                }
+              ],
+              "rightColumn": []
+            }
+          },
+          {
+            "id": "label-bundles",
+            "type": "textBlock",
+            "position": {
+              "x": 96,
+              "y": 784
+            },
+            "width": 520,
+            "height": 28,
+            "data": {
+              "text": "Port bundles (brackets), bundle-to-bundle wires, all signal colors, grouped edges, mismatch",
+              "fontSizePx": 11
+            }
+          }
+        ],
+        "edges": [
+          {
+            "id": "e-dev-mic",
+            "source": "dev-export",
+            "target": "mic-export",
+            "sourceHandle": "R-0-dxf-test-out",
+            "targetHandle": "S-mic",
+            "type": "schematic",
+            "data": {
+              "wireCategory": "audio"
+            }
+          },
+          {
+            "id": "e-lpp-dev",
+            "source": "lpp-export",
+            "target": "dev-export",
+            "sourceHandle": "R-dxf-test-lpp-a",
+            "targetHandle": "L-0-dxf-test-in",
+            "type": "schematic",
+            "data": {
+              "wireCategory": "audio"
+            }
+          },
+          {
+            "id": "e-wt-pair-a",
+            "source": "wt-a",
+            "target": "wt-b",
+            "sourceHandle": "conn-tgt",
+            "targetHandle": "conn-tgt",
+            "type": "schematic",
+            "data": {}
+          },
+          {
+            "id": "e-wt-pair-b",
+            "source": "wt-b",
+            "target": "wt-a",
+            "sourceHandle": "conn-src",
+            "targetHandle": "conn-src",
+            "type": "schematic",
+            "data": {}
+          },
+          {
+            "id": "e-wt-dev",
+            "source": "wt-a",
+            "target": "dev-export",
+            "sourceHandle": "conn-src",
+            "targetHandle": "L-0-dxf-test-in",
+            "type": "schematic",
+            "data": {
+              "wireCategory": "audio"
+            }
+          },
+          {
+            "id": "e-flyoff-dev",
+            "source": "flyoff-out",
+            "target": "dev-export",
+            "sourceHandle": "S-fly",
+            "targetHandle": "R-0-dxf-test-out",
+            "type": "schematic",
+            "data": {
+              "wireCategory": "control"
+            }
+          },
+          {
+            "id": "e-ant-rx-hub",
+            "source": "ant-rx",
+            "target": "dev-hub",
+            "sourceHandle": "ant-rx",
+            "targetHandle": "L-0-hub-in-rf",
+            "type": "schematic",
+            "data": {
+              "wireCategory": "rf"
+            }
+          },
+          {
+            "id": "e-bundle-lpp",
+            "source": "dev-hub",
+            "target": "lpp-hub",
+            "sourceHandle": "R-0-bundle-0",
+            "targetHandle": "L-lpp-left-0-bundle-0",
+            "type": "schematic",
+            "data": {
+              "wireCategory": "audio",
+              "bundleLabel": "12x"
+            }
+          },
+          {
+            "id": "e-bundle-video",
+            "source": "dev-hub",
+            "target": "av-hub",
+            "sourceHandle": "R-0-hub-out-v",
+            "targetHandle": "L-av-left-2-bundle-0",
+            "type": "schematic",
+            "data": {
+              "wireCategory": "video"
+            }
+          },
+          {
+            "id": "e-bundle-av-out",
+            "source": "av-hub",
+            "target": "dev-sink",
+            "sourceHandle": "R-av-right-6-bundle-0",
+            "targetHandle": "L-0-sink-in-a",
+            "type": "schematic",
+            "data": {
+              "wireCategory": "audio"
+            }
+          },
+          {
+            "id": "e-bundle-net",
+            "source": "dpp-hub",
+            "target": "dev-sink",
+            "sourceHandle": "L-dpp-left-0-bundle-0",
+            "targetHandle": "L-0-sink-in-n",
+            "type": "schematic",
+            "data": {
+              "wireCategory": "network"
+            }
+          },
+          {
+            "id": "e-type-audio",
+            "source": "dev-hub",
+            "target": "dev-sink",
+            "sourceHandle": "R-0-hub-out-a1",
+            "targetHandle": "L-0-sink-in-a",
+            "type": "schematic",
+            "data": {
+              "wireCategory": "audio"
+            }
+          },
+          {
+            "id": "e-type-default",
+            "source": "dev-hub",
+            "target": "dev-sink",
+            "sourceHandle": "R-0-hub-out-a2",
+            "targetHandle": "L-0-sink-in-d",
+            "type": "schematic",
+            "data": {
+              "wireCategory": "default"
+            }
+          },
+          {
+            "id": "e-grp-1",
+            "source": "dev-hub",
+            "target": "dev-sink",
+            "sourceHandle": "R-0-hub-out-c",
+            "targetHandle": "L-0-sink-in-c",
+            "type": "schematic",
+            "data": {
+              "wireCategory": "control",
+              "bundled": true,
+              "bundledEdgeIds": [
+                "e-grp-2",
+                "e-grp-3"
+              ],
+              "bundleLabel": "3"
+            }
+          },
+          {
+            "id": "e-grp-2",
+            "source": "dev-hub",
+            "target": "dev-sink",
+            "sourceHandle": "R-0-hub-out-n",
+            "targetHandle": "L-0-sink-in-n",
+            "type": "schematic",
+            "data": {
+              "wireCategory": "network",
+              "bundledBy": "e-grp-1"
+            }
+          },
+          {
+            "id": "e-grp-3",
+            "source": "dev-hub",
+            "target": "dev-sink",
+            "sourceHandle": "R-0-hub-out-rf",
+            "targetHandle": "L-0-sink-in-rf",
+            "type": "schematic",
+            "data": {
+              "wireCategory": "rf",
+              "bundledBy": "e-grp-1"
+            }
+          },
+          {
+            "id": "e-mismatch",
+            "source": "av-hub",
+            "target": "dev-sink",
+            "sourceHandle": "S-0-av-a1",
+            "targetHandle": "L-0-sink-in-v",
+            "type": "schematic",
+            "data": {
+              "wireCategory": "audio",
+              "wireCategoryMismatch": true
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "activeSheetId": "sheet-dxf-export-test",
+  "presetLibrary": []
+}
