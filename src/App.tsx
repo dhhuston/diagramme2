@@ -1,9 +1,9 @@
 import { useCallback, useState } from 'react'
 
 import { DiagramStage } from './canvas/DiagramStage'
-import type { HitTarget } from './canvas/sceneTypes'
+import type { HitTarget, PointPx } from './canvas/sceneTypes'
 import { useDiagramScene } from './canvas/useDiagramScene'
-import { exportRevitDxf } from './tauriIpc'
+import { exportRevitDxf, moveNode } from './tauriIpc'
 import './App.css'
 
 export default function App() {
@@ -55,6 +55,15 @@ export default function App() {
     }
   }, [refreshScene])
 
+  const handleNodeMove = useCallback(
+    async (nodeId: string, position: PointPx) => {
+      await moveNode(nodeId, position)
+      const next = await refreshScene()
+      setStatus(`Moved ${nodeId} → (${position.x}, ${position.y}); ${next.primitives.length} primitives`)
+    },
+    [refreshScene],
+  )
+
   const displayStatus = error ?? status
 
   return (
@@ -79,7 +88,7 @@ export default function App() {
       </header>
       <main className="app-canvas">
         {scene ? (
-          <DiagramStage scene={scene} onHit={handleHit} />
+          <DiagramStage scene={scene} onHit={handleHit} onNodeMove={handleNodeMove} />
         ) : (
           <div className="app-placeholder">
             <p>Load Comp Gym to render the Rust scene on Konva.</p>

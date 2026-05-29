@@ -1,5 +1,10 @@
 import { Line, Rect, Shape } from 'react-konva'
 
+import {
+  belongsToNodeDrag,
+  offsetScenePrimitive,
+  type NodeDragPreview,
+} from './interaction/dragNode'
 import { SceneTextNode } from './SceneTextNode'
 import {
   colorRgbToCss,
@@ -12,6 +17,7 @@ import type { SceneJson, ScenePrimitive } from './sceneTypes'
 
 type SceneRendererProps = {
   scene: SceneJson
+  nodeDrag?: NodeDragPreview | null
 }
 
 function renderPrimitive(primitive: ScenePrimitive, index: number) {
@@ -80,7 +86,26 @@ function renderPrimitive(primitive: ScenePrimitive, index: number) {
   return <SceneTextNode key={primitiveKey('text', index)} text={t} />
 }
 
+function effectivePrimitive(
+  primitive: ScenePrimitive,
+  nodeDrag: NodeDragPreview | null | undefined,
+): ScenePrimitive {
+  if (!nodeDrag || (nodeDrag.dx === 0 && nodeDrag.dy === 0)) {
+    return primitive
+  }
+  if (!belongsToNodeDrag(primitive, nodeDrag.nodeId, nodeDrag.captureBounds)) {
+    return primitive
+  }
+  return offsetScenePrimitive(primitive, nodeDrag.dx, nodeDrag.dy)
+}
+
 /** Renders authoritative Rust scene primitives in diagram px (Y-down). */
-export function SceneRenderer({ scene }: SceneRendererProps) {
-  return <>{scene.primitives.map((primitive, index) => renderPrimitive(primitive, index))}</>
+export function SceneRenderer({ scene, nodeDrag }: SceneRendererProps) {
+  return (
+    <>
+      {scene.primitives.map((primitive, index) =>
+        renderPrimitive(effectivePrimitive(primitive, nodeDrag), index),
+      )}
+    </>
+  )
 }

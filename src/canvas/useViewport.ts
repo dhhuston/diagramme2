@@ -14,6 +14,10 @@ export function useViewport(initial: Viewport = { scale: 1, x: 0, y: 0 }) {
     setViewport(next)
   }, [])
 
+  const setPan = useCallback((next: Pick<Viewport, 'x' | 'y'>) => {
+    setViewport((prev) => ({ ...prev, ...next }))
+  }, [])
+
   const onWheel = useCallback((event: KonvaEventObject<WheelEvent>) => {
     event.evt.preventDefault()
     const stage = event.target.getStage()
@@ -58,5 +62,5 @@ export function useViewport(initial: Viewport = { scale: 1, x: 0, y: 0 }) {
     }))
   }, [])
 
-  return { viewport, setFit, onWheel, onDragMove, onDragEnd }
+  return { viewport, setFit, setPan, onWheel, onDragMove, onDragEnd }
 }
