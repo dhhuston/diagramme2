@@ -1,9 +1,8 @@
-import { Line, Rect, Shape, Text } from 'react-konva'
+import { Line, Rect, Shape } from 'react-konva'
 
+import { SceneTextNode } from './SceneTextNode'
 import {
   colorRgbToCss,
-  konvaTextAlign,
-  konvaVerticalAlign,
   polylineToKonvaPoints,
   primitiveKey,
 } from './sceneRenderUtils'
@@ -77,21 +76,7 @@ function renderPrimitive(primitive: ScenePrimitive, index: number) {
   }
 
   const t = primitive.Text
-  return (
-    <Text
-      key={primitiveKey('text', index)}
-      x={t.position.x}
-      y={t.position.y}
-      text={t.content}
-      fontFamily={t.font}
-      fontSize={t.height_px}
-      align={konvaTextAlign(t.halign)}
-      verticalAlign={konvaVerticalAlign(t.valign)}
-      fill="#000000"
-      listening={false}
-      perfectDrawEnabled={false}
-    />
-  )
+  return <SceneTextNode key={primitiveKey('text', index)} text={t} />
 }
 
 /** Renders authoritative Rust scene primitives in diagram px (Y-down). */

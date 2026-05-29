@@ -4,6 +4,8 @@ import {
   colorRgbToCss,
   fitExtentToStage,
   polylineToKonvaPoints,
+  textAnchorOffsetX,
+  textAnchorOffsetY,
 } from './sceneRenderUtils'
 
 describe('sceneRenderUtils', () => {
@@ -31,5 +33,17 @@ describe('sceneRenderUtils', () => {
     expect(fit.scale).toBeGreaterThan(0)
     expect(fit.x).toBeLessThan(48)
     expect(fit.y).toBeLessThan(48)
+  })
+
+  it('textAnchorOffsetX matches DXF horizontal alignment anchor', () => {
+    expect(textAnchorOffsetX('Left', 40)).toBe(0)
+    expect(textAnchorOffsetX('Center', 40)).toBe(20)
+    expect(textAnchorOffsetX('Right', 40)).toBe(40)
+  })
+
+  it('textAnchorOffsetY matches DXF vertical alignment anchor', () => {
+    expect(textAnchorOffsetY('Top', 9)).toBe(0)
+    expect(textAnchorOffsetY('Middle', 9)).toBe(4.5)
+    expect(textAnchorOffsetY('Bottom', 9)).toBe(9)
   })
 })

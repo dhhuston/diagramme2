@@ -14,7 +14,7 @@ type DiagramStageProps = {
 export function DiagramStage({ scene }: DiagramStageProps) {
   const hostRef = useRef<HTMLDivElement>(null)
   const [size, setSize] = useState({ width: 800, height: 600 })
-  const { viewport, setFit, onWheel, onDragEnd } = useViewport()
+  const { viewport, setFit, onWheel, onDragMove, onDragEnd } = useViewport()
 
   useEffect(() => {
     const el = hostRef.current
@@ -43,13 +43,7 @@ export function DiagramStage({ scene }: DiagramStageProps) {
           scaleX={viewport.scale}
           scaleY={viewport.scale}
           draggable
-          onDragMove={(event) => {
-            setViewport((prev) => ({
-              ...prev,
-              x: event.target.x(),
-              y: event.target.y(),
-            }))
-          }}
+          onDragMove={onDragMove}
           onDragEnd={onDragEnd}
         >
           <SceneRenderer scene={scene} />

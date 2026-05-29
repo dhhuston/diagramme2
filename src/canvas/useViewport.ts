@@ -42,6 +42,14 @@ export function useViewport(initial: Viewport = { scale: 1, x: 0, y: 0 }) {
     })
   }, [])
 
+  const onDragMove = useCallback((event: KonvaEventObject<DragEvent>) => {
+    setViewport((prev) => ({
+      ...prev,
+      x: event.target.x(),
+      y: event.target.y(),
+    }))
+  }, [])
+
   const onDragEnd = useCallback((event: KonvaEventObject<DragEvent>) => {
     setViewport((prev) => ({
       ...prev,
@@ -50,5 +58,5 @@ export function useViewport(initial: Viewport = { scale: 1, x: 0, y: 0 }) {
     }))
   }, [])
 
-  return { viewport, setFit, onWheel, onDragEnd }
+  return { viewport, setFit, onWheel, onDragMove, onDragEnd }
 }

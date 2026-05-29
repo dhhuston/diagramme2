@@ -1,4 +1,37 @@
+import type Konva from 'konva'
+
 import type { HAlign, PointPx, ScenePolyline, VAlign } from './sceneTypes'
+
+/** Scene/DXF text anchor offsets from measured Konva text metrics. */
+export function textAnchorOffsetX(halign: HAlign, width: number): number {
+  switch (halign) {
+    case 'Left':
+      return 0
+    case 'Center':
+      return width / 2
+    case 'Right':
+      return width
+  }
+}
+
+export function textAnchorOffsetY(valign: VAlign, height: number): number {
+  switch (valign) {
+    case 'Top':
+      return 0
+    case 'Middle':
+      return height / 2
+    case 'Bottom':
+      return height
+  }
+}
+
+/** Apply scene insertion-point semantics to a Konva Text node. */
+export function applySceneTextAnchor(node: Konva.Text, halign: HAlign, valign: VAlign): void {
+  const width = node.getTextWidth()
+  const height = node.fontSize()
+  node.offsetX(textAnchorOffsetX(halign, width))
+  node.offsetY(textAnchorOffsetY(valign, height))
+}
 
 /** sRGB `0xRRGGBB` (matches Rust wire / stroke colors). */
 export function colorRgbToCss(color: number): string {
