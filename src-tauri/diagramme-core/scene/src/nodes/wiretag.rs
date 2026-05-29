@@ -6,7 +6,7 @@ use diagramme_geometry::{
     WIRETAG_BAR_HEIGHT_PX,
 };
 
-pub use diagramme_geometry::{get_device_tag_label, resolve_pair_main_display_text};
+pub use diagramme_geometry::resolve_pair_main_display_text;
 use diagramme_schema::{Edge, Node};
 
 use crate::scene::{HitTarget, HAlign, Scene, ScenePrimitive, SceneText, VAlign};

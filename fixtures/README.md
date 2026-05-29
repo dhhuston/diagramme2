@@ -31,6 +31,8 @@ The schematic-only golden omits the old palette row (junction, micBlock, etc. at
 
 Golden DXF baseline: `golden/dxf/comp-gym-f102a.dxf` (regenerate with `cargo test -p diagramme-dxf write_golden_baseline -- --ignored`).
 
+Golden scene baseline: `golden/scene/comp-gym-f102a.json` (regenerate with `cargo test -p diagramme-scene write_golden_scene_baseline -- --ignored`).
+
 ## `diagrams/dxf-export-test.diagramme`
 
 **Source:** `Diagramme_v6/src/fixtures/buildDxfExportTestDiagram.ts`
