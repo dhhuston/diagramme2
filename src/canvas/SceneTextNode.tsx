@@ -2,11 +2,7 @@ import { useCallback } from 'react'
 import { Text } from 'react-konva'
 import type Konva from 'konva'
 
-import {
-  applySceneTextAnchor,
-  konvaTextAlign,
-  konvaVerticalAlign,
-} from './sceneRenderUtils'
+import { applySceneTextAnchor, sceneCapHeightToFontSizePx } from './sceneRenderUtils'
 import type { SceneText } from './sceneTypes'
 
 type SceneTextNodeProps = {
@@ -31,6 +27,8 @@ export function SceneTextNode({ text }: SceneTextNodeProps) {
     [text.content, text.font, text.halign, text.height_px, text.valign],
   )
 
+  const fontSize = sceneCapHeightToFontSizePx(text.height_px)
+
   return (
     <Text
       ref={ref}
@@ -38,9 +36,10 @@ export function SceneTextNode({ text }: SceneTextNodeProps) {
       y={text.position.y}
       text={text.content}
       fontFamily={`"${text.font}", "Arial Narrow", Arial, sans-serif`}
-      fontSize={text.height_px}
-      align={konvaTextAlign(text.halign)}
-      verticalAlign={konvaVerticalAlign(text.valign)}
+      fontSize={fontSize}
+      lineHeight={1}
+      align="left"
+      verticalAlign="top"
       fill="#000000"
       listening={false}
       perfectDrawEnabled={false}

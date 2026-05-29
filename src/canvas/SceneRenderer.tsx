@@ -3,8 +3,10 @@ import { Line, Rect, Shape } from 'react-konva'
 import { SceneTextNode } from './SceneTextNode'
 import {
   colorRgbToCss,
+  konvaStrokeWidthPx,
   polylineToKonvaPoints,
   primitiveKey,
+  solidLayerFillCss,
 } from './sceneRenderUtils'
 import type { SceneJson, ScenePrimitive } from './sceneTypes'
 
@@ -21,7 +23,7 @@ function renderPrimitive(primitive: ScenePrimitive, index: number) {
         key={primitiveKey('polyline', index, p)}
         points={polylineToKonvaPoints(p.points)}
         stroke={stroke}
-        strokeWidth={p.stroke_px}
+        strokeWidth={konvaStrokeWidthPx(p.stroke_px, p.edge_id)}
         closed={p.closed ?? false}
         lineJoin="miter"
         lineCap="square"
@@ -43,7 +45,7 @@ function renderPrimitive(primitive: ScenePrimitive, index: number) {
         width={r.rect.width}
         height={r.rect.height}
         stroke={stroke}
-        strokeWidth={r.stroke_px}
+        strokeWidth={konvaStrokeWidthPx(r.stroke_px)}
         fill={fill}
         listening={false}
         perfectDrawEnabled={false}
@@ -54,6 +56,7 @@ function renderPrimitive(primitive: ScenePrimitive, index: number) {
   if ('Solid' in primitive) {
     const s = primitive.Solid
     const [v0, v1, v2, v3] = s.vertices
+    const fill = solidLayerFillCss(s.layer)
     return (
       <Shape
         key={primitiveKey('solid', index)}
@@ -66,11 +69,9 @@ function renderPrimitive(primitive: ScenePrimitive, index: number) {
           ctx.lineTo(v2.x, v2.y)
           ctx.lineTo(v3.x, v3.y)
           ctx.closePath()
-          ctx.fillStrokeShape(shape)
+          ctx.fillShape(shape)
         }}
-        fill="#000000"
-        stroke="#000000"
-        strokeWidth={1}
+        fill={fill}
       />
     )
   }
