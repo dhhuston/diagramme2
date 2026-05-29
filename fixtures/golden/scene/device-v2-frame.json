@@ -1,0 +1,11 @@
+{
+  "node_id": "dev-export",
+  "frame": {
+    "x": 96.0,
+    "y": 120.0,
+    "width": 126.0,
+    "height": 54.0
+  },
+  "tag_band_y": 105.0,
+  "fixture_primitive_count": 80
+}

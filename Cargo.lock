@@ -714,6 +714,7 @@ dependencies = [
  "diagramme-schema",
  "diagramme-wires",
  "serde",
+ "serde_json",
 ]
 
 [[package]]

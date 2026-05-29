@@ -4,6 +4,7 @@ pub const VERSION: &str = env!("CARGO_PKG_VERSION");
 
 mod build;
 mod cad_transform;
+mod nodes;
 mod scene;
 
 pub use build::build_scene;

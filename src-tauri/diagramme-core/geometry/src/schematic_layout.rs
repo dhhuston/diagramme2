@@ -5,6 +5,19 @@ use crate::paper_scale::{CONNECTOR_LINE_PITCH_PX, CONNECTOR_ROW_OUTER_HEIGHT_PX,
 /// Vertical padding reserved above the frame for the tag strip.
 pub const SCHEMATIC_TAG_BAND_PX: f64 = 15.0;
 
+/// Tag text anchor (center/middle) in node-local px; frame top is y = 0.
+pub const SCHEMATIC_TAG_TEXT_CENTER_Y_PX: f64 = -SCHEMATIC_TAG_BAND_PX / 2.0;
+
+/// Geometric center Y of a title band of height `title_height_px`.
+pub fn schematic_title_band_center_y(title_height_px: f64) -> f64 {
+    title_height_px / 2.0
+}
+
+/// Geometric center Y of body row `row_index` (0-based) given body top and row height.
+pub fn schematic_body_row_center_y(body_top_px: f64, row_index: usize, row_height_px: f64) -> f64 {
+    body_top_px + (row_index as f64 + 0.5) * row_height_px
+}
+
 /// Inset from schematic chrome for border rectangles.
 pub const SCHEMATIC_FRAME_INSET_PX: f64 = 0.25;
 
