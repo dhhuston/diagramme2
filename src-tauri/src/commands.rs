@@ -7,6 +7,8 @@
 use crate::close_gate::AllowNextClose;
 use crate::debug_channel;
 use crate::state::AppState;
+use diagramme_dxf::build_revit_dxf_from_diagram;
+use diagramme_scene::{build_scene, Scene};
 use diagramme_schema::{
     DiagramState, EmbeddedPreset, Node, NodeDimension, ProjectState, Sheet, XY,
 };
@@ -142,6 +144,16 @@ pub fn get_project(state: State<'_, AppState>) -> ProjectState {
 #[tauri::command]
 pub fn get_state(state: State<'_, AppState>) -> DiagramState {
     state.0.lock().unwrap().active_sheet().state.clone()
+}
+
+#[tauri::command]
+pub fn get_diagram_scene(state: State<'_, AppState>) -> Scene {
+    get_diagram_scene_for_state(state.inner())
+}
+
+#[tauri::command]
+pub fn export_revit_dxf(state: State<'_, AppState>) -> Result<String, String> {
+    export_revit_dxf_for_state(state.inner())
 }
 
 #[tauri::command]
@@ -496,6 +508,18 @@ pub fn clear_recovery_snapshot(app: AppHandle) -> Result<(), String> {
         std::fs::remove_file(&p).map_err(|e| e.to_string())?;
     }
     Ok(())
+}
+
+/// Build scene for the active sheet (used by integration tests).
+pub fn get_diagram_scene_for_state(state: &AppState) -> Scene {
+    let project = state.0.lock().unwrap();
+    build_scene(&project.active_sheet().state)
+}
+
+/// Export Revit DXF for the active sheet (used by integration tests).
+pub fn export_revit_dxf_for_state(state: &AppState) -> Result<String, String> {
+    let project = state.0.lock().unwrap();
+    Ok(build_revit_dxf_from_diagram(&project.active_sheet().state))
 }
 
 /// Apply a node move on in-memory project state (used by integration tests).

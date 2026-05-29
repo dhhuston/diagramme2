@@ -42,6 +42,8 @@ pub fn run() {
         .invoke_handler(tauri::generate_handler![
             commands::get_project,
             commands::get_state,
+            commands::get_diagram_scene,
+            commands::export_revit_dxf,
             commands::set_state,
             commands::sync_state,
             commands::add_node,
