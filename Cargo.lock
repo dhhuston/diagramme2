@@ -694,6 +694,7 @@ name = "diagramme-geometry"
 version = "0.1.0"
 dependencies = [
  "diagramme-schema",
+ "serde",
  "serde_json",
 ]
 
@@ -712,6 +713,7 @@ dependencies = [
  "diagramme-geometry",
  "diagramme-schema",
  "diagramme-wires",
+ "serde",
 ]
 
 [[package]]

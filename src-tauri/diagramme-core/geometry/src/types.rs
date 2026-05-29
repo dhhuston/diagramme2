@@ -1,14 +1,16 @@
 //! Diagram-space geometry primitives (1 canvas px = 1/72 inch).
 
+use serde::{Deserialize, Serialize};
+
 /// Point in diagram pixels.
-#[derive(Debug, Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq, Serialize, Deserialize)]
 pub struct PointPx {
     pub x: f64,
     pub y: f64,
 }
 
 /// Axis-aligned rectangle in diagram pixels (`x`, `y` = top-left).
-#[derive(Debug, Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq, Serialize, Deserialize)]
 pub struct RectPx {
     pub x: f64,
     pub y: f64,
