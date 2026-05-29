@@ -3,8 +3,14 @@
 use diagramme_geometry::RectPx;
 use diagramme_schema::DiagramState;
 
+use diagramme_geometry::is_patch_panel_node_type;
+
+use crate::nodes::av_plate::av_plate_scene_bounds;
+use crate::nodes::append_av_plate_scene;
 use crate::nodes::append_device_v2_scene;
+use crate::nodes::append_patch_panel_scene;
 use crate::nodes::device_v2::device_v2_scene_bounds;
+use crate::nodes::patch_panel::patch_panel_scene_bounds;
 use crate::scene::Scene;
 
 fn union_rects(rects: impl IntoIterator<Item = RectPx>) -> RectPx {
@@ -39,6 +45,14 @@ pub fn build_scene(diagram: &DiagramState) -> Scene {
             "deviceV2" | "device" => {
                 append_device_v2_scene(&mut scene, node);
                 extent_rects.push(device_v2_scene_bounds(node));
+            }
+            "avPlate" => {
+                append_av_plate_scene(&mut scene, node);
+                extent_rects.push(av_plate_scene_bounds(node));
+            }
+            t if is_patch_panel_node_type(t) => {
+                append_patch_panel_scene(&mut scene, node);
+                extent_rects.push(patch_panel_scene_bounds(node));
             }
             _ => {}
         }
