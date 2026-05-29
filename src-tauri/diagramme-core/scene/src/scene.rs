@@ -28,6 +28,8 @@ pub enum ScenePrimitive {
         stroke_px: f64,
         layer: String,
         color: u32,
+        #[serde(default)]
+        closed: bool,
         #[serde(skip_serializing_if = "Option::is_none")]
         edge_id: Option<String>,
     },

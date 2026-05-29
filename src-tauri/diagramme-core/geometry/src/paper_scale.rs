@@ -8,8 +8,11 @@ pub const PX_PER_INCH: f64 = 72.0;
 /// 1/4 inch — standard AV functional diagram connector row height.
 pub const ROW_HEIGHT_PX: f64 = 18.0;
 
-/// 1/8 inch — standard CAD plotted text height for connector labels.
+/// 1/8 inch — standard CAD plotted text height for tag strip above node frames.
 pub const LABEL_FONT_PX: f64 = 9.0;
+
+/// 3/32 inch — node title band cap height (patch panel header, device description, AV plate title).
+pub const NODE_TITLE_FONT_PX: f64 = (3.0 / 32.0) * PX_PER_INCH;
 
 /// Device block: each input/output connector column width (3/4").
 pub const DEVICE_CONNECTOR_COLUMN_PX: f64 = (3.0 / 4.0) * PX_PER_INCH;
@@ -107,6 +110,9 @@ pub const VOLUME_CONTROL_HANDLE_CENTER_Y_PX: f64 =
 
 /// Volume control “VC” label cap height (1/16" @ 72dpi).
 pub const VOLUME_CONTROL_VC_TEXT_HEIGHT_PX: f64 = PX_PER_INCH / 16.0;
+
+/// Mic/speaker line2 (description) cap height (1/16" @ 72dpi).
+pub const MIC_SPEAKER_DESC_FONT_PX: f64 = PX_PER_INCH / 16.0;
 
 /// Device block: short description band total height (1/4").
 pub const DEVICE_DESCRIPTION_BAND_PX: f64 = PX_PER_INCH / 4.0;

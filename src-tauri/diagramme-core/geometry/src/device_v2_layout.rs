@@ -239,6 +239,8 @@ pub fn device_v2_body_grid_row_count(data: &Value) -> usize {
 #[derive(Debug, Clone)]
 pub struct BundleBracketSlot {
     pub y0: f64,
+    pub y1: f64,
+    pub count: usize,
     pub group_index: usize,
     pub bundle_index: usize,
 }
@@ -278,10 +280,11 @@ pub fn bundled_bracket_slots(
             let y1 = body_top + last as f64 * row_px + row_px / 2.0;
             result.push(BundleBracketSlot {
                 y0,
+                y1,
+                count: bundle.len(),
                 group_index,
                 bundle_index,
             });
-            let _ = y1; // y1 used for bracket drawing; port geometry uses y0 only
         }
     }
     result

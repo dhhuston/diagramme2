@@ -1,0 +1,2804 @@
+{
+  "activeSheetId": "sheet-6b497af5",
+  "format": "diagramme",
+  "presetLibrary": [
+    {
+      "data": {
+        "description": "shure SLXD4D+",
+        "leftColumn": [
+          {
+            "header": "Input",
+            "rows": [
+              {
+                "id": "in-74a66fe8",
+                "label": "1",
+                "wireCategory": "rf"
+              },
+              {
+                "id": "leftColumn-11d26323",
+                "label": "2",
+                "wireCategory": "rf"
+              }
+            ]
+          }
+        ],
+        "rightColumn": [
+          {
+            "header": "Output",
+            "rows": [
+              {
+                "id": "out-74a66fe8",
+                "label": "1",
+                "wireCategory": "audio"
+              },
+              {
+                "id": "rightColumn-3e9e2cca",
+                "label": "2",
+                "wireCategory": "audio"
+              }
+            ]
+          }
+        ],
+        "tagCode": "wmic",
+        "tagNumber": "1"
+      },
+      "id": "cee78254-4042-41c7-a0f8-41bc89ad5a11",
+      "name": "shure SLXD4D+",
+      "nodeType": "deviceV2",
+      "sourceBasename": "shure SLXD4D+.avdevice"
+    },
+    {
+      "data": {
+        "description": "AV PLATE",
+        "groups": [
+          {
+            "header": "INPUTS",
+            "rows": [
+              {
+                "direction": "input",
+                "id": "p-0d2f4e11-a",
+                "label": "1",
+                "wireCategory": "audio"
+              },
+              {
+                "direction": "input",
+                "id": "groups-c7e30063",
+                "label": "2",
+                "wireCategory": "audio"
+              },
+              {
+                "direction": "input",
+                "id": "groups-85080b93",
+                "label": "3",
+                "wireCategory": "audio"
+              },
+              {
+                "direction": "input",
+                "id": "groups-ee4dfaba",
+                "label": "4",
+                "wireCategory": "audio"
+              }
+            ]
+          },
+          {
+            "header": "OUTPUTS",
+            "rows": [
+              {
+                "direction": "output",
+                "id": "groups-a4f399c9",
+                "label": "1",
+                "wireCategory": "audio"
+              },
+              {
+                "direction": "output",
+                "id": "groups-d02be7dc",
+                "label": "2",
+                "wireCategory": "audio"
+              }
+            ]
+          }
+        ],
+        "tagCode": "AVP",
+        "tagNumber": "AV-1"
+      },
+      "id": "045a7d5a-da3f-46aa-84d3-6a07e2d6c4ee",
+      "name": "AV PLATE",
+      "nodeType": "avPlate",
+      "sourceBasename": "AV PLATE AVP_AV-1.plate"
+    },
+    {
+      "data": {
+        "description": "RACK MOUNT MIXER",
+        "leftColumn": [
+          {
+            "header": "Input",
+            "rows": [
+              {
+                "id": "in-84b12e66",
+                "label": "1",
+                "wireCategory": "audio"
+              },
+              {
+                "id": "leftColumn-7896c88d",
+                "label": "2",
+                "wireCategory": "audio"
+              },
+              {
+                "id": "leftColumn-3044e262",
+                "label": "3",
+                "wireCategory": "audio"
+              },
+              {
+                "id": "leftColumn-3d52f520",
+                "label": "4",
+                "wireCategory": "audio"
+              },
+              {
+                "id": "leftColumn-5fc5bf40",
+                "label": "5",
+                "wireCategory": "audio"
+              },
+              {
+                "id": "leftColumn-d2d93d0b",
+                "label": "6",
+                "wireCategory": "audio"
+              },
+              {
+                "id": "leftColumn-cdb6a06d",
+                "label": "7",
+                "wireCategory": "audio"
+              },
+              {
+                "id": "leftColumn-fdf8a461",
+                "label": "8",
+                "wireCategory": "audio"
+              },
+              {
+                "id": "leftColumn-e610eced",
+                "label": "9",
+                "wireCategory": "audio"
+              },
+              {
+                "id": "leftColumn-b2e4f256",
+                "label": "10",
+                "wireCategory": "audio"
+              },
+              {
+                "id": "leftColumn-ae677e12",
+                "label": "...",
+                "wireCategory": "audio"
+              },
+              {
+                "id": "leftColumn-8fa1e833",
+                "label": "16",
+                "wireCategory": "audio"
+              }
+            ]
+          },
+          {
+            "header": "network",
+            "rows": [
+              {
+                "id": "leftColumn-8458b298",
+                "label": "lan",
+                "wireCategory": "network"
+              }
+            ]
+          }
+        ],
+        "rightColumn": [
+          {
+            "header": "Output",
+            "rows": [
+              {
+                "id": "out-84b12e66",
+                "label": "1",
+                "wireCategory": "audio"
+              },
+              {
+                "id": "rightColumn-c0dde166",
+                "label": "2",
+                "wireCategory": "audio"
+              },
+              {
+                "id": "rightColumn-6b741693",
+                "label": "3",
+                "wireCategory": "audio"
+              },
+              {
+                "id": "rightColumn-37dbd477",
+                "label": "4",
+                "wireCategory": "audio"
+              },
+              {
+                "id": "rightColumn-5e9262b7",
+                "label": "5",
+                "wireCategory": "audio"
+              },
+              {
+                "id": "rightColumn-fad8ac47",
+                "label": "6",
+                "wireCategory": "audio"
+              },
+              {
+                "id": "rightColumn-fe06cd65",
+                "label": "7",
+                "wireCategory": "audio"
+              },
+              {
+                "id": "rightColumn-9d951581",
+                "label": "8",
+                "wireCategory": "audio"
+              },
+              {
+                "id": "rightColumn-b295874e",
+                "label": "..."
+              },
+              {
+                "id": "rightColumn-a86b1ecd",
+                "label": "12"
+              }
+            ]
+          }
+        ],
+        "tagCode": "MIX",
+        "tagNumber": "1"
+      },
+      "id": "e1e0f479-d1fa-4242-b249-6b0bdc76bb0a",
+      "name": "RACK MOUNT MIXER",
+      "nodeType": "deviceV2",
+      "sourceBasename": "RACK MOUNT MIXER.avdevice"
+    }
+  ],
+  "sheets": [
+    {
+      "id": "sheet-6b497af5",
+      "name": "Main",
+      "state": {
+        "edges": [
+          {
+            "data": {
+              "innerCorners": [
+                {
+                  "x": 1164,
+                  "y": 156
+                },
+                {
+                  "x": 1236,
+                  "y": 156
+                },
+                {
+                  "x": 1236,
+                  "y": 141
+                }
+              ],
+              "sourceHandleCenter": {
+                "x": 932.7500138116698,
+                "y": -30.00000566343
+              },
+              "targetHandleCenter": {
+                "x": 1015.2500040108248,
+                "y": -31.500028418161953
+              },
+              "wireCategory": "audio",
+              "wireCategoryMismatch": false
+            },
+            "id": "e-e0b47a6c-c686-4b14-9b94-275396e350d5",
+            "source": "speakerBlock-2f1a8d6a",
+            "sourceHandle": "S-spk-passthru",
+            "target": "speakerBlock-c9f8c968",
+            "targetHandle": "T-spk",
+            "type": "schematic"
+          },
+          {
+            "data": {
+              "innerCorners": [
+                {
+                  "x": 1089,
+                  "y": 198
+                },
+                {
+                  "x": 1161,
+                  "y": 198
+                },
+                {
+                  "x": 1161,
+                  "y": 183
+                }
+              ],
+              "sourceHandleCenter": {
+                "x": 857.7500138116698,
+                "y": -26.99999557897487
+              },
+              "targetHandleCenter": {
+                "x": 932.7500138116698,
+                "y": -31.500010052184876
+              },
+              "wireCategory": "audio",
+              "wireCategoryMismatch": false
+            },
+            "id": "e-b716c2f6-5153-4fae-b4d7-98a893e24e79",
+            "source": "speakerBlock-e1617408",
+            "sourceHandle": "S-spk-passthru",
+            "target": "speakerBlock-9ce597ed",
+            "targetHandle": "T-spk",
+            "type": "schematic"
+          },
+          {
+            "data": {
+              "innerCorners": [
+                {
+                  "x": 1239,
+                  "y": 204
+                },
+                {
+                  "x": 1263,
+                  "y": 204
+                },
+                {
+                  "x": 1263,
+                  "y": 198
+                },
+                {
+                  "x": 1314,
+                  "y": 198
+                }
+              ],
+              "sourceHandleCenter": {
+                "x": 1015.2500040108248,
+                "y": -30.00002614373075
+              },
+              "targetHandleCenter": {
+                "x": 1090.250004010825,
+                "y": -33.00002841816195
+              },
+              "wireCategory": "audio",
+              "wireCategoryMismatch": false
+            },
+            "id": "e-9344bacd-5d06-4a8c-be48-109b341e7c3c",
+            "source": "speakerBlock-4fe8654b",
+            "sourceHandle": "S-spk-passthru",
+            "target": "speakerBlock-13ddc7aa",
+            "targetHandle": "T-spk",
+            "type": "schematic"
+          },
+          {
+            "data": {
+              "innerCorners": [
+                {
+                  "x": 1167,
+                  "y": 240
+                },
+                {
+                  "x": 1239,
+                  "y": 240
+                },
+                {
+                  "x": 1239,
+                  "y": 225
+                }
+              ],
+              "sourceHandleCenter": {
+                "x": 932.7500138116698,
+                "y": -30.00000566343
+              },
+              "targetHandleCenter": {
+                "x": 1015.2500040108248,
+                "y": -31.500028418161953
+              },
+              "wireCategory": "audio",
+              "wireCategoryMismatch": false
+            },
+            "id": "e-a3b14b44-6d95-4ff8-93f4-eca4d5a6b1e4",
+            "source": "speakerBlock-3ea565fd",
+            "sourceHandle": "S-spk-passthru",
+            "target": "speakerBlock-7d79d6d8",
+            "targetHandle": "T-spk",
+            "type": "schematic"
+          },
+          {
+            "data": {
+              "innerCorners": [
+                {
+                  "x": 1242,
+                  "y": 240
+                },
+                {
+                  "x": 1317,
+                  "y": 240
+                }
+              ],
+              "sourceHandleCenter": {
+                "x": 1015.2500040108248,
+                "y": -30.00002614373075
+              },
+              "targetHandleCenter": {
+                "x": 1090.250004010825,
+                "y": -33.00002841816195
+              },
+              "wireCategory": "audio",
+              "wireCategoryMismatch": false
+            },
+            "id": "e-023e949e-0412-4ac8-afe9-ada7cee9eae0",
+            "source": "speakerBlock-7d79d6d8",
+            "sourceHandle": "S-spk-passthru",
+            "target": "speakerBlock-23acf13d",
+            "targetHandle": "T-spk",
+            "type": "schematic"
+          },
+          {
+            "data": {
+              "innerCorners": [
+                {
+                  "x": 1092,
+                  "y": 240
+                },
+                {
+                  "x": 1164,
+                  "y": 240
+                },
+                {
+                  "x": 1164,
+                  "y": 225
+                }
+              ],
+              "sourceHandleCenter": {
+                "x": 860.7500042612612,
+                "y": 32.99998461602539
+              },
+              "targetHandleCenter": {
+                "x": 935.7500042612612,
+                "y": 29.999994621576217
+              },
+              "wireCategory": "audio",
+              "wireCategoryMismatch": false
+            },
+            "id": "e-adc427da-7543-439e-a6c6-a1c4019de3a4",
+            "source": "speakerBlock-0801b172",
+            "sourceHandle": "S-spk-passthru",
+            "target": "speakerBlock-3ea565fd",
+            "targetHandle": "T-spk",
+            "type": "schematic"
+          },
+          {
+            "data": {
+              "innerCorners": [
+                {
+                  "x": 1089,
+                  "y": 171
+                }
+              ],
+              "sourceHandleCenter": {
+                "x": 831.4996569305204,
+                "y": -24.000139565114203
+              },
+              "targetHandleCenter": {
+                "x": 859.2499363306428,
+                "y": -12.000007662119325
+              },
+              "wireCategory": "audio",
+              "wireCategoryMismatch": false
+            },
+            "id": "e-ee43e9e3-f5ab-4953-a4c8-668e9a67f9ee",
+            "source": "device-57ef2140",
+            "sourceHandle": "R-0-rightColumn-d8a58349",
+            "target": "speakerBlock-e1617408",
+            "targetHandle": "T-spk",
+            "type": "schematic"
+          },
+          {
+            "data": {
+              "innerCorners": [
+                {
+                  "x": 1086,
+                  "y": 180
+                },
+                {
+                  "x": 1086,
+                  "y": 225
+                }
+              ],
+              "sourceHandleCenter": {
+                "x": 831.5000136419111,
+                "y": -14.999992541335663
+              },
+              "targetHandleCenter": {
+                "x": 860.7499558380919,
+                "y": 29.99994033085697
+              },
+              "wireCategory": "audio",
+              "wireCategoryMismatch": false
+            },
+            "id": "e-8712ae3c-7686-4db3-8385-7ccc25ff3df5",
+            "source": "device-57ef2140",
+            "sourceHandle": "R-0-rightColumn-46250aff",
+            "target": "speakerBlock-0801b172",
+            "targetHandle": "T-spk",
+            "type": "schematic"
+          },
+          {
+            "data": {
+              "innerCorners": [
+                {
+                  "x": 1083,
+                  "y": 189
+                },
+                {
+                  "x": 1083,
+                  "y": 267
+                }
+              ],
+              "sourceHandleCenter": {
+                "x": 831.5000136419111,
+                "y": -5.999993816753218
+              },
+              "targetHandleCenter": {
+                "x": 857.750026070134,
+                "y": 73.49995788886751
+              },
+              "wireCategory": "audio",
+              "wireCategoryMismatch": false
+            },
+            "id": "e-d2f86275-5141-45ff-99ab-2af7c7cb6971",
+            "source": "device-57ef2140",
+            "sourceHandle": "R-0-rightColumn-ad5d5987",
+            "target": "spk-d527bfce",
+            "targetHandle": "T-spk",
+            "type": "schematic"
+          },
+          {
+            "data": {
+              "innerCorners": [
+                {
+                  "x": 1089,
+                  "y": 156
+                },
+                {
+                  "x": 1161,
+                  "y": 156
+                },
+                {
+                  "x": 1161,
+                  "y": 141
+                }
+              ],
+              "sourceHandleCenter": {
+                "x": 883.2500138116698,
+                "y": -50.99999557897487
+              },
+              "targetHandleCenter": {
+                "x": 956.7500138116698,
+                "y": -54.00001005218488
+              },
+              "wireCategory": "audio",
+              "wireCategoryMismatch": false
+            },
+            "id": "e-b5142259-0d67-46fe-8cb4-5fce343986c8",
+            "source": "spk-cfe86b51",
+            "sourceHandle": "S-spk-passthru",
+            "target": "speakerBlock-2f1a8d6a",
+            "targetHandle": "T-spk",
+            "type": "schematic"
+          },
+          {
+            "data": {
+              "sourceHandleCenter": {
+                "x": 495.4995961938503,
+                "y": -171.0001123993603
+              },
+              "targetHandleCenter": {
+                "x": 524.5000607366701,
+                "y": -171.0001123993603
+              },
+              "wireCategory": "audio",
+              "wireCategoryMismatch": false
+            },
+            "id": "e-e59d9b05-8298-44bc-9009-347d894f6d2e",
+            "source": "deviceV2-60f0f322",
+            "sourceHandle": "R-0-bundle-0",
+            "target": "device-bf36a3ea",
+            "targetHandle": "L-0-bundle-0",
+            "type": "schematic"
+          },
+          {
+            "data": {
+              "sourceHandleCenter": {
+                "x": 696.4998065021537,
+                "y": -171.00005412168022
+              },
+              "targetHandleCenter": {
+                "x": 719.4999818045503,
+                "y": -171.00005412168022
+              },
+              "wireCategory": "audio",
+              "wireCategoryMismatch": false
+            },
+            "id": "e-287bad14-642b-4a27-9bb9-d4ecd80c52ea",
+            "source": "device-bf36a3ea",
+            "sourceHandle": "R-0-bundle-0",
+            "target": "device-57ef2140",
+            "targetHandle": "L-0-bundle-0",
+            "type": "schematic"
+          },
+          {
+            "data": {
+              "sourceHandleCenter": {
+                "x": 266.00001110083343,
+                "y": -174.0000001660654
+              },
+              "targetHandleCenter": {
+                "x": 347.5,
+                "y": -171.0000001660654
+              },
+              "wireCategory": "audio",
+              "wireCategoryMismatch": false
+            },
+            "id": "e-eb1db0ae-6f3e-4a5b-9e99-52f2f32ca211",
+            "source": "device-c82d7f72",
+            "sourceHandle": "R-0-out-74a66fe8",
+            "target": "deviceV2-60f0f322",
+            "targetHandle": "L-0-in-84b12e66",
+            "type": "schematic"
+          },
+          {
+            "data": {
+              "innerCorners": [
+                {
+                  "x": 426,
+                  "y": 249
+                },
+                {
+                  "x": 426,
+                  "y": 171
+                }
+              ],
+              "sourceHandleCenter": {
+                "x": 266.00001193615105,
+                "y": -91.50001643259552
+              },
+              "targetHandleCenter": {
+                "x": 347.5,
+                "y": -162.00000331395
+              },
+              "wireCategory": "audio",
+              "wireCategoryMismatch": false
+            },
+            "id": "e-bf6f626a-8b61-4954-9924-3246ae511b8f",
+            "source": "avPlate-70807746",
+            "sourceHandle": "S-0-p-0d2f4e11-a",
+            "target": "deviceV2-60f0f322",
+            "targetHandle": "L-0-leftColumn-7896c88d",
+            "type": "schematic"
+          },
+          {
+            "data": {
+              "innerCorners": [
+                {
+                  "x": 429,
+                  "y": 258
+                },
+                {
+                  "x": 429,
+                  "y": 180
+                }
+              ],
+              "sourceHandleCenter": {
+                "x": 266.0000003521535,
+                "y": -84.00000331395
+              },
+              "targetHandleCenter": {
+                "x": 347.5,
+                "y": -153.000001779302
+              },
+              "wireCategory": "audio",
+              "wireCategoryMismatch": false
+            },
+            "id": "e-f2f095ca-10ce-45b0-a3a2-228e0186bd08",
+            "source": "avPlate-70807746",
+            "sourceHandle": "S-0-groups-c7e30063",
+            "target": "deviceV2-60f0f322",
+            "targetHandle": "L-0-leftColumn-3044e262",
+            "type": "schematic"
+          },
+          {
+            "data": {
+              "innerCorners": [
+                {
+                  "x": 432,
+                  "y": 363
+                },
+                {
+                  "x": 432,
+                  "y": 189
+                }
+              ],
+              "sourceHandleCenter": {
+                "x": 266.0000003521535,
+                "y": 20.999995151401997
+              },
+              "targetHandleCenter": {
+                "x": 347.5,
+                "y": -144.00001182865157
+              },
+              "wireCategory": "audio",
+              "wireCategoryMismatch": false
+            },
+            "id": "e-407b881a-d4b3-40ee-92f5-bd5832efef36",
+            "source": "avPlate-7e4e91d3",
+            "sourceHandle": "S-0-p-0d2f4e11-a",
+            "target": "deviceV2-60f0f322",
+            "targetHandle": "L-0-leftColumn-3d52f520",
+            "type": "schematic"
+          },
+          {
+            "data": {
+              "innerCorners": [
+                {
+                  "x": 435,
+                  "y": 372
+                },
+                {
+                  "x": 435,
+                  "y": 198
+                }
+              ],
+              "sourceHandleCenter": {
+                "x": 265.9998849333459,
+                "y": 29.999922131301496
+              },
+              "targetHandleCenter": {
+                "x": 347.5,
+                "y": -135.00010325428553
+              },
+              "wireCategory": "audio",
+              "wireCategoryMismatch": false
+            },
+            "id": "e-638481fc-15d0-4291-9c48-072f6ad38e14",
+            "source": "avPlate-7e4e91d3",
+            "sourceHandle": "S-0-groups-c7e30063",
+            "target": "deviceV2-60f0f322",
+            "targetHandle": "L-0-leftColumn-5fc5bf40",
+            "type": "schematic"
+          },
+          {
+            "data": {
+              "innerCorners": [
+                {
+                  "x": 438,
+                  "y": 480
+                },
+                {
+                  "x": 438,
+                  "y": 207
+                }
+              ],
+              "sourceHandleCenter": {
+                "x": 265.9998849333459,
+                "y": 137.99996116347577
+              },
+              "targetHandleCenter": {
+                "x": 347.5,
+                "y": -126.00011935872584
+              },
+              "wireCategory": "audio",
+              "wireCategoryMismatch": false
+            },
+            "id": "e-a11f564b-16dc-450e-a9fc-0bacef5c0297",
+            "source": "avPlate-e14b8e32",
+            "sourceHandle": "S-0-p-0d2f4e11-a",
+            "target": "deviceV2-60f0f322",
+            "targetHandle": "L-0-leftColumn-d2d93d0b",
+            "type": "schematic"
+          },
+          {
+            "data": {
+              "innerCorners": [
+                {
+                  "x": 441,
+                  "y": 489
+                },
+                {
+                  "x": 441,
+                  "y": 216
+                }
+              ],
+              "sourceHandleCenter": {
+                "x": 265.9999002185019,
+                "y": 146.9999221313015
+              },
+              "targetHandleCenter": {
+                "x": 347.5,
+                "y": -117.00013546316616
+              },
+              "wireCategory": "audio",
+              "wireCategoryMismatch": false
+            },
+            "id": "e-c959e243-db9c-4bd2-b16f-24b703103ae1",
+            "source": "avPlate-e14b8e32",
+            "sourceHandle": "S-0-groups-c7e30063",
+            "target": "deviceV2-60f0f322",
+            "targetHandle": "L-0-leftColumn-cdb6a06d",
+            "type": "schematic"
+          },
+          {
+            "data": {
+              "innerCorners": [
+                {
+                  "x": 444,
+                  "y": 597
+                },
+                {
+                  "x": 444,
+                  "y": 225
+                }
+              ],
+              "sourceHandleCenter": {
+                "x": 265.9999002185019,
+                "y": 254.99996116347577
+              },
+              "targetHandleCenter": {
+                "x": 347.5,
+                "y": -108.0001439250285
+              },
+              "wireCategory": "audio",
+              "wireCategoryMismatch": false
+            },
+            "id": "e-8e6c687f-4bce-4576-bb9c-4230cbaca073",
+            "source": "avPlate-f42ca665",
+            "sourceHandle": "S-0-p-0d2f4e11-a",
+            "target": "deviceV2-60f0f322",
+            "targetHandle": "L-0-leftColumn-fdf8a461",
+            "type": "schematic"
+          },
+          {
+            "data": {
+              "innerCorners": [
+                {
+                  "x": 447,
+                  "y": 606
+                },
+                {
+                  "x": 447,
+                  "y": 234
+                }
+              ],
+              "sourceHandleCenter": {
+                "x": 265.9998199250439,
+                "y": 263.9998604348858
+              },
+              "targetHandleCenter": {
+                "x": 347.5,
+                "y": -99.00030338837576
+              },
+              "wireCategory": "audio",
+              "wireCategoryMismatch": false
+            },
+            "id": "e-f9d2af44-75c2-4acb-a9c8-d152d591b935",
+            "source": "avPlate-f42ca665",
+            "sourceHandle": "S-0-groups-c7e30063",
+            "target": "deviceV2-60f0f322",
+            "targetHandle": "L-0-leftColumn-e610eced",
+            "type": "schematic"
+          },
+          {
+            "data": {
+              "innerCorners": [
+                {
+                  "x": 450,
+                  "y": 717
+                },
+                {
+                  "x": 450,
+                  "y": 243
+                }
+              ],
+              "sourceHandleCenter": {
+                "x": 268.999988768156,
+                "y": 374.999995151402
+              },
+              "targetHandleCenter": {
+                "x": 347.5,
+                "y": -90.00001999675989
+              },
+              "wireCategory": "audio",
+              "wireCategoryMismatch": false
+            },
+            "id": "e-ea7b1c6d-2165-4b6d-b85c-1d61e9acb8f5",
+            "source": "avPlate-2ca3b6d2",
+            "sourceHandle": "S-0-p-0d2f4e11-a",
+            "target": "deviceV2-60f0f322",
+            "targetHandle": "L-0-leftColumn-b2e4f256",
+            "type": "schematic"
+          },
+          {
+            "data": {
+              "innerCorners": [
+                {
+                  "x": 453,
+                  "y": 726
+                },
+                {
+                  "x": 453,
+                  "y": 252
+                }
+              ],
+              "sourceHandleCenter": {
+                "x": 268.99991550365786,
+                "y": 383.9999221313015
+              },
+              "targetHandleCenter": {
+                "x": 347.5,
+                "y": -81.00018459577146
+              },
+              "wireCategory": "audio",
+              "wireCategoryMismatch": false
+            },
+            "id": "e-33589fd3-c946-4f5c-aeaa-b5114b75bd3f",
+            "source": "avPlate-2ca3b6d2",
+            "sourceHandle": "S-0-groups-c7e30063",
+            "target": "deviceV2-60f0f322",
+            "targetHandle": "L-0-leftColumn-ae677e12",
+            "type": "schematic"
+          },
+          {
+            "data": {
+              "innerCorners": [
+                {
+                  "x": 456,
+                  "y": 834
+                },
+                {
+                  "x": 456,
+                  "y": 261
+                }
+              ],
+              "sourceHandleCenter": {
+                "x": 268.9998199250439,
+                "y": 491.9999051586502
+              },
+              "targetHandleCenter": {
+                "x": 347.5,
+                "y": -72.00037610663225
+              },
+              "wireCategory": "audio",
+              "wireCategoryMismatch": false
+            },
+            "id": "e-525e546b-3d2d-4655-bbf4-562decd8d698",
+            "source": "avPlate-88e2e31f",
+            "sourceHandle": "S-0-p-0d2f4e11-a",
+            "target": "deviceV2-60f0f322",
+            "targetHandle": "L-0-leftColumn-8fa1e833",
+            "type": "schematic"
+          },
+          {
+            "data": {
+              "innerCorners": [
+                {
+                  "x": 459,
+                  "y": 843
+                },
+                {
+                  "x": 459,
+                  "y": 270
+                }
+              ],
+              "sourceHandleCenter": {
+                "x": 268.9999459043473,
+                "y": 501.0000422831578
+              },
+              "targetHandleCenter": {
+                "x": 347.5,
+                "y": -63.00006382140825
+              },
+              "wireCategory": "audio",
+              "wireCategoryMismatch": false
+            },
+            "id": "e-2826406d-6fd5-4dd8-b9ca-a1f80c80ad87",
+            "source": "avPlate-88e2e31f",
+            "sourceHandle": "S-0-groups-c7e30063",
+            "target": "deviceV2-60f0f322",
+            "targetHandle": "L-0-leftColumn-d6a83b96",
+            "type": "schematic"
+          },
+          {
+            "data": {
+              "sourceHandleCenter": {
+                "x": 696.5000282687447,
+                "y": -135.00001392461564
+              },
+              "targetHandleCenter": {
+                "x": 710.5,
+                "y": -133.50000043564847
+              },
+              "wireCategory": "audio",
+              "wireCategoryMismatch": false
+            },
+            "id": "e-8cf079de-e0de-4cff-9794-6f561b84d49d",
+            "source": "device-bf36a3ea",
+            "sourceHandle": "R-0-bundle-1",
+            "target": "wiretag-950b7690",
+            "targetHandle": "conn-tgt",
+            "type": "schematic"
+          },
+          {
+            "data": {
+              "innerCorners": [
+                {
+                  "x": 837,
+                  "y": 270
+                },
+                {
+                  "x": 837,
+                  "y": 411
+                }
+              ],
+              "sourceHandleCenter": {
+                "x": 823.9996569305204,
+                "y": 269.9996055066191
+              },
+              "targetHandleCenter": {
+                "x": 848.5,
+                "y": 412.49987004262914
+              },
+              "wireCategory": "network",
+              "wireCategoryMismatch": false
+            },
+            "id": "e-bfb14c51-e307-4bc6-823e-9bedd56a4d68",
+            "source": "device-bf36a3ea",
+            "sourceHandle": "R-1-rightColumn-8bbe96f4",
+            "target": "device-8339f929",
+            "targetHandle": "L-0-in-f454b2ad",
+            "type": "schematic"
+          },
+          {
+            "data": {
+              "innerCorners": [
+                {
+                  "x": 645,
+                  "y": 270
+                },
+                {
+                  "x": 645,
+                  "y": 420
+                }
+              ],
+              "sourceHandleCenter": {
+                "x": 622.9999979760439,
+                "y": 269.9999903991828
+              },
+              "targetHandleCenter": {
+                "x": 848.5,
+                "y": 421.49997351805496
+              },
+              "wireCategory": "network",
+              "wireCategoryMismatch": false
+            },
+            "id": "e-3a1301ad-5a6c-4ca6-943b-96cc61658e1f",
+            "source": "deviceV2-60f0f322",
+            "sourceHandle": "R-1-rightColumn-41130d7e",
+            "target": "device-8339f929",
+            "targetHandle": "L-0-leftColumn-d5b5efee",
+            "type": "schematic"
+          },
+          {
+            "data": {
+              "innerCorners": [
+                {
+                  "x": 735,
+                  "y": 474
+                },
+                {
+                  "x": 735,
+                  "y": 429
+                }
+              ],
+              "sourceHandleCenter": {
+                "x": 622.9999979760439,
+                "y": 475.499995151402
+              },
+              "targetHandleCenter": {
+                "x": 848.5,
+                "y": 430.499998220698
+              },
+              "wireCategory": "network",
+              "wireCategoryMismatch": false
+            },
+            "id": "e-80cc14bb-ecf4-4d68-a80e-0e9b6d3a3eb0",
+            "source": "device-e2b5b6e5",
+            "sourceHandle": "R-0-out-6231f67c",
+            "target": "device-8339f929",
+            "targetHandle": "L-0-leftColumn-18f76e04",
+            "type": "schematic"
+          },
+          {
+            "data": {
+              "innerCorners": [
+                {
+                  "x": 744,
+                  "y": 561
+                },
+                {
+                  "x": 744,
+                  "y": 438
+                }
+              ],
+              "sourceHandleCenter": {
+                "x": 622.9994571217936,
+                "y": 560.9998675229676
+              },
+              "targetHandleCenter": {
+                "x": 848.5,
+                "y": 439.4997220588259
+              },
+              "wireCategory": "network",
+              "wireCategoryMismatch": false
+            },
+            "id": "e-3bcbe103-edc4-4ec3-9659-312257fcdf6a",
+            "source": "device-a7d8fa54",
+            "sourceHandle": "R-0-out-dd8a76cc",
+            "target": "device-8339f929",
+            "targetHandle": "L-0-leftColumn-d4e99203",
+            "type": "schematic"
+          },
+          {
+            "data": {
+              "innerCorners": [
+                {
+                  "x": 1071,
+                  "y": 162
+                },
+                {
+                  "x": 1071,
+                  "y": 141
+                }
+              ],
+              "sourceHandleCenter": {
+                "x": 1044.4997396642505,
+                "y": 161.99993534901805
+              },
+              "targetHandleCenter": {
+                "x": 1096.2500138116698,
+                "y": 141.00000003227026
+              },
+              "wireCategory": "audio",
+              "wireCategoryMismatch": false
+            },
+            "id": "e-9b5a907c-e6cf-48d5-b246-f59905144472",
+            "source": "device-57ef2140",
+            "sourceHandle": "R-0-out-5177706f",
+            "target": "spk-cfe86b51",
+            "targetHandle": "T-spk",
+            "type": "schematic"
+          },
+          {
+            "data": {
+              "innerCorners": [
+                {
+                  "x": 993,
+                  "y": 411
+                },
+                {
+                  "x": 993,
+                  "y": 312
+                },
+                {
+                  "x": 897,
+                  "y": 312
+                },
+                {
+                  "x": 897,
+                  "y": 216
+                }
+              ],
+              "sourceHandleCenter": {
+                "x": 972.4998321761012,
+                "y": 410.9999700409622
+              },
+              "targetHandleCenter": {
+                "x": 920.5,
+                "y": 215.999877558715
+              },
+              "wireCategory": "network",
+              "wireCategoryMismatch": false
+            },
+            "id": "e-39ceaec2-ee5c-4cc6-a8c4-13f5ac562914",
+            "source": "device-8339f929",
+            "sourceHandle": "R-0-out-f454b2ad",
+            "target": "device-57ef2140",
+            "targetHandle": "L-1-leftColumn-e0e58588",
+            "type": "schematic"
+          },
+          {
+            "data": {
+              "sourceHandleCenter": {
+                "x": 255.50001336098217,
+                "y": 158.99999899146496
+              },
+              "targetHandleCenter": {
+                "x": 293.5,
+                "y": 162.00001018742432
+              },
+              "wireCategory": "rf",
+              "wireCategoryMismatch": false
+            },
+            "id": "e-1533fb75-64f6-4ea4-8b5d-8508934aa1ab",
+            "source": "ant-389cd396",
+            "sourceHandle": "ant-rx",
+            "target": "device-c82d7f72",
+            "targetHandle": "L-0-in-74a66fe8",
+            "type": "schematic"
+          },
+          {
+            "data": {
+              "sourceHandleCenter": {
+                "x": 248.99997824486,
+                "y": 169.5000077704955
+              },
+              "targetHandleCenter": {
+                "x": 293.5,
+                "y": 170.99992886404877
+              },
+              "wireCategory": "rf",
+              "wireCategoryMismatch": false
+            },
+            "id": "e-fb4698a5-c896-4c9e-9e92-ed05716ff5ab",
+            "source": "antennaReceiverSymbol-a5f48657",
+            "sourceHandle": "ant-rx",
+            "target": "device-c82d7f72",
+            "targetHandle": "L-0-leftColumn-11d26323",
+            "type": "schematic"
+          },
+          {
+            "data": {
+              "innerCorners": [
+                {
+                  "x": 327,
+                  "y": 282
+                },
+                {
+                  "x": 327,
+                  "y": 285
+                }
+              ],
+              "sourceHandleCenter": {
+                "x": 308.0000106622504,
+                "y": 276.0000102662483
+              },
+              "targetHandleCenter": {
+                "x": 347.5,
+                "y": 276.000012885075
+              },
+              "wireCategory": "audio",
+              "wireCategoryMismatch": false
+            },
+            "id": "e-492fc5d5-889a-4846-a81d-c22ab0f017b4",
+            "source": "wiretag-0daac244",
+            "sourceHandle": "conn-src",
+            "target": "avPlate-70807746",
+            "targetHandle": "T-1-groups-a4f399c9",
+            "type": "schematic"
+          },
+          {
+            "data": {
+              "sourceHandleCenter": {
+                "x": 972.5001270285392,
+                "y": 420.0000194833791
+              },
+              "targetHandleCenter": {
+                "x": 995.5,
+                "y": 421.5000002668825
+              },
+              "wireCategory": "network",
+              "wireCategoryMismatch": false
+            },
+            "id": "e-e35aa3ce-8d5d-48de-bbf3-6e6806722b59",
+            "source": "device-8339f929",
+            "sourceHandle": "R-0-rightColumn-68a0b323",
+            "target": "flyoff-fd953216",
+            "targetHandle": "T-fly",
+            "type": "schematic"
+          },
+          {
+            "data": {
+              "innerCorners": [
+                {
+                  "x": 327,
+                  "y": 282
+                },
+                {
+                  "x": 327,
+                  "y": 516
+                }
+              ],
+              "sourceHandleCenter": {
+                "x": 308.0000106622504,
+                "y": 283.5000102662483
+              },
+              "targetHandleCenter": {
+                "x": 347.5,
+                "y": 516.0000781317307
+              },
+              "wireCategory": "audio",
+              "wireCategoryMismatch": false
+            },
+            "id": "e-d319e691-964a-41ef-b42a-ceb0b687e1f5",
+            "source": "wiretag-0daac244",
+            "sourceHandle": "conn-src",
+            "target": "avPlate-e14b8e32",
+            "targetHandle": "T-1-groups-a4f399c9",
+            "type": "schematic"
+          },
+          {
+            "data": {
+              "innerCorners": [
+                {
+                  "x": 327,
+                  "y": 282
+                },
+                {
+                  "x": 327,
+                  "y": 399
+                }
+              ],
+              "sourceHandleCenter": {
+                "x": 308.0000106622504,
+                "y": 283.5000102662483
+              },
+              "targetHandleCenter": {
+                "x": 347.5,
+                "y": 399
+              },
+              "wireCategory": "audio",
+              "wireCategoryMismatch": false
+            },
+            "id": "e-a7a47396-ecb2-4425-8e4b-8c41bd9d31e6",
+            "source": "wiretag-0daac244",
+            "sourceHandle": "conn-src",
+            "target": "avPlate-7e4e91d3",
+            "targetHandle": "T-1-groups-a4f399c9",
+            "type": "schematic"
+          },
+          {
+            "data": {
+              "innerCorners": [
+                {
+                  "x": 327,
+                  "y": 282
+                },
+                {
+                  "x": 327,
+                  "y": 633
+                }
+              ],
+              "sourceHandleCenter": {
+                "x": 308.0000106622504,
+                "y": 283.5000102662483
+              },
+              "targetHandleCenter": {
+                "x": 347.5,
+                "y": 633
+              },
+              "wireCategory": "audio",
+              "wireCategoryMismatch": false
+            },
+            "id": "e-3ed3caac-13b5-4d75-85fd-cf0e171e40c9",
+            "source": "wiretag-0daac244",
+            "sourceHandle": "conn-src",
+            "target": "avPlate-f42ca665",
+            "targetHandle": "T-1-groups-a4f399c9",
+            "type": "schematic"
+          },
+          {
+            "data": {
+              "innerCorners": [
+                {
+                  "x": 327,
+                  "y": 282
+                },
+                {
+                  "x": 327,
+                  "y": 753
+                }
+              ],
+              "sourceHandleCenter": {
+                "x": 308.0000106622504,
+                "y": 283.5000102662483
+              },
+              "targetHandleCenter": {
+                "x": 350.5,
+                "y": 753
+              },
+              "wireCategory": "audio",
+              "wireCategoryMismatch": false
+            },
+            "id": "e-cf4bf35b-bee6-46bc-b352-fac6432fafeb",
+            "source": "wiretag-0daac244",
+            "sourceHandle": "conn-src",
+            "target": "avPlate-2ca3b6d2",
+            "targetHandle": "T-1-groups-a4f399c9",
+            "type": "schematic"
+          },
+          {
+            "data": {
+              "innerCorners": [
+                {
+                  "x": 327,
+                  "y": 282
+                },
+                {
+                  "x": 327,
+                  "y": 870
+                }
+              ],
+              "sourceHandleCenter": {
+                "x": 308.0000106622504,
+                "y": 283.5000102662483
+              },
+              "targetHandleCenter": {
+                "x": 350.5,
+                "y": 869.9999622535257
+              },
+              "wireCategory": "audio",
+              "wireCategoryMismatch": false
+            },
+            "id": "e-67c53702-bcc8-4a32-b0bc-dc88fed5ebd8",
+            "source": "wiretag-0daac244",
+            "sourceHandle": "conn-src",
+            "target": "avPlate-88e2e31f",
+            "targetHandle": "T-1-groups-a4f399c9",
+            "type": "schematic"
+          },
+          {
+            "data": {
+              "innerCorners": [
+                {
+                  "x": 738,
+                  "y": 318
+                },
+                {
+                  "x": 738,
+                  "y": 294
+                },
+                {
+                  "x": 693,
+                  "y": 294
+                }
+              ],
+              "sourceHandleCenter": {
+                "x": 729.5000098899537,
+                "y": 316.5000008525822
+              },
+              "targetHandleCenter": {
+                "x": 700,
+                "y": 269.9999903991828
+              },
+              "wireCategory": "control",
+              "wireCategoryMismatch": false
+            },
+            "id": "e-ec931774-9e47-48fe-9984-60a84cb8c92e",
+            "source": "flyoff-7e4cbdd6",
+            "sourceHandle": "S-fly",
+            "target": "device-bf36a3ea",
+            "targetHandle": "L-1-leftColumn-7f3ec18b",
+            "type": "schematic"
+          },
+          {
+            "data": {
+              "innerCorners": [
+                {
+                  "x": 1164,
+                  "y": 198
+                },
+                {
+                  "x": 1236,
+                  "y": 198
+                },
+                {
+                  "x": 1236,
+                  "y": 183
+                }
+              ],
+              "sourceHandleCenter": {
+                "x": 1170.2499931192783,
+                "y": 186.00000006362785
+              },
+              "targetHandleCenter": {
+                "x": 1246.2499931192783,
+                "y": 182.99999752693117
+              },
+              "wireCategory": "audio",
+              "wireCategoryMismatch": false
+            },
+            "id": "e-8011ca67-958f-4d4f-bc96-5034bee6aeb2",
+            "source": "speakerBlock-9ce597ed",
+            "sourceHandle": "S-spk-passthru",
+            "target": "speakerBlock-4fe8654b",
+            "targetHandle": "T-spk",
+            "type": "schematic"
+          },
+          {
+            "data": {
+              "innerCorners": [
+                {
+                  "x": 1239,
+                  "y": 156
+                },
+                {
+                  "x": 1314,
+                  "y": 156
+                }
+              ],
+              "sourceHandleCenter": {
+                "x": 1245.2499931192783,
+                "y": 144.00000006362785
+              },
+              "targetHandleCenter": {
+                "x": 1320.250024066681,
+                "y": 141.0000013953565
+              },
+              "wireCategory": "audio",
+              "wireCategoryMismatch": false
+            },
+            "id": "e-eef0dcf4-a91a-49da-839e-42a7e67fa2b0",
+            "source": "speakerBlock-c9f8c968",
+            "sourceHandle": "S-spk-passthru",
+            "target": "speakerBlock-e8b0bb77",
+            "targetHandle": "T-spk",
+            "type": "schematic"
+          }
+        ],
+        "nodes": [
+          {
+            "data": {
+              "description": "4 ch. amplifier",
+              "leftColumn": [
+                {
+                  "bundledRowIds": [
+                    [
+                      "leftColumn-e0308666",
+                      "leftColumn-8e74afaa",
+                      "leftColumn-58278ae4",
+                      "leftColumn-7e0e909c"
+                    ]
+                  ],
+                  "header": "Input",
+                  "rows": [
+                    {
+                      "id": "leftColumn-e0308666",
+                      "label": "1",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "leftColumn-8e74afaa",
+                      "label": "2",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "leftColumn-58278ae4",
+                      "label": "3",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "leftColumn-7e0e909c",
+                      "label": "4",
+                      "wireCategory": "audio"
+                    }
+                  ]
+                },
+                {
+                  "header": "network",
+                  "rows": [
+                    {
+                      "id": "leftColumn-e0e58588",
+                      "label": "lan",
+                      "wireCategory": "network"
+                    }
+                  ]
+                }
+              ],
+              "rightColumn": [
+                {
+                  "header": "Output",
+                  "rows": [
+                    {
+                      "id": "out-5177706f",
+                      "label": "1",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "rightColumn-d8a58349",
+                      "label": "2",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "rightColumn-46250aff",
+                      "label": "3",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "rightColumn-ad5d5987",
+                      "label": "4",
+                      "wireCategory": "audio"
+                    }
+                  ]
+                }
+              ],
+              "tagCode": "amp",
+              "tagNumber": "1"
+            },
+            "height": 54.0,
+            "id": "device-57ef2140",
+            "position": {
+              "x": 919.5,
+              "y": 121.5
+            },
+            "type": "deviceV2",
+            "width": 126.0
+          },
+          {
+            "data": {
+              "description": "network switch",
+              "leftColumn": [
+                {
+                  "header": "Input",
+                  "rows": [
+                    {
+                      "id": "in-f454b2ad",
+                      "label": "1",
+                      "wireCategory": "network"
+                    },
+                    {
+                      "id": "leftColumn-d5b5efee",
+                      "label": "2",
+                      "wireCategory": "network"
+                    },
+                    {
+                      "id": "leftColumn-18f76e04",
+                      "label": "3",
+                      "wireCategory": "network"
+                    },
+                    {
+                      "id": "leftColumn-d4e99203",
+                      "label": "4",
+                      "wireCategory": "network"
+                    },
+                    {
+                      "id": "leftColumn-70e3f931",
+                      "label": "5",
+                      "wireCategory": "network"
+                    },
+                    {
+                      "id": "leftColumn-3f0c46a6",
+                      "label": "6",
+                      "wireCategory": "network"
+                    }
+                  ]
+                }
+              ],
+              "rightColumn": [
+                {
+                  "header": "Output",
+                  "rows": [
+                    {
+                      "id": "out-f454b2ad",
+                      "label": "7",
+                      "wireCategory": "network"
+                    },
+                    {
+                      "id": "rightColumn-68a0b323",
+                      "label": "8",
+                      "wireCategory": "network"
+                    },
+                    {
+                      "id": "rightColumn-dbae1169",
+                      "label": "9",
+                      "wireCategory": "network"
+                    },
+                    {
+                      "id": "rightColumn-8bb4c0f9",
+                      "label": "10",
+                      "wireCategory": "network"
+                    },
+                    {
+                      "id": "rightColumn-bac12ea6",
+                      "label": "11",
+                      "wireCategory": "network"
+                    },
+                    {
+                      "id": "rightColumn-99759046",
+                      "label": "12",
+                      "wireCategory": "network"
+                    }
+                  ]
+                }
+              ],
+              "tagCode": "nsw",
+              "tagNumber": "1"
+            },
+            "height": 54.0,
+            "id": "device-8339f929",
+            "position": {
+              "x": 847.5,
+              "y": 370.5
+            },
+            "type": "deviceV2",
+            "width": 126.0
+          },
+          {
+            "data": {
+              "description": "touch panel controller",
+              "leftColumn": [
+                {
+                  "header": "Input",
+                  "rows": []
+                }
+              ],
+              "rightColumn": [
+                {
+                  "header": "Output",
+                  "rows": [
+                    {
+                      "id": "out-6231f67c",
+                      "label": "ethernet",
+                      "wireCategory": "network"
+                    }
+                  ]
+                }
+              ],
+              "tagCode": "tp",
+              "tagNumber": "1"
+            },
+            "height": 54.0,
+            "id": "device-e2b5b6e5",
+            "position": {
+              "x": 498.0,
+              "y": 433.5
+            },
+            "type": "deviceV2",
+            "width": 126.0
+          },
+          {
+            "data": {
+              "description": "dual wireless rx",
+              "leftColumn": [
+                {
+                  "header": "Input",
+                  "rows": [
+                    {
+                      "id": "in-74a66fe8",
+                      "label": "1",
+                      "wireCategory": "rf"
+                    },
+                    {
+                      "id": "leftColumn-11d26323",
+                      "label": "2",
+                      "wireCategory": "rf"
+                    }
+                  ]
+                }
+              ],
+              "rightColumn": [
+                {
+                  "header": "Output",
+                  "rows": [
+                    {
+                      "id": "out-74a66fe8",
+                      "label": "1",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "rightColumn-3e9e2cca",
+                      "label": "2",
+                      "wireCategory": "audio"
+                    }
+                  ]
+                }
+              ],
+              "tagCode": "wmic",
+              "tagNumber": "1"
+            },
+            "height": 54.0,
+            "id": "device-c82d7f72",
+            "position": {
+              "x": 292.5,
+              "y": 121.5
+            },
+            "type": "deviceV2",
+            "width": 126.0
+          },
+          {
+            "data": {
+              "line1": "ANT-1"
+            },
+            "height": 20.0,
+            "id": "ant-389cd396",
+            "position": {
+              "x": 217.5,
+              "y": 147.0
+            },
+            "type": "antennaReceiverSymbol",
+            "width": 43.0
+          },
+          {
+            "data": {
+              "line1": "ANT-1"
+            },
+            "height": 20.0,
+            "id": "antennaReceiverSymbol-a5f48657",
+            "position": {
+              "x": 166.5,
+              "y": 156.0
+            },
+            "type": "antennaReceiverSymbol",
+            "width": 43.0
+          },
+          {
+            "data": {
+              "description": "bluetooth plate",
+              "leftColumn": [
+                {
+                  "header": "Input",
+                  "rows": []
+                }
+              ],
+              "rightColumn": [
+                {
+                  "header": "Output",
+                  "rows": [
+                    {
+                      "id": "out-dd8a76cc",
+                      "label": "Dante",
+                      "wireCategory": "network"
+                    }
+                  ]
+                }
+              ],
+              "tagCode": "bt",
+              "tagNumber": "1"
+            },
+            "height": 54.0,
+            "id": "device-a7d8fa54",
+            "position": {
+              "x": 498.0,
+              "y": 520.5
+            },
+            "type": "deviceV2",
+            "width": 126.0
+          },
+          {
+            "data": {
+              "description": "audio dsp",
+              "leftColumn": [
+                {
+                  "bundledRowIds": [
+                    [
+                      "in-12259f97",
+                      "leftColumn-f1a81560",
+                      "leftColumn-99ad4b0f",
+                      "leftColumn-54e0ef1c",
+                      "leftColumn-ad48c402",
+                      "leftColumn-e628c296",
+                      "leftColumn-199b5adc",
+                      "leftColumn-03708ff3",
+                      "leftColumn-481fd6cd",
+                      "leftColumn-dbedb004"
+                    ]
+                  ],
+                  "header": "Input",
+                  "rows": [
+                    {
+                      "id": "in-12259f97",
+                      "label": "1",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "leftColumn-f1a81560",
+                      "label": "2",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "leftColumn-99ad4b0f",
+                      "label": "3",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "leftColumn-54e0ef1c",
+                      "label": "4",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "leftColumn-ad48c402",
+                      "label": "5",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "leftColumn-e628c296",
+                      "label": "6",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "leftColumn-199b5adc",
+                      "label": "7",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "leftColumn-03708ff3",
+                      "label": "8",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "leftColumn-481fd6cd",
+                      "label": "9",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "leftColumn-dbedb004",
+                      "label": "10",
+                      "wireCategory": "audio"
+                    }
+                  ]
+                },
+                {
+                  "header": "gpio",
+                  "rows": [
+                    {
+                      "id": "leftColumn-7f3ec18b",
+                      "label": "1",
+                      "wireCategory": "control"
+                    }
+                  ]
+                }
+              ],
+              "rightColumn": [
+                {
+                  "bundledRowIds": [
+                    [
+                      "out-12259f97",
+                      "rightColumn-0663b46f",
+                      "rightColumn-c05922f9",
+                      "rightColumn-6b0b39cf"
+                    ],
+                    [
+                      "rightColumn-52045e37",
+                      "rightColumn-0be07bc1",
+                      "rightColumn-01ec125b",
+                      "rightColumn-3d35847b",
+                      "rightColumn-89eb16b1",
+                      "rightColumn-693797eb"
+                    ]
+                  ],
+                  "header": "Output",
+                  "rows": [
+                    {
+                      "id": "out-12259f97",
+                      "label": "1",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "rightColumn-0663b46f",
+                      "label": "2",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "rightColumn-c05922f9",
+                      "label": "3",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "rightColumn-6b0b39cf",
+                      "label": "4",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "rightColumn-52045e37",
+                      "label": "5",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "rightColumn-0be07bc1",
+                      "label": "6",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "rightColumn-01ec125b",
+                      "label": "7",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "rightColumn-3d35847b",
+                      "label": "8",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "rightColumn-89eb16b1",
+                      "label": "9",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "rightColumn-693797eb",
+                      "label": "10",
+                      "wireCategory": "audio"
+                    }
+                  ]
+                },
+                {
+                  "header": "network",
+                  "rows": [
+                    {
+                      "id": "rightColumn-8bbe96f4",
+                      "label": "lan",
+                      "wireCategory": "network"
+                    }
+                  ]
+                }
+              ],
+              "tagCode": "DSP",
+              "tagNumber": "1"
+            },
+            "height": 54.0,
+            "id": "device-bf36a3ea",
+            "position": {
+              "x": 699.0,
+              "y": 121.5
+            },
+            "type": "deviceV2",
+            "width": 126.0
+          },
+          {
+            "data": {
+              "portDirection": "input",
+              "text": "bldg lan",
+              "wireCategory": "network"
+            },
+            "height": 12.0,
+            "id": "flyoff-fd953216",
+            "position": {
+              "x": 994.5,
+              "y": 414.0
+            },
+            "type": "flyoffNote",
+            "width": 60.0
+          },
+          {
+            "data": {
+              "line1": "SPK 1",
+              "line2": "main bleachers",
+              "passthruEnabled": true,
+              "symbolKind": "standard"
+            },
+            "height": 50.0,
+            "id": "spk-cfe86b51",
+            "position": {
+              "x": 1095.0,
+              "y": 117.0
+            },
+            "type": "speakerBlock",
+            "width": 57.0
+          },
+          {
+            "data": {
+              "line1": "SPK 3",
+              "line2": "subwoofer",
+              "passthruEnabled": false,
+              "symbolKind": "standard"
+            },
+            "height": 50.0,
+            "id": "spk-d527bfce",
+            "position": {
+              "x": 1094.0,
+              "y": 243.0
+            },
+            "type": "speakerBlock",
+            "width": 57.0
+          },
+          {
+            "data": {
+              "description": "AV PLATE",
+              "groups": [
+                {
+                  "header": "INPUTS",
+                  "rows": [
+                    {
+                      "direction": "input",
+                      "id": "p-0d2f4e11-a",
+                      "label": "1",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "direction": "input",
+                      "id": "groups-c7e30063",
+                      "label": "2",
+                      "wireCategory": "audio"
+                    }
+                  ]
+                },
+                {
+                  "header": "OUTPUTS",
+                  "rows": [
+                    {
+                      "direction": "output",
+                      "id": "groups-a4f399c9",
+                      "label": "1",
+                      "wireCategory": "audio"
+                    }
+                  ]
+                }
+              ],
+              "tagCode": "AVP",
+              "tagNumber": "AV-1"
+            },
+            "height": 117.0,
+            "id": "avPlate-e14b8e32",
+            "position": {
+              "x": 346.5,
+              "y": 439.5
+            },
+            "type": "avPlate",
+            "width": 72.0
+          },
+          {
+            "data": {
+              "description": "AV PLATE",
+              "groups": [
+                {
+                  "header": "INPUTS",
+                  "rows": [
+                    {
+                      "direction": "input",
+                      "id": "p-0d2f4e11-a",
+                      "label": "1",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "direction": "input",
+                      "id": "groups-c7e30063",
+                      "label": "2",
+                      "wireCategory": "audio"
+                    }
+                  ]
+                },
+                {
+                  "header": "OUTPUTS",
+                  "rows": [
+                    {
+                      "direction": "output",
+                      "id": "groups-a4f399c9",
+                      "label": "1",
+                      "wireCategory": "audio"
+                    }
+                  ]
+                }
+              ],
+              "tagCode": "AVP",
+              "tagNumber": "AV-1"
+            },
+            "height": 117.0,
+            "id": "avPlate-f42ca665",
+            "position": {
+              "x": 346.5,
+              "y": 556.5
+            },
+            "type": "avPlate",
+            "width": 72.0
+          },
+          {
+            "data": {
+              "description": "AV PLATE",
+              "groups": [
+                {
+                  "header": "INPUTS",
+                  "rows": [
+                    {
+                      "direction": "input",
+                      "id": "p-0d2f4e11-a",
+                      "label": "1",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "direction": "input",
+                      "id": "groups-c7e30063",
+                      "label": "2",
+                      "wireCategory": "audio"
+                    }
+                  ]
+                },
+                {
+                  "header": "OUTPUTS",
+                  "rows": [
+                    {
+                      "direction": "output",
+                      "id": "groups-a4f399c9",
+                      "label": "1",
+                      "wireCategory": "audio"
+                    }
+                  ]
+                }
+              ],
+              "tagCode": "AVP",
+              "tagNumber": "AV-1"
+            },
+            "height": 117.0,
+            "id": "avPlate-70807746",
+            "position": {
+              "x": 346.5,
+              "y": 208.5
+            },
+            "type": "avPlate",
+            "width": 72.0
+          },
+          {
+            "data": {
+              "description": "AV PLATE",
+              "groups": [
+                {
+                  "header": "INPUTS",
+                  "rows": [
+                    {
+                      "direction": "input",
+                      "id": "p-0d2f4e11-a",
+                      "label": "1",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "direction": "input",
+                      "id": "groups-c7e30063",
+                      "label": "2",
+                      "wireCategory": "audio"
+                    }
+                  ]
+                },
+                {
+                  "header": "OUTPUTS",
+                  "rows": [
+                    {
+                      "direction": "output",
+                      "id": "groups-a4f399c9",
+                      "label": "1",
+                      "wireCategory": "audio"
+                    }
+                  ]
+                }
+              ],
+              "tagCode": "AVP",
+              "tagNumber": "AV-1"
+            },
+            "height": 117.0,
+            "id": "avPlate-7e4e91d3",
+            "position": {
+              "x": 346.5,
+              "y": 322.5
+            },
+            "type": "avPlate",
+            "width": 72.0
+          },
+          {
+            "data": {
+              "line1": "SPK 1",
+              "line2": "main bleachers",
+              "passthruEnabled": true,
+              "symbolKind": "standard"
+            },
+            "height": 50.0,
+            "id": "speakerBlock-2f1a8d6a",
+            "position": {
+              "x": 1169.0,
+              "y": 117.0
+            },
+            "type": "speakerBlock",
+            "width": 57.0
+          },
+          {
+            "data": {
+              "line1": "SPK 1",
+              "line2": "main bleachers",
+              "passthruEnabled": true,
+              "symbolKind": "standard"
+            },
+            "height": 50.0,
+            "id": "speakerBlock-c9f8c968",
+            "position": {
+              "x": 1244.0,
+              "y": 117.0
+            },
+            "type": "speakerBlock",
+            "width": 57.0
+          },
+          {
+            "data": {
+              "line1": "SPK 1",
+              "line2": "main bleachers",
+              "passthruEnabled": true,
+              "symbolKind": "standard"
+            },
+            "height": 50.0,
+            "id": "speakerBlock-e8b0bb77",
+            "position": {
+              "x": 1319.0,
+              "y": 117.0
+            },
+            "type": "speakerBlock",
+            "width": 57.0
+          },
+          {
+            "data": {
+              "line1": "SPK 1",
+              "line2": "main bleachers",
+              "passthruEnabled": true,
+              "symbolKind": "standard"
+            },
+            "height": 50.0,
+            "id": "speakerBlock-e1617408",
+            "position": {
+              "x": 1095.0,
+              "y": 159.0
+            },
+            "type": "speakerBlock",
+            "width": 57.0
+          },
+          {
+            "data": {
+              "line1": "SPK 1",
+              "line2": "main bleachers",
+              "passthruEnabled": true,
+              "symbolKind": "standard"
+            },
+            "height": 50.0,
+            "id": "speakerBlock-9ce597ed",
+            "position": {
+              "x": 1169.0,
+              "y": 159.0
+            },
+            "type": "speakerBlock",
+            "width": 57.0
+          },
+          {
+            "data": {
+              "line1": "SPK 1",
+              "line2": "main bleachers",
+              "passthruEnabled": true,
+              "symbolKind": "standard"
+            },
+            "height": 50.0,
+            "id": "speakerBlock-4fe8654b",
+            "position": {
+              "x": 1245.0,
+              "y": 159.0
+            },
+            "type": "speakerBlock",
+            "width": 57.0
+          },
+          {
+            "data": {
+              "line1": "SPK 1",
+              "line2": "main bleachers",
+              "passthruEnabled": true,
+              "symbolKind": "standard"
+            },
+            "height": 50.0,
+            "id": "speakerBlock-13ddc7aa",
+            "position": {
+              "x": 1320.0,
+              "y": 159.0
+            },
+            "type": "speakerBlock",
+            "width": 57.0
+          },
+          {
+            "data": {
+              "line1": "SPK 2",
+              "line2": "court coverage",
+              "passthruEnabled": true,
+              "symbolKind": "standard"
+            },
+            "height": 50.0,
+            "id": "speakerBlock-0801b172",
+            "position": {
+              "x": 1097.0,
+              "y": 201.0
+            },
+            "type": "speakerBlock",
+            "width": 57.0
+          },
+          {
+            "data": {
+              "line1": "SPK 2",
+              "line2": "court coverage",
+              "passthruEnabled": true,
+              "symbolKind": "standard"
+            },
+            "height": 50.0,
+            "id": "speakerBlock-3ea565fd",
+            "position": {
+              "x": 1172.0,
+              "y": 201.0
+            },
+            "type": "speakerBlock",
+            "width": 57.0
+          },
+          {
+            "data": {
+              "line1": "SPK 2",
+              "line2": "court coverage",
+              "passthruEnabled": true,
+              "symbolKind": "standard"
+            },
+            "height": 50.0,
+            "id": "speakerBlock-7d79d6d8",
+            "position": {
+              "x": 1247.0,
+              "y": 201.0
+            },
+            "type": "speakerBlock",
+            "width": 57.0
+          },
+          {
+            "data": {
+              "line1": "SPK 2",
+              "line2": "court coverage",
+              "passthruEnabled": true,
+              "symbolKind": "standard"
+            },
+            "height": 50.0,
+            "id": "speakerBlock-23acf13d",
+            "position": {
+              "x": 1322.0,
+              "y": 201.0
+            },
+            "type": "speakerBlock",
+            "width": 57.0
+          },
+          {
+            "data": {
+              "description": "RACK MOUNT MIXER",
+              "leftColumn": [
+                {
+                  "header": "Input",
+                  "rows": [
+                    {
+                      "id": "in-84b12e66",
+                      "label": "1",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "leftColumn-7896c88d",
+                      "label": "2",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "leftColumn-3044e262",
+                      "label": "3",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "leftColumn-3d52f520",
+                      "label": "4",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "leftColumn-5fc5bf40",
+                      "label": "5",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "leftColumn-d2d93d0b",
+                      "label": "6",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "leftColumn-cdb6a06d",
+                      "label": "7",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "leftColumn-fdf8a461",
+                      "label": "8",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "leftColumn-e610eced",
+                      "label": "9",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "leftColumn-b2e4f256",
+                      "label": "10",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "leftColumn-ae677e12",
+                      "label": "11",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "leftColumn-8fa1e833",
+                      "label": "12",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "leftColumn-d6a83b96",
+                      "label": "13",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "leftColumn-719cd8b5",
+                      "label": "14",
+                      "wireCategory": "audio"
+                    }
+                  ]
+                }
+              ],
+              "rightColumn": [
+                {
+                  "bundledRowIds": [
+                    [
+                      "out-84b12e66",
+                      "rightColumn-c0dde166",
+                      "rightColumn-6b741693",
+                      "rightColumn-37dbd477",
+                      "rightColumn-5e9262b7",
+                      "rightColumn-fad8ac47",
+                      "rightColumn-fe06cd65",
+                      "rightColumn-9d951581",
+                      "rightColumn-b295874e",
+                      "rightColumn-a86b1ecd"
+                    ]
+                  ],
+                  "header": "Output",
+                  "rows": [
+                    {
+                      "id": "out-84b12e66",
+                      "label": "1",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "rightColumn-c0dde166",
+                      "label": "2",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "rightColumn-6b741693",
+                      "label": "3",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "rightColumn-37dbd477",
+                      "label": "4",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "rightColumn-5e9262b7",
+                      "label": "5",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "rightColumn-fad8ac47",
+                      "label": "6",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "rightColumn-fe06cd65",
+                      "label": "7",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "rightColumn-9d951581",
+                      "label": "8",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "rightColumn-b295874e",
+                      "label": "9",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "id": "rightColumn-a86b1ecd",
+                      "label": "10",
+                      "wireCategory": "audio"
+                    }
+                  ]
+                },
+                {
+                  "header": "network",
+                  "rows": [
+                    {
+                      "id": "rightColumn-41130d7e",
+                      "label": "lan",
+                      "wireCategory": "network"
+                    }
+                  ]
+                }
+              ],
+              "tagCode": "MIX",
+              "tagNumber": "1"
+            },
+            "height": 180.0,
+            "id": "deviceV2-60f0f322",
+            "position": {
+              "x": 498.0,
+              "y": 121.5
+            },
+            "type": "deviceV2",
+            "width": 126.0
+          },
+          {
+            "data": {
+              "description": "floor box",
+              "groups": [
+                {
+                  "header": "INPUTS",
+                  "rows": [
+                    {
+                      "direction": "input",
+                      "id": "p-0d2f4e11-a",
+                      "label": "1",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "direction": "input",
+                      "id": "groups-c7e30063",
+                      "label": "2",
+                      "wireCategory": "audio"
+                    }
+                  ]
+                },
+                {
+                  "header": "OUTPUTS",
+                  "rows": [
+                    {
+                      "direction": "output",
+                      "id": "groups-a4f399c9",
+                      "label": "1",
+                      "wireCategory": "audio"
+                    }
+                  ]
+                }
+              ],
+              "tagCode": "fb",
+              "tagNumber": "AV-2"
+            },
+            "height": 117.0,
+            "id": "avPlate-2ca3b6d2",
+            "position": {
+              "x": 349.5,
+              "y": 676.5
+            },
+            "type": "avPlate",
+            "width": 72.0
+          },
+          {
+            "data": {
+              "description": "floor box",
+              "groups": [
+                {
+                  "header": "INPUTS",
+                  "rows": [
+                    {
+                      "direction": "input",
+                      "id": "p-0d2f4e11-a",
+                      "label": "1",
+                      "wireCategory": "audio"
+                    },
+                    {
+                      "direction": "input",
+                      "id": "groups-c7e30063",
+                      "label": "2",
+                      "wireCategory": "audio"
+                    }
+                  ]
+                },
+                {
+                  "header": "OUTPUTS",
+                  "rows": [
+                    {
+                      "direction": "output",
+                      "id": "groups-a4f399c9",
+                      "label": "1",
+                      "wireCategory": "audio"
+                    }
+                  ]
+                }
+              ],
+              "tagCode": "fb",
+              "tagNumber": "av-2"
+            },
+            "height": 117.0,
+            "id": "avPlate-88e2e31f",
+            "position": {
+              "x": 349.5,
+              "y": 793.5
+            },
+            "type": "avPlate",
+            "width": 72.0
+          },
+          {
+            "data": {
+              "end": "a",
+              "pairId": "cabe56b5-d347-40d6-bf00-78ecc826a7e6",
+              "pairIndex": 1,
+              "sheetName": "",
+              "showSheetName": false,
+              "tagDescription": ""
+            },
+            "height": 6.0,
+            "id": "wiretag-0daac244",
+            "position": {
+              "x": 279.0,
+              "y": 280.5
+            },
+            "type": "wiretag",
+            "width": 30.0
+          },
+          {
+            "data": {
+              "end": "b",
+              "pairId": "cabe56b5-d347-40d6-bf00-78ecc826a7e6",
+              "pairIndex": 1,
+              "sheetName": "",
+              "showSheetName": false,
+              "tagDescription": ""
+            },
+            "height": 6.0,
+            "id": "wiretag-950b7690",
+            "position": {
+              "x": 857.0,
+              "y": 195.0
+            },
+            "type": "wiretag",
+            "width": 36.0
+          },
+          {
+            "data": {
+              "label": "ER / GYM",
+              "polylinePoints": [
+                786,
+                0,
+                786,
+                396,
+                420,
+                396,
+                420,
+                301,
+                197,
+                301,
+                197,
+                90,
+                0,
+                90,
+                0,
+                0
+              ],
+              "shape": "polyline"
+            },
+            "height": 396.0,
+            "id": "zone-57ea16df",
+            "position": {
+              "x": 278.0,
+              "y": 102.0
+            },
+            "type": "groupingZone",
+            "width": 786.0,
+            "zIndex": -1
+          },
+          {
+            "data": {
+              "portDirection": "output",
+              "text": "fire alarm",
+              "wireCategory": "control"
+            },
+            "height": 12.0,
+            "id": "flyoff-7e4cbdd6",
+            "position": {
+              "x": 670.5,
+              "y": 312.0
+            },
+            "type": "flyoffNote",
+            "width": 60.0
+          }
+        ]
+      },
+      "undo_stack": [],
+      "redo_depth": 0
+    }
+  ],
+  "version": 2
+}

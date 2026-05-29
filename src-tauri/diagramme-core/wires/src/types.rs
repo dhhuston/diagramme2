@@ -107,3 +107,18 @@ pub struct WireGeometryModel {
     pub edges: std::collections::HashMap<String, WireGeometryEdgeRecord>,
     pub dxf_pieces: Vec<RevitDxfWirePiece>,
 }
+
+/// Controls wire polyline resolution when building geometry.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub struct WireGeometryOptions {
+    /// When false, ignore persisted `innerCorners` and use analytical routing.
+    pub use_persisted_inner_corners: bool,
+}
+
+impl Default for WireGeometryOptions {
+    fn default() -> Self {
+        Self {
+            use_persisted_inner_corners: true,
+        }
+    }
+}

@@ -4,8 +4,10 @@ mod tests {
 
     use crate::node_bounds::node_bounds_diagram_px;
     use crate::paper_scale::{
-        CONNECTOR_LINE_PITCH_PX, DEVICE_V2_WIDTH_PX, PX_PER_INCH, WIRETAG_BAR_HEIGHT_PX,
+        CONNECTOR_LINE_PITCH_PX, CONNECTOR_ROW_OUTER_HEIGHT_PX, DEVICE_V2_WIDTH_PX, PX_PER_INCH,
+        WIRETAG_BAR_HEIGHT_PX,
     };
+    use crate::symbol_layout::ANTENNA_SCHEMATIC_SVG_WIDTH_PX;
     use crate::port_geometry::{
         get_analytical_port_xy, WIRETAG_CONN_SRC, WIRETAG_CONN_TGT,
     };
@@ -195,5 +197,63 @@ mod tests {
         let bounds = node_bounds_diagram_px(&panel).expect("bounds");
         assert_eq!(bounds.width, PATCH_PANEL_WIDTH_PX);
         assert_eq!(bounds.height, patch_panel_total_height_px(1));
+    }
+
+    #[test]
+    fn antenna_ports_match_v6_foot_handle_centers() {
+        let y_bot = CONNECTOR_ROW_OUTER_HEIGHT_PX + CONNECTOR_ROW_OUTER_HEIGHT_PX / 2.0;
+
+        let tx = node(
+            "tx1",
+            "antennaTransmitterSymbol",
+            1000.0,
+            2000.0,
+            serde_json::json!({ "line1": "ANT" }),
+            Some(40.0),
+            None,
+        );
+        let tx_port = get_analytical_port_xy(&tx, "ant-tx").expect("ant-tx");
+        assert!((tx_port.y - (2000.0 + y_bot)).abs() < 1e-9);
+        assert!((tx_port.x - (1000.0 + 6.0)).abs() < 1e-9);
+
+        let rx = node(
+            "rx1",
+            "antennaReceiverSymbol",
+            500.0,
+            120.0,
+            serde_json::json!({ "line1": "ANT" }),
+            Some(72.0),
+            None,
+        );
+        let rx_port = get_analytical_port_xy(&rx, "ant-rx").expect("ant-rx");
+        assert!((rx_port.y - (120.0 + y_bot)).abs() < 1e-9);
+        let sym_left = 72.0 - ANTENNA_SCHEMATIC_SVG_WIDTH_PX;
+        assert!((rx_port.x - (500.0 + sym_left + 13.0 - 1.0)).abs() < 1e-9);
+
+        let tx_bad = get_analytical_port_xy(&tx, "ant-rx");
+        assert!(tx_bad.is_none());
+        let rx_bad = get_analytical_port_xy(&rx, "ant-tx");
+        assert!(rx_bad.is_none());
+    }
+
+    #[test]
+    fn speaker_block_target_port_matches_comp_gym_fixture() {
+        let spk = node(
+            "spk-cfe86b51",
+            "speakerBlock",
+            1095.0,
+            117.0,
+            serde_json::json!({
+                "line1": "SPK 1",
+                "line2": "main bleachers",
+                "passthruEnabled": true,
+                "symbolKind": "standard"
+            }),
+            Some(57.0),
+            Some(50.0),
+        );
+        let p = get_analytical_port_xy(&spk, "T-spk").expect("T-spk");
+        assert!((p.x - 1096.25).abs() < 0.01, "x={}", p.x);
+        assert!((p.y - 141.0).abs() < 1.5, "y={}", p.y);
     }
 }

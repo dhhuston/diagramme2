@@ -64,6 +64,7 @@ pub enum CadPrimitive {
         stroke_in: f64,
         layer: String,
         color: u32,
+        closed: bool,
         edge_id: Option<String>,
     },
     Rect {
@@ -178,6 +179,7 @@ fn primitive_to_cad(primitive: &ScenePrimitive, ext: ExtentIn) -> CadPrimitive {
             stroke_px,
             layer,
             color,
+            closed,
             edge_id,
         } => CadPrimitive::Polyline {
             points: points
@@ -187,6 +189,7 @@ fn primitive_to_cad(primitive: &ScenePrimitive, ext: ExtentIn) -> CadPrimitive {
             stroke_in: px_to_in(*stroke_px),
             layer: layer.clone(),
             color: *color,
+            closed: *closed,
             edge_id: edge_id.clone(),
         },
         ScenePrimitive::Rect {

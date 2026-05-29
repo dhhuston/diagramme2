@@ -1,9 +1,11 @@
-use diagramme_schema::ProjectState;
+use diagramme_schema::{validate_diagram_envelope, ProjectState};
 
 #[test]
-fn open_dxf_export_test_fixture() {
-    let json = include_str!("../../../../fixtures/diagrams/dxf-export-test.diagramme");
-    let p: ProjectState = serde_json::from_str(json).expect("parse");
+fn open_golden_fixture() {
+    let json = diagramme_schema::GOLDEN_DIAGRAM_JSON;
+    let value: serde_json::Value = serde_json::from_str(json).unwrap();
+    validate_diagram_envelope(&value).expect("golden envelope");
+    let p = diagramme_schema::load_golden_fixture();
     assert!(!p.sheets.is_empty());
     let again = serde_json::to_string(&p).unwrap();
     let p2: ProjectState = serde_json::from_str(&again).unwrap();
@@ -13,6 +15,8 @@ fn open_dxf_export_test_fixture() {
 #[test]
 fn open_cafeteria_fixture() {
     let json = include_str!("../../../../fixtures/diagrams/cafeteria-d104a.diagramme");
+    let value: serde_json::Value = serde_json::from_str(json).unwrap();
+    validate_diagram_envelope(&value).expect("cafeteria envelope");
     let p: ProjectState = serde_json::from_str(json).expect("parse cafeteria fixture");
     assert!(!p.sheets.is_empty());
 }

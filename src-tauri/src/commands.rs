@@ -10,7 +10,8 @@ use crate::state::AppState;
 use diagramme_dxf::build_revit_dxf_from_diagram;
 use diagramme_scene::{build_scene, Scene};
 use diagramme_schema::{
-    DiagramState, EmbeddedPreset, Node, NodeDimension, ProjectState, Sheet, XY,
+    validate_diagram_envelope, DiagramState, EmbeddedPreset, Node, NodeDimension, ProjectState,
+    Sheet, XY, normalize_project_for_persist,
 };
 use std::sync::Mutex;
 use tauri::{AppHandle, Emitter, Manager, State};
@@ -112,6 +113,7 @@ fn apply_edge_handle_attachments(s: &mut DiagramState, updates: &[EdgeHandleAtta
 /// Parse project JSON (`.diagramme` document) and clear undo stacks (same as [`open_diagram`]).
 pub fn open_diagram_from_json(json: &str) -> Result<ProjectState, String> {
     let parsed: serde_json::Value = serde_json::from_str(json).map_err(|e| e.to_string())?;
+    validate_diagram_envelope(&parsed)?;
 
     let mut project: ProjectState =
         serde_json::from_value(parsed).map_err(|e| format!("project: {e}"))?;
@@ -124,12 +126,14 @@ pub fn open_diagram_from_json(json: &str) -> Result<ProjectState, String> {
 
 /// Compact JSON for dirty checks and baselines (same schema as [`save_diagram`]).
 pub fn save_diagram_compact_from(project: &ProjectState) -> Result<String, String> {
+    let mut normalized = project.clone();
+    normalize_project_for_persist(&mut normalized);
     let payload = serde_json::json!({
         "format": "diagramme",
         "version": 2,
-        "sheets": project.sheets,
-        "activeSheetId": project.active_sheet_id,
-        "presetLibrary": project.preset_library,
+        "sheets": normalized.sheets,
+        "activeSheetId": normalized.active_sheet_id,
+        "presetLibrary": normalized.preset_library,
     });
     serde_json::to_string(&payload).map_err(|e| e.to_string())
 }
@@ -331,7 +335,8 @@ pub fn set_project(state: State<'_, AppState>, project: ProjectState) -> Project
 
 #[tauri::command]
 pub fn save_diagram(state: State<'_, AppState>) -> Result<String, String> {
-    let s = state.0.lock().unwrap();
+    let mut s = state.0.lock().unwrap();
+    normalize_project_for_persist(&mut s);
     let payload = serde_json::json!({
         "format": "diagramme",
         "version": 2,
@@ -344,7 +349,9 @@ pub fn save_diagram(state: State<'_, AppState>) -> Result<String, String> {
 
 #[tauri::command]
 pub fn save_diagram_compact(state: State<'_, AppState>) -> Result<String, String> {
-    save_diagram_compact_from(&state.0.lock().unwrap())
+    let mut project = state.0.lock().unwrap();
+    normalize_project_for_persist(&mut project);
+    save_diagram_compact_from(&project)
 }
 
 // ─── Undo / Redo ────────────────────────────────────────────────────────────

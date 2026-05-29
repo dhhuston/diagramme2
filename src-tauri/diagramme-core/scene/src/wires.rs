@@ -4,7 +4,7 @@ use diagramme_geometry::{PointPx, RectPx};
 use diagramme_schema::{DiagramState, Edge, Node};
 use diagramme_wires::{
     build_wire_geometry_model, node_lookup_for_wire_geometry, FlowXY, RevitDxfWirePiece,
-    SchematicFilletCorner, WireGeometryModel,
+    SchematicFilletCorner, WireGeometryModel, WireGeometryOptions,
 };
 
 use crate::scene::{Scene, ScenePrimitive};
@@ -336,6 +336,7 @@ fn push_wire_polyline(
         stroke_px: WIRE_STROKE_PX,
         layer: layer.to_string(),
         color,
+        closed: false,
         edge_id: Some(edge_id.to_string()),
     });
 }
@@ -412,7 +413,11 @@ pub fn wire_extent_rect(scene: &Scene) -> Option<RectPx> {
 }
 
 /// Build wire geometry and append to scene (used by `build_scene`).
-pub fn build_and_append_wires(scene: &mut Scene, diagram: &DiagramState) {
-    let model = build_wire_geometry_model(&diagram.nodes, &diagram.edges);
+pub fn build_and_append_wires(
+    scene: &mut Scene,
+    diagram: &DiagramState,
+    options: WireGeometryOptions,
+) {
+    let model = build_wire_geometry_model(&diagram.nodes, &diagram.edges, options);
     append_wires_to_scene(scene, &model, diagram);
 }

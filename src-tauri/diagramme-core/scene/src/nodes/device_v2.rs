@@ -1,18 +1,25 @@
 //! Device v2 scene primitives — geometry ported from v6 `appendDeviceV2RevitDxf`.
 
 use diagramme_geometry::{
-    device_v2_body_grid_row_count, device_v2_normalized_columns, flatten_device_v2_body_rows,
-    text_style_for_role, DeviceV2BodySlot, PointPx, RectPx, TextHAlign, TextRole, TextVAlign,
-    DEVICE_CONNECTOR_COLUMN_PX, DEVICE_CONNECTOR_GUTTER_PX, DEVICE_V2_GRID_ROW_PX,
-    DEVICE_V2_TITLE_HEIGHT_PX, DEVICE_V2_WIDTH_PX, SCHEMATIC_FRAME_INSET_PX,
-    SCHEMATIC_TAG_BAND_PX, SCHEMATIC_TAG_TEXT_CENTER_Y_PX, schematic_body_row_center_y,
-    schematic_title_band_center_y,
+    bundled_bracket_slots, device_v2_body_grid_row_count, device_v2_normalized_columns,
+    flatten_device_v2_body_rows, text_style_for_role, DeviceV2BodySlot, PointPx, RectPx, Side,
+    TextHAlign, TextRole, TextVAlign, DEVICE_CONNECTOR_COLUMN_PX, DEVICE_CONNECTOR_GUTTER_PX,
+    DEVICE_V2_GRID_ROW_PX, DEVICE_V2_TITLE_HEIGHT_PX, DEVICE_V2_WIDTH_PX, SCHEMATIC_FRAME_INSET_PX,
+    SCHEMATIC_TAG_BAND_PX, SCHEMATIC_TAG_TEXT_CENTER_Y_PX, SCHEMATIC_TITLE_SIDE_PADDING_PX,
+    schematic_body_row_center_y, schematic_title_line_step_px, schematic_wrapped_title_line_center_y,
+    wrap_schematic_title_lines,
 };
+use diagramme_schema::is_device_v2_bundle_bracket_active;
 use diagramme_schema::Node;
 
+use crate::breakline::{
+    push_closed_inset_frame, push_closed_inset_frame_with_bottom_breakline,
+};
+use crate::bundle_brackets::{draw_bracket_list, BracketDrawSlot};
 use crate::scene::{
     HitTarget, HAlign, Scene, ScenePrimitive, SceneText, VAlign,
 };
+use crate::text::sanitize_text;
 
 const DEFAULT_LAYER: &str = "0";
 const FILLS_LAYER: &str = "FILLS";
@@ -63,12 +70,13 @@ fn local_to_diagram(nx: f64, ny: f64, lx: f64, ly: f64) -> PointPx {
     }
 }
 
-fn push_polyline(scene: &mut Scene, points: Vec<PointPx>) {
+fn push_polyline(scene: &mut Scene, points: Vec<PointPx>, closed: bool) {
     scene.primitives.push(ScenePrimitive::Polyline {
         points,
         stroke_px: HAIRLINE_STROKE_PX,
         layer: DEFAULT_LAYER.to_string(),
         color: 0,
+        closed,
         edge_id: None,
     });
 }
@@ -81,29 +89,6 @@ fn push_solid(scene: &mut Scene, vertices: [PointPx; 4], node_id: &str) {
     });
 }
 
-fn push_closed_inset_frame(
-    scene: &mut Scene,
-    nx: f64,
-    ny: f64,
-    width_px: f64,
-    height_px: f64,
-    inset_px: f64,
-) {
-    let xi0 = inset_px;
-    let yi0 = inset_px;
-    let xi1 = width_px - inset_px;
-    let yi1 = height_px - inset_px;
-    push_polyline(
-        scene,
-        vec![
-            local_to_diagram(nx, ny, xi0, yi0),
-            local_to_diagram(nx, ny, xi1, yi0),
-            local_to_diagram(nx, ny, xi1, yi1),
-            local_to_diagram(nx, ny, xi0, yi1),
-        ],
-    );
-}
-
 fn push_line(scene: &mut Scene, x0: f64, y0: f64, x1: f64, y1: f64, nx: f64, ny: f64) {
     push_polyline(
         scene,
@@ -111,6 +96,7 @@ fn push_line(scene: &mut Scene, x0: f64, y0: f64, x1: f64, y1: f64, nx: f64, ny:
             local_to_diagram(nx, ny, x0, y0),
             local_to_diagram(nx, ny, x1, y1),
         ],
+        false,
     );
 }
 
@@ -150,15 +136,6 @@ fn cell_label(slot: Option<&DeviceV2BodySlot>) -> String {
     }
 }
 
-fn sanitize_text(raw: &str, max_len: usize) -> String {
-    let trimmed: String = raw.chars().filter(|c| *c != '\r' && *c != '\n').collect();
-    let trimmed = trimmed.trim();
-    if trimmed.is_empty() {
-        return String::new();
-    }
-    trimmed.chars().take(max_len).collect()
-}
-
 fn device_v2_total_height_px(data: &serde_json::Value) -> f64 {
     let row_count = device_v2_body_grid_row_count(data);
     DEVICE_V2_TITLE_HEIGHT_PX + row_count as f64 * DEVICE_V2_GRID_ROW_PX
@@ -176,7 +153,12 @@ pub fn device_v2_scene_bounds(node: &Node) -> RectPx {
 }
 
 /// Append device v2 drawable primitives and hit targets to `scene`.
-pub fn append_device_v2_scene(scene: &mut Scene, node: &Node) {
+pub fn append_device_v2_scene(
+    scene: &mut Scene,
+    node: &Node,
+    active_bundles: &std::collections::HashSet<(String, String)>,
+    filter_bundle_brackets: bool,
+) {
     let nx = node.position.x;
     let ny = node.position.y;
     let data = &node.data;
@@ -195,18 +177,6 @@ pub fn append_device_v2_scene(scene: &mut Scene, node: &Node) {
     let right_col_x = device_v2_right_column_x_px();
     let inset = SCHEMATIC_FRAME_INSET_PX;
     let body_top = title_h;
-
-    // Title band fill
-    push_solid(
-        scene,
-        [
-            local_to_diagram(nx, ny, 0.0, 0.0),
-            local_to_diagram(nx, ny, w, 0.0),
-            local_to_diagram(nx, ny, w, title_h),
-            local_to_diagram(nx, ny, 0.0, title_h),
-        ],
-        &node.id,
-    );
 
     // Tag text (above frame)
     let tag_code = data
@@ -234,8 +204,21 @@ pub fn append_device_v2_scene(scene: &mut Scene, node: &Node) {
         font: tag_style.font.to_string(),
     }));
 
-    // Frame (closed inset rectangle)
-    push_closed_inset_frame(scene, nx, ny, w, total_height, inset);
+    // Frame (closed inset rectangle; breakline when split instance)
+    let split_instance = data.get("splitInstance");
+    if split_instance.is_some() {
+        push_closed_inset_frame_with_bottom_breakline(
+            scene,
+            nx,
+            ny,
+            w,
+            total_height,
+            inset,
+            DEVICE_CONNECTOR_GUTTER_PX,
+        );
+    } else {
+        push_closed_inset_frame(scene, nx, ny, w, total_height, inset);
+    }
 
     // Title / body divider
     push_line(scene, inset, title_h, w - inset, title_h, nx, ny);
@@ -290,12 +273,38 @@ pub fn append_device_v2_scene(scene: &mut Scene, node: &Node) {
         .unwrap_or("");
     let title_str = sanitize_text(base_title, 48);
     if !title_str.is_empty() {
-        scene.primitives.push(ScenePrimitive::Text(scene_text_from_role(
-            TextRole::Title,
-            local_to_diagram(nx, ny, w / 2.0, schematic_title_band_center_y(title_h)),
-            title_str,
-            None,
-        )));
+        let title_style = text_style_for_role(TextRole::Title);
+        let wrapped = wrap_schematic_title_lines(
+            &[title_str],
+            w,
+            SCHEMATIC_TITLE_SIDE_PADDING_PX,
+            title_style.height_px,
+        );
+        let line_count = wrapped.len().max(1);
+        let line_step_px = schematic_title_line_step_px(title_style.height_px);
+        for (i, line) in wrapped.iter().enumerate() {
+            let t = sanitize_text(line.trim(), 48);
+            if t.is_empty() {
+                continue;
+            }
+            scene.primitives.push(ScenePrimitive::Text(scene_text_from_role(
+                TextRole::Title,
+                local_to_diagram(
+                    nx,
+                    ny,
+                    w / 2.0,
+                    schematic_wrapped_title_line_center_y(
+                        0.0,
+                        title_h,
+                        i,
+                        line_count,
+                        line_step_px,
+                    ),
+                ),
+                t,
+                None,
+            )));
+        }
     }
 
     // Body rows: header fills + port labels
@@ -390,6 +399,46 @@ pub fn append_device_v2_scene(scene: &mut Scene, node: &Node) {
             }));
         }
     }
+
+    let left_brackets: Vec<BracketDrawSlot> = bundled_bracket_slots(&left_rows, &left_groups, body_top, row_px)
+        .into_iter()
+        .filter(|s| {
+            !filter_bundle_brackets
+                || is_device_v2_bundle_bracket_active(
+                    active_bundles,
+                    &node.id,
+                    'L',
+                    s.group_index,
+                    s.bundle_index,
+                )
+        })
+        .map(|s| BracketDrawSlot {
+            y0: s.y0,
+            y1: s.y1,
+            count: s.count,
+        })
+        .collect();
+    let right_brackets: Vec<BracketDrawSlot> =
+        bundled_bracket_slots(&right_rows, &right_groups, body_top, row_px)
+            .into_iter()
+            .filter(|s| {
+                !filter_bundle_brackets
+                    || is_device_v2_bundle_bracket_active(
+                        active_bundles,
+                        &node.id,
+                        'R',
+                        s.group_index,
+                        s.bundle_index,
+                    )
+            })
+            .map(|s| BracketDrawSlot {
+                y0: s.y0,
+                y1: s.y1,
+                count: s.count,
+            })
+            .collect();
+    draw_bracket_list(scene, nx, ny, &left_brackets, Side::Left, 0.0, w);
+    draw_bracket_list(scene, nx, ny, &right_brackets, Side::Right, w, w);
 
     // Hit target: node body (full frame width)
     scene.hits.push(HitTarget {

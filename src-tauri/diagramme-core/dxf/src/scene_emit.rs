@@ -27,9 +27,17 @@ fn point_in_pair(p: diagramme_scene::PointIn) -> (f64, f64) {
 
 fn emit_cad_primitive(doc: &mut CadDocument, prim: &CadPrimitive) {
     match prim {
-        CadPrimitive::Polyline { points, layer, .. } => {
+        CadPrimitive::Polyline {
+            points,
+            layer,
+            closed,
+            edge_id,
+            ..
+        } => {
             let pts: Vec<(f64, f64)> = points.iter().copied().map(point_in_pair).collect();
-            add_lwpolyline(doc, layer, &pts, false);
+            // Revit / Autodesk extractor expects wires on the declared WIRES layer (v6 parity).
+            let dxf_layer = if edge_id.is_some() { "WIRES" } else { layer.as_str() };
+            add_lwpolyline(doc, dxf_layer, &pts, *closed);
         }
         CadPrimitive::Rect {
             rect,
@@ -66,8 +74,8 @@ fn emit_cad_primitive(doc: &mut CadDocument, prim: &CadPrimitive) {
     }
 }
 
-/// Transform `scene` through `scene_to_cad` and serialize Revit-safe DXF.
-pub fn emit_scene_to_dxf(scene: &Scene) -> String {
+/// Build a CAD document from a scene without serializing.
+pub(crate) fn build_cad_document_from_scene(scene: &Scene) -> CadDocument {
     let cad = scene_to_cad(scene);
     let mut doc = create_revit_cad_document(CadExtentInches {
         min_x: cad.extent.min_x,
@@ -80,5 +88,11 @@ pub fn emit_scene_to_dxf(scene: &Scene) -> String {
         emit_cad_primitive(&mut doc, prim);
     }
 
+    doc
+}
+
+/// Transform `scene` through `scene_to_cad` and serialize Revit-safe DXF.
+pub fn emit_scene_to_dxf(scene: &Scene) -> String {
+    let doc = build_cad_document_from_scene(scene);
     serialize_revit_dxf(&doc)
 }

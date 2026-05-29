@@ -1,35 +1,40 @@
-use diagramme_dxf::build_revit_dxf_from_diagram;
+use diagramme_dxf::{audit_polylines_in_region, build_revit_dxf_from_diagram, write_layer_debug_bundle, RegionBboxPx};
 use diagramme_scene::{build_scene, px_to_in, scene_to_cad, CadPrimitive, ScenePrimitive};
-use diagramme_schema::ProjectState;
+use diagramme_schema::{active_sheet_state, load_golden_fixture};
 use std::collections::HashMap;
 use std::path::Path;
 use std::process::Command;
 
-fn load_dxf_export_fixture() -> ProjectState {
-    let json = include_str!("../../../../fixtures/diagrams/dxf-export-test.diagramme");
-    serde_json::from_str(json).expect("parse dxf-export-test fixture")
-}
-
-fn active_sheet_state(project: &ProjectState) -> &diagramme_schema::DiagramState {
-    &project
-        .sheets
-        .iter()
-        .find(|s| s.id == project.active_sheet_id)
-        .or_else(|| project.sheets.first())
-        .expect("fixture has a sheet")
-        .state
+fn entities_section(dxf: &str) -> &str {
+    let start = dxf.find("  2\nENTITIES\n").map(|i| i + "  2\nENTITIES\n".len());
+    let Some(start) = start else {
+        return "";
+    };
+    let end = dxf[start..].find("\n  0\nENDSEC\n").map(|i| start + i);
+    match end {
+        Some(end) => &dxf[start..end],
+        None => &dxf[start..],
+    }
 }
 
 fn duplicate_handles(dxf: &str) -> Vec<String> {
     let mut counts: HashMap<String, usize> = HashMap::new();
-    let lines: Vec<&str> = dxf.lines().collect();
+    let lines: Vec<&str> = entities_section(dxf).lines().collect();
     let mut i = 0;
-    while i + 1 < lines.len() {
-        if lines[i].trim() == "5" {
+    while i < lines.len() {
+        let code = lines[i].trim();
+        if code.is_empty() {
+            i += 1;
+            continue;
+        }
+        if i + 1 >= lines.len() {
+            break;
+        }
+        if code == "5" {
             let handle = lines[i + 1].trim().to_string();
             *counts.entry(handle).or_insert(0) += 1;
         }
-        i += 1;
+        i += 2;
     }
     counts
         .into_iter()
@@ -91,7 +96,7 @@ fn dxf_wire_polylines(dxf: &str) -> Vec<Vec<(f64, f64)>> {
             kind == "LWPOLYLINE"
                 && groups
                     .iter()
-                    .any(|(code, value)| *code == 8 && value != "0")
+                    .any(|(code, value)| *code == 8 && value == "WIRES")
         })
         .filter_map(|(_, groups)| {
             let mut verts = Vec::new();
@@ -135,12 +140,56 @@ fn horizontal_wire_segment_px(scene: &diagramme_scene::Scene) -> (f64, f64) {
             }
         }
     }
-    panic!("expected horizontal wire segment in dxf-export-test scene");
+    panic!("expected horizontal wire segment in golden fixture scene");
 }
 
 #[test]
-fn dxf_export_test_fixture_produces_non_empty_dxf() {
-    let project = load_dxf_export_fixture();
+fn dxf_export_matches_canvas_scene_wire_geometry() {
+    let project = load_golden_fixture();
+    let diagram = active_sheet_state(&project);
+    let canvas_scene = build_scene(diagram);
+    let cad = scene_to_cad(&canvas_scene);
+    let _dxf = build_revit_dxf_from_diagram(diagram);
+
+    let canvas_wires: Vec<_> = canvas_scene
+        .primitives
+        .iter()
+        .filter_map(|p| match p {
+            ScenePrimitive::Polyline {
+                points,
+                edge_id: Some(id),
+                ..
+            } => Some((id.clone(), points.len())),
+            _ => None,
+        })
+        .collect();
+    let cad_wires: Vec<_> = cad
+        .primitives
+        .iter()
+        .filter_map(|p| match p {
+            CadPrimitive::Polyline {
+                points,
+                edge_id: Some(id),
+                ..
+            } => Some((id.clone(), points.len())),
+            _ => None,
+        })
+        .collect();
+
+    assert_eq!(
+        canvas_wires.len(),
+        cad_wires.len(),
+        "scene_to_cad should preserve wire polyline count"
+    );
+    for ((scene_id, scene_pts), (cad_id, cad_pts)) in canvas_wires.iter().zip(cad_wires.iter()) {
+        assert_eq!(scene_id, cad_id);
+        assert_eq!(scene_pts, cad_pts, "wire point count for edge {scene_id}");
+    }
+}
+
+#[test]
+fn golden_fixture_produces_non_empty_dxf() {
+    let project = load_golden_fixture();
     let dxf = build_revit_dxf_from_diagram(active_sheet_state(&project));
     assert!(!dxf.is_empty());
     assert!(dxf.contains("ENTITIES"));
@@ -148,22 +197,23 @@ fn dxf_export_test_fixture_produces_non_empty_dxf() {
 }
 
 #[test]
-fn text_height_parity_for_nine_px_scene_text() {
-    let project = load_dxf_export_fixture();
+fn text_height_parity_for_node_title_font_scene_text() {
+    let project = load_golden_fixture();
     let diagram = active_sheet_state(&project);
     let scene = build_scene(diagram);
-    let nine_px = scene
+    let title_px = 6.75;
+    let title_text = scene
         .primitives
         .iter()
         .find_map(|p| match p {
-            ScenePrimitive::Text(t) if (t.height_px - 9.0).abs() < 1e-9 => Some(t),
+            ScenePrimitive::Text(t) if (t.height_px - title_px).abs() < 1e-9 => Some(t),
             _ => None,
         })
-        .expect("SceneText with height_px 9");
-    assert!((nine_px.height_px - 9.0).abs() < 1e-9);
+        .expect("SceneText with node title height_px");
+    assert!((title_text.height_px - title_px).abs() < 1e-9);
 
     let dxf = build_revit_dxf_from_diagram(diagram);
-    let expected = px_to_in(9.0);
+    let expected = px_to_in(title_px);
     assert!(
         dxf_text_heights(&dxf)
             .iter()
@@ -175,7 +225,7 @@ fn text_height_parity_for_nine_px_scene_text() {
 
 #[test]
 fn wire_horizontal_segment_length_matches_px_scale_in_dxf() {
-    let project = load_dxf_export_fixture();
+    let project = load_golden_fixture();
     let diagram = active_sheet_state(&project);
     let scene = build_scene(diagram);
     let (px_len, _) = horizontal_wire_segment_px(&scene);
@@ -242,21 +292,108 @@ fn no_export_text_visual_scale_in_diagramme_core() {
     );
 }
 
+fn entity_layers_in_dxf(dxf: &str) -> std::collections::HashSet<String> {
+    let entities = dxf
+        .split("ENTITIES")
+        .nth(1)
+        .and_then(|s| s.split("ENDSEC").next())
+        .unwrap_or("");
+    let lines: Vec<&str> = entities.lines().collect();
+    let mut used = std::collections::HashSet::new();
+    let mut i = 0;
+    while i < lines.len() {
+        let code = lines[i].trim();
+        if code.is_empty() {
+            i += 1;
+            continue;
+        }
+        if i + 1 >= lines.len() {
+            break;
+        }
+        if code == "8" {
+            used.insert(lines[i + 1].trim().to_string());
+        }
+        i += 2;
+    }
+    used
+}
+
+#[test]
+fn fixture_export_uses_only_declared_layers() {
+    let project = load_golden_fixture();
+    let dxf = build_revit_dxf_from_diagram(active_sheet_state(&project));
+    let declared = ["0", "WIRES", "FILLS", "INKFILL", "GUIDES"];
+    for layer in entity_layers_in_dxf(&dxf) {
+        assert!(
+            declared.contains(&layer.as_str()),
+            "entity on undeclared layer {layer:?}"
+        );
+    }
+}
+
+#[test]
+fn fixture_export_frame_polylines_are_closed() {
+    let project = load_golden_fixture();
+    let dxf = build_revit_dxf_from_diagram(active_sheet_state(&project));
+    let entities = dxf
+        .split("ENTITIES")
+        .nth(1)
+        .and_then(|s| s.split("ENDSEC").next())
+        .unwrap_or("");
+    assert!(
+        entities.contains("LWPOLYLINE") && entities.contains("\n  70\n1\n"),
+        "expected closed LWPOLYLINE (group 70 = 1) for inset frames"
+    );
+}
+
+#[test]
+fn amp_region_export_has_no_stale_speaker_bus_wires() {
+    let project = load_golden_fixture();
+    let dxf = build_revit_dxf_from_diagram(active_sheet_state(&project));
+    // AMP block + speaker fan-out zone (diagram px).
+    let audit = audit_polylines_in_region(
+        &dxf,
+        RegionBboxPx {
+            x: 900.0,
+            y: 100.0,
+            width: 450.0,
+            height: 180.0,
+        },
+    );
+    assert!(
+        audit.wire_layer_polylines <= 8,
+        "expected fewer wire polylines after fresh routing, got {:?}",
+        audit
+    );
+}
+
 #[test]
 fn no_duplicate_handles_in_fixture_export() {
-    let project = load_dxf_export_fixture();
+    let project = load_golden_fixture();
     let dxf = build_revit_dxf_from_diagram(active_sheet_state(&project));
     let dupes = duplicate_handles(&dxf);
     assert!(dupes.is_empty(), "duplicate handles: {dupes:?}");
 }
 
 #[test]
+#[ignore = "run to write layer bisection files: cargo test -p diagramme-dxf write_layer_debug_splits -- --ignored"]
+fn write_layer_debug_splits() {
+    let project = load_golden_fixture();
+    let scene = build_scene(active_sheet_state(&project));
+    let out_dir = Path::new(env!("CARGO_MANIFEST_DIR"))
+        .join("../../../fixtures/golden/dxf/debug/layers");
+    let manifest = write_layer_debug_bundle(&scene, &out_dir).expect("write splits");
+    assert!(!manifest.is_empty());
+    assert!(out_dir.join("manifest.txt").exists());
+}
+
+#[test]
 #[ignore = "run once to write golden baseline: cargo test -p diagramme-dxf write_golden_baseline -- --ignored"]
 fn write_golden_baseline() {
-    let project = load_dxf_export_fixture();
+    let project = load_golden_fixture();
     let dxf = build_revit_dxf_from_diagram(active_sheet_state(&project));
     let golden = Path::new(env!("CARGO_MANIFEST_DIR"))
-        .join("../../../fixtures/golden/dxf/dxf-export-test.dxf");
+        .join("../../../fixtures/golden/dxf/comp-gym-f102a.dxf");
     if let Some(parent) = golden.parent() {
         std::fs::create_dir_all(parent).expect("create golden dir");
     }

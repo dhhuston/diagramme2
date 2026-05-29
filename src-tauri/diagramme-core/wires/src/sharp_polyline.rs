@@ -1,9 +1,9 @@
 //! Sharp orthogonal wire polylines (mirrors v6 `wireSharpPolyline.ts` + core `schematicEdgePath.ts`).
 
 use diagramme_geometry::{
-    get_analytical_port_xy, schematic_layout::SCHEMATIC_FRAME_INSET_PX, DEVICE_V2_WIDTH_PX,
-    PATCH_PANEL_WIDTH_PX, SNAP_GRID_PX, WIRETAG_CONN_SRC, WIRETAG_CONN_TGT,
-    WIRETAG_DEFAULT_WIDTH_PX,
+    get_analytical_port_xy, schematic_layout::SCHEMATIC_FRAME_INSET_PX, wiretag_conn_port_xy,
+    wiretag_export_width_for_node, DEVICE_V2_WIDTH_PX, PATCH_PANEL_WIDTH_PX, SNAP_GRID_PX,
+    WIRETAG_CONN_SRC, WIRETAG_CONN_TGT,
 };
 use diagramme_schema::{Edge, Node};
 use std::collections::HashMap;
@@ -11,7 +11,7 @@ use std::collections::HashMap;
 use crate::postprocess::postprocess_dxf_wire_records_for_revit_by_edge;
 use crate::types::{
     DxfWirePolylineRecord, FlowXY, HandleSide, StubEndpoints, WireGeometryEdgeRecord,
-    WireGeometryModel, WirePolylineResult, WirePolylineSource,
+    WireGeometryModel, WireGeometryOptions, WirePolylineResult, WirePolylineSource,
 };
 
 const DEFAULT_STUB: f64 = 2.0 * SNAP_GRID_PX;
@@ -299,25 +299,36 @@ pub fn compute_schematic_wire_polyline(
     target_position: HandleSide,
     inner_corners: Option<&[FlowXY]>,
 ) -> Option<Vec<FlowXY>> {
-    let stubs = compute_stub_endpoints(
-        source_x,
-        source_y,
-        target_x,
-        target_y,
-        source_position,
-        target_position,
-    )?;
-    let inner = build_inner_chain_points(
-        stubs.s1,
-        stubs.t1,
+    if !is_finite_xy(source_x, source_y) || !is_finite_xy(target_x, target_y) {
+        return None;
+    }
+    let d = ((target_x - source_x).powi(2) + (target_y - source_y).powi(2)).sqrt();
+    if d < 0.5 {
+        return None;
+    }
+
+    let s_exact = FlowXY {
+        x: source_x,
+        y: source_y,
+    };
+    let t_exact = FlowXY {
+        x: target_x,
+        y: target_y,
+    };
+    let mut chain = build_inner_chain_points(
+        snap_point(s_exact),
+        snap_point(t_exact),
         source_position,
         target_position,
         inner_corners,
     );
-    let mut poly = vec![stubs.s];
-    poly.extend(inner);
-    poly.push(stubs.t);
-    Some(poly)
+    if chain.len() < 2 {
+        return None;
+    }
+    chain[0] = s_exact;
+    let last = chain.len() - 1;
+    chain[last] = t_exact;
+    Some(chain)
 }
 
 pub fn get_inner_corners_from_edge_data(data: &serde_json::Value) -> Option<Vec<FlowXY>> {
@@ -405,6 +416,12 @@ fn endpoint_for_export(
 
 fn known_handle_position(node_type: &str, handle_id: Option<&str>) -> Option<HandleSide> {
     let handle_id = handle_id?;
+    if handle_id == WIRETAG_CONN_SRC {
+        return Some(HandleSide::Right);
+    }
+    if handle_id == WIRETAG_CONN_TGT {
+        return Some(HandleSide::Left);
+    }
     if node_type == "speakerBlock"
         && (handle_id == "T-spk" || handle_id == "S-spk-passthru")
     {
@@ -455,25 +472,55 @@ fn read_node_width(node: &Node, fallback: f64) -> f64 {
     node.width.filter(|w| *w > 0.0).unwrap_or(fallback)
 }
 
-fn clip_endpoint_to_node_boundary(node: &Node, handle_id: Option<&str>, point: FlowXY) -> FlowXY {
+/// Row/bundle schematic ports already sit on the frame edge (or bracket tip). Clipping
+/// inward then emitting an outward stub retraces node chrome and looks like extra routing.
+fn preserves_analytical_wire_port(node: &Node, handle_id: Option<&str>) -> bool {
+    let Some(handle_id) = handle_id else {
+        return false;
+    };
+    if is_bundle_handle_id(Some(handle_id)) {
+        return true;
+    }
+    match node.node_type.as_str() {
+        "device" | "deviceV2" => handle_id.starts_with('L') || handle_id.starts_with('R'),
+        "avPlate" => handle_id.starts_with('T') || handle_id.starts_with('S'),
+        t if is_patch_like_node_type(t) => {
+            handle_id.starts_with('L') || handle_id.starts_with('R')
+        }
+        _ => false,
+    }
+}
+
+fn analytical_port_xy(
+    node: &Node,
+    handle_id: &str,
+    nodes: &[Node],
+    edges: &[Edge],
+) -> Option<FlowXY> {
+    if node.node_type == "wiretag" {
+        wiretag_conn_port_xy(node, handle_id, nodes, edges).map(FlowXY::from)
+    } else {
+        get_analytical_port_xy(node, handle_id).map(FlowXY::from)
+    }
+}
+
+fn clip_endpoint_to_node_boundary(
+    node: &Node,
+    handle_id: Option<&str>,
+    point: FlowXY,
+    nodes: &[Node],
+    edges: &[Edge],
+) -> FlowXY {
+    if preserves_analytical_wire_port(node, handle_id) {
+        return point;
+    }
+
     let x = node.position.x;
     if !x.is_finite() {
         return point;
     }
 
     if node.node_type == "avPlate" {
-        if handle_id.is_some_and(|h| h.starts_with("T-")) {
-            return FlowXY {
-                x: x + SCHEMATIC_FRAME_INSET_PX,
-                y: point.y,
-            };
-        }
-        if handle_id.is_some_and(|h| h.starts_with("S-")) {
-            return FlowXY {
-                x: x + PATCH_PANEL_WIDTH_PX - SCHEMATIC_FRAME_INSET_PX,
-                y: point.y,
-            };
-        }
         let mid = x + PATCH_PANEL_WIDTH_PX / 2.0;
         return FlowXY {
             x: if point.x <= mid {
@@ -487,18 +534,6 @@ fn clip_endpoint_to_node_boundary(node: &Node, handle_id: Option<&str>, point: F
 
     if node.node_type == "device" || node.node_type == "deviceV2" {
         let w = read_node_width(node, DEVICE_V2_WIDTH_PX);
-        if handle_id.is_some_and(|h| h.starts_with("L-")) {
-            return FlowXY {
-                x: x + SCHEMATIC_FRAME_INSET_PX,
-                y: point.y,
-            };
-        }
-        if handle_id.is_some_and(|h| h.starts_with("R-")) {
-            return FlowXY {
-                x: x + w - SCHEMATIC_FRAME_INSET_PX,
-                y: point.y,
-            };
-        }
         let mid = x + w / 2.0;
         return FlowXY {
             x: if point.x <= mid {
@@ -511,7 +546,7 @@ fn clip_endpoint_to_node_boundary(node: &Node, handle_id: Option<&str>, point: F
     }
 
     if node.node_type == "wiretag" {
-        let w = read_node_width(node, WIRETAG_DEFAULT_WIDTH_PX);
+        let w = wiretag_export_width_for_node(node, nodes, edges);
         let left_x = x;
         let right_x = x + w;
         if handle_id == Some(WIRETAG_CONN_SRC) {
@@ -537,18 +572,15 @@ fn clip_endpoint_to_node_boundary(node: &Node, handle_id: Option<&str>, point: F
     }
 
     if is_patch_like_node_type(&node.node_type) {
-        if handle_id.is_some_and(|h| h.starts_with("L-")) {
-            return FlowXY {
-                x: x + SCHEMATIC_FRAME_INSET_PX,
-                y: point.y,
-            };
-        }
-        if handle_id.is_some_and(|h| h.starts_with("R-")) {
-            return FlowXY {
-                x: x + PATCH_PANEL_WIDTH_PX - SCHEMATIC_FRAME_INSET_PX,
-                y: point.y,
-            };
-        }
+        let mid = x + PATCH_PANEL_WIDTH_PX / 2.0;
+        return FlowXY {
+            x: if point.x <= mid {
+                x + SCHEMATIC_FRAME_INSET_PX
+            } else {
+                x + PATCH_PANEL_WIDTH_PX - SCHEMATIC_FRAME_INSET_PX
+            },
+            y: point.y,
+        };
     }
 
     point
@@ -557,11 +589,13 @@ fn clip_endpoint_to_node_boundary(node: &Node, handle_id: Option<&str>, point: F
 pub fn clip_export_polyline_endpoints(
     edge: &Edge,
     polyline: &[FlowXY],
-    nodes_by_id: &HashMap<String, Node>,
+    nodes: &[Node],
+    edges: &[Edge],
 ) -> Vec<FlowXY> {
     if polyline.len() < 2 {
         return polyline.to_vec();
     }
+    let nodes_by_id = node_lookup_for_wire_geometry(nodes);
     let Some(src) = nodes_by_id.get(&edge.source) else {
         return polyline.to_vec();
     };
@@ -574,11 +608,15 @@ pub fn clip_export_polyline_endpoints(
         src,
         edge.source_handle.as_deref(),
         next[0],
+        nodes,
+        edges,
     );
     next[len - 1] = clip_endpoint_to_node_boundary(
         tgt,
         edge.target_handle.as_deref(),
         next[len - 1],
+        nodes,
+        edges,
     );
     next
 }
@@ -591,15 +629,22 @@ pub fn fallback_polyline_from_ports(
     edge: &Edge,
     src: &Node,
     tgt: &Node,
+    nodes: &[Node],
+    edges: &[Edge],
+    options: WireGeometryOptions,
 ) -> Option<Vec<FlowXY>> {
     let sh = edge.source_handle.as_deref();
     let th = edge.target_handle.as_deref();
-    let inner_corners = get_inner_corners_from_edge_data(&edge.data);
+    let inner_corners = if options.use_persisted_inner_corners {
+        get_inner_corners_from_edge_data(&edge.data)
+    } else {
+        None
+    };
     let sc = read_handle_center(&edge.data, "sourceHandleCenter");
     let tc = read_handle_center(&edge.data, "targetHandleCenter");
 
-    let src_port = sh.and_then(|h| get_analytical_port_xy(src, h).map(FlowXY::from));
-    let tgt_port = th.and_then(|h| get_analytical_port_xy(tgt, h).map(FlowXY::from));
+    let src_port = sh.and_then(|h| analytical_port_xy(src, h, nodes, edges));
+    let tgt_port = th.and_then(|h| analytical_port_xy(tgt, h, nodes, edges));
     let source = endpoint_for_export(src_port, sc, &src.node_type)?;
     let target = endpoint_for_export(tgt_port, tc, &tgt.node_type)?;
 
@@ -633,13 +678,16 @@ pub fn fallback_polyline_from_ports(
 
 pub fn wire_sharp_polyline_for_edge(
     edge: &Edge,
-    nodes_by_id: &HashMap<String, Node>,
+    nodes: &[Node],
+    edges: &[Edge],
+    options: WireGeometryOptions,
 ) -> Option<WirePolylineResult> {
+    let nodes_by_id = node_lookup_for_wire_geometry(nodes);
     let src = nodes_by_id.get(&edge.source)?;
     let tgt = nodes_by_id.get(&edge.target)?;
 
-    // Canvas path requires React Flow measured positions; use analytical fallback only.
-    let fallback = fallback_polyline_from_ports(edge, src, tgt)?;
+    // Resolve endpoints from analytical ports (and persisted handle centers when ports are absent).
+    let fallback = fallback_polyline_from_ports(edge, src, tgt, nodes, edges, options)?;
     if fallback.len() < 2 {
         return None;
     }
@@ -648,15 +696,15 @@ pub fn wire_sharp_polyline_for_edge(
     let tc = read_handle_center(&edge.data, "targetHandleCenter");
     let sh = edge.source_handle.as_deref();
     let th = edge.target_handle.as_deref();
-    let src_port = sh.and_then(|h| get_analytical_port_xy(src, h));
-    let tgt_port = th.and_then(|h| get_analytical_port_xy(tgt, h));
+    let src_port = sh.and_then(|h| analytical_port_xy(src, h, nodes, edges));
+    let tgt_port = th.and_then(|h| analytical_port_xy(tgt, h, nodes, edges));
     let used_persisted = (!src_port.is_some()
         && endpoint_for_export(None, sc, &src.node_type).is_some())
         || (!tgt_port.is_some()
             && endpoint_for_export(None, tc, &tgt.node_type).is_some());
 
     Some(WirePolylineResult {
-        polyline: clip_export_polyline_endpoints(edge, &fallback, nodes_by_id),
+        polyline: clip_export_polyline_endpoints(edge, &fallback, nodes, edges),
         source: if used_persisted {
             WirePolylineSource::FallbackPersisted
         } else {
@@ -666,14 +714,17 @@ pub fn wire_sharp_polyline_for_edge(
 }
 
 /// Build per-edge sharp polylines and DXF-ready pieces (crossing gaps + bundle fillets).
-pub fn build_wire_geometry_model(nodes: &[Node], edges: &[Edge]) -> WireGeometryModel {
-    let lookup = node_lookup_for_wire_geometry(nodes);
+pub fn build_wire_geometry_model(
+    nodes: &[Node],
+    edges: &[Edge],
+    options: WireGeometryOptions,
+) -> WireGeometryModel {
     let mut by_edge = HashMap::new();
     let mut postprocess_input = Vec::new();
 
     for edge in edges {
         let is_schematic = is_schematic_wire_edge_type(edge.edge_type.as_deref());
-        let Some(result) = wire_sharp_polyline_for_edge(edge, &lookup) else {
+        let Some(result) = wire_sharp_polyline_for_edge(edge, nodes, edges, options) else {
             continue;
         };
         if result.polyline.len() < 2 {

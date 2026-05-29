@@ -1,9 +1,13 @@
 #[cfg(test)]
 mod tests {
-    use crate::paper_scale::{LABEL_FONT_PX, SNAP_GRID_PX, WIRETAG_BAR_HEIGHT_PX};
+    use crate::paper_scale::{
+        LABEL_FONT_PX, MIC_SPEAKER_DESC_FONT_PX, NODE_TITLE_FONT_PX, SNAP_GRID_PX,
+        WIRETAG_BAR_HEIGHT_PX,
+    };
+    use crate::schematic_layout::{PATCH_PANEL_WIDTH_PX, SCHEMATIC_TITLE_SIDE_PADDING_PX};
     use crate::text_measure::{
         estimate_text_width_px, text_style_for_role, wiretag_bounds_diagram_px,
-        wiretag_tip_width_px, TextRole,
+        wiretag_tip_width_px, wrap_schematic_title_lines, TextRole,
     };
     use crate::units::px_to_in;
 
@@ -20,9 +24,44 @@ mod tests {
     }
 
     #[test]
-    fn text_style_tag_uses_label_font_px() {
+    fn text_style_tag_uses_node_title_font_px() {
         let style = text_style_for_role(TextRole::Tag);
-        assert_eq!(style.height_px, LABEL_FONT_PX);
+        assert_eq!(style.height_px, NODE_TITLE_FONT_PX);
+        assert_eq!(style.font, "Arial Narrow");
+    }
+
+    #[test]
+    fn wrap_schematic_title_lines_splits_loudspeaker_patch_at_one_inch() {
+        let style = text_style_for_role(TextRole::Title);
+        let wrapped = wrap_schematic_title_lines(
+            &["Loudspeaker patch".to_string()],
+            PATCH_PANEL_WIDTH_PX,
+            SCHEMATIC_TITLE_SIDE_PADDING_PX,
+            style.height_px,
+        );
+        assert_eq!(wrapped.len(), 2);
+        assert_eq!(wrapped[0], "Loudspeaker");
+        assert_eq!(wrapped[1], "patch");
+    }
+
+    #[test]
+    fn node_title_font_is_three_thirty_seconds_inch() {
+        assert!((px_to_in(NODE_TITLE_FONT_PX) - 3.0 / 32.0).abs() < 1e-9);
+        assert!((NODE_TITLE_FONT_PX - 6.75).abs() < 1e-9);
+    }
+
+    #[test]
+    fn speaker_secondary_font_is_one_sixteenth_inch() {
+        assert!((MIC_SPEAKER_DESC_FONT_PX - 4.5).abs() < 1e-9);
+        assert!((px_to_in(MIC_SPEAKER_DESC_FONT_PX) - 1.0 / 16.0).abs() < 1e-9);
+        let style = text_style_for_role(TextRole::SpeakerSecondary);
+        assert_eq!(style.height_px, MIC_SPEAKER_DESC_FONT_PX);
+    }
+
+    #[test]
+    fn text_style_title_uses_node_title_font_px() {
+        let style = text_style_for_role(TextRole::Title);
+        assert_eq!(style.height_px, NODE_TITLE_FONT_PX);
         assert_eq!(style.font, "Arial Narrow");
     }
 

@@ -1,14 +1,21 @@
 //! AV plate scene primitives — geometry ported from v6 `appendAvPlateRevitDxf`.
 
 use diagramme_geometry::{
-    av_plate_groups_from_data, flatten_av_plate_body_rows, text_style_for_role, AvPlateBodyRow,
-    PointPx, RectPx, TextHAlign, TextRole, TextVAlign, AV_PLATE_GRID_ROW_PX, AV_PLATE_TITLE_HEIGHT_PX,
-    PATCH_PANEL_WIDTH_PX, SCHEMATIC_FRAME_INSET_PX, SCHEMATIC_TAG_BAND_PX,
-    SCHEMATIC_TAG_TEXT_CENTER_Y_PX, schematic_body_row_center_y, schematic_title_band_center_y,
+    av_plate_groups_from_data, flat_av_plate_bundle_slots, flatten_av_plate_body_rows,
+    text_style_for_role, AvPlateBodyRow, PointPx, RectPx, Side, TextHAlign, TextRole, TextVAlign,
+    AV_PLATE_GRID_ROW_PX, AV_PLATE_TITLE_HEIGHT_PX, DEVICE_CONNECTOR_GUTTER_PX, PATCH_PANEL_WIDTH_PX,
+    SCHEMATIC_FRAME_INSET_PX, SCHEMATIC_TAG_BAND_PX, SCHEMATIC_TAG_TEXT_CENTER_Y_PX,
+    SCHEMATIC_TITLE_SIDE_PADDING_PX, schematic_body_row_center_y, schematic_title_line_step_px,
+    schematic_wrapped_title_line_center_y, wrap_schematic_title_lines,
 };
-use diagramme_schema::Node;
+use diagramme_schema::{filter_bundled_side, Node};
 
+use crate::breakline::{
+    push_closed_inset_frame, push_closed_inset_frame_with_bottom_breakline,
+};
+use crate::bundle_brackets::{draw_bracket_list, BracketDrawSlot};
 use crate::scene::{HitTarget, HAlign, Scene, ScenePrimitive, SceneText, VAlign};
+use crate::text::sanitize_text;
 
 const DEFAULT_LAYER: &str = "0";
 const FILLS_LAYER: &str = "FILLS";
@@ -38,12 +45,13 @@ fn local_to_diagram(nx: f64, ny: f64, lx: f64, ly: f64) -> PointPx {
     }
 }
 
-fn push_polyline(scene: &mut Scene, points: Vec<PointPx>) {
+fn push_polyline(scene: &mut Scene, points: Vec<PointPx>, closed: bool) {
     scene.primitives.push(ScenePrimitive::Polyline {
         points,
         stroke_px: HAIRLINE_STROKE_PX,
         layer: DEFAULT_LAYER.to_string(),
         color: 0,
+        closed,
         edge_id: None,
     });
 }
@@ -56,29 +64,6 @@ fn push_solid(scene: &mut Scene, vertices: [PointPx; 4], node_id: &str) {
     });
 }
 
-fn push_closed_inset_frame(
-    scene: &mut Scene,
-    nx: f64,
-    ny: f64,
-    width_px: f64,
-    height_px: f64,
-    inset_px: f64,
-) {
-    let xi0 = inset_px;
-    let yi0 = inset_px;
-    let xi1 = width_px - inset_px;
-    let yi1 = height_px - inset_px;
-    push_polyline(
-        scene,
-        vec![
-            local_to_diagram(nx, ny, xi0, yi0),
-            local_to_diagram(nx, ny, xi1, yi0),
-            local_to_diagram(nx, ny, xi1, yi1),
-            local_to_diagram(nx, ny, xi0, yi1),
-        ],
-    );
-}
-
 fn push_line(scene: &mut Scene, x0: f64, y0: f64, x1: f64, y1: f64, nx: f64, ny: f64) {
     push_polyline(
         scene,
@@ -86,16 +71,8 @@ fn push_line(scene: &mut Scene, x0: f64, y0: f64, x1: f64, y1: f64, nx: f64, ny:
             local_to_diagram(nx, ny, x0, y0),
             local_to_diagram(nx, ny, x1, y1),
         ],
+        false,
     );
-}
-
-fn sanitize_text(raw: &str, max_len: usize) -> String {
-    let trimmed: String = raw.chars().filter(|c| *c != '\r' && *c != '\n').collect();
-    let trimmed = trimmed.trim();
-    if trimmed.is_empty() {
-        return String::new();
-    }
-    trimmed.chars().take(max_len).collect()
 }
 
 fn with_split_suffix(base: &str, split_instance: Option<u64>) -> String {
@@ -103,6 +80,21 @@ fn with_split_suffix(base: &str, split_instance: Option<u64>) -> String {
         Some(n) => format!("{base} ({n})"),
         None => base.to_string(),
     }
+}
+
+fn parse_bundled_row_ids(data: &serde_json::Value, key: &str) -> Option<Vec<Vec<String>>> {
+    let arr = data.get(key)?.as_array()?;
+    Some(
+        arr.iter()
+            .filter_map(|bundle| {
+                bundle.as_array().map(|ids| {
+                    ids.iter()
+                        .filter_map(|v| v.as_str().map(String::from))
+                        .collect()
+                })
+            })
+            .collect(),
+    )
 }
 
 fn av_plate_total_height_px(data: &serde_json::Value) -> f64 {
@@ -123,7 +115,12 @@ pub fn av_plate_scene_bounds(node: &Node) -> RectPx {
 }
 
 /// Append AV plate drawable primitives and hit targets to `scene`.
-pub fn append_av_plate_scene(scene: &mut Scene, node: &Node) {
+pub fn append_av_plate_scene(
+    scene: &mut Scene,
+    node: &Node,
+    active_bundles: &std::collections::HashSet<(String, String)>,
+    filter_bundle_brackets: bool,
+) {
     let nx = node.position.x;
     let ny = node.position.y;
     let data = &node.data;
@@ -138,18 +135,6 @@ pub fn append_av_plate_scene(scene: &mut Scene, node: &Node) {
     let row_px = AV_PLATE_GRID_ROW_PX;
     let inset = SCHEMATIC_FRAME_INSET_PX;
     let body_top = title_h;
-
-    // Title band fill
-    push_solid(
-        scene,
-        [
-            local_to_diagram(nx, ny, 0.0, 0.0),
-            local_to_diagram(nx, ny, w, 0.0),
-            local_to_diagram(nx, ny, w, title_h),
-            local_to_diagram(nx, ny, 0.0, title_h),
-        ],
-        &node.id,
-    );
 
     // Tag text (above frame)
     let tag_code = data
@@ -177,8 +162,21 @@ pub fn append_av_plate_scene(scene: &mut Scene, node: &Node) {
         font: tag_style.font.to_string(),
     }));
 
-    // Frame (closed inset rectangle)
-    push_closed_inset_frame(scene, nx, ny, w, total_height, inset);
+    // Frame (closed inset rectangle; breakline when split instance)
+    let split_instance = data.get("splitInstance").and_then(|v| v.as_u64());
+    if split_instance.is_some() {
+        push_closed_inset_frame_with_bottom_breakline(
+            scene,
+            nx,
+            ny,
+            w,
+            total_height,
+            inset,
+            DEVICE_CONNECTOR_GUTTER_PX,
+        );
+    } else {
+        push_closed_inset_frame(scene, nx, ny, w, total_height, inset);
+    }
 
     // Title / body divider
     push_line(scene, inset, title_h, w - inset, title_h, nx, ny);
@@ -190,7 +188,6 @@ pub fn append_av_plate_scene(scene: &mut Scene, node: &Node) {
     }
 
     // Title text
-    let split_instance = data.get("splitInstance").and_then(|v| v.as_u64());
     let base_title = data
         .get("description")
         .and_then(|v| v.as_str())
@@ -199,14 +196,39 @@ pub fn append_av_plate_scene(scene: &mut Scene, node: &Node) {
     let title_str = sanitize_text(&with_split_suffix(base_title, split_instance), 48);
     if !title_str.is_empty() {
         let title_style = text_style_for_role(TextRole::Title);
-        scene.primitives.push(ScenePrimitive::Text(SceneText {
-            position: local_to_diagram(nx, ny, w / 2.0, schematic_title_band_center_y(title_h)),
-            content: title_str,
-            height_px: title_style.height_px,
-            halign: to_halign(title_style.halign),
-            valign: to_valign(title_style.valign),
-            font: title_style.font.to_string(),
-        }));
+        let wrapped = wrap_schematic_title_lines(
+            &[title_str],
+            w,
+            SCHEMATIC_TITLE_SIDE_PADDING_PX,
+            title_style.height_px,
+        );
+        let line_count = wrapped.len().max(1);
+        let line_step_px = schematic_title_line_step_px(title_style.height_px);
+        for (i, line) in wrapped.iter().enumerate() {
+            let t = sanitize_text(line.trim(), 48);
+            if t.is_empty() {
+                continue;
+            }
+            scene.primitives.push(ScenePrimitive::Text(SceneText {
+                position: local_to_diagram(
+                    nx,
+                    ny,
+                    w / 2.0,
+                    schematic_wrapped_title_line_center_y(
+                        0.0,
+                        title_h,
+                        i,
+                        line_count,
+                        line_step_px,
+                    ),
+                ),
+                content: t,
+                height_px: title_style.height_px,
+                halign: to_halign(title_style.halign),
+                valign: to_valign(title_style.valign),
+                font: title_style.font.to_string(),
+            }));
+        }
     }
 
     // Body rows: header fills + port labels
@@ -277,6 +299,48 @@ pub fn append_av_plate_scene(scene: &mut Scene, node: &Node) {
             AvPlateBodyRow::Gap => {}
         }
     }
+
+    let bundled_left = parse_bundled_row_ids(data, "bundledLeft");
+    let bundled_right = parse_bundled_row_ids(data, "bundledRight");
+    let bundled_left = if filter_bundle_brackets {
+        filter_bundled_side(bundled_left, &node.id, 'L', active_bundles)
+    } else {
+        bundled_left
+    };
+    let bundled_right = if filter_bundle_brackets {
+        filter_bundled_side(bundled_right, &node.id, 'R', active_bundles)
+    } else {
+        bundled_right
+    };
+    let row_center_px = row_px / 2.0;
+    let slots = flat_av_plate_bundle_slots(
+        &rows,
+        bundled_left.as_deref(),
+        bundled_right.as_deref(),
+        body_top,
+        row_px,
+        row_center_px,
+    );
+    let left: Vec<BracketDrawSlot> = slots
+        .iter()
+        .filter(|s| s.side == Side::Left)
+        .map(|s| BracketDrawSlot {
+            y0: s.y0,
+            y1: s.y1,
+            count: s.count,
+        })
+        .collect();
+    let right: Vec<BracketDrawSlot> = slots
+        .iter()
+        .filter(|s| s.side == Side::Right)
+        .map(|s| BracketDrawSlot {
+            y0: s.y0,
+            y1: s.y1,
+            count: s.count,
+        })
+        .collect();
+    draw_bracket_list(scene, nx, ny, &left, Side::Left, 0.0, w);
+    draw_bracket_list(scene, nx, ny, &right, Side::Right, w, w);
 
     // Hit target: node body
     scene.hits.push(HitTarget {

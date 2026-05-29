@@ -2,13 +2,17 @@
 
 pub const VERSION: &str = env!("CARGO_PKG_VERSION");
 
+mod breakline;
 mod build;
+mod bundle_brackets;
 mod cad_transform;
 mod nodes;
 mod scene;
+mod text;
 mod wires;
 
-pub use build::build_scene;
+pub use build::{build_scene, build_scene_with_options, SceneBuildOptions};
+pub use nodes::{resolve_pair_main_display_text, wiretag_scene_bounds};
 pub use wires::{append_wires_to_scene, wire_extent_rect, WireCategory};
 pub use cad_transform::{
     extent_from_rects, extent_in_from_rect, px_to_in, scene_point_to_cad, scene_to_cad,

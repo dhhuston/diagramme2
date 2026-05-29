@@ -83,8 +83,7 @@ pub fn sanitize_dxf_string(dxf: &str) -> String {
     }
 
     let joined = out.join("\n");
-    let reordered = reorder_solids_first(&joined);
-    ensure_unique_handles(&reordered)
+    reorder_solids_first(&joined)
 }
 
 fn reorder_solids_first(dxf: &str) -> String {
@@ -123,31 +122,14 @@ fn reorder_solids_first(dxf: &str) -> String {
         }
     }
 
-    format!("{}{}{}{}", before, solids.join("\n"), others.join("\n"), after)
-}
-
-fn ensure_unique_handles(dxf: &str) -> String {
-    let mut lines: Vec<String> = dxf.lines().map(str::to_string).collect();
-    let mut seen = std::collections::HashSet::new();
-    let mut next_id: u32 = 0x1000;
-
-    let mut i = 0;
-    while i + 1 < lines.len() {
-        if lines[i].trim() == "5" {
-            let handle = lines[i + 1].trim().to_string();
-            if !seen.insert(handle.clone()) {
-                let new_handle = loop {
-                    let candidate = format!("{:X}", next_id);
-                    next_id += 1;
-                    if seen.insert(candidate.clone()) {
-                        break candidate;
-                    }
-                };
-                lines[i + 1] = new_handle;
-            }
-        }
-        i += 1;
+    let mut body_parts = Vec::new();
+    if !solids.is_empty() {
+        body_parts.push(solids.join("\n"));
     }
+    if !others.is_empty() {
+        body_parts.push(others.join("\n"));
+    }
+    let body = body_parts.join("\n");
 
-    lines.join("\n")
+    format!("{}{}{}", before, body, after)
 }

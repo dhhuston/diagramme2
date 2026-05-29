@@ -1,9 +1,8 @@
 use app_lib::commands::{export_revit_dxf_for_state, open_diagram_from_json, test_app_state};
-
 #[test]
 fn export_revit_dxf_returns_substantial_dxf() {
-    let json = include_str!("../../fixtures/diagrams/dxf-export-test.diagramme");
-    let project = open_diagram_from_json(json).expect("parse dxf-export-test fixture");
+    let json = diagramme_schema::GOLDEN_DIAGRAM_JSON;
+    let project = open_diagram_from_json(json).expect("parse golden fixture");
     let state = test_app_state(project);
 
     let dxf = export_revit_dxf_for_state(&state).expect("export revit dxf");

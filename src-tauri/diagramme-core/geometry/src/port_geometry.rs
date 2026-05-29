@@ -7,11 +7,21 @@ use crate::device_v2_layout::{
     bundled_bracket_slots, device_v2_normalized_columns, flatten_device_v2_body_rows,
     DeviceV2BodySlot, Side,
 };
-use crate::paper_scale::{DEVICE_V2_WIDTH_PX, WIRETAG_BAR_HEIGHT_PX, WIRETAG_DEFAULT_WIDTH_PX};
+use crate::paper_scale::{
+    DEVICE_V2_WIDTH_PX, MIC_SPEAKER_HANDLE_CENTER_Y_PX, PX_PER_INCH, WIRETAG_BAR_HEIGHT_PX,
+    WIRETAG_DEFAULT_WIDTH_PX,
+};
 use crate::schematic_layout::{
     is_patch_panel_node_type, BUNDLE_FILLET_PX, BUNDLE_STUB_PX, DEVICE_V2_GRID_ROW_PX,
     DEVICE_V2_ROW_CENTER_Y_PX, DEVICE_V2_TITLE_HEIGHT_PX, PATCH_BODY_TOP_PX,
     PATCH_CIRCUIT_HEIGHT_PX, PATCH_PANEL_WIDTH_PX, PATCH_ROW_CENTER_Y_PX,
+};
+use crate::symbol_layout::{
+    antenna_symbol_port_xy, flyoff_note_bounds_width_px, mic_block_outer_width_snapped_px,
+    FLYOFF_TRI_H, SPEAKER_HANDLE_CENTER_Y_FROM_ROOT_PX, SPEAKER_PASSTHRU_HANDLE_CENTER_Y_FROM_ROOT_PX,
+    SPEAKER_TARGET_HANDLE_CENTER_X_FROM_ANCHOR_LEFT_PX, VC_HANDLE_CENTER_Y_FROM_ROOT_PX,
+    VC_SCHEMATIC_SVG_WIDTH_PX, VC_SOURCE_HANDLE_CENTER_X_FROM_ANCHOR_LEFT_PX,
+    VC_TARGET_HANDLE_CENTER_X_FROM_ANCHOR_LEFT_PX,
 };
 use crate::types::PointPx;
 
@@ -35,15 +45,25 @@ pub fn get_analytical_port_xy(node: &Node, handle_id: &str) -> Option<PointPx> {
         "avPlate" => av_plate_port_xy(node, handle_id, pos.x, pos.y),
         "wiretag" => wiretag_port_xy(node, handle_id, pos.x, pos.y),
         "device" | "deviceV2" => device_v2_port_xy(node, handle_id, pos.x, pos.y),
-        // Deferred to later tasks — structured for extension:
-        "micBlock" | "speakerBlock" | "volumeControl" | "flyoffNote" | "wireSplit"
-        | "antennaTransmitterSymbol" | "antennaReceiverSymbol" | "groupingZone" => None,
+        "micBlock" => mic_block_port_xy(node, handle_id, pos.x, pos.y),
+        "speakerBlock" => speaker_block_port_xy(node, handle_id, pos.x, pos.y),
+        "volumeControl" => volume_control_port_xy(node, handle_id, pos.x, pos.y),
+        "flyoffNote" => flyoff_note_port_xy(node, handle_id, pos.x, pos.y),
+        "wireSplit" => wire_split_port_xy(node, pos.x, pos.y),
+        "antennaTransmitterSymbol" | "antennaReceiverSymbol" => {
+            antenna_symbol_port_xy(node, handle_id)
+        }
+        "groupingZone" => None,
         _ => None,
     }
 }
 
 fn read_node_width(node: &Node, fallback: f64) -> f64 {
     node.width.filter(|w| *w > 0.0).unwrap_or(fallback)
+}
+
+fn read_node_height(node: &Node, fallback: f64) -> f64 {
+    node.height.filter(|h| *h > 0.0).unwrap_or(fallback)
 }
 
 fn patch_panel_port_xy(node: &Node, handle_id: &str) -> Option<PointPx> {
@@ -74,6 +94,83 @@ fn patch_panel_port_xy(node: &Node, handle_id: &str) -> Option<PointPx> {
         + PATCH_ROW_CENTER_Y_PX)
         .round();
     Some(PointPx { x, y })
+}
+
+fn mic_block_port_xy(node: &Node, handle_id: &str, abs_x: f64, abs_y: f64) -> Option<PointPx> {
+    if handle_id != "S-mic" {
+        return None;
+    }
+    let line1 = node.data.get("line1").and_then(|v| v.as_str()).unwrap_or("");
+    let line2 = node.data.get("line2").and_then(|v| v.as_str()).unwrap_or("");
+    let w = mic_block_outer_width_snapped_px(line1, line2);
+    Some(PointPx {
+        x: abs_x + w - 2.0,
+        y: abs_y + MIC_SPEAKER_HANDLE_CENTER_Y_PX,
+    })
+}
+
+fn speaker_block_port_xy(node: &Node, handle_id: &str, abs_x: f64, abs_y: f64) -> Option<PointPx> {
+    let x = abs_x + SPEAKER_TARGET_HANDLE_CENTER_X_FROM_ANCHOR_LEFT_PX;
+    match handle_id {
+        "T-spk" => Some(PointPx {
+            x,
+            y: abs_y + SPEAKER_HANDLE_CENTER_Y_FROM_ROOT_PX,
+        }),
+        "S-spk-passthru" => {
+            let enabled = node
+                .data
+                .get("passthruEnabled")
+                .and_then(|v| v.as_bool())
+                .unwrap_or(false);
+            if !enabled {
+                return None;
+            }
+            Some(PointPx {
+                x,
+                y: abs_y + SPEAKER_PASSTHRU_HANDLE_CENTER_Y_FROM_ROOT_PX,
+            })
+        }
+        _ => None,
+    }
+}
+
+fn volume_control_port_xy(
+    node: &Node,
+    handle_id: &str,
+    abs_x: f64,
+    abs_y: f64,
+) -> Option<PointPx> {
+    let w = read_node_width(node, PX_PER_INCH);
+    let anchor_left = (w - VC_SCHEMATIC_SVG_WIDTH_PX) / 2.0;
+    let y = abs_y + VC_HANDLE_CENTER_Y_FROM_ROOT_PX;
+    match handle_id {
+        "T-vc" => Some(PointPx {
+            x: abs_x + anchor_left + VC_TARGET_HANDLE_CENTER_X_FROM_ANCHOR_LEFT_PX,
+            y,
+        }),
+        "S-vc" => Some(PointPx {
+            x: abs_x + anchor_left + VC_SOURCE_HANDLE_CENTER_X_FROM_ANCHOR_LEFT_PX,
+            y,
+        }),
+        _ => None,
+    }
+}
+
+fn flyoff_note_port_xy(node: &Node, handle_id: &str, abs_x: f64, abs_y: f64) -> Option<PointPx> {
+    let w = flyoff_note_bounds_width_px(node);
+    let y = abs_y + FLYOFF_TRI_H / 2.0;
+    match handle_id {
+        "T-fly" => Some(PointPx { x: abs_x, y }),
+        "S-fly" => Some(PointPx { x: abs_x + w, y }),
+        _ => None,
+    }
+}
+
+fn wire_split_port_xy(node: &Node, abs_x: f64, abs_y: f64) -> Option<PointPx> {
+    Some(PointPx {
+        x: abs_x + read_node_width(node, 12.0) / 2.0,
+        y: abs_y + read_node_height(node, 12.0) / 2.0,
+    })
 }
 
 fn av_plate_port_xy(node: &Node, handle_id: &str, abs_x: f64, abs_y: f64) -> Option<PointPx> {

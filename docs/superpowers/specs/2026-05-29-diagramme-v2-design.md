@@ -81,6 +81,7 @@ Diagramme v6 couples a React Flow DOM canvas with TypeScript export/report pipel
 3. **Konva never computes** schematic wire polylines, node CAD layout, crossing gaps, or bundle fillets.
 4. **TypeScript never exports** DXF, XLSX, or report data from local canvas state.
 5. **Flush before persist/export:** UI runs one `flushCanvasToRust` path before save, dirty checks, reports, and DXF—identical to v6 semantics.
+6. **Overlap fidelity:** If the user draws geometry overlapping on canvas (wires on the same bus, bundle stubs, stacked paths), Konva and DXF must show the same overlap. Do not reroute, offset, parallelize, or clip wire endpoints in ways that separate what the user placed on top of each other. Export must not be “smarter” than the diagram.
 
 ---
 
@@ -146,6 +147,8 @@ Full scene rebuild on every mousemove is forbidden.
 ### Visual parity contract (strict mirror)
 
 **Rule:** If it appears in the Konva scene, it appears in DXF at the corresponding CAD coordinate. No export-only geometry, scale factors, or text corrections.
+
+**Overlap rule:** Collinear wire segments, bundle bracket stubs, and any other user-placed geometry that share the same path in the scene must export as the same path in DXF—not rerouted around each other. v2 wires run **port-to-port** as one polyline; v6 connector stub legs (`S→S1`, `T1→T`) are not emitted separately. Row and bundle ports use analytical handle positions on the frame edge (or bracket tip).
 
 | Primitive | Scene field(s) | Konva | DXF |
 |-----------|----------------|-------|-----|

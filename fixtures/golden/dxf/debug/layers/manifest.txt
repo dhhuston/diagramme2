@@ -1,0 +1,58 @@
+Diagramme DXF layer bisection manifest
+Import each file into Revit in order. Note the first file that fails.
+
+## 00-shell-no-entities.dxf
+Document shell only — no ENTITIES (tests structure vs geometry)
+entities: 0 | layers: [] | kinds: []
+No issues found.
+
+## 01-layer-FILLS.dxf
+FILLS layer only (SOLID fill rectangles)
+entities: 30 | layers: ["FILLS"] | kinds: ["SOLID"]
+No issues found.
+
+## 02-layer-WIRES.dxf
+WIRES layer only (wire polylines)
+entities: 197 | layers: ["WIRES"] | kinds: ["LWPOLYLINE"]
+No issues found.
+
+## 03-layer-0.dxf
+Layer 0 only (device outlines + text labels)
+entities: 608 | layers: ["0"] | kinds: ["LWPOLYLINE", "TEXT"]
+No issues found.
+
+## 04-type-SOLID.dxf
+All SOLID entities
+entities: 32 | layers: ["FILLS", "INKFILL"] | kinds: ["SOLID"]
+No issues found.
+
+## 05-type-LWPOLYLINE.dxf
+All LWPOLYLINE entities
+entities: 789 | layers: ["0", "GUIDES", "WIRES"] | kinds: ["LWPOLYLINE"]
+No issues found.
+
+## 06-type-TEXT.dxf
+All TEXT entities
+entities: 203 | layers: ["0"] | kinds: ["TEXT"]
+No issues found.
+
+## 07-layer-0-LWPOLYLINE.dxf
+Layer 0 outlines only (no text)
+entities: 405 | layers: ["0"] | kinds: ["LWPOLYLINE"]
+No issues found.
+
+## 08-layer-0-TEXT.dxf
+Layer 0 text labels only (no outlines)
+entities: 203 | layers: ["0"] | kinds: ["TEXT"]
+No issues found.
+
+## 09-cum-FILLS+WIRES.dxf
+FILLS + WIRES (no layer 0)
+entities: 227 | layers: ["FILLS", "WIRES"] | kinds: ["LWPOLYLINE", "SOLID"]
+No issues found.
+
+## 10-full.dxf
+Full export (all layers)
+entities: 1024 | layers: ["0", "FILLS", "GUIDES", "INKFILL", "WIRES"] | kinds: ["LWPOLYLINE", "SOLID", "TEXT"]
+No issues found.
+
