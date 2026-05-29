@@ -1,0 +1,9 @@
+[package]
+name = "diagramme-scene"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+diagramme-schema = { path = "../schema" }
+diagramme-geometry = { path = "../geometry" }
+diagramme-wires = { path = "../wires" }

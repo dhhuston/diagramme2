@@ -1,0 +1,12 @@
+[workspace]
+members = [
+  "src-tauri",
+  "src-tauri/diagramme-core/schema",
+  "src-tauri/diagramme-core/geometry",
+  "src-tauri/diagramme-core/wires",
+  "src-tauri/diagramme-core/scene",
+  "src-tauri/diagramme-core/dxf",
+  "src-tauri/diagramme-core/export-model",
+  "src-tauri/diagramme-core/reports",
+]
+resolver = "2"
