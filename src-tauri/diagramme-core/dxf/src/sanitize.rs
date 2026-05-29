@@ -123,7 +123,7 @@ fn reorder_solids_first(dxf: &str) -> String {
         }
     }
 
-    format!("{}{}{}{}", before, solids.join(""), others.join(""), after)
+    format!("{}{}{}{}", before, solids.join("\n"), others.join("\n"), after)
 }
 
 fn ensure_unique_handles(dxf: &str) -> String {

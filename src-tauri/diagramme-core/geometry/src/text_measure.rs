@@ -33,7 +33,7 @@ pub struct TextStyle {
     pub valign: TextVAlign,
 }
 
-/// Text roles mirroring v6 `ExportTextRole` (without `EXPORT_TEXT_VISUAL_SCALE`).
+/// Text roles mirroring v6 `ExportTextRole` (strict mirror — no export visual scale).
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum TextRole {
     Tag,
