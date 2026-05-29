@@ -8,6 +8,28 @@
  */
 import { invoke } from '@tauri-apps/api/core'
 
+import type {
+  HAlign,
+  HitTarget,
+  PointPx,
+  RectPx,
+  SceneJson,
+  ScenePrimitive,
+  SceneText,
+  VAlign,
+} from './canvas/sceneTypes'
+
+export type {
+  HAlign,
+  HitTarget,
+  PointPx,
+  RectPx,
+  SceneJson,
+  ScenePrimitive,
+  SceneText,
+  VAlign,
+}
+
 export type EdgeHandleAttachmentUpdate = {
   edgeId: string
   sourceHandleCenter?: RustXY
@@ -78,71 +100,6 @@ export interface NodeDimension {
   width: number
   height: number
   position?: { x: number; y: number }
-}
-
-export interface PointPx {
-  x: number
-  y: number
-}
-
-export interface RectPx {
-  x: number
-  y: number
-  width: number
-  height: number
-}
-
-export type HAlign = 'Left' | 'Center' | 'Right'
-export type VAlign = 'Top' | 'Middle' | 'Bottom'
-
-export interface SceneText {
-  position: PointPx
-  content: string
-  height_px: number
-  halign: HAlign
-  valign: VAlign
-  font: string
-}
-
-export type ScenePrimitive =
-  | {
-      Polyline: {
-        points: PointPx[]
-        stroke_px: number
-        layer: string
-        color: number
-        edge_id?: string
-      }
-    }
-  | {
-      Rect: {
-        rect: RectPx
-        stroke_px: number
-        fill?: number
-        layer: string
-        node_id?: string
-      }
-    }
-  | {
-      Solid: {
-        vertices: [PointPx, PointPx, PointPx, PointPx]
-        layer: string
-        node_id?: string
-      }
-    }
-  | { Text: SceneText }
-
-export interface HitTarget {
-  id: string
-  bounds: RectPx
-  node_id?: string
-  edge_id?: string
-}
-
-export interface SceneJson {
-  primitives: ScenePrimitive[]
-  extent: RectPx
-  hits: HitTarget[]
 }
 
 // ─── State ─────────────────────────────────────────────────────────────────

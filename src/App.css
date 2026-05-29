@@ -1,18 +1,55 @@
-.app {
-  min-height: 100vh;
+.app-shell {
   display: flex;
   flex-direction: column;
+  height: 100vh;
+  background: #ececec;
+}
+
+.app-toolbar {
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
+  gap: 0.75rem 1rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #ccc;
+  background: #fafafa;
+}
+
+.app-toolbar h1 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.app-toolbar-actions {
+  display: flex;
   gap: 0.5rem;
 }
 
-.app h1 {
+.app-status {
   margin: 0;
-  font-size: 2rem;
+  color: #444;
+  font-size: 0.875rem;
 }
 
-.app p {
+.app-canvas {
+  flex: 1;
+  min-height: 0;
+}
+
+.diagram-stage-host {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+}
+
+.app-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #666;
+}
+
+.app-placeholder p {
   margin: 0;
-  color: #555;
 }
