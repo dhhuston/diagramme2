@@ -12,6 +12,7 @@ use crate::nodes::append_patch_panel_scene;
 use crate::nodes::device_v2::device_v2_scene_bounds;
 use crate::nodes::patch_panel::patch_panel_scene_bounds;
 use crate::scene::Scene;
+use crate::wires::{build_and_append_wires, wire_extent_rect};
 
 fn union_rects(rects: impl IntoIterator<Item = RectPx>) -> RectPx {
     let mut min_x = f64::INFINITY;
@@ -56,6 +57,11 @@ pub fn build_scene(diagram: &DiagramState) -> Scene {
             }
             _ => {}
         }
+    }
+
+    build_and_append_wires(&mut scene, diagram);
+    if let Some(wire_rect) = wire_extent_rect(&scene) {
+        extent_rects.push(wire_rect);
     }
 
     scene.extent = union_rects(extent_rects);
