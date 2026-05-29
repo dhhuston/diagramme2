@@ -1,3 +1,7 @@
-//! v6-compatible persisted project types (stub for Task 0).
+//! v6-compatible persisted project types.
 
-pub const VERSION: &str = env!("CARGO_PKG_VERSION");
+pub mod model;
+
+pub use model::{
+    DiagramState, Edge, EmbeddedPreset, Node, NodeDimension, ProjectState, Sheet, XY,
+};
