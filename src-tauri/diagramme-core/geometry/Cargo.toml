@@ -5,3 +5,4 @@ edition = "2021"
 
 [dependencies]
 diagramme-schema = { path = "../schema" }
+serde_json = "1.0"
