@@ -9,7 +9,7 @@ use crate::debug_channel;
 use crate::state::AppState;
 use diagramme_dxf::build_revit_dxf_from_diagram;
 use diagramme_wires::apply_node_move_geometry;
-use diagramme_scene::{build_scene, Scene};
+use diagramme_scene::{build_scene, build_scene_patch, Scene, SceneBuildOptions, ScenePatch};
 use diagramme_schema::{
     validate_diagram_envelope, DiagramState, EmbeddedPreset, Node, NodeDimension, ProjectState,
     Sheet, XY, normalize_project_for_persist,
@@ -154,6 +154,16 @@ pub fn get_state(state: State<'_, AppState>) -> DiagramState {
 #[tauri::command]
 pub fn get_diagram_scene(state: State<'_, AppState>) -> Scene {
     get_diagram_scene_for_state(state.inner())
+}
+
+#[tauri::command]
+pub fn get_diagram_scene_patch(state: State<'_, AppState>, node_id: String) -> ScenePatch {
+    let project = state.0.lock().unwrap();
+    build_scene_patch(
+        &project.active_sheet().state,
+        &node_id,
+        SceneBuildOptions::default(),
+    )
 }
 
 #[tauri::command]

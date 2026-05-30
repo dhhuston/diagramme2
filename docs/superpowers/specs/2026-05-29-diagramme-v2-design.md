@@ -137,12 +137,16 @@ See [Coordinate systems and scaling](#coordinate-systems-and-scaling).
 
 Full scene rebuild on every mousemove is forbidden.
 
-| Phase | Behavior |
-|-------|----------|
-| Drag preview | Konva moves node group locally OR Rust returns lightweight `ScenePatch` (moved node ids + affected wire ids) throttled ~60ms |
-| Drag commit | `move_node` → full scene for active sheet |
-| Wire edit | `update_edge` / inner-corner commands → patch wires touching that edge |
-| Sheet switch | Full scene replace |
+| Phase | Spec target | As built (2026-05) |
+|-------|-------------|-------------------|
+| Drag preview | Konva local offset **or** throttled `ScenePatch` (~60ms) | Dashed outline via `dragVisualDelta` + throttled `get_diagram_scene_patch` after `move_node(isDragPreview)` |
+| Drag commit | `move_node` → full scene | ✓ Same |
+| Wire edit | Patch wires touching edited edge | Not implemented |
+| Sheet switch | Full scene replace | Not implemented (single-sheet dev shell) |
+
+**Drag rules (as built):** Konva must **not** clone node geometry during drag. Wires always render from the Rust scene. A dashed body outline tracks the pointer between throttled Rust previews. `beginDragPreview` generation guards drop stale IPC responses.
+
+**Wire move (as built):** `move_node` calls `apply_node_move_geometry` — translates persisted `innerCorners`, updates analytical handle centers, re-routes with obstacle avoidance. Bundle styling propagates through wiretag pairs (`bundle_wire.rs`).
 
 ### Visual parity contract (strict mirror)
 
@@ -156,14 +160,16 @@ Full scene rebuild on every mousemove is forbidden.
 | Rects / solids | bounds in diagram px | Fill/stroke 1:1 | Same bounds in inches |
 | Stroke width | `stroke_px` (e.g. 1 px hairline) | `strokeWidth = stroke_px` | Hairline / 0 width per Revit policy at `stroke_px / 72"` |
 | Text insertion | `(x, y)` diagram px | Same point | `(x/72, y_cad)` |
-| Text cap height | `height_px` | `fontSize = height_px` | `height_in = height_px / 72` |
+| Text cap height | `height_px` (cap height, authoritative) | `fontSize = height_px / 0.75` so **rendered cap height** matches scene (canvas font-metrics calibration; see `ARIAL_NARROW_CAP_TO_EM`) | `height_in = height_px / 72` |
 | Text font | `"Arial Narrow"` | Load same family in app | STYLE table entry (required install) |
 | Text alignment | `halign`, `valign` | Konva `align` / offset | DXF TEXT alignment flags (same semantics) |
 | Text content | sanitized string | Same string | Same string (`dxfSanitizeText` rules in Rust) |
 | Wire color | `layer` / `color` in scene | Konva stroke from scene | DXF layer/color from scene |
 | Fills | polygon vertices | Same vertices | SOLID / equivalent |
 
-**Forbidden:** Any multiplier (e.g. v6 `EXPORT_TEXT_VISUAL_SCALE`), export-only font sizes, DXF-only inset tweaks, or Konva-only layout nudges not stored in the scene.
+**Forbidden:** Any multiplier applied to **DXF export** (e.g. v6 `EXPORT_TEXT_VISUAL_SCALE`), export-only font sizes, DXF-only inset tweaks, or Konva-only layout nudges not stored in the scene.
+
+**Allowed (canvas only):** Konva `fontSize` calibration so displayed cap height matches `SceneText.height_px`. This does not change scene or DXF values.
 
 **Residual risk (minimize, test):** Arial Narrow glyph advance may differ slightly between Konva/canvas metrics and Revit’s TrueType renderer. Cap height and insertion point must still match; string width is computed once in Rust for autosizing (wiretags) and stored in scene bounds both renderers use.
 
@@ -213,7 +219,7 @@ screenY = stage.y + diagramY × stage.scaleY
 | Hit testing | Inverse viewport transform → diagram px → scene hit targets |
 | Export | **Ignored entirely** — DXF never reads stage scale/position |
 
-During drag preview, Konva may translate a node **group** in diagram space (or apply a temporary offset in diagram px). On commit, Rust returns authoritative positions; preview offsets are discarded.
+During drag preview, Konva shows a **dashed outline** at the pointer target (`dragVisualDelta`). Authoritative node/wire geometry comes from throttled Rust scene patches (`get_diagram_scene_patch`). On commit, Rust returns authoritative positions via full scene refresh; preview state is discarded.
 
 ### 3. CAD / DXF space (export)
 
@@ -310,7 +316,7 @@ Manual signoff: v6 `docs/cad-export-1to1-validation.md` checklist on ≥2 real p
 - Different layout constants in TS vs Rust
 - Anisotropic stage scale (different X/Y zoom)
 - Recomputing node bounds in DXF that are not in the scene
-- Konva choosing a different font or fontSize than `SceneText.height_px`
+- Konva choosing a different **cap height** than `SceneText.height_px` (em-size calibration is OK if cap height matches)
 
 ---
 
@@ -324,10 +330,12 @@ Manual signoff: v6 `docs/cad-export-1to1-validation.md` checklist on ≥2 real p
 
 ### Konva responsibilities
 
-- Render `Scene` layers (nodes, wires, selection chrome) — **all** stroke, fill, text, and layer from scene primitives
-- Hit testing → map to node id / port id / wire segment index
-- Forward gestures to IPC (drag, connect, resize, polyline edit)
+- Render `Scene` layers (nodes, wires) — **all** stroke, fill, text, and layer from scene primitives
+- Hit testing via Rust `Scene.hits` (inverse viewport → diagram px); forward gestures to IPC
+- Drag chrome only: dashed body outline during node drag (`dragVisualDelta`) — not authoritative geometry
 - Load **Arial Narrow** for canvas text (same face as DXF STYLE table)
+
+**Hit targets (as built):** Every node type emits a body hit for drag. Frame nodes (deviceV2, avPlate, patch panels) also emit per-row port hits. Grouping zone hits are lowest pick priority. Wire/port connect gestures not yet wired.
 
 ### Konva must NOT
 

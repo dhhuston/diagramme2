@@ -338,6 +338,7 @@ fn push_wire_polyline(
         color,
         closed: false,
         edge_id: Some(edge_id.to_string()),
+        owner_node_id: None,
     });
 }
 
@@ -420,4 +421,43 @@ pub fn build_and_append_wires(
 ) {
     let model = build_wire_geometry_model(&diagram.nodes, &diagram.edges, options);
     append_wires_to_scene(scene, &model, diagram);
+}
+
+/// Append wire polylines for a subset of edges (drag preview patches).
+pub fn append_wires_for_edges(
+    scene: &mut Scene,
+    diagram: &DiagramState,
+    edge_ids: &[String],
+    options: WireGeometryOptions,
+) {
+    if edge_ids.is_empty() {
+        return;
+    }
+    let edge_set: std::collections::HashSet<&str> =
+        edge_ids.iter().map(String::as_str).collect();
+    let model = build_wire_geometry_model(&diagram.nodes, &diagram.edges, options);
+    let node_lookup = node_lookup_for_wire_geometry(&diagram.nodes);
+    for edge in &diagram.edges {
+        if !edge_set.contains(edge.id.as_str()) {
+            continue;
+        }
+        let Some(record) = model.edges.get(&edge.id) else {
+            continue;
+        };
+        let (layer, color) = wire_style_for_edge(edge, &node_lookup);
+        let polylines = if !record.dxf_pieces.is_empty() {
+            polylines_from_dxf_pieces(&record.dxf_pieces)
+        } else if record.sharp_polyline.len() >= 2 {
+            vec![record
+                .sharp_polyline
+                .iter()
+                .map(|&p| flow_to_px(p))
+                .collect()]
+        } else {
+            Vec::new()
+        };
+        for points in polylines {
+            push_wire_polyline(scene, points, &layer, color, &edge.id);
+        }
+    }
 }

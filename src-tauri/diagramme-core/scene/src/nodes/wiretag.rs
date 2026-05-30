@@ -33,6 +33,7 @@ fn push_polyline(scene: &mut Scene, points: Vec<PointPx>, closed: bool) {
         color: 0,
         closed,
         edge_id: None,
+    owner_node_id: None,
     });
 }
 
@@ -56,6 +57,7 @@ fn push_text(scene: &mut Scene, nx: f64, ny: f64, lx: f64, ly: f64, content: Str
         halign: HAlign::Center,
         valign: VAlign::Middle,
         font: style.font.to_string(),
+        owner_node_id: None,
     }));
 }
 

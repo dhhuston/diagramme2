@@ -22,6 +22,7 @@ fn push_polyline(scene: &mut Scene, points: Vec<PointPx>, closed: bool) {
         color: 0,
         closed,
         edge_id: None,
+    owner_node_id: None,
     });
 }
 

@@ -14,6 +14,83 @@
 
 ---
 
+## Progress snapshot (2026-05-29)
+
+| Phase | Status | Notes |
+|-------|--------|-------|
+| 0–1 Bootstrap + fixtures | **Done** | Tauri/Vite workspace, Comp Gym + palette fixtures |
+| 2–3 Schema + geometry | **Done** | `ProjectState`, ports, bounds, text measure |
+| 4 Scene + `scene_to_cad` | **Done** | All node types except `wireSplit`; Comp Gym golden scene |
+| 5 DXF export | **Done** | `export_revit_dxf`, strict-mirror emit |
+| 6 Reports | **Not started** | Crates are stubs |
+| **7 Konva canvas** | **Partial** | Renderer + viewport + node drag; see [Drawing pipeline — as built](#drawing-pipeline--as-built) |
+| 8 React shell | **Not started** | Dev shell only (`Load Comp Gym` button) |
+| 9–10 CI + perf | **Partial** | `ScenePatch` drag preview done; profiling TBD |
+
+---
+
+## Drawing pipeline — as built
+
+The original plan assumed a simpler Konva layer. The implemented pipeline includes Rust wire geometry and canvas calibration not captured in Tasks 17–19.
+
+### Rust → Scene (authoritative geometry)
+
+```
+DiagramState
+  → diagramme-wires (sharp polylines, obstacle avoidance, crossing gaps, bundle fillets)
+  → diagramme-scene/build_scene
+       • node dispatch + bundle brackets + HitTarget per node
+       • wires: category color, mismatch, fillet arcs tessellated to polylines
+  → Scene JSON via get_diagram_scene
+```
+
+**Wire geometry beyond original Task 7–8 scope (implemented):**
+
+| Module | Purpose |
+|--------|---------|
+| `wires/node_move.rs` | On `move_node`: translate `innerCorners`, update handle centers on connected edges |
+| `wires/wire_avoidance.rs` | Obstacle-aware inner chain routing |
+| `wires/bundle_wire.rs` | Bundle styling propagates through wiretag pairs |
+| `scene/wires.rs` | Wire category colors, fillet arc tessellation for Konva + DXF parity |
+
+**Scene hits (interaction):** Every draggable node type emits a body `HitTarget` via `push_node_body_hit`. Grouping zones insert at the front of the hits list so devices on top win pick order. Frame nodes also emit per-row port hits (deviceV2, avPlate, patch panels).
+
+### Konva → display (dumb renderer + chrome)
+
+| File | Role |
+|------|------|
+| `SceneRenderer.tsx` | Maps `ScenePrimitive` → Konva; **no** geometry clone during drag |
+| `SceneTextNode.tsx` | Insertion-point anchors; cap height → em via `ARIAL_NARROW_CAP_TO_EM` (0.75) |
+| `sceneRenderUtils.ts` | Wire keys (`polyline-{edge_id}-{index}`), schematic ink 0.5px hairline, fill colors |
+| `DiagramStage.tsx` | Viewport pan/zoom; `fitRevision` fits on load/resize only |
+| `useDiagramInteraction.ts` | Pointer drag/pan; 60ms throttled preview |
+| `dragNode.ts` | Snap grid, `dragVisualDelta` (pointer vs last Rust scene origin) |
+
+### Drag (interim — not final per spec)
+
+```
+pointermove → rAF: dashed drag outline (dragVisualDelta)
+            → 60ms throttle: move_node(isDragPreview=true) → get_diagram_scene (full rebuild)
+pointerup   → move_node(commit) → full scene
+```
+
+- **No geometry-clone overlay** — wires always come from Rust scene (fixes detached wires / ghost boxes).
+- **`ScenePatch` drag preview** — throttled patch merge during drag; full scene on commit only.
+- **`beginDragPreview` generation guard** — drops stale IPC responses during fast drag.
+
+### Konva text calibration (not export scale)
+
+Scene stores **cap height** in `height_px`. DXF uses `height_px / 72`. Konva sets `fontSize = height_px / 0.75` so rendered cap height matches scene — same calibration as v6 canvas, **not** `EXPORT_TEXT_VISUAL_SCALE` (forbidden for DXF).
+
+### Tests covering drawing
+
+- `scene/tests/golden_scene_tests.rs` — Comp Gym scene JSON baseline
+- `scene/tests/hit_target_tests.rs` — every node has body hit; zone pick order
+- `wires/tests/bundle_wire_tests.rs` — wiretag bundle propagation
+- `canvas/sceneRenderUtils.test.ts`, `dragNode.test.ts`, `hitTest.test.ts`
+
+---
+
 ## File structure (target)
 
 ```
@@ -27,8 +104,16 @@ diagramme2/
     App.tsx                           # shell, menus (port from v6)
     canvas/
       DiagramStage.tsx                # Konva Stage + viewport
-      SceneRenderer.tsx               # Scene → Konva shapes
-      interaction/                    # drag, connect, hit test
+      SceneRenderer.tsx               # Scene → Konva shapes (authoritative, no drag clone)
+      SceneTextNode.tsx               # Text insertion anchors + cap-height calibration
+      sceneRenderUtils.ts             # Keys, stroke, text anchor, fit extent
+      sceneTypes.ts                   # Mirrors Rust Scene JSON
+      useDiagramScene.ts              # Scene fetch, drag preview generation guard
+      useViewport.ts
+      hitTest.ts
+      interaction/
+        useDiagramInteraction.ts      # drag + pan (replaces planned InteractionController.tsx)
+        dragNode.ts                   # snap, body bounds, dragVisualDelta
     hooks/useDiagramFileOps.ts        # port from v6
     tauriIpc.ts                       # typed invoke wrappers
     components/                       # report dialogs (port from v6)
@@ -432,52 +517,60 @@ Implement **one node type per commit** in this order (each with golden scene JSO
 
 ## Phase 7 — Konva canvas
 
-### Task 17: Scene renderer
+> **Revised 2026-05-29** after drag/wire/hit-target work. See [Drawing pipeline — as built](#drawing-pipeline--as-built).
 
-**Files:**
-- Create: `src/canvas/SceneRenderer.tsx`, `src/canvas/sceneTypes.ts` (mirrors Rust Scene JSON)
+### Task 17: Scene renderer — **DONE**
 
-- [ ] **Step 1:** Map `ScenePrimitive` → Konva `Line`, `Rect`, `Text`, `Shape` (solid).
+**Files:** `src/canvas/SceneRenderer.tsx`, `SceneTextNode.tsx`, `sceneRenderUtils.ts`, `sceneTypes.ts`
 
-- [ ] **Step 2:** Text: `fontFamily="Arial Narrow"`, `fontSize={height_px}` — no scale factor.
-
-- [ ] **Step 3:** Stroke: `strokeWidth={stroke_px}` at stage scale 1.
-
-- [ ] **Step 4:** Component test or story: render golden scene JSON, snapshot canvas (optional).
-
-- [ ] **Step 5:** Commit: `feat(canvas): Konva SceneRenderer`
+- [x] Map `ScenePrimitive` → Konva `Line`, `Rect`, `Text`, `Shape` (solid).
+- [x] Text: Arial Narrow; cap height via `sceneCapHeightToFontSizePx` (see calibration note above).
+- [x] Stroke: wires at `stroke_px`; schematic ink at 0.5px hairline.
+- [x] Wire segment keys: `polyline-{edge_id}-{index}` (fixes stale Konva lines after crossing-gap splits).
+- [x] Unit tests: `sceneRenderUtils.test.ts`.
+- [ ] Optional: golden scene JSON render snapshot test.
 
 ---
 
-### Task 18: Diagram stage + viewport
+### Task 18: Diagram stage + viewport — **DONE**
 
-**Files:**
-- Create: `src/canvas/DiagramStage.tsx`, `src/canvas/useViewport.ts`
+**Files:** `src/canvas/DiagramStage.tsx`, `useViewport.ts`, `useDiagramScene.ts`
 
-- [ ] **Step 1:** Stage at 1 diagram px = 1 unit; wheel zoom (uniform), pan.
-
-- [ ] **Step 2:** Test: export DXF before/after zoom unchanged (Rust-only test; document manual check).
-
-- [ ] **Step 3:** `get_diagram_scene` on load and after IPC mutations; debounced refetch.
-
-- [ ] **Step 4:** Commit: `feat(canvas): viewport and scene fetch`
+- [x] Stage at 1 diagram px = 1 unit; wheel zoom (uniform), pan.
+- [x] `get_diagram_scene` on load and after IPC mutations.
+- [x] `fitRevision` — viewport fit on diagram load / resize, **not** on drag rebuilds.
+- [x] Layer `clearBeforeDraw`; `hitGraphEnabled={false}` (hits from Rust `Scene.hits`, not Konva shapes).
+- [ ] Document manual check: export DXF unchanged after viewport zoom (Rust-only; viewport is display-only).
 
 ---
 
-### Task 19: Interaction controller
+### Task 19: Interaction controller — **PARTIAL**
 
-**Files:**
-- Create: `src/canvas/interaction/InteractionController.tsx`, `dragNode.ts`, `connectPorts.ts`, `hitTest.ts`
+**Files (as built):** `interaction/useDiagramInteraction.ts`, `dragNode.ts`, `hitTest.ts`  
+**Planned but not created:** `InteractionController.tsx`, `connectPorts.ts`
 
-- [ ] **Step 1:** Hit test using Rust `Scene.hits` (diagram px inverse viewport).
+#### 19a — Hit test + node drag — **DONE**
 
-- [ ] **Step 2:** Node drag: local Konva offset during drag; `move_node` on drop; discard preview offset.
+- [x] Hit test using Rust `Scene.hits` (diagram px, inverse viewport).
+- [x] Body hits for all node types (`push_node_body_hit`); grouping zones behind other nodes.
+- [x] Node drag: dashed outline via `dragVisualDelta`; authoritative scene from Rust.
+- [x] Throttled preview: `move_node(..., isDragPreview=true)` + `get_diagram_scene_patch` every ~60ms.
+- [x] Commit on pointer up: `move_node` + full scene refresh.
+- [x] Rust: `apply_node_move_geometry` (inner corners + handle centers) on preview and commit.
+- [x] Tests: `hitTest.test.ts`, `dragNode.test.ts`, `hit_target_tests.rs`.
 
-- [ ] **Step 3:** Optional throttled `get_diagram_scene_patch` during drag (if implemented in Rust).
+#### 19b — Scene patch drag preview — **DONE** (was Task 25)
 
-- [ ] **Step 4:** Port connect, resize, wire inner-corner drag as IPC intents (reference v6 `App.tsx` gesture handlers — behavior only, not RF APIs).
+- [x] `get_diagram_scene_patch(node_id)` — moved node + wiretag partner + connected wire polylines.
+- [x] Frontend merges patch into cached scene (`applyScenePatch`) instead of full rebuild during drag.
+- [ ] Profile Comp Gym / Cafeteria: justify patch vs full rebuild.
 
-- [ ] **Step 5:** Commit: `feat(canvas): konva interaction controller`
+#### 19c — Remaining gestures — **NOT STARTED**
+
+- [ ] Port connect (wire creation IPC + gesture).
+- [ ] Node resize (`update_dims` + handle UI).
+- [ ] Wire inner-corner drag (`update_edge` / inner-corner commands).
+- [ ] Multi-select drag (`move_nodes`).
 
 ---
 
@@ -562,18 +655,17 @@ Implement **one node type per commit** in this order (each with golden scene JSO
 
 ## Phase 10 — Performance pass
 
-### Task 25: Scene patch + profiling
+### Task 25: Scene patch + profiling — **MERGED INTO Task 19b**
 
-**Files:**
-- Modify: `scene/src/build.rs`, `commands.rs`, `DiagramStage.tsx`
+Drag preview currently uses full `get_diagram_scene` throttled to ~60ms with generation guards. This works but is not the spec target for Cafeteria-scale diagrams.
 
-- [ ] **Step 1:** Profile Cafeteria fixture: full `build_scene` time.
+**Files:** `scene/src/patch.rs` (new), `commands.rs`, `useDiagramScene.ts`, `SceneRenderer.tsx`
 
-- [ ] **Step 2:** Implement `ScenePatch` (moved nodes + affected edges) if full rebuild > 16ms.
-
-- [ ] **Step 3:** Ensure no full-scene IPC on every mousemove.
-
-- [ ] **Step 4:** Commit: `perf: incremental scene patches`
+- [ ] **Step 1:** Profile Comp Gym + Cafeteria: `build_scene` wall time for full vs partial.
+- [x] **Step 2:** Define `ScenePatch` JSON: replaced primitives + hits for moved nodes, wire polylines for affected `edge_id`s.
+- [x] **Step 3:** `get_diagram_scene_patch` command; frontend merge without replacing unrelated primitives.
+- [x] **Step 4:** Keep dashed drag outline + `dragVisualDelta` for sub-60ms pointer tracking between patches.
+- [x] **Step 5:** Verify no full-scene IPC on every mousemove (only throttled patch or commit).
 
 ---
 
@@ -586,7 +678,7 @@ Implement **one node type per commit** in this order (each with golden scene JSO
 | Rust crate layout | Tasks 0–2, 4–16 |
 | Scene model + strict mirror | Tasks 9–11, 13, 17 |
 | Coordinate systems / scene_to_cad | Tasks 4, 9 |
-| Konva canvas | Tasks 17–19 |
+| Konva canvas | Tasks 17–19 (17–18 done; 19 partial) |
 | Save compatibility | Tasks 2–3, 23 |
 | IPC contract | Tasks 3, 14, 16, 20 |
 | Reports in Rust | Tasks 15–16, 22 |
@@ -595,9 +687,17 @@ Implement **one node type per commit** in this order (each with golden scene JSO
 
 ### Known gaps (track during execution)
 
-- **ScenePatch IPC:** optional in spec; Task 25 if needed for perf.
-- **Font embedding:** Konva may need bundled Arial Narrow TTF — add task during Task 17 if system font insufficient.
+- **ScenePatch IPC:** Task 19b — interim full-scene preview during drag is implemented; patch is next perf milestone.
+- **Konva text:** Cap-height → em calibration in `sceneRenderUtils.ts` (`ARIAL_NARROW_CAP_TO_EM = 0.75`); not an export scale. Bundle Arial Narrow TTF if system font insufficient.
+- **wireSplit node:** Not in `build_scene` (Task 10f gap).
 - **Full v6 command parity:** Task 3 lists core commands; diff `commands.rs` line-by-line before UI phase complete.
+- **Drag anti-patterns resolved:** No geometry-clone overlay; no duplicate wire React keys; Konva cleanup via proper `primitiveKey` disambiguation.
+
+### Next recommended work (drawing)
+
+1. **Task 19b** — `ScenePatch` to stop full Comp Gym rebuilds during drag.
+2. **Task 19c** — connect ports (highest UX gap after drag).
+3. **Task 10f** — `wireSplit` scene dispatch (if fixtures need it).
 
 ### Placeholder scan
 

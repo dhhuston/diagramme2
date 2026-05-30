@@ -10,7 +10,8 @@
         "height_px": 6.75,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -36,7 +37,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": true
+        "closed": true,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -54,7 +56,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -72,7 +75,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -90,7 +94,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -108,7 +113,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -126,7 +132,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -144,7 +151,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -162,7 +170,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -180,7 +189,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -198,7 +208,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -216,7 +227,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -234,7 +246,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -252,7 +265,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -270,7 +284,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -288,7 +303,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -306,7 +322,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -324,7 +341,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -342,7 +360,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -360,7 +379,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -378,7 +398,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -391,7 +412,8 @@
         "height_px": 6.75,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -452,7 +474,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -465,7 +488,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -478,7 +502,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -491,7 +516,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -504,7 +530,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -517,7 +544,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -530,7 +558,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -543,7 +572,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -556,7 +586,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -569,7 +600,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -606,7 +638,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -619,7 +652,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -637,7 +671,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -655,7 +690,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -673,7 +709,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -691,7 +728,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -709,7 +747,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -727,7 +766,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -745,7 +785,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -763,7 +804,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -781,7 +823,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -799,7 +842,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -817,7 +861,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -835,7 +880,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -853,7 +899,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -871,7 +918,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -889,7 +937,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -907,7 +956,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -925,7 +975,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -943,7 +994,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -961,7 +1013,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -979,7 +1032,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -997,7 +1051,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -1015,7 +1070,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -1033,7 +1089,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -1051,7 +1108,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -1069,7 +1127,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -1087,7 +1146,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -1105,7 +1165,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -1123,7 +1184,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -1141,7 +1203,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -1154,7 +1217,8 @@
         "height_px": 6.0,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-57ef2140"
       }
     },
     {
@@ -1167,7 +1231,8 @@
         "height_px": 6.75,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-8339f929"
       }
     },
     {
@@ -1193,7 +1258,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": true
+        "closed": true,
+        "owner_node_id": "device-8339f929"
       }
     },
     {
@@ -1211,7 +1277,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-8339f929"
       }
     },
     {
@@ -1229,7 +1296,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-8339f929"
       }
     },
     {
@@ -1247,7 +1315,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-8339f929"
       }
     },
     {
@@ -1265,7 +1334,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-8339f929"
       }
     },
     {
@@ -1283,7 +1353,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-8339f929"
       }
     },
     {
@@ -1301,7 +1372,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-8339f929"
       }
     },
     {
@@ -1319,7 +1391,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-8339f929"
       }
     },
     {
@@ -1337,7 +1410,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-8339f929"
       }
     },
     {
@@ -1355,7 +1429,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-8339f929"
       }
     },
     {
@@ -1373,7 +1448,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-8339f929"
       }
     },
     {
@@ -1391,7 +1467,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-8339f929"
       }
     },
     {
@@ -1409,7 +1486,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-8339f929"
       }
     },
     {
@@ -1427,7 +1505,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-8339f929"
       }
     },
     {
@@ -1445,7 +1524,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-8339f929"
       }
     },
     {
@@ -1463,7 +1543,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-8339f929"
       }
     },
     {
@@ -1481,7 +1562,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-8339f929"
       }
     },
     {
@@ -1499,7 +1581,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-8339f929"
       }
     },
     {
@@ -1517,7 +1600,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-8339f929"
       }
     },
     {
@@ -1535,7 +1619,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-8339f929"
       }
     },
     {
@@ -1548,7 +1633,8 @@
         "height_px": 6.75,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-8339f929"
       }
     },
     {
@@ -1609,7 +1695,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-8339f929"
       }
     },
     {
@@ -1622,7 +1709,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-8339f929"
       }
     },
     {
@@ -1635,7 +1723,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-8339f929"
       }
     },
     {
@@ -1648,7 +1737,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-8339f929"
       }
     },
     {
@@ -1661,7 +1751,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-8339f929"
       }
     },
     {
@@ -1674,7 +1765,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-8339f929"
       }
     },
     {
@@ -1687,7 +1779,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-8339f929"
       }
     },
     {
@@ -1700,7 +1793,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-8339f929"
       }
     },
     {
@@ -1713,7 +1807,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-8339f929"
       }
     },
     {
@@ -1726,7 +1821,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-8339f929"
       }
     },
     {
@@ -1739,7 +1835,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-8339f929"
       }
     },
     {
@@ -1752,7 +1849,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-8339f929"
       }
     },
     {
@@ -1765,7 +1863,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-8339f929"
       }
     },
     {
@@ -1778,7 +1877,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-8339f929"
       }
     },
     {
@@ -1791,7 +1891,8 @@
         "height_px": 6.75,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-e2b5b6e5"
       }
     },
     {
@@ -1817,7 +1918,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": true
+        "closed": true,
+        "owner_node_id": "device-e2b5b6e5"
       }
     },
     {
@@ -1835,7 +1937,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-e2b5b6e5"
       }
     },
     {
@@ -1853,7 +1956,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-e2b5b6e5"
       }
     },
     {
@@ -1871,7 +1975,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-e2b5b6e5"
       }
     },
     {
@@ -1889,7 +1994,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-e2b5b6e5"
       }
     },
     {
@@ -1907,7 +2013,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-e2b5b6e5"
       }
     },
     {
@@ -1925,7 +2032,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-e2b5b6e5"
       }
     },
     {
@@ -1943,7 +2051,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-e2b5b6e5"
       }
     },
     {
@@ -1961,7 +2070,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-e2b5b6e5"
       }
     },
     {
@@ -1974,7 +2084,8 @@
         "height_px": 6.75,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-e2b5b6e5"
       }
     },
     {
@@ -2035,7 +2146,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-e2b5b6e5"
       }
     },
     {
@@ -2048,7 +2160,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-e2b5b6e5"
       }
     },
     {
@@ -2061,7 +2174,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-e2b5b6e5"
       }
     },
     {
@@ -2074,7 +2188,8 @@
         "height_px": 6.75,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-c82d7f72"
       }
     },
     {
@@ -2100,7 +2215,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": true
+        "closed": true,
+        "owner_node_id": "device-c82d7f72"
       }
     },
     {
@@ -2118,7 +2234,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-c82d7f72"
       }
     },
     {
@@ -2136,7 +2253,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-c82d7f72"
       }
     },
     {
@@ -2154,7 +2272,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-c82d7f72"
       }
     },
     {
@@ -2172,7 +2291,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-c82d7f72"
       }
     },
     {
@@ -2190,7 +2310,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-c82d7f72"
       }
     },
     {
@@ -2208,7 +2329,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-c82d7f72"
       }
     },
     {
@@ -2226,7 +2348,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-c82d7f72"
       }
     },
     {
@@ -2244,7 +2367,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-c82d7f72"
       }
     },
     {
@@ -2262,7 +2386,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-c82d7f72"
       }
     },
     {
@@ -2280,7 +2405,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-c82d7f72"
       }
     },
     {
@@ -2298,7 +2424,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-c82d7f72"
       }
     },
     {
@@ -2311,7 +2438,8 @@
         "height_px": 6.75,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-c82d7f72"
       }
     },
     {
@@ -2372,7 +2500,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-c82d7f72"
       }
     },
     {
@@ -2385,7 +2514,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-c82d7f72"
       }
     },
     {
@@ -2398,7 +2528,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-c82d7f72"
       }
     },
     {
@@ -2411,7 +2542,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-c82d7f72"
       }
     },
     {
@@ -2424,7 +2556,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-c82d7f72"
       }
     },
     {
@@ -2437,7 +2570,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-c82d7f72"
       }
     },
     {
@@ -2455,7 +2589,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "ant-389cd396"
       }
     },
     {
@@ -2473,7 +2608,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "ant-389cd396"
       }
     },
     {
@@ -2491,7 +2627,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "ant-389cd396"
       }
     },
     {
@@ -2509,7 +2646,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "ant-389cd396"
       }
     },
     {
@@ -2522,7 +2660,8 @@
         "height_px": 6.75,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "ant-389cd396"
       }
     },
     {
@@ -2540,7 +2679,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "antennaReceiverSymbol-a5f48657"
       }
     },
     {
@@ -2558,7 +2698,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "antennaReceiverSymbol-a5f48657"
       }
     },
     {
@@ -2576,7 +2717,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "antennaReceiverSymbol-a5f48657"
       }
     },
     {
@@ -2594,7 +2736,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "antennaReceiverSymbol-a5f48657"
       }
     },
     {
@@ -2607,7 +2750,8 @@
         "height_px": 6.75,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "antennaReceiverSymbol-a5f48657"
       }
     },
     {
@@ -2620,7 +2764,8 @@
         "height_px": 6.75,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-a7d8fa54"
       }
     },
     {
@@ -2646,7 +2791,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": true
+        "closed": true,
+        "owner_node_id": "device-a7d8fa54"
       }
     },
     {
@@ -2664,7 +2810,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-a7d8fa54"
       }
     },
     {
@@ -2682,7 +2829,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-a7d8fa54"
       }
     },
     {
@@ -2700,7 +2848,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-a7d8fa54"
       }
     },
     {
@@ -2718,7 +2867,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-a7d8fa54"
       }
     },
     {
@@ -2736,7 +2886,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-a7d8fa54"
       }
     },
     {
@@ -2754,7 +2905,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-a7d8fa54"
       }
     },
     {
@@ -2772,7 +2924,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-a7d8fa54"
       }
     },
     {
@@ -2790,7 +2943,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-a7d8fa54"
       }
     },
     {
@@ -2803,7 +2957,8 @@
         "height_px": 6.75,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-a7d8fa54"
       }
     },
     {
@@ -2864,7 +3019,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-a7d8fa54"
       }
     },
     {
@@ -2877,7 +3033,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-a7d8fa54"
       }
     },
     {
@@ -2890,7 +3047,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-a7d8fa54"
       }
     },
     {
@@ -2903,7 +3061,8 @@
         "height_px": 6.75,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -2929,7 +3088,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": true
+        "closed": true,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -2947,7 +3107,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -2965,7 +3126,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -2983,7 +3145,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3001,7 +3164,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3019,7 +3183,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3037,7 +3202,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3055,7 +3221,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3073,7 +3240,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3091,7 +3259,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3109,7 +3278,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3127,7 +3297,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3145,7 +3316,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3163,7 +3335,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3181,7 +3354,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3199,7 +3373,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3217,7 +3392,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3235,7 +3411,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3253,7 +3430,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3271,7 +3449,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3289,7 +3468,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3307,7 +3487,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3325,7 +3506,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3343,7 +3525,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3361,7 +3544,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3379,7 +3563,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3397,7 +3582,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3415,7 +3601,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3433,7 +3620,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3451,7 +3639,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3469,7 +3658,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3487,7 +3677,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3505,7 +3696,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3523,7 +3715,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3541,7 +3734,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3559,7 +3753,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3572,7 +3767,8 @@
         "height_px": 6.75,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3633,7 +3829,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3646,7 +3843,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3659,7 +3857,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3672,7 +3871,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3685,7 +3885,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3698,7 +3899,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3711,7 +3913,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3724,7 +3927,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3737,7 +3941,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3750,7 +3955,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3763,7 +3969,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3776,7 +3983,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3789,7 +3997,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3802,7 +4011,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3815,7 +4025,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3828,7 +4039,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3841,7 +4053,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3854,7 +4067,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3867,7 +4081,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3880,7 +4095,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3893,7 +4109,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3906,7 +4123,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3967,7 +4185,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3980,7 +4199,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -3993,7 +4213,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4006,7 +4227,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4024,7 +4246,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4042,7 +4265,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4060,7 +4284,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4078,7 +4303,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4096,7 +4322,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4114,7 +4341,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4132,7 +4360,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4150,7 +4379,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4168,7 +4398,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4186,7 +4417,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4204,7 +4436,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4222,7 +4455,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4240,7 +4474,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4258,7 +4493,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4276,7 +4512,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4294,7 +4531,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4312,7 +4550,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4330,7 +4569,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4348,7 +4588,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4366,7 +4607,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4384,7 +4626,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4402,7 +4645,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4420,7 +4664,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4438,7 +4683,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4456,7 +4702,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4474,7 +4721,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4492,7 +4740,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4510,7 +4759,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4528,7 +4778,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4541,7 +4792,8 @@
         "height_px": 6.0,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4559,7 +4811,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4577,7 +4830,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4595,7 +4849,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4613,7 +4868,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4631,7 +4887,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4649,7 +4906,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4667,7 +4925,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4685,7 +4944,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4703,7 +4963,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4721,7 +4982,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4739,7 +5001,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4757,7 +5020,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4775,7 +5039,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4793,7 +5058,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4811,7 +5077,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4829,7 +5096,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4847,7 +5115,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4865,7 +5134,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4883,7 +5153,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4901,7 +5172,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4919,7 +5191,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4937,7 +5210,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4955,7 +5229,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4973,7 +5248,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -4991,7 +5267,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -5009,7 +5286,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -5027,7 +5305,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -5045,7 +5324,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -5063,7 +5343,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -5076,7 +5357,8 @@
         "height_px": 6.0,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -5094,7 +5376,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -5112,7 +5395,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -5130,7 +5414,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -5148,7 +5433,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -5166,7 +5452,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -5184,7 +5471,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -5202,7 +5490,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -5220,7 +5509,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -5238,7 +5528,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -5256,7 +5547,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -5274,7 +5566,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -5292,7 +5585,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -5310,7 +5604,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -5328,7 +5623,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -5346,7 +5642,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -5364,7 +5661,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -5382,7 +5680,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -5400,7 +5699,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -5418,7 +5718,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -5436,7 +5737,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -5454,7 +5756,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -5472,7 +5775,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -5490,7 +5794,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -5508,7 +5813,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -5526,7 +5832,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -5544,7 +5851,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -5562,7 +5870,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -5580,7 +5889,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -5598,7 +5908,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -5611,7 +5922,8 @@
         "height_px": 6.0,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "device-bf36a3ea"
       }
     },
     {
@@ -5648,7 +5960,8 @@
         "height_px": 6.75,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "flyoff-fd953216"
       }
     },
     {
@@ -5682,7 +5995,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": true
+        "closed": true,
+        "owner_node_id": "spk-cfe86b51"
       }
     },
     {
@@ -5700,7 +6014,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "spk-cfe86b51"
       }
     },
     {
@@ -5713,7 +6028,8 @@
         "height_px": 6.75,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "spk-cfe86b51"
       }
     },
     {
@@ -5726,7 +6042,8 @@
         "height_px": 4.5,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "spk-cfe86b51"
       }
     },
     {
@@ -5760,7 +6077,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": true
+        "closed": true,
+        "owner_node_id": "spk-d527bfce"
       }
     },
     {
@@ -5778,7 +6096,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "spk-d527bfce"
       }
     },
     {
@@ -5791,7 +6110,8 @@
         "height_px": 6.75,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "spk-d527bfce"
       }
     },
     {
@@ -5804,7 +6124,8 @@
         "height_px": 4.5,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "spk-d527bfce"
       }
     },
     {
@@ -5817,7 +6138,8 @@
         "height_px": 6.75,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "avPlate-e14b8e32"
       }
     },
     {
@@ -5843,7 +6165,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": true
+        "closed": true,
+        "owner_node_id": "avPlate-e14b8e32"
       }
     },
     {
@@ -5861,7 +6184,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-e14b8e32"
       }
     },
     {
@@ -5879,7 +6203,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-e14b8e32"
       }
     },
     {
@@ -5897,7 +6222,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-e14b8e32"
       }
     },
     {
@@ -5915,7 +6241,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-e14b8e32"
       }
     },
     {
@@ -5933,7 +6260,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-e14b8e32"
       }
     },
     {
@@ -5951,7 +6279,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-e14b8e32"
       }
     },
     {
@@ -5969,7 +6298,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-e14b8e32"
       }
     },
     {
@@ -5987,7 +6317,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-e14b8e32"
       }
     },
     {
@@ -6000,7 +6331,8 @@
         "height_px": 6.75,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "avPlate-e14b8e32"
       }
     },
     {
@@ -6037,7 +6369,8 @@
         "height_px": 5.0,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "avPlate-e14b8e32"
       }
     },
     {
@@ -6050,7 +6383,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "avPlate-e14b8e32"
       }
     },
     {
@@ -6063,7 +6397,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "avPlate-e14b8e32"
       }
     },
     {
@@ -6100,7 +6435,8 @@
         "height_px": 5.0,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "avPlate-e14b8e32"
       }
     },
     {
@@ -6113,7 +6449,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "avPlate-e14b8e32"
       }
     },
     {
@@ -6126,7 +6463,8 @@
         "height_px": 6.75,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "avPlate-f42ca665"
       }
     },
     {
@@ -6152,7 +6490,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": true
+        "closed": true,
+        "owner_node_id": "avPlate-f42ca665"
       }
     },
     {
@@ -6170,7 +6509,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-f42ca665"
       }
     },
     {
@@ -6188,7 +6528,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-f42ca665"
       }
     },
     {
@@ -6206,7 +6547,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-f42ca665"
       }
     },
     {
@@ -6224,7 +6566,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-f42ca665"
       }
     },
     {
@@ -6242,7 +6585,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-f42ca665"
       }
     },
     {
@@ -6260,7 +6604,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-f42ca665"
       }
     },
     {
@@ -6278,7 +6623,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-f42ca665"
       }
     },
     {
@@ -6296,7 +6642,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-f42ca665"
       }
     },
     {
@@ -6309,7 +6656,8 @@
         "height_px": 6.75,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "avPlate-f42ca665"
       }
     },
     {
@@ -6346,7 +6694,8 @@
         "height_px": 5.0,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "avPlate-f42ca665"
       }
     },
     {
@@ -6359,7 +6708,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "avPlate-f42ca665"
       }
     },
     {
@@ -6372,7 +6722,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "avPlate-f42ca665"
       }
     },
     {
@@ -6409,7 +6760,8 @@
         "height_px": 5.0,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "avPlate-f42ca665"
       }
     },
     {
@@ -6422,7 +6774,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "avPlate-f42ca665"
       }
     },
     {
@@ -6435,7 +6788,8 @@
         "height_px": 6.75,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "avPlate-70807746"
       }
     },
     {
@@ -6461,7 +6815,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": true
+        "closed": true,
+        "owner_node_id": "avPlate-70807746"
       }
     },
     {
@@ -6479,7 +6834,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-70807746"
       }
     },
     {
@@ -6497,7 +6853,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-70807746"
       }
     },
     {
@@ -6515,7 +6872,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-70807746"
       }
     },
     {
@@ -6533,7 +6891,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-70807746"
       }
     },
     {
@@ -6551,7 +6910,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-70807746"
       }
     },
     {
@@ -6569,7 +6929,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-70807746"
       }
     },
     {
@@ -6587,7 +6948,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-70807746"
       }
     },
     {
@@ -6605,7 +6967,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-70807746"
       }
     },
     {
@@ -6618,7 +6981,8 @@
         "height_px": 6.75,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "avPlate-70807746"
       }
     },
     {
@@ -6655,7 +7019,8 @@
         "height_px": 5.0,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "avPlate-70807746"
       }
     },
     {
@@ -6668,7 +7033,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "avPlate-70807746"
       }
     },
     {
@@ -6681,7 +7047,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "avPlate-70807746"
       }
     },
     {
@@ -6718,7 +7085,8 @@
         "height_px": 5.0,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "avPlate-70807746"
       }
     },
     {
@@ -6731,7 +7099,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "avPlate-70807746"
       }
     },
     {
@@ -6744,7 +7113,8 @@
         "height_px": 6.75,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "avPlate-7e4e91d3"
       }
     },
     {
@@ -6770,7 +7140,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": true
+        "closed": true,
+        "owner_node_id": "avPlate-7e4e91d3"
       }
     },
     {
@@ -6788,7 +7159,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-7e4e91d3"
       }
     },
     {
@@ -6806,7 +7178,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-7e4e91d3"
       }
     },
     {
@@ -6824,7 +7197,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-7e4e91d3"
       }
     },
     {
@@ -6842,7 +7216,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-7e4e91d3"
       }
     },
     {
@@ -6860,7 +7235,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-7e4e91d3"
       }
     },
     {
@@ -6878,7 +7254,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-7e4e91d3"
       }
     },
     {
@@ -6896,7 +7273,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-7e4e91d3"
       }
     },
     {
@@ -6914,7 +7292,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-7e4e91d3"
       }
     },
     {
@@ -6927,7 +7306,8 @@
         "height_px": 6.75,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "avPlate-7e4e91d3"
       }
     },
     {
@@ -6964,7 +7344,8 @@
         "height_px": 5.0,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "avPlate-7e4e91d3"
       }
     },
     {
@@ -6977,7 +7358,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "avPlate-7e4e91d3"
       }
     },
     {
@@ -6990,7 +7372,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "avPlate-7e4e91d3"
       }
     },
     {
@@ -7027,7 +7410,8 @@
         "height_px": 5.0,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "avPlate-7e4e91d3"
       }
     },
     {
@@ -7040,7 +7424,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "avPlate-7e4e91d3"
       }
     },
     {
@@ -7074,7 +7459,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": true
+        "closed": true,
+        "owner_node_id": "speakerBlock-2f1a8d6a"
       }
     },
     {
@@ -7092,7 +7478,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "speakerBlock-2f1a8d6a"
       }
     },
     {
@@ -7105,7 +7492,8 @@
         "height_px": 6.75,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "speakerBlock-2f1a8d6a"
       }
     },
     {
@@ -7118,7 +7506,8 @@
         "height_px": 4.5,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "speakerBlock-2f1a8d6a"
       }
     },
     {
@@ -7152,7 +7541,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": true
+        "closed": true,
+        "owner_node_id": "speakerBlock-c9f8c968"
       }
     },
     {
@@ -7170,7 +7560,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "speakerBlock-c9f8c968"
       }
     },
     {
@@ -7183,7 +7574,8 @@
         "height_px": 6.75,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "speakerBlock-c9f8c968"
       }
     },
     {
@@ -7196,7 +7588,8 @@
         "height_px": 4.5,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "speakerBlock-c9f8c968"
       }
     },
     {
@@ -7230,7 +7623,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": true
+        "closed": true,
+        "owner_node_id": "speakerBlock-e8b0bb77"
       }
     },
     {
@@ -7248,7 +7642,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "speakerBlock-e8b0bb77"
       }
     },
     {
@@ -7261,7 +7656,8 @@
         "height_px": 6.75,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "speakerBlock-e8b0bb77"
       }
     },
     {
@@ -7274,7 +7670,8 @@
         "height_px": 4.5,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "speakerBlock-e8b0bb77"
       }
     },
     {
@@ -7308,7 +7705,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": true
+        "closed": true,
+        "owner_node_id": "speakerBlock-e1617408"
       }
     },
     {
@@ -7326,7 +7724,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "speakerBlock-e1617408"
       }
     },
     {
@@ -7339,7 +7738,8 @@
         "height_px": 6.75,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "speakerBlock-e1617408"
       }
     },
     {
@@ -7352,7 +7752,8 @@
         "height_px": 4.5,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "speakerBlock-e1617408"
       }
     },
     {
@@ -7386,7 +7787,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": true
+        "closed": true,
+        "owner_node_id": "speakerBlock-9ce597ed"
       }
     },
     {
@@ -7404,7 +7806,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "speakerBlock-9ce597ed"
       }
     },
     {
@@ -7417,7 +7820,8 @@
         "height_px": 6.75,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "speakerBlock-9ce597ed"
       }
     },
     {
@@ -7430,7 +7834,8 @@
         "height_px": 4.5,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "speakerBlock-9ce597ed"
       }
     },
     {
@@ -7464,7 +7869,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": true
+        "closed": true,
+        "owner_node_id": "speakerBlock-4fe8654b"
       }
     },
     {
@@ -7482,7 +7888,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "speakerBlock-4fe8654b"
       }
     },
     {
@@ -7495,7 +7902,8 @@
         "height_px": 6.75,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "speakerBlock-4fe8654b"
       }
     },
     {
@@ -7508,7 +7916,8 @@
         "height_px": 4.5,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "speakerBlock-4fe8654b"
       }
     },
     {
@@ -7542,7 +7951,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": true
+        "closed": true,
+        "owner_node_id": "speakerBlock-13ddc7aa"
       }
     },
     {
@@ -7560,7 +7970,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "speakerBlock-13ddc7aa"
       }
     },
     {
@@ -7573,7 +7984,8 @@
         "height_px": 6.75,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "speakerBlock-13ddc7aa"
       }
     },
     {
@@ -7586,7 +7998,8 @@
         "height_px": 4.5,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "speakerBlock-13ddc7aa"
       }
     },
     {
@@ -7620,7 +8033,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": true
+        "closed": true,
+        "owner_node_id": "speakerBlock-0801b172"
       }
     },
     {
@@ -7638,7 +8052,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "speakerBlock-0801b172"
       }
     },
     {
@@ -7651,7 +8066,8 @@
         "height_px": 6.75,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "speakerBlock-0801b172"
       }
     },
     {
@@ -7664,7 +8080,8 @@
         "height_px": 4.5,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "speakerBlock-0801b172"
       }
     },
     {
@@ -7698,7 +8115,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": true
+        "closed": true,
+        "owner_node_id": "speakerBlock-3ea565fd"
       }
     },
     {
@@ -7716,7 +8134,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "speakerBlock-3ea565fd"
       }
     },
     {
@@ -7729,7 +8148,8 @@
         "height_px": 6.75,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "speakerBlock-3ea565fd"
       }
     },
     {
@@ -7742,7 +8162,8 @@
         "height_px": 4.5,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "speakerBlock-3ea565fd"
       }
     },
     {
@@ -7776,7 +8197,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": true
+        "closed": true,
+        "owner_node_id": "speakerBlock-7d79d6d8"
       }
     },
     {
@@ -7794,7 +8216,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "speakerBlock-7d79d6d8"
       }
     },
     {
@@ -7807,7 +8230,8 @@
         "height_px": 6.75,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "speakerBlock-7d79d6d8"
       }
     },
     {
@@ -7820,7 +8244,8 @@
         "height_px": 4.5,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "speakerBlock-7d79d6d8"
       }
     },
     {
@@ -7854,7 +8279,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": true
+        "closed": true,
+        "owner_node_id": "speakerBlock-23acf13d"
       }
     },
     {
@@ -7872,7 +8298,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "speakerBlock-23acf13d"
       }
     },
     {
@@ -7885,7 +8312,8 @@
         "height_px": 6.75,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "speakerBlock-23acf13d"
       }
     },
     {
@@ -7898,7 +8326,8 @@
         "height_px": 4.5,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "speakerBlock-23acf13d"
       }
     },
     {
@@ -7911,7 +8340,8 @@
         "height_px": 6.75,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -7937,7 +8367,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": true
+        "closed": true,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -7955,7 +8386,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -7973,7 +8405,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -7991,7 +8424,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8009,7 +8443,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8027,7 +8462,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8045,7 +8481,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8063,7 +8500,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8081,7 +8519,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8099,7 +8538,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8117,7 +8557,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8135,7 +8576,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8153,7 +8595,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8171,7 +8614,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8189,7 +8633,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8207,7 +8652,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8225,7 +8671,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8243,7 +8690,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8261,7 +8709,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8279,7 +8728,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8297,7 +8747,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8315,7 +8766,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8333,7 +8785,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8351,7 +8804,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8369,7 +8823,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8387,7 +8842,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8405,7 +8861,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8423,7 +8880,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8441,7 +8899,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8459,7 +8918,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8477,7 +8937,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8495,7 +8956,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8513,7 +8975,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8531,7 +8994,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8549,7 +9013,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8567,7 +9032,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8580,7 +9046,8 @@
         "height_px": 6.75,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8641,7 +9108,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8654,7 +9122,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8667,7 +9136,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8680,7 +9150,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8693,7 +9164,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8706,7 +9178,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8719,7 +9192,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8732,7 +9206,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8745,7 +9220,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8758,7 +9234,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8771,7 +9248,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8784,7 +9262,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8797,7 +9276,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8810,7 +9290,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8823,7 +9304,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8836,7 +9318,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8849,7 +9332,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8862,7 +9346,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8875,7 +9360,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8888,7 +9374,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8901,7 +9388,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8914,7 +9402,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8927,7 +9416,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8964,7 +9454,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8977,7 +9468,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -8990,7 +9482,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -9003,7 +9496,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -9016,7 +9510,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -9034,7 +9529,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -9052,7 +9548,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -9070,7 +9567,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -9088,7 +9586,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -9106,7 +9605,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -9124,7 +9624,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -9142,7 +9643,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -9160,7 +9662,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -9178,7 +9681,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -9196,7 +9700,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -9214,7 +9719,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -9232,7 +9738,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -9250,7 +9757,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -9268,7 +9776,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -9286,7 +9795,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -9304,7 +9814,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -9322,7 +9833,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -9340,7 +9852,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -9358,7 +9871,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -9376,7 +9890,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -9394,7 +9909,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -9412,7 +9928,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -9430,7 +9947,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -9448,7 +9966,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -9466,7 +9985,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -9484,7 +10004,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -9502,7 +10023,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -9520,7 +10042,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -9538,7 +10061,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -9551,7 +10075,8 @@
         "height_px": 6.0,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "deviceV2-60f0f322"
       }
     },
     {
@@ -9564,7 +10089,8 @@
         "height_px": 6.75,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "avPlate-2ca3b6d2"
       }
     },
     {
@@ -9590,7 +10116,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": true
+        "closed": true,
+        "owner_node_id": "avPlate-2ca3b6d2"
       }
     },
     {
@@ -9608,7 +10135,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-2ca3b6d2"
       }
     },
     {
@@ -9626,7 +10154,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-2ca3b6d2"
       }
     },
     {
@@ -9644,7 +10173,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-2ca3b6d2"
       }
     },
     {
@@ -9662,7 +10192,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-2ca3b6d2"
       }
     },
     {
@@ -9680,7 +10211,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-2ca3b6d2"
       }
     },
     {
@@ -9698,7 +10230,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-2ca3b6d2"
       }
     },
     {
@@ -9716,7 +10249,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-2ca3b6d2"
       }
     },
     {
@@ -9734,7 +10268,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-2ca3b6d2"
       }
     },
     {
@@ -9747,7 +10282,8 @@
         "height_px": 6.75,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "avPlate-2ca3b6d2"
       }
     },
     {
@@ -9784,7 +10320,8 @@
         "height_px": 5.0,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "avPlate-2ca3b6d2"
       }
     },
     {
@@ -9797,7 +10334,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "avPlate-2ca3b6d2"
       }
     },
     {
@@ -9810,7 +10348,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "avPlate-2ca3b6d2"
       }
     },
     {
@@ -9847,7 +10386,8 @@
         "height_px": 5.0,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "avPlate-2ca3b6d2"
       }
     },
     {
@@ -9860,7 +10400,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "avPlate-2ca3b6d2"
       }
     },
     {
@@ -9873,7 +10414,8 @@
         "height_px": 6.75,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "avPlate-88e2e31f"
       }
     },
     {
@@ -9899,7 +10441,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": true
+        "closed": true,
+        "owner_node_id": "avPlate-88e2e31f"
       }
     },
     {
@@ -9917,7 +10460,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-88e2e31f"
       }
     },
     {
@@ -9935,7 +10479,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-88e2e31f"
       }
     },
     {
@@ -9953,7 +10498,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-88e2e31f"
       }
     },
     {
@@ -9971,7 +10517,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-88e2e31f"
       }
     },
     {
@@ -9989,7 +10536,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-88e2e31f"
       }
     },
     {
@@ -10007,7 +10555,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-88e2e31f"
       }
     },
     {
@@ -10025,7 +10574,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-88e2e31f"
       }
     },
     {
@@ -10043,7 +10593,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "avPlate-88e2e31f"
       }
     },
     {
@@ -10056,7 +10607,8 @@
         "height_px": 6.75,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "avPlate-88e2e31f"
       }
     },
     {
@@ -10093,7 +10645,8 @@
         "height_px": 5.0,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "avPlate-88e2e31f"
       }
     },
     {
@@ -10106,7 +10659,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "avPlate-88e2e31f"
       }
     },
     {
@@ -10119,7 +10673,8 @@
         "height_px": 5.0,
         "halign": "Left",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "avPlate-88e2e31f"
       }
     },
     {
@@ -10156,7 +10711,8 @@
         "height_px": 5.0,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "avPlate-88e2e31f"
       }
     },
     {
@@ -10169,7 +10725,8 @@
         "height_px": 5.0,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "avPlate-88e2e31f"
       }
     },
     {
@@ -10207,7 +10764,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": true
+        "closed": true,
+        "owner_node_id": "wiretag-0daac244"
       }
     },
     {
@@ -10225,7 +10783,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "wiretag-0daac244"
       }
     },
     {
@@ -10238,7 +10797,8 @@
         "height_px": 4.0,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "wiretag-0daac244"
       }
     },
     {
@@ -10251,7 +10811,8 @@
         "height_px": 4.0,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "wiretag-0daac244"
       }
     },
     {
@@ -10293,7 +10854,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": true
+        "closed": true,
+        "owner_node_id": "wiretag-950b7690"
       }
     },
     {
@@ -10311,7 +10873,8 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "wiretag-950b7690"
       }
     },
     {
@@ -10324,7 +10887,8 @@
         "height_px": 4.0,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "wiretag-950b7690"
       }
     },
     {
@@ -10337,7 +10901,8 @@
         "height_px": 4.0,
         "halign": "Center",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "wiretag-950b7690"
       }
     },
     {
@@ -10355,7 +10920,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -10373,7 +10939,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -10391,7 +10958,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -10409,7 +10977,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -10427,7 +10996,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -10445,7 +11015,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -10463,7 +11034,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -10481,7 +11053,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -10499,7 +11072,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -10517,7 +11091,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -10535,7 +11110,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -10553,7 +11129,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -10571,7 +11148,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -10589,7 +11167,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -10607,7 +11186,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -10625,7 +11205,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -10643,7 +11224,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -10661,7 +11243,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -10679,7 +11262,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -10697,7 +11281,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -10715,7 +11300,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -10733,7 +11319,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -10751,7 +11338,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -10769,7 +11357,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -10787,7 +11376,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -10805,7 +11395,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -10823,7 +11414,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -10841,7 +11433,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -10859,7 +11452,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -10877,7 +11471,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -10895,7 +11490,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -10913,7 +11509,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -10931,7 +11528,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -10949,7 +11547,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -10967,7 +11566,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -10985,7 +11585,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11003,7 +11604,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11021,7 +11623,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11039,7 +11642,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11057,7 +11661,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11075,7 +11680,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11093,7 +11699,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11111,7 +11718,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11129,7 +11737,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11147,7 +11756,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11165,7 +11775,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11183,7 +11794,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11201,7 +11813,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11219,7 +11832,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11237,7 +11851,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11255,7 +11870,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11273,7 +11889,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11291,7 +11908,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11309,7 +11927,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11327,7 +11946,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11345,7 +11965,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11363,7 +11984,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11381,7 +12003,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11399,7 +12022,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11417,7 +12041,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11435,7 +12060,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11453,7 +12079,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11471,7 +12098,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11489,7 +12117,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11507,7 +12136,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11525,7 +12155,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11543,7 +12174,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11561,7 +12193,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11579,7 +12212,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11597,7 +12231,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11615,7 +12250,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11633,7 +12269,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11651,7 +12288,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11669,7 +12307,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11687,7 +12326,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11705,7 +12345,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11723,7 +12364,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11741,7 +12383,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11759,7 +12402,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11777,7 +12421,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11795,7 +12440,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11813,7 +12459,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11831,7 +12478,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11849,7 +12497,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11867,7 +12516,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11885,7 +12535,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11903,7 +12554,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11921,7 +12573,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11939,7 +12592,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11957,7 +12611,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11975,7 +12630,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -11993,7 +12649,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12011,7 +12668,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12029,7 +12687,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12047,7 +12706,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12065,7 +12725,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12083,7 +12744,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12101,7 +12763,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12119,7 +12782,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12137,7 +12801,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12155,7 +12820,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12173,7 +12839,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12191,7 +12858,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12209,7 +12877,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12227,7 +12896,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12245,7 +12915,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12263,7 +12934,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12281,7 +12953,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12299,7 +12972,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12317,7 +12991,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12335,7 +13010,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12353,7 +13029,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12371,7 +13048,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12389,7 +13067,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12407,7 +13086,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12425,7 +13105,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12443,7 +13124,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12461,7 +13143,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12479,7 +13162,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12497,7 +13181,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12515,7 +13200,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12533,7 +13219,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12551,7 +13238,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12569,7 +13257,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12587,7 +13276,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12605,7 +13295,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12623,7 +13314,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12641,7 +13333,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12659,7 +13352,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12677,7 +13371,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12695,7 +13390,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12713,7 +13409,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12731,7 +13428,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12749,7 +13447,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12767,7 +13466,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12785,7 +13485,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12803,7 +13504,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12821,7 +13523,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12839,7 +13542,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12857,7 +13561,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12875,7 +13580,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12893,7 +13599,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12911,7 +13618,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12929,7 +13637,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12947,7 +13656,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12965,7 +13675,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -12983,7 +13694,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -13001,7 +13713,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -13019,7 +13732,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -13037,7 +13751,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -13055,7 +13770,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -13073,7 +13789,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -13091,7 +13808,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -13109,7 +13827,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -13127,7 +13846,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -13145,7 +13865,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -13163,7 +13884,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -13181,7 +13903,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -13199,7 +13922,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -13217,7 +13941,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -13235,7 +13960,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -13253,7 +13979,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -13271,7 +13998,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -13289,7 +14017,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -13307,7 +14036,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -13325,7 +14055,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -13343,7 +14074,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -13361,7 +14093,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -13379,7 +14112,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -13397,7 +14131,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -13415,7 +14150,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -13433,7 +14169,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -13451,7 +14188,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -13469,7 +14207,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -13487,7 +14226,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -13505,7 +14245,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -13523,7 +14264,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -13541,7 +14283,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -13559,7 +14302,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -13577,7 +14321,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -13595,7 +14340,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -13613,7 +14359,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -13631,7 +14378,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -13649,7 +14397,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -13667,7 +14416,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -13685,7 +14435,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -13703,7 +14454,8 @@
         "stroke_px": 1.0,
         "layer": "GUIDES",
         "color": 0,
-        "closed": false
+        "closed": false,
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -13716,7 +14468,8 @@
         "height_px": 9.0,
         "halign": "Left",
         "valign": "Bottom",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "zone-57ea16df"
       }
     },
     {
@@ -13753,7 +14506,8 @@
         "height_px": 6.75,
         "halign": "Right",
         "valign": "Middle",
-        "font": "Arial Narrow"
+        "font": "Arial Narrow",
+        "owner_node_id": "flyoff-7e4cbdd6"
       }
     },
     {

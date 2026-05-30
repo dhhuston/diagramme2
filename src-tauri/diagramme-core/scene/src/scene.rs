@@ -32,6 +32,9 @@ pub enum ScenePrimitive {
         closed: bool,
         #[serde(skip_serializing_if = "Option::is_none")]
         edge_id: Option<String>,
+        /// Node that emitted this primitive (non-wire geometry); used for scene patches.
+        #[serde(skip_serializing_if = "Option::is_none")]
+        owner_node_id: Option<String>,
     },
     Rect {
         rect: RectPx,
@@ -60,6 +63,8 @@ pub struct SceneText {
     pub halign: HAlign,
     pub valign: VAlign,
     pub font: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub owner_node_id: Option<String>,
 }
 
 /// Konva hit region in diagram pixels (inverse viewport → diagram → hit id).
@@ -78,6 +83,15 @@ pub struct HitTarget {
 pub struct Scene {
     pub primitives: Vec<ScenePrimitive>,
     pub extent: RectPx,
+    pub hits: Vec<HitTarget>,
+}
+
+/// Partial scene update for drag preview — replaces primitives/hits for listed nodes and wires.
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+pub struct ScenePatch {
+    pub node_ids: Vec<String>,
+    pub edge_ids: Vec<String>,
+    pub primitives: Vec<ScenePrimitive>,
     pub hits: Vec<HitTarget>,
 }
 

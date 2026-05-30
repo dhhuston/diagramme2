@@ -1,7 +1,7 @@
 //! Scene builder from diagram state.
 
 use diagramme_geometry::RectPx;
-use diagramme_schema::{active_bundle_handles, DiagramState};
+use diagramme_schema::{active_bundle_handles, DiagramState, Node};
 use diagramme_wires::WireGeometryOptions;
 
 use diagramme_geometry::is_patch_panel_node_type;
@@ -30,7 +30,7 @@ use crate::nodes::patch_panel::patch_panel_scene_bounds;
 use crate::nodes::speaker_block::speaker_block_scene_bounds;
 use crate::nodes::text_block::text_block_scene_bounds;
 use crate::nodes::volume_control::volume_control_scene_bounds;
-use crate::scene::Scene;
+use crate::scene::{Scene, ScenePrimitive, SceneText};
 use crate::wires::{build_and_append_wires, wire_extent_rect};
 
 fn union_rects(rects: impl IntoIterator<Item = RectPx>) -> RectPx {
@@ -53,6 +53,93 @@ fn union_rects(rects: impl IntoIterator<Item = RectPx>) -> RectPx {
     }
 
     RectPx::new(min_x, min_y, max_x - min_x, max_y - min_y)
+}
+
+/// Tag node-owned primitives emitted since `start` (skips wire polylines with `edge_id`).
+pub fn tag_node_primitives(scene: &mut Scene, start: usize, node_id: &str) {
+    for prim in &mut scene.primitives[start..] {
+        match prim {
+            ScenePrimitive::Polyline {
+                owner_node_id,
+                edge_id: None,
+                ..
+            } => {
+                *owner_node_id = Some(node_id.to_string());
+            }
+            ScenePrimitive::Polyline { edge_id: Some(_), .. } => {}
+            ScenePrimitive::Text(SceneText { owner_node_id, .. }) => {
+                *owner_node_id = Some(node_id.to_string());
+            }
+            ScenePrimitive::Rect { node_id: id, .. } | ScenePrimitive::Solid { node_id: id, .. } => {
+                if id.is_none() {
+                    *id = Some(node_id.to_string());
+                }
+            }
+        }
+    }
+}
+
+/// Append one node's drawable primitives and hits to `scene`.
+pub fn append_node_to_scene(
+    scene: &mut Scene,
+    node: &Node,
+    diagram: &DiagramState,
+    active_bundles: &std::collections::HashSet<(String, String)>,
+    filter_bundle_brackets: bool,
+) {
+    let start = scene.primitives.len();
+    let nodes = &diagram.nodes;
+    let edges = &diagram.edges;
+
+    match node.node_type.as_str() {
+        "deviceV2" | "device" => {
+            append_device_v2_scene(scene, node, active_bundles, filter_bundle_brackets);
+        }
+        "avPlate" => {
+            append_av_plate_scene(scene, node, active_bundles, filter_bundle_brackets);
+        }
+        t if is_patch_panel_node_type(t) => {
+            append_patch_panel_scene(scene, node, active_bundles, filter_bundle_brackets);
+        }
+        "junction" => {
+            if !append_junction_scene(scene, node) {
+                return;
+            }
+        }
+        "speakerBlock" => append_speaker_block_scene(scene, node),
+        "micBlock" => append_mic_block_scene(scene, node),
+        "volumeControl" => append_volume_control_scene(scene, node),
+        "textBlock" => append_text_block_scene(scene, node),
+        "flyoffNote" => append_flyoff_note_scene(scene, node),
+        "antennaTransmitterSymbol" | "antennaReceiverSymbol" => {
+            append_antenna_scene(scene, node);
+        }
+        "groupingZone" => append_grouping_zone_scene(scene, node),
+        "wiretag" => append_wiretag_scene(scene, node, nodes, edges),
+        _ => return,
+    }
+
+    tag_node_primitives(scene, start, &node.id);
+}
+
+fn node_extent_rect(node: &Node, diagram: &DiagramState) -> Option<RectPx> {
+    let nodes = &diagram.nodes;
+    let edges = &diagram.edges;
+    Some(match node.node_type.as_str() {
+        "deviceV2" | "device" => device_v2_scene_bounds(node),
+        "avPlate" => av_plate_scene_bounds(node),
+        t if is_patch_panel_node_type(t) => patch_panel_scene_bounds(node),
+        "junction" => junction_scene_bounds(node),
+        "speakerBlock" => speaker_block_scene_bounds(node),
+        "micBlock" => mic_block_scene_bounds(node),
+        "volumeControl" => volume_control_scene_bounds(node),
+        "textBlock" => text_block_scene_bounds(node),
+        "flyoffNote" => flyoff_note_scene_bounds(node),
+        "antennaTransmitterSymbol" | "antennaReceiverSymbol" => antenna_scene_bounds(node),
+        "groupingZone" => grouping_zone_scene_bounds(node),
+        "wiretag" => wiretag_scene_bounds(node, nodes, edges),
+        _ => return None,
+    })
 }
 
 /// Options for [`build_scene_with_options`].
@@ -83,66 +170,22 @@ pub fn build_scene_with_options(diagram: &DiagramState, options: SceneBuildOptio
     let mut scene = Scene::default();
     let mut extent_rects: Vec<RectPx> = Vec::new();
 
-    let nodes = &diagram.nodes;
-    let edges = &diagram.edges;
     let active_bundles = if options.filter_bundle_brackets {
         active_bundle_handles(diagram)
     } else {
         std::collections::HashSet::new()
     };
 
-    for node in nodes {
-        match node.node_type.as_str() {
-            "deviceV2" | "device" => {
-                append_device_v2_scene(&mut scene, node, &active_bundles, options.filter_bundle_brackets);
-                extent_rects.push(device_v2_scene_bounds(node));
-            }
-            "avPlate" => {
-                append_av_plate_scene(&mut scene, node, &active_bundles, options.filter_bundle_brackets);
-                extent_rects.push(av_plate_scene_bounds(node));
-            }
-            t if is_patch_panel_node_type(t) => {
-                append_patch_panel_scene(&mut scene, node, &active_bundles, options.filter_bundle_brackets);
-                extent_rects.push(patch_panel_scene_bounds(node));
-            }
-            "junction" => {
-                if append_junction_scene(&mut scene, node) {
-                    extent_rects.push(junction_scene_bounds(node));
-                }
-            }
-            "speakerBlock" => {
-                append_speaker_block_scene(&mut scene, node);
-                extent_rects.push(speaker_block_scene_bounds(node));
-            }
-            "micBlock" => {
-                append_mic_block_scene(&mut scene, node);
-                extent_rects.push(mic_block_scene_bounds(node));
-            }
-            "volumeControl" => {
-                append_volume_control_scene(&mut scene, node);
-                extent_rects.push(volume_control_scene_bounds(node));
-            }
-            "textBlock" => {
-                append_text_block_scene(&mut scene, node);
-                extent_rects.push(text_block_scene_bounds(node));
-            }
-            "flyoffNote" => {
-                append_flyoff_note_scene(&mut scene, node);
-                extent_rects.push(flyoff_note_scene_bounds(node));
-            }
-            "antennaTransmitterSymbol" | "antennaReceiverSymbol" => {
-                append_antenna_scene(&mut scene, node);
-                extent_rects.push(antenna_scene_bounds(node));
-            }
-            "groupingZone" => {
-                append_grouping_zone_scene(&mut scene, node);
-                extent_rects.push(grouping_zone_scene_bounds(node));
-            }
-            "wiretag" => {
-                append_wiretag_scene(&mut scene, node, nodes, edges);
-                extent_rects.push(wiretag_scene_bounds(node, nodes, edges));
-            }
-            _ => {}
+    for node in &diagram.nodes {
+        append_node_to_scene(
+            &mut scene,
+            node,
+            diagram,
+            &active_bundles,
+            options.filter_bundle_brackets,
+        );
+        if let Some(rect) = node_extent_rect(node, diagram) {
+            extent_rects.push(rect);
         }
     }
 

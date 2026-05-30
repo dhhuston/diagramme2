@@ -36,6 +36,7 @@ fn push_polyline(scene: &mut Scene, nx: f64, ny: f64, points: &[(f64, f64)], clo
         color: 0,
         closed,
         edge_id: None,
+    owner_node_id: None,
     });
 }
 
@@ -198,6 +199,7 @@ pub fn draw_bracket_list(
                 halign: HAlign::Center,
                 valign: VAlign::Middle,
                 font: label_style.font.to_string(),
+                owner_node_id: None,
             }));
         }
     }

@@ -53,6 +53,7 @@ fn push_polyline(scene: &mut Scene, points: Vec<PointPx>, closed: bool) {
         color: 0,
         closed,
         edge_id: None,
+    owner_node_id: None,
     });
 }
 
@@ -160,6 +161,7 @@ pub fn append_av_plate_scene(
         halign: to_halign(tag_style.halign),
         valign: to_valign(tag_style.valign),
         font: tag_style.font.to_string(),
+        owner_node_id: None,
     }));
 
     // Frame (closed inset rectangle; breakline when split instance)
@@ -227,6 +229,7 @@ pub fn append_av_plate_scene(
                 halign: to_halign(title_style.halign),
                 valign: to_valign(title_style.valign),
                 font: title_style.font.to_string(),
+                owner_node_id: None,
             }));
         }
     }
@@ -284,6 +287,7 @@ pub fn append_av_plate_scene(
                     halign: to_halign(halign),
                     valign: to_valign(cell_style.valign),
                     font: cell_style.font.to_string(),
+                owner_node_id: None,
                 }));
             }
             AvPlateBodyRow::Header { .. } => {
@@ -294,6 +298,7 @@ pub fn append_av_plate_scene(
                     halign: HAlign::Center,
                     valign: to_valign(cell_style.valign),
                     font: cell_style.font.to_string(),
+                owner_node_id: None,
                 }));
             }
             AvPlateBodyRow::Gap => {}

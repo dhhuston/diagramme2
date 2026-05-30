@@ -55,6 +55,7 @@ fn push_polyline(scene: &mut Scene, points: Vec<PointPx>, closed: bool) {
         color: 0,
         closed,
         edge_id: None,
+    owner_node_id: None,
     });
 }
 
@@ -281,6 +282,7 @@ pub(crate) fn push_patch_panel_frame(
         halign: to_halign(tag_style.halign),
         valign: to_valign(tag_style.valign),
         font: tag_style.font.to_string(),
+        owner_node_id: None,
     }));
 
     if show_breakline {
@@ -339,6 +341,7 @@ pub(crate) fn push_patch_panel_frame(
             halign: to_halign(title_style.halign),
             valign: to_valign(title_style.valign),
             font: title_style.font.to_string(),
+            owner_node_id: None,
         }));
     }
     f_top
@@ -361,6 +364,7 @@ fn push_row_label_text(
         halign,
         valign: VAlign::Bottom,
         font: style.font.to_string(),
+        owner_node_id: None,
     }));
 }
 
@@ -511,6 +515,7 @@ pub fn append_patch_panel_scene(
                         halign: HAlign::Center,
                         valign: VAlign::Middle,
                         font: row_label_style.font.to_string(),
+                        owner_node_id: None,
                     }));
                 }
                 let num = (i + 1).to_string();

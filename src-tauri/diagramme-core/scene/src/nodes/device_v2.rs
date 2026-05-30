@@ -60,6 +60,7 @@ fn scene_text_from_role(
         halign: to_halign(halign_override.unwrap_or(style.halign)),
         valign: to_valign(style.valign),
         font: style.font.to_string(),
+        owner_node_id: None,
     }
 }
 
@@ -78,6 +79,7 @@ fn push_polyline(scene: &mut Scene, points: Vec<PointPx>, closed: bool) {
         color: 0,
         closed,
         edge_id: None,
+    owner_node_id: None,
     });
 }
 
@@ -202,6 +204,7 @@ pub fn append_device_v2_scene(
         halign: to_halign(tag_style.halign),
         valign: to_valign(tag_style.valign),
         font: tag_style.font.to_string(),
+        owner_node_id: None,
     }));
 
     // Frame (closed inset rectangle; breakline when split instance)
@@ -367,6 +370,7 @@ pub fn append_device_v2_scene(
                 halign: to_halign(left_align),
                 valign: to_valign(cell_style.valign),
                 font: cell_style.font.to_string(),
+                owner_node_id: None,
             }));
         }
 
@@ -396,6 +400,7 @@ pub fn append_device_v2_scene(
                 halign: to_halign(right_align),
                 valign: to_valign(cell_style.valign),
                 font: cell_style.font.to_string(),
+                owner_node_id: None,
             }));
         }
     }

@@ -15,7 +15,7 @@ export default function App() {
     beginDragPreview,
     loadDiagramJson,
     refreshScene,
-    refreshSceneQuiet,
+    refreshScenePatchQuiet,
   } = useDiagramScene()
   const [status, setStatus] = useState<string | null>(null)
   const [selectedHit, setSelectedHit] = useState<HitTarget | null>(null)
@@ -68,9 +68,9 @@ export default function App() {
     async (nodeId: string, position: PointPx) => {
       const gen = beginDragPreview()
       await moveNode(nodeId, position, null, true)
-      await refreshSceneQuiet(gen)
+      await refreshScenePatchQuiet(nodeId, gen)
     },
-    [beginDragPreview, refreshSceneQuiet],
+    [beginDragPreview, refreshScenePatchQuiet],
   )
 
   const handleNodeMoveCommit = useCallback(

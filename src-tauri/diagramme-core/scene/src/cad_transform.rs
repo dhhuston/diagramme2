@@ -181,6 +181,7 @@ fn primitive_to_cad(primitive: &ScenePrimitive, ext: ExtentIn) -> CadPrimitive {
             color,
             closed,
             edge_id,
+            owner_node_id: _,
         } => CadPrimitive::Polyline {
             points: points
                 .iter()

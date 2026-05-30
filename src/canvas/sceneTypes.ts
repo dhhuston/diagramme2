@@ -22,6 +22,7 @@ export interface SceneText {
   halign: HAlign
   valign: VAlign
   font: string
+  owner_node_id?: string
 }
 
 export interface ScenePolyline {
@@ -31,6 +32,7 @@ export interface ScenePolyline {
   color: number
   closed?: boolean
   edge_id?: string
+  owner_node_id?: string
 }
 
 export interface SceneRect {
@@ -63,5 +65,13 @@ export interface HitTarget {
 export interface SceneJson {
   primitives: ScenePrimitive[]
   extent: RectPx
+  hits: HitTarget[]
+}
+
+/** Partial scene from `get_diagram_scene_patch` after drag preview. */
+export interface ScenePatchJson {
+  node_ids: string[]
+  edge_ids: string[]
+  primitives: ScenePrimitive[]
   hits: HitTarget[]
 }

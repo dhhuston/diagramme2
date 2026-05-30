@@ -43,6 +43,7 @@ pub fn push_polyline(scene: &mut Scene, points: Vec<PointPx>, closed: bool, laye
         color: 0,
         closed,
         edge_id: None,
+        owner_node_id: None,
     });
 }
 
@@ -135,6 +136,7 @@ pub fn scene_text_from_role(
         halign: to_halign(halign_override.unwrap_or(style.halign)),
         valign: to_valign(valign_override.unwrap_or(style.valign)),
         font: style.font.to_string(),
+        owner_node_id: None,
     }
 }
 
