@@ -65,10 +65,3 @@ export interface SceneJson {
   extent: RectPx
   hits: HitTarget[]
 }
-
-export interface ScenePatchJson {
-  node_ids: string[]
-  edge_ids: string[]
-  primitives: ScenePrimitive[]
-  hits: HitTarget[]
-}

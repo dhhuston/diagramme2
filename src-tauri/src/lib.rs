@@ -43,7 +43,6 @@ pub fn run() {
             commands::get_project,
             commands::get_state,
             commands::get_diagram_scene,
-            commands::get_diagram_scene_patch,
             commands::export_revit_dxf,
             commands::set_state,
             commands::sync_state,

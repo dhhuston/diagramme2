@@ -14,7 +14,6 @@ import type {
   PointPx,
   RectPx,
   SceneJson,
-  ScenePatchJson,
   ScenePrimitive,
   SceneText,
   VAlign,
@@ -26,7 +25,6 @@ export type {
   PointPx,
   RectPx,
   SceneJson,
-  ScenePatchJson,
   ScenePrimitive,
   SceneText,
   VAlign,
@@ -110,9 +108,6 @@ export const getProject = () => invoke<ProjectState>('get_project')
 
 export const getState = () => invoke<DiagramState>('get_state')
 export const getDiagramScene = () => invoke<SceneJson>('get_diagram_scene')
-
-export const getDiagramScenePatch = (nodeId: string) =>
-  invoke<ScenePatchJson>('get_diagram_scene_patch', { nodeId })
 export const exportRevitDxf = () => invoke<string>('export_revit_dxf')
 export const setState = (next: DiagramState) => invoke<DiagramState>('set_state', { next })
 

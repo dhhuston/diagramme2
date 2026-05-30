@@ -357,29 +357,6 @@ fn polylines_from_dxf_pieces(pieces: &[RevitDxfWirePiece]) -> Vec<Vec<PointPx>> 
     out
 }
 
-fn append_wire_record_to_scene(
-    scene: &mut Scene,
-    edge: &Edge,
-    record: &diagramme_wires::WireGeometryEdgeRecord,
-    node_lookup: &std::collections::HashMap<String, Node>,
-) {
-    let (layer, color) = wire_style_for_edge(edge, node_lookup);
-    let polylines = if !record.dxf_pieces.is_empty() {
-        polylines_from_dxf_pieces(&record.dxf_pieces)
-    } else if record.sharp_polyline.len() >= 2 {
-        vec![record
-            .sharp_polyline
-            .iter()
-            .map(|&p| flow_to_px(p))
-            .collect()]
-    } else {
-        Vec::new()
-    };
-    for points in polylines {
-        push_wire_polyline(scene, points, &layer, color, &edge.id);
-    }
-}
-
 /// Append wire `ScenePrimitive::Polyline` entries from a wire geometry model.
 pub fn append_wires_to_scene(scene: &mut Scene, model: &WireGeometryModel, diagram: &DiagramState) {
     let node_lookup = node_lookup_for_wire_geometry(&diagram.nodes);
@@ -387,26 +364,21 @@ pub fn append_wires_to_scene(scene: &mut Scene, model: &WireGeometryModel, diagr
         let Some(record) = model.edges.get(&edge.id) else {
             continue;
         };
-        append_wire_record_to_scene(scene, edge, record, &node_lookup);
-    }
-}
-
-/// Append wire polylines for a subset of edges (drag preview patch).
-pub fn append_wires_to_scene_for_edges(
-    scene: &mut Scene,
-    model: &WireGeometryModel,
-    diagram: &DiagramState,
-    edge_ids: &std::collections::HashSet<String>,
-) {
-    let node_lookup = node_lookup_for_wire_geometry(&diagram.nodes);
-    for edge in &diagram.edges {
-        if !edge_ids.contains(&edge.id) {
-            continue;
-        }
-        let Some(record) = model.edges.get(&edge.id) else {
-            continue;
+        let (layer, color) = wire_style_for_edge(edge, &node_lookup);
+        let polylines = if !record.dxf_pieces.is_empty() {
+            polylines_from_dxf_pieces(&record.dxf_pieces)
+        } else if record.sharp_polyline.len() >= 2 {
+            vec![record
+                .sharp_polyline
+                .iter()
+                .map(|&p| flow_to_px(p))
+                .collect()]
+        } else {
+            Vec::new()
         };
-        append_wire_record_to_scene(scene, edge, record, &node_lookup);
+        for points in polylines {
+            push_wire_polyline(scene, points, &layer, color, &edge.id);
+        }
     }
 }
 
