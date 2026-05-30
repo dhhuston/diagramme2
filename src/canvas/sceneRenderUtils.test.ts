@@ -5,6 +5,7 @@ import {
   fitExtentToStage,
   konvaStrokeWidthPx,
   polylineToKonvaPoints,
+  primitiveKey,
   sceneCapHeightToFontSizePx,
   solidLayerFillCss,
   textAnchorOffsetX,
@@ -63,5 +64,12 @@ describe('sceneRenderUtils', () => {
     expect(textAnchorOffsetY('Top', 9)).toBe(0)
     expect(textAnchorOffsetY('Middle', 9)).toBe(4.5)
     expect(textAnchorOffsetY('Bottom', 9)).toBe(9)
+  })
+
+  it('primitiveKey disambiguates wire segments that share edge_id', () => {
+    const wire = { edge_id: 'e-1', points: [], stroke_px: 1, layer: 'WIRES', color: 0 }
+    expect(primitiveKey('polyline', 3, wire)).toBe('polyline-e-1-3')
+    expect(primitiveKey('polyline', 4, wire)).toBe('polyline-e-1-4')
+    expect(primitiveKey('polyline', 3, wire)).not.toBe(primitiveKey('polyline', 4, wire))
   })
 })

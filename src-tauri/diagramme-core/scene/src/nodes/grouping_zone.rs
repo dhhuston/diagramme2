@@ -7,7 +7,7 @@ use diagramme_geometry::{
 use diagramme_schema::Node;
 
 use crate::nodes::emit::{
-    push_dashed_line_px, push_text, scene_text_from_role, node_height, node_width,
+    push_dashed_line_px, push_node_body_hit, push_text, scene_text_from_role, node_height, node_width,
 };
 use crate::scene::Scene;
 use crate::text::sanitize_text;
@@ -103,4 +103,6 @@ pub fn append_grouping_zone_scene(scene: &mut Scene, node: &Node) {
             ),
         );
     }
+
+    push_node_body_hit(scene, node, grouping_zone_scene_bounds(node));
 }

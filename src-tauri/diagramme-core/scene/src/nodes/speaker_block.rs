@@ -9,7 +9,7 @@ use diagramme_geometry::{
 use diagramme_schema::Node;
 
 use crate::nodes::emit::{
-    push_line, push_polyline, push_text, scene_text_from_role, DEFAULT_LAYER,
+    push_line, push_node_body_hit, push_polyline, push_text, scene_text_from_role, DEFAULT_LAYER,
 };
 use crate::scene::Scene;
 use crate::text::sanitize_text;
@@ -133,4 +133,6 @@ pub fn append_speaker_block_scene(scene: &mut Scene, node: &Node) {
             None,
         ),
     );
+
+    push_node_body_hit(scene, node, speaker_block_scene_bounds(node));
 }

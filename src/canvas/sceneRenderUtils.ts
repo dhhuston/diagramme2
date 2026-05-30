@@ -117,9 +117,10 @@ export function konvaVerticalAlign(valign: VAlign): 'top' | 'middle' | 'bottom' 
   }
 }
 
+/** Stable React key — index disambiguates multiple polylines per wire (crossing-gap splits). */
 export function primitiveKey(kind: string, index: number, polyline?: ScenePolyline): string {
   if (polyline?.edge_id) {
-    return `${kind}-${polyline.edge_id}`
+    return `${kind}-${polyline.edge_id}-${index}`
   }
   return `${kind}-${index}`
 }

@@ -9,12 +9,21 @@ import { useViewport } from './useViewport'
 
 type DiagramStageProps = {
   scene: SceneJson
+  /** Increment when a new diagram loads to fit the viewport once. */
+  fitRevision: number
   onHit?: (hit: HitTarget | null) => void
-  onNodeMove?: (nodeId: string, position: PointPx) => void | Promise<void>
+  onNodeDragPreview?: (nodeId: string, position: PointPx) => void | Promise<void>
+  onNodeMoveCommit?: (nodeId: string, position: PointPx) => void | Promise<void>
 }
 
 /** Konva stage: 1 diagram px = 1 unit at scale 1; wheel zoom + drag pan. */
-export function DiagramStage({ scene, onHit, onNodeMove }: DiagramStageProps) {
+export function DiagramStage({
+  scene,
+  fitRevision,
+  onHit,
+  onNodeDragPreview,
+  onNodeMoveCommit,
+}: DiagramStageProps) {
   const hostRef = useRef<HTMLDivElement>(null)
   const [size, setSize] = useState({ width: 800, height: 600 })
   const { viewport, setFit, setPan, onWheel } = useViewport()
@@ -29,7 +38,8 @@ export function DiagramStage({ scene, onHit, onNodeMove }: DiagramStageProps) {
     scene,
     viewport,
     onHit,
-    onNodeMove,
+    onNodeDragPreview,
+    onNodeMoveCommit,
     onPan: setPan,
   })
 
@@ -47,9 +57,10 @@ export function DiagramStage({ scene, onHit, onNodeMove }: DiagramStageProps) {
     return () => observer.disconnect()
   }, [])
 
+  // Fit on diagram load and window resize — not on drag scene rebuilds.
   useEffect(() => {
     setFit(fitExtentToStage(scene.extent, size.width, size.height))
-  }, [scene.extent, size.width, size.height, setFit])
+  }, [fitRevision, size.width, size.height, setFit])
 
   return (
     <div ref={hostRef} className="diagram-stage-host">
@@ -62,7 +73,14 @@ export function DiagramStage({ scene, onHit, onNodeMove }: DiagramStageProps) {
         onPointerUp={handlePointerUp}
         onClick={handleStageClick}
       >
-        <Layer x={viewport.x} y={viewport.y} scaleX={viewport.scale} scaleY={viewport.scale}>
+        <Layer
+          x={viewport.x}
+          y={viewport.y}
+          scaleX={viewport.scale}
+          scaleY={viewport.scale}
+          clearBeforeDraw
+          hitGraphEnabled={false}
+        >
           <SceneRenderer scene={scene} nodeDrag={nodeDrag} />
         </Layer>
       </Stage>

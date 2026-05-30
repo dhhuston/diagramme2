@@ -6,7 +6,7 @@ use diagramme_geometry::{
 };
 use diagramme_schema::Node;
 
-use crate::nodes::emit::{push_polyline, push_text, scene_text_from_role, DEFAULT_LAYER};
+use crate::nodes::emit::{push_polyline, push_node_body_hit, push_text, scene_text_from_role, DEFAULT_LAYER};
 use crate::scene::Scene;
 use crate::text::sanitize_text;
 
@@ -50,4 +50,6 @@ pub fn append_volume_control_scene(scene: &mut Scene, node: &Node) {
             None,
         ),
     );
+
+    push_node_body_hit(scene, node, volume_control_scene_bounds(node));
 }

@@ -8,11 +8,18 @@ use diagramme_geometry::{
 use diagramme_schema::{Edge, Node};
 use std::collections::HashMap;
 
+use crate::bundle_wire::is_bundle_wire_edge;
+use crate::obstacles::{
+    collect_wire_obstacles, obstacles_near_wire_aabb, WIRE_OBSTACLE_CLEARANCE_PX,
+};
 use crate::postprocess::postprocess_dxf_wire_records_for_revit_by_edge;
 use crate::types::{
     DxfWirePolylineRecord, FlowXY, HandleSide, StubEndpoints, WireGeometryEdgeRecord,
-    WireGeometryModel, WireGeometryOptions, WirePolylineResult, WirePolylineSource,
+    WireGeometryModel, WireGeometryOptions, WireObstacleBox, WirePolylineResult, WirePolylineSource,
 };
+use crate::wire_avoidance::{apply_wire_obstacle_avoidance, chain_needs_avoidance};
+
+pub use crate::inner_corners::get_inner_corners_from_edge_data;
 
 const DEFAULT_STUB: f64 = 2.0 * SNAP_GRID_PX;
 
@@ -132,7 +139,7 @@ fn is_axis_aligned_segment(a: FlowXY, b: FlowXY) -> bool {
     sx != sy
 }
 
-fn orthogonalize_chain(chain: &[FlowXY]) -> Vec<FlowXY> {
+pub(crate) fn orthogonalize_chain(chain: &[FlowXY]) -> Vec<FlowXY> {
     if chain.len() < 2 {
         return chain.iter().copied().map(snap_point).collect();
     }
@@ -170,7 +177,7 @@ fn orthogonalize_chain(chain: &[FlowXY]) -> Vec<FlowXY> {
     dedupe_consecutive_points(&out)
 }
 
-fn sanitize_orthogonal_chain(chain: &[FlowXY]) -> Vec<FlowXY> {
+pub(crate) fn sanitize_orthogonal_chain(chain: &[FlowXY]) -> Vec<FlowXY> {
     if chain.len() <= 2 {
         return chain.to_vec();
     }
@@ -269,6 +276,7 @@ pub fn build_inner_chain_points(
     source_position: HandleSide,
     target_position: HandleSide,
     inner_corners: Option<&[FlowXY]>,
+    obstacles: Option<&[WireObstacleBox]>,
 ) -> Vec<FlowXY> {
     let chain = if inner_corners.is_none_or(|c| c.is_empty()) {
         default_inner_chain_points(s1, t1, source_position, target_position)
@@ -287,6 +295,12 @@ pub fn build_inner_chain_points(
             chain
         }
     };
+
+    if let Some(obs) = obstacles {
+        if !obs.is_empty() && chain_needs_avoidance(&chain, obs) {
+            return apply_wire_obstacle_avoidance(&chain, obs, 4);
+        }
+    }
     chain
 }
 
@@ -298,6 +312,7 @@ pub fn compute_schematic_wire_polyline(
     source_position: HandleSide,
     target_position: HandleSide,
     inner_corners: Option<&[FlowXY]>,
+    obstacles: Option<&[WireObstacleBox]>,
 ) -> Option<Vec<FlowXY>> {
     if !is_finite_xy(source_x, source_y) || !is_finite_xy(target_x, target_y) {
         return None;
@@ -321,6 +336,7 @@ pub fn compute_schematic_wire_polyline(
         source_position,
         target_position,
         inner_corners,
+        obstacles,
     );
     if chain.len() < 2 {
         return None;
@@ -331,24 +347,47 @@ pub fn compute_schematic_wire_polyline(
     Some(chain)
 }
 
-pub fn get_inner_corners_from_edge_data(data: &serde_json::Value) -> Option<Vec<FlowXY>> {
-    let raw = data.get("innerCorners")?.as_array()?;
-    if raw.is_empty() {
-        return None;
+/// Stub ends (S1, T1) used for bend translation when a node moves.
+pub fn wire_chain_stub_ends(
+    edge: &Edge,
+    nodes: &[Node],
+    edges: &[Edge],
+) -> Option<(FlowXY, FlowXY)> {
+    let src = nodes.iter().find(|n| n.id == edge.source)?;
+    let tgt = nodes.iter().find(|n| n.id == edge.target)?;
+    let sh = edge.source_handle.as_deref();
+    let th = edge.target_handle.as_deref();
+    let sc = read_handle_center(&edge.data, "sourceHandleCenter");
+    let tc = read_handle_center(&edge.data, "targetHandleCenter");
+    let src_port = sh.and_then(|h| analytical_port_xy(src, h, nodes, edges));
+    let tgt_port = th.and_then(|h| analytical_port_xy(tgt, h, nodes, edges));
+    let source = endpoint_for_export(src_port, sc, &src.node_type)?;
+    let target = endpoint_for_export(tgt_port, tc, &tgt.node_type)?;
+
+    if !is_schematic_wire_edge_type(edge.edge_type.as_deref()) {
+        return Some((source, target));
     }
-    let mut out = Vec::new();
-    for p in raw {
-        let x = p.get("x")?.as_f64()?;
-        let y = p.get("y")?.as_f64()?;
-        if x.is_finite() && y.is_finite() {
-            out.push(FlowXY { x, y });
-        }
-    }
-    if out.is_empty() {
-        None
-    } else {
-        Some(out)
-    }
+
+    let dx = target.x - source.x;
+    let dy = target.y - source.y;
+    let inferred_source = infer_handle_side(dx, dy, true);
+    let inferred_target = infer_handle_side(dx, dy, false);
+    let source_position = sh
+        .and_then(|h| known_handle_position(&src.node_type, Some(h)))
+        .unwrap_or(inferred_source);
+    let target_position = th
+        .and_then(|h| known_handle_position(&tgt.node_type, Some(h)))
+        .unwrap_or(inferred_target);
+
+    let stubs = compute_stub_endpoints(
+        source.x,
+        source.y,
+        target.x,
+        target.y,
+        source_position,
+        target_position,
+    )?;
+    Some((stubs.s1, stubs.t1))
 }
 
 fn read_handle_center(data: &serde_json::Value, key: &str) -> Option<FlowXY> {
@@ -664,6 +703,19 @@ pub fn fallback_polyline_from_ports(
         .and_then(|h| known_handle_position(&tgt.node_type, Some(h)))
         .unwrap_or(inferred_target);
 
+    let nodes_by_id = node_lookup_for_wire_geometry(nodes);
+    let obstacles = collect_wire_obstacles(
+        &nodes_by_id,
+        &edge.source,
+        &edge.target,
+        WIRE_OBSTACLE_CLEARANCE_PX,
+    );
+    let wire_lo_x = source.x.min(target.x);
+    let wire_hi_x = source.x.max(target.x);
+    let wire_lo_y = source.y.min(target.y);
+    let wire_hi_y = source.y.max(target.y);
+    let nearby = obstacles_near_wire_aabb(&obstacles, wire_lo_x, wire_lo_y, wire_hi_x, wire_hi_y);
+
     compute_schematic_wire_polyline(
         source.x,
         source.y,
@@ -672,6 +724,7 @@ pub fn fallback_polyline_from_ports(
         source_position,
         target_position,
         inner_corners.as_deref(),
+        Some(&nearby),
     )
     .or_else(|| Some(vec![source, target]))
 }
@@ -731,8 +784,7 @@ pub fn build_wire_geometry_model(
             continue;
         }
 
-        let is_bundle = is_bundle_handle_id(edge.source_handle.as_deref())
-            || is_bundle_handle_id(edge.target_handle.as_deref());
+        let is_bundle = is_bundle_wire_edge(edge, nodes, edges);
 
         let record = WireGeometryEdgeRecord {
             edge_id: edge.id.clone(),

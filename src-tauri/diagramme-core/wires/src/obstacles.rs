@@ -91,6 +91,7 @@ pub fn collect_wire_obstacles(
             out.push(box_);
         }
     }
+    out.sort_by(|a, b| a.id.cmp(&b.id));
     out
 }
 

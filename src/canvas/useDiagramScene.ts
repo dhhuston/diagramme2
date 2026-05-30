@@ -9,8 +9,10 @@ export function useDiagramScene() {
   const [scene, setScene] = useState<SceneJson | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [busy, setBusy] = useState(false)
+  const [fitRevision, setFitRevision] = useState(0)
   const debounceTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const refreshGeneration = useRef(0)
+  const previewGeneration = useRef(0)
 
   const clearDebounce = useCallback(() => {
     if (debounceTimer.current != null) {
@@ -19,14 +21,33 @@ export function useDiagramScene() {
     }
   }, [])
 
+  const publishScene = useCallback((next: SceneJson) => {
+    setScene(next)
+    setError(null)
+  }, [])
+
+  /** Scene refresh during drag — drops stale IPC responses. */
+  const refreshSceneQuiet = useCallback(async (generation?: number) => {
+    const next = await getDiagramScene()
+    if (generation != null && generation !== previewGeneration.current) {
+      return next
+    }
+    publishScene(next)
+    return next
+  }, [publishScene])
+
+  const beginDragPreview = useCallback(() => {
+    previewGeneration.current += 1
+    return previewGeneration.current
+  }, [])
+
   const refreshScene = useCallback(async () => {
     const generation = ++refreshGeneration.current
     setBusy(true)
     try {
       const next = await getDiagramScene()
       if (generation !== refreshGeneration.current) return next
-      setScene(next)
-      setError(null)
+      publishScene(next)
       return next
     } catch (err) {
       if (generation === refreshGeneration.current) {
@@ -38,7 +59,7 @@ export function useDiagramScene() {
         setBusy(false)
       }
     }
-  }, [])
+  }, [publishScene])
 
   const refreshSceneDebounced = useCallback(
     (debounceMs = DEFAULT_DEBOUNCE_MS) => {
@@ -54,7 +75,9 @@ export function useDiagramScene() {
   const loadDiagramJson = useCallback(
     async (json: string) => {
       await openDiagram(json)
-      return refreshScene()
+      const next = await refreshScene()
+      setFitRevision((revision) => revision + 1)
+      return next
     },
     [refreshScene],
   )
@@ -65,7 +88,10 @@ export function useDiagramScene() {
     scene,
     error,
     busy,
+    fitRevision,
+    beginDragPreview,
     refreshScene,
+    refreshSceneQuiet,
     refreshSceneDebounced,
     loadDiagramJson,
   }

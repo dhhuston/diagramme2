@@ -9,7 +9,7 @@ use diagramme_geometry::{
 use diagramme_schema::Node;
 
 use crate::nodes::emit::{
-    push_circle_polyline, push_line, push_text, scene_text_from_role,
+    push_circle_polyline, push_line, push_node_body_hit, push_text, scene_text_from_role,
 };
 use crate::scene::Scene;
 use crate::text::sanitize_text;
@@ -98,4 +98,6 @@ pub fn append_mic_block_scene(scene: &mut Scene, node: &Node) {
     );
 
     let _ = MIC_SPEAKER_VC_STRIP_HEIGHT_PX;
+
+    push_node_body_hit(scene, node, mic_block_scene_bounds(node));
 }

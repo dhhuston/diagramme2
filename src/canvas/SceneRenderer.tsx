@@ -1,10 +1,6 @@
 import { Line, Rect, Shape } from 'react-konva'
 
-import {
-  belongsToNodeDrag,
-  offsetScenePrimitive,
-  type NodeDragPreview,
-} from './interaction/dragNode'
+import { dragVisualDelta, nodeBodyBounds, type NodeDragTarget } from './interaction/dragNode'
 import { SceneTextNode } from './SceneTextNode'
 import {
   colorRgbToCss,
@@ -13,11 +9,12 @@ import {
   primitiveKey,
   solidLayerFillCss,
 } from './sceneRenderUtils'
-import type { SceneJson, ScenePrimitive } from './sceneTypes'
+import type { HitTarget, SceneJson, ScenePrimitive } from './sceneTypes'
 
 type SceneRendererProps = {
   scene: SceneJson
-  nodeDrag?: NodeDragPreview | null
+  /** Pointer target while dragging — used for a dashed outline only, never geometry clone. */
+  nodeDrag?: NodeDragTarget | null
 }
 
 function renderPrimitive(primitive: ScenePrimitive, index: number) {
@@ -86,26 +83,44 @@ function renderPrimitive(primitive: ScenePrimitive, index: number) {
   return <SceneTextNode key={primitiveKey('text', index)} text={t} />
 }
 
-function effectivePrimitive(
-  primitive: ScenePrimitive,
-  nodeDrag: NodeDragPreview | null | undefined,
-): ScenePrimitive {
-  if (!nodeDrag || (nodeDrag.dx === 0 && nodeDrag.dy === 0)) {
-    return primitive
+function dragTargetOutline(
+  hits: HitTarget[],
+  nodeDrag: NodeDragTarget,
+): { x: number; y: number; width: number; height: number } | null {
+  const body = nodeBodyBounds(hits, nodeDrag.nodeId)
+  const delta = dragVisualDelta(hits, nodeDrag.nodeId, nodeDrag.targetOrigin)
+  if (!body || !delta) {
+    return null
   }
-  if (!belongsToNodeDrag(primitive, nodeDrag.nodeId, nodeDrag.captureBounds)) {
-    return primitive
+  return {
+    x: body.x + delta.x,
+    y: body.y + delta.y,
+    width: body.width,
+    height: body.height,
   }
-  return offsetScenePrimitive(primitive, nodeDrag.dx, nodeDrag.dy)
 }
 
 /** Renders authoritative Rust scene primitives in diagram px (Y-down). */
 export function SceneRenderer({ scene, nodeDrag }: SceneRendererProps) {
+  const outline = nodeDrag ? dragTargetOutline(scene.hits, nodeDrag) : null
+
   return (
     <>
-      {scene.primitives.map((primitive, index) =>
-        renderPrimitive(effectivePrimitive(primitive, nodeDrag), index),
-      )}
+      {scene.primitives.map((primitive, index) => renderPrimitive(primitive, index))}
+      {outline ? (
+        <Rect
+          key="drag-target-outline"
+          x={outline.x}
+          y={outline.y}
+          width={outline.width}
+          height={outline.height}
+          stroke="rgba(30, 100, 220, 0.75)"
+          strokeWidth={1}
+          dash={[6, 4]}
+          listening={false}
+          perfectDrawEnabled={false}
+        />
+      ) : null}
     </>
   )
 }

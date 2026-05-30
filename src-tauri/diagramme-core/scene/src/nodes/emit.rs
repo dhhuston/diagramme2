@@ -1,11 +1,11 @@
 //! Shared scene emission helpers for schematic node appenders.
 
 use diagramme_geometry::{
-    text_style_for_role, PointPx, TextHAlign, TextRole, TextVAlign,
+    text_style_for_role, PointPx, RectPx, TextHAlign, TextRole, TextVAlign,
 };
 use diagramme_schema::Node;
 
-use crate::scene::{HAlign, Scene, ScenePrimitive, SceneText, VAlign};
+use crate::scene::{HitTarget, HAlign, Scene, ScenePrimitive, SceneText, VAlign};
 
 pub const DEFAULT_LAYER: &str = "0";
 pub const INKFILL_LAYER: &str = "INKFILL";
@@ -154,5 +154,20 @@ pub fn with_split_suffix(base: &str, split_instance: Option<u64>) -> String {
     match split_instance {
         Some(n) => format!("{} ({n})", base.trim()),
         None => base.trim().to_string(),
+    }
+}
+
+/// Draggable node body hit — grouping zones insert at front so they sit behind other nodes.
+pub fn push_node_body_hit(scene: &mut Scene, node: &Node, bounds: RectPx) {
+    let hit = HitTarget {
+        id: node.id.clone(),
+        bounds,
+        node_id: Some(node.id.clone()),
+        edge_id: None,
+    };
+    if node.node_type == "groupingZone" {
+        scene.hits.insert(0, hit);
+    } else {
+        scene.hits.push(hit);
     }
 }

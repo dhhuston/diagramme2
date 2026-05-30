@@ -6,7 +6,7 @@ use diagramme_geometry::{
 };
 use diagramme_schema::Node;
 
-use crate::nodes::emit::{push_line, with_split_suffix};
+use crate::nodes::emit::{push_line, push_node_body_hit, with_split_suffix};
 use crate::nodes::patch_panel::push_patch_panel_frame;
 use crate::scene::Scene;
 use crate::text::sanitize_text;
@@ -76,5 +76,6 @@ pub fn append_junction_scene(scene: &mut Scene, node: &Node) -> bool {
         );
     }
 
+    push_node_body_hit(scene, node, junction_scene_bounds(node));
     true
 }

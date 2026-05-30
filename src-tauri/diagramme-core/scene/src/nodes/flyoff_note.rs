@@ -6,7 +6,7 @@ use diagramme_geometry::{
 use diagramme_schema::Node;
 
 use crate::nodes::emit::{
-    local_to_diagram, push_solid_triangle, push_text, scene_text_from_role, node_width,
+    local_to_diagram, push_node_body_hit, push_solid_triangle, push_text, scene_text_from_role, node_width,
 };
 use crate::scene::Scene;
 use crate::text::sanitize_text;
@@ -82,4 +82,5 @@ pub fn append_flyoff_note_scene(scene: &mut Scene, node: &Node) {
         crate::scene::HAlign::Right
     };
     push_text(scene, flyoff_text);
+    push_node_body_hit(scene, node, flyoff_note_scene_bounds(node));
 }

@@ -8,6 +8,7 @@ use crate::close_gate::AllowNextClose;
 use crate::debug_channel;
 use crate::state::AppState;
 use diagramme_dxf::build_revit_dxf_from_diagram;
+use diagramme_wires::apply_node_move_geometry;
 use diagramme_scene::{build_scene, Scene};
 use diagramme_schema::{
     validate_diagram_envelope, DiagramState, EmbeddedPreset, Node, NodeDimension, ProjectState,
@@ -226,15 +227,12 @@ pub fn move_node(
     if is_drag_preview == Some(true) {
         let mut project = state.0.lock().unwrap();
         let diagram = &mut project.active_sheet_mut().state;
-        if let Some(node) = diagram.nodes.iter_mut().find(|n| n.id == node_id) {
-            node.position = position;
-        }
+        apply_node_move_geometry(diagram, &node_id, position);
+        maybe_apply_edge_handle_attachments(diagram, handle_attachment_updates);
         return diagram.clone();
     }
     mutate_active_diagram(&state, &app, |diagram| {
-        if let Some(node) = diagram.nodes.iter_mut().find(|n| n.id == node_id) {
-            node.position = position;
-        }
+        apply_node_move_geometry(diagram, &node_id, position);
         maybe_apply_edge_handle_attachments(diagram, handle_attachment_updates);
     })
 }
@@ -265,9 +263,7 @@ pub fn move_nodes(
 ) -> DiagramState {
     mutate_active_diagram(&state, &app, |diagram| {
         for m in &moves {
-            if let Some(node) = diagram.nodes.iter_mut().find(|n| n.id == m.node_id) {
-                node.position = m.position;
-            }
+            apply_node_move_geometry(diagram, &m.node_id, m.position);
         }
         maybe_apply_edge_handle_attachments(diagram, handle_attachment_updates);
     })
@@ -531,15 +527,11 @@ pub fn export_revit_dxf_for_state(state: &AppState) -> Result<String, String> {
 
 /// Apply a node move on in-memory project state (used by integration tests).
 pub fn apply_move_node(project: &mut ProjectState, node_id: &str, position: XY) {
-    if let Some(node) = project
-        .active_sheet_mut()
-        .state
-        .nodes
-        .iter_mut()
-        .find(|n| n.id == node_id)
-    {
-        node.position = position;
-    }
+    apply_node_move_geometry(
+        &mut project.active_sheet_mut().state,
+        node_id,
+        position,
+    );
 }
 
 /// Shared test harness wrapping [`AppState`].

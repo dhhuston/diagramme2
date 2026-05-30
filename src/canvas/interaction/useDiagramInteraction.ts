@@ -4,17 +4,17 @@ import type { KonvaEventObject } from 'konva/lib/Node'
 import { hitTestScene, stagePointerToDiagramPx } from '../hitTest'
 import type { HitTarget, PointPx, SceneJson } from '../sceneTypes'
 import type { Viewport } from '../useViewport'
-import {
-  nodeDragCaptureBounds,
-  snappedNodeOrigin,
-  type NodeDragPreview,
-} from './dragNode'
+import { nodeBodyOrigin, snapPoint, type NodeDragTarget } from './dragNode'
+
+const WIRE_PREVIEW_MS = 60
 
 type UseDiagramInteractionOptions = {
   scene: SceneJson
   viewport: Viewport
   onHit?: (hit: HitTarget | null) => void
-  onNodeMove?: (nodeId: string, position: PointPx) => void | Promise<void>
+  /** Coalesced Rust preview — updates node position + wire routing in scene. */
+  onNodeDragPreview?: (nodeId: string, position: PointPx) => void | Promise<void>
+  onNodeMoveCommit?: (nodeId: string, position: PointPx) => void | Promise<void>
   onPan: (next: Pick<Viewport, 'x' | 'y'>) => void
 }
 
@@ -23,22 +23,28 @@ type PanSession = {
   startViewport: PointPx
 }
 
+type DragSession = {
+  nodeId: string
+  targetOrigin: PointPx
+}
+
 export function useDiagramInteraction({
   scene,
   viewport,
   onHit,
-  onNodeMove,
+  onNodeDragPreview,
+  onNodeMoveCommit,
   onPan,
 }: UseDiagramInteractionOptions) {
-  const [nodeDrag, setNodeDrag] = useState<NodeDragPreview | null>(null)
-  const nodeDragRef = useRef<NodeDragPreview | null>(null)
-  const panSession = useRef<PanSession | null>(null)
+  const dragSession = useRef<DragSession | null>(null)
   const dragGrabOffset = useRef<PointPx | null>(null)
+  const [nodeDrag, setNodeDrag] = useState<NodeDragTarget | null>(null)
+  const panSession = useRef<PanSession | null>(null)
   const movedDuringGesture = useRef(false)
-
-  useEffect(() => {
-    nodeDragRef.current = nodeDrag
-  }, [nodeDrag])
+  const previewFrame = useRef<number | null>(null)
+  const previewTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const visualFrame = useRef<number | null>(null)
+  const pendingTarget = useRef<PointPx | null>(null)
 
   const pointerOnStage = useCallback(
     (stage: { getPointerPosition: () => PointPx | null } | null | undefined) => {
@@ -49,16 +55,107 @@ export function useDiagramInteraction({
     [viewport],
   )
 
-  const handlePointerUp = useCallback(() => {
-    const preview = nodeDragRef.current
-    setNodeDrag(null)
-    dragGrabOffset.current = null
-    panSession.current = null
+  const cancelPreviewFrame = useCallback(() => {
+    if (previewFrame.current != null) {
+      cancelAnimationFrame(previewFrame.current)
+      previewFrame.current = null
+    }
+    if (previewTimer.current != null) {
+      clearTimeout(previewTimer.current)
+      previewTimer.current = null
+    }
+  }, [])
 
-    if (!preview || !onNodeMove) return
-    if (preview.dx === 0 && preview.dy === 0) return
-    void onNodeMove(preview.nodeId, snappedNodeOrigin(preview))
-  }, [onNodeMove])
+  const cancelVisualFrame = useCallback(() => {
+    if (visualFrame.current != null) {
+      cancelAnimationFrame(visualFrame.current)
+      visualFrame.current = null
+    }
+  }, [])
+
+  const queueVisualUpdate = useCallback(() => {
+    if (visualFrame.current != null) {
+      return
+    }
+    visualFrame.current = requestAnimationFrame(() => {
+      visualFrame.current = null
+      const session = dragSession.current
+      if (!session) {
+        return
+      }
+      setNodeDrag({
+        nodeId: session.nodeId,
+        targetOrigin: { ...session.targetOrigin },
+      })
+    })
+  }, [])
+
+  const flushPreview = useCallback(async () => {
+    const session = dragSession.current
+    const target = pendingTarget.current
+    if (!session || !target || !onNodeDragPreview) {
+      return
+    }
+    const position = { ...target }
+    try {
+      await onNodeDragPreview(session.nodeId, position)
+    } finally {
+      if (
+        pendingTarget.current &&
+        dragSession.current &&
+        (pendingTarget.current.x !== position.x || pendingTarget.current.y !== position.y)
+      ) {
+        cancelPreviewFrame()
+        previewFrame.current = requestAnimationFrame(() => {
+          previewFrame.current = null
+          void flushPreview()
+        })
+      }
+    }
+  }, [cancelPreviewFrame, onNodeDragPreview])
+
+  const schedulePreview = useCallback(
+    (target: PointPx) => {
+      pendingTarget.current = target
+      if (previewTimer.current != null || previewFrame.current != null) {
+        return
+      }
+      previewTimer.current = setTimeout(() => {
+        previewTimer.current = null
+        previewFrame.current = requestAnimationFrame(() => {
+          previewFrame.current = null
+          void flushPreview()
+        })
+      }, WIRE_PREVIEW_MS)
+    },
+    [flushPreview],
+  )
+
+  const endDrag = useCallback(() => {
+    cancelPreviewFrame()
+    cancelVisualFrame()
+    const session = dragSession.current
+    dragSession.current = null
+    dragGrabOffset.current = null
+    pendingTarget.current = null
+    setNodeDrag(null)
+    return session
+  }, [cancelPreviewFrame, cancelVisualFrame])
+
+  const handlePointerUp = useCallback(() => {
+    panSession.current = null
+    const session = endDrag()
+    if (!session || !onNodeMoveCommit) return
+    const start = nodeBodyOrigin(scene.hits, session.nodeId)
+    if (
+      start &&
+      Math.abs(session.targetOrigin.x - start.x) < 0.01 &&
+      Math.abs(session.targetOrigin.y - start.y) < 0.01
+    ) {
+      return
+    }
+    void onNodeMoveCommit(session.nodeId, snapPoint(session.targetOrigin))
+  }, [endDrag, onNodeMoveCommit, scene.hits])
 
   const handlePointerDown = useCallback(
     (event: KonvaEventObject<PointerEvent>) => {
@@ -68,20 +165,24 @@ export function useDiagramInteraction({
       if (!diagramPoint) return
 
       const hit = hitTestScene(scene.hits, diagramPoint)
-      if (hit?.node_id && onNodeMove) {
+      if (hit?.node_id && onNodeMoveCommit) {
         event.evt.preventDefault()
+        const origin = nodeBodyOrigin(scene.hits, hit.node_id) ?? {
+          x: hit.bounds.x,
+          y: hit.bounds.y,
+        }
         dragGrabOffset.current = {
-          x: diagramPoint.x - hit.bounds.x,
-          y: diagramPoint.y - hit.bounds.y,
+          x: diagramPoint.x - origin.x,
+          y: diagramPoint.y - origin.y,
         }
-        const preview: NodeDragPreview = {
+        dragSession.current = {
           nodeId: hit.node_id,
-          captureBounds: nodeDragCaptureBounds(hit.bounds),
-          origin: { x: hit.bounds.x, y: hit.bounds.y },
-          dx: 0,
-          dy: 0,
+          targetOrigin: { ...origin },
         }
-        setNodeDrag(preview)
+        setNodeDrag({
+          nodeId: hit.node_id,
+          targetOrigin: { ...origin },
+        })
         onHit?.(hit)
         return
       }
@@ -94,7 +195,7 @@ export function useDiagramInteraction({
       }
       onHit?.(hit)
     },
-    [onHit, onNodeMove, pointerOnStage, scene.hits, viewport.x, viewport.y],
+    [onHit, onNodeMoveCommit, pointerOnStage, scene.hits, viewport.x, viewport.y],
   )
 
   const handlePointerMove = useCallback(
@@ -103,18 +204,17 @@ export function useDiagramInteraction({
       const diagramPoint = pointerOnStage(stage)
       if (!diagramPoint) return
 
-      if (nodeDragRef.current && dragGrabOffset.current) {
+      const session = dragSession.current
+      if (session && dragGrabOffset.current) {
         movedDuringGesture.current = true
-        const preview = nodeDragRef.current
-        const nextOrigin = {
+        session.targetOrigin = {
           x: diagramPoint.x - dragGrabOffset.current.x,
           y: diagramPoint.y - dragGrabOffset.current.y,
         }
-        setNodeDrag({
-          ...preview,
-          dx: nextOrigin.x - preview.origin.x,
-          dy: nextOrigin.y - preview.origin.y,
-        })
+        queueVisualUpdate()
+        if (onNodeDragPreview) {
+          schedulePreview(session.targetOrigin)
+        }
         return
       }
 
@@ -127,7 +227,7 @@ export function useDiagramInteraction({
         y: pan.startViewport.y + (pointer.y - pan.startPointer.y),
       })
     },
-    [onPan, pointerOnStage],
+    [onNodeDragPreview, onPan, pointerOnStage, queueVisualUpdate, schedulePreview],
   )
 
   const handleStageClick = useCallback(
@@ -143,13 +243,20 @@ export function useDiagramInteraction({
 
   useEffect(() => {
     const onWindowPointerUp = () => {
-      if (nodeDragRef.current || panSession.current) {
+      if (dragSession.current || panSession.current) {
         handlePointerUp()
       }
     }
     window.addEventListener('pointerup', onWindowPointerUp)
     return () => window.removeEventListener('pointerup', onWindowPointerUp)
   }, [handlePointerUp])
+
+  useEffect(() => {
+    return () => {
+      cancelPreviewFrame()
+      cancelVisualFrame()
+    }
+  }, [cancelPreviewFrame, cancelVisualFrame])
 
   return {
     nodeDrag,

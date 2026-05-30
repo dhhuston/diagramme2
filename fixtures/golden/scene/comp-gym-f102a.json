@@ -13760,12 +13760,31 @@
       "Polyline": {
         "points": [
           {
-            "x": 1164.0,
+            "x": 1092.0,
             "y": 144.0
           },
           {
+            "x": 1092.0,
+            "y": 171.0
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "audio",
+        "color": 11417344,
+        "closed": false,
+        "edge_id": "e-e0b47a6c-c686-4b14-9b94-275396e350d5"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
+          {
             "x": 1164.0,
             "y": 156.0
+          },
+          {
+            "x": 1164.0,
+            "y": 171.0
           }
         ],
         "stroke_px": 1.0,
@@ -13798,7 +13817,26 @@
       "Polyline": {
         "points": [
           {
-            "x": 1164.0,
+            "x": 1092.0,
+            "y": 144.0
+          },
+          {
+            "x": 1157.0,
+            "y": 144.0
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "audio",
+        "color": 11417344,
+        "closed": false,
+        "edge_id": "e-e0b47a6c-c686-4b14-9b94-275396e350d5"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
+          {
+            "x": 1165.0,
             "y": 144.0
           },
           {
@@ -13817,7 +13855,26 @@
       "Polyline": {
         "points": [
           {
+            "x": 1092.0,
+            "y": 171.0
+          },
+          {
             "x": 1164.0,
+            "y": 171.0
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "audio",
+        "color": 11417344,
+        "closed": false,
+        "edge_id": "e-e0b47a6c-c686-4b14-9b94-275396e350d5"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
+          {
+            "x": 1171.0,
             "y": 156.0
           },
           {
@@ -13912,7 +13969,7 @@
       "Polyline": {
         "points": [
           {
-            "x": 1089.0,
+            "x": 1096.0,
             "y": 198.0
           },
           {
@@ -13950,12 +14007,31 @@
       "Polyline": {
         "points": [
           {
-            "x": 1239.0,
+            "x": 1167.0,
             "y": 186.0
           },
           {
+            "x": 1167.0,
+            "y": 213.0
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "audio",
+        "color": 11417344,
+        "closed": false,
+        "edge_id": "e-9344bacd-5d06-4a8c-be48-109b341e7c3c"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
+          {
             "x": 1239.0,
             "y": 204.0
+          },
+          {
+            "x": 1239.0,
+            "y": 213.0
           }
         ],
         "stroke_px": 1.0,
@@ -14007,12 +14083,50 @@
       "Polyline": {
         "points": [
           {
-            "x": 1239.0,
+            "x": 1167.0,
+            "y": 186.0
+          },
+          {
+            "x": 1232.0,
+            "y": 186.0
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "audio",
+        "color": 11417344,
+        "closed": false,
+        "edge_id": "e-9344bacd-5d06-4a8c-be48-109b341e7c3c"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
+          {
+            "x": 1240.0,
             "y": 186.0
           },
           {
             "x": 1246.25,
             "y": 186.0
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "audio",
+        "color": 11417344,
+        "closed": false,
+        "edge_id": "e-9344bacd-5d06-4a8c-be48-109b341e7c3c"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
+          {
+            "x": 1167.0,
+            "y": 213.0
+          },
+          {
+            "x": 1239.0,
+            "y": 213.0
           }
         ],
         "stroke_px": 1.0,
@@ -14064,12 +14178,31 @@
       "Polyline": {
         "points": [
           {
-            "x": 1167.0,
+            "x": 1095.0,
             "y": 228.0
           },
           {
+            "x": 1095.0,
+            "y": 255.0
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "audio",
+        "color": 11417344,
+        "closed": false,
+        "edge_id": "e-a3b14b44-6d95-4ff8-93f4-eca4d5a6b1e4"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
+          {
             "x": 1167.0,
             "y": 240.0
+          },
+          {
+            "x": 1167.0,
+            "y": 255.0
           }
         ],
         "stroke_px": 1.0,
@@ -14102,7 +14235,26 @@
       "Polyline": {
         "points": [
           {
-            "x": 1167.0,
+            "x": 1095.0,
+            "y": 228.0
+          },
+          {
+            "x": 1160.0,
+            "y": 228.0
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "audio",
+        "color": 11417344,
+        "closed": false,
+        "edge_id": "e-a3b14b44-6d95-4ff8-93f4-eca4d5a6b1e4"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
+          {
+            "x": 1168.0,
             "y": 228.0
           },
           {
@@ -14121,6 +14273,25 @@
       "Polyline": {
         "points": [
           {
+            "x": 1095.0,
+            "y": 255.0
+          },
+          {
+            "x": 1167.0,
+            "y": 255.0
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "audio",
+        "color": 11417344,
+        "closed": false,
+        "edge_id": "e-a3b14b44-6d95-4ff8-93f4-eca4d5a6b1e4"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
+          {
             "x": 1167.0,
             "y": 240.0
           },
@@ -14159,12 +14330,31 @@
       "Polyline": {
         "points": [
           {
-            "x": 1242.0,
+            "x": 1341.0,
             "y": 228.0
           },
           {
+            "x": 1341.0,
+            "y": 255.0
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "audio",
+        "color": 11417344,
+        "closed": false,
+        "edge_id": "e-023e949e-0412-4ac8-afe9-ada7cee9eae0"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
+          {
             "x": 1242.0,
             "y": 240.0
+          },
+          {
+            "x": 1242.0,
+            "y": 255.0
           }
         ],
         "stroke_px": 1.0,
@@ -14197,12 +14387,31 @@
       "Polyline": {
         "points": [
           {
-            "x": 1242.0,
+            "x": 1248.25,
             "y": 228.0
           },
           {
-            "x": 1248.25,
+            "x": 1341.0,
             "y": 228.0
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "audio",
+        "color": 11417344,
+        "closed": false,
+        "edge_id": "e-023e949e-0412-4ac8-afe9-ada7cee9eae0"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
+          {
+            "x": 1242.0,
+            "y": 255.0
+          },
+          {
+            "x": 1341.0,
+            "y": 255.0
           }
         ],
         "stroke_px": 1.0,
@@ -14292,7 +14501,7 @@
       "Polyline": {
         "points": [
           {
-            "x": 1092.0,
+            "x": 1099.0,
             "y": 240.0
           },
           {
@@ -14539,7 +14748,7 @@
       "Polyline": {
         "points": [
           {
-            "x": 1089.0,
+            "x": 1096.0,
             "y": 156.0
           },
           {
@@ -15756,23 +15965,8 @@
         "points": [
           {
             "x": 315.0,
-            "y": 285.0
+            "y": 283.5
           },
-          {
-            "x": 327.0,
-            "y": 285.0
-          }
-        ],
-        "stroke_px": 1.0,
-        "layer": "audio",
-        "color": 11417344,
-        "closed": false,
-        "edge_id": "e-492fc5d5-889a-4846-a81d-c22ab0f017b4"
-      }
-    },
-    {
-      "Polyline": {
-        "points": [
           {
             "x": 327.0,
             "y": 285.0
@@ -15812,43 +16006,13 @@
       "Polyline": {
         "points": [
           {
-            "x": 327.0,
-            "y": 285.0
-          },
-          {
-            "x": 327.0,
-            "y": 516.0
-          }
-        ],
-        "stroke_px": 1.0,
-        "layer": "audio",
-        "color": 11417344,
-        "closed": false,
-        "edge_id": "e-d319e691-964a-41ef-b42a-ceb0b687e1f5"
-      }
-    },
-    {
-      "Polyline": {
-        "points": [
-          {
             "x": 315.0,
-            "y": 285.0
+            "y": 283.5
           },
           {
             "x": 327.0,
             "y": 285.0
-          }
-        ],
-        "stroke_px": 1.0,
-        "layer": "audio",
-        "color": 11417344,
-        "closed": false,
-        "edge_id": "e-d319e691-964a-41ef-b42a-ceb0b687e1f5"
-      }
-    },
-    {
-      "Polyline": {
-        "points": [
+          },
           {
             "x": 327.0,
             "y": 516.0
@@ -15869,43 +16033,13 @@
       "Polyline": {
         "points": [
           {
-            "x": 327.0,
-            "y": 285.0
-          },
-          {
-            "x": 327.0,
-            "y": 399.0
-          }
-        ],
-        "stroke_px": 1.0,
-        "layer": "audio",
-        "color": 11417344,
-        "closed": false,
-        "edge_id": "e-a7a47396-ecb2-4425-8e4b-8c41bd9d31e6"
-      }
-    },
-    {
-      "Polyline": {
-        "points": [
-          {
             "x": 315.0,
-            "y": 285.0
+            "y": 283.5
           },
           {
             "x": 327.0,
             "y": 285.0
-          }
-        ],
-        "stroke_px": 1.0,
-        "layer": "audio",
-        "color": 11417344,
-        "closed": false,
-        "edge_id": "e-a7a47396-ecb2-4425-8e4b-8c41bd9d31e6"
-      }
-    },
-    {
-      "Polyline": {
-        "points": [
+          },
           {
             "x": 327.0,
             "y": 399.0
@@ -15926,43 +16060,13 @@
       "Polyline": {
         "points": [
           {
-            "x": 327.0,
-            "y": 285.0
-          },
-          {
-            "x": 327.0,
-            "y": 633.0
-          }
-        ],
-        "stroke_px": 1.0,
-        "layer": "audio",
-        "color": 11417344,
-        "closed": false,
-        "edge_id": "e-3ed3caac-13b5-4d75-85fd-cf0e171e40c9"
-      }
-    },
-    {
-      "Polyline": {
-        "points": [
-          {
             "x": 315.0,
-            "y": 285.0
+            "y": 283.5
           },
           {
             "x": 327.0,
             "y": 285.0
-          }
-        ],
-        "stroke_px": 1.0,
-        "layer": "audio",
-        "color": 11417344,
-        "closed": false,
-        "edge_id": "e-3ed3caac-13b5-4d75-85fd-cf0e171e40c9"
-      }
-    },
-    {
-      "Polyline": {
-        "points": [
+          },
           {
             "x": 327.0,
             "y": 633.0
@@ -15983,43 +16087,13 @@
       "Polyline": {
         "points": [
           {
-            "x": 327.0,
-            "y": 285.0
-          },
-          {
-            "x": 327.0,
-            "y": 753.0
-          }
-        ],
-        "stroke_px": 1.0,
-        "layer": "audio",
-        "color": 11417344,
-        "closed": false,
-        "edge_id": "e-cf4bf35b-bee6-46bc-b352-fac6432fafeb"
-      }
-    },
-    {
-      "Polyline": {
-        "points": [
-          {
             "x": 315.0,
-            "y": 285.0
+            "y": 283.5
           },
           {
             "x": 327.0,
             "y": 285.0
-          }
-        ],
-        "stroke_px": 1.0,
-        "layer": "audio",
-        "color": 11417344,
-        "closed": false,
-        "edge_id": "e-cf4bf35b-bee6-46bc-b352-fac6432fafeb"
-      }
-    },
-    {
-      "Polyline": {
-        "points": [
+          },
           {
             "x": 327.0,
             "y": 753.0
@@ -16040,43 +16114,13 @@
       "Polyline": {
         "points": [
           {
-            "x": 327.0,
-            "y": 285.0
-          },
-          {
-            "x": 327.0,
-            "y": 870.0
-          }
-        ],
-        "stroke_px": 1.0,
-        "layer": "audio",
-        "color": 11417344,
-        "closed": false,
-        "edge_id": "e-67c53702-bcc8-4a32-b0bc-dc88fed5ebd8"
-      }
-    },
-    {
-      "Polyline": {
-        "points": [
-          {
             "x": 315.0,
-            "y": 285.0
+            "y": 283.5
           },
           {
             "x": 327.0,
             "y": 285.0
-          }
-        ],
-        "stroke_px": 1.0,
-        "layer": "audio",
-        "color": 11417344,
-        "closed": false,
-        "edge_id": "e-67c53702-bcc8-4a32-b0bc-dc88fed5ebd8"
-      }
-    },
-    {
-      "Polyline": {
-        "points": [
+          },
           {
             "x": 327.0,
             "y": 870.0
@@ -16173,12 +16217,31 @@
       "Polyline": {
         "points": [
           {
-            "x": 1164.0,
+            "x": 1092.0,
             "y": 186.0
           },
           {
+            "x": 1092.0,
+            "y": 213.0
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "audio",
+        "color": 11417344,
+        "closed": false,
+        "edge_id": "e-8011ca67-958f-4d4f-bc96-5034bee6aeb2"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
+          {
             "x": 1164.0,
             "y": 198.0
+          },
+          {
+            "x": 1164.0,
+            "y": 213.0
           }
         ],
         "stroke_px": 1.0,
@@ -16211,7 +16274,26 @@
       "Polyline": {
         "points": [
           {
-            "x": 1164.0,
+            "x": 1092.0,
+            "y": 186.0
+          },
+          {
+            "x": 1157.0,
+            "y": 186.0
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "audio",
+        "color": 11417344,
+        "closed": false,
+        "edge_id": "e-8011ca67-958f-4d4f-bc96-5034bee6aeb2"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
+          {
+            "x": 1165.0,
             "y": 186.0
           },
           {
@@ -16230,7 +16312,26 @@
       "Polyline": {
         "points": [
           {
+            "x": 1092.0,
+            "y": 213.0
+          },
+          {
             "x": 1164.0,
+            "y": 213.0
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "audio",
+        "color": 11417344,
+        "closed": false,
+        "edge_id": "e-8011ca67-958f-4d4f-bc96-5034bee6aeb2"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
+          {
+            "x": 1171.0,
             "y": 198.0
           },
           {
@@ -16268,12 +16369,31 @@
       "Polyline": {
         "points": [
           {
-            "x": 1239.0,
+            "x": 1167.0,
             "y": 144.0
           },
           {
+            "x": 1167.0,
+            "y": 171.0
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "audio",
+        "color": 11417344,
+        "closed": false,
+        "edge_id": "e-eef0dcf4-a91a-49da-839e-42a7e67fa2b0"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
+          {
             "x": 1239.0,
             "y": 156.0
+          },
+          {
+            "x": 1239.0,
+            "y": 171.0
           }
         ],
         "stroke_px": 1.0,
@@ -16306,12 +16426,50 @@
       "Polyline": {
         "points": [
           {
-            "x": 1239.0,
+            "x": 1167.0,
+            "y": 144.0
+          },
+          {
+            "x": 1232.0,
+            "y": 144.0
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "audio",
+        "color": 11417344,
+        "closed": false,
+        "edge_id": "e-eef0dcf4-a91a-49da-839e-42a7e67fa2b0"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
+          {
+            "x": 1240.0,
             "y": 144.0
           },
           {
             "x": 1245.25,
             "y": 144.0
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "audio",
+        "color": 11417344,
+        "closed": false,
+        "edge_id": "e-eef0dcf4-a91a-49da-839e-42a7e67fa2b0"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
+          {
+            "x": 1167.0,
+            "y": 171.0
+          },
+          {
+            "x": 1239.0,
+            "y": 171.0
           }
         ],
         "stroke_px": 1.0,
@@ -16348,6 +16506,16 @@
     "height": 781.5
   },
   "hits": [
+    {
+      "id": "zone-57ea16df",
+      "bounds": {
+        "x": 278.0,
+        "y": 102.0,
+        "width": 786.0,
+        "height": 396.0
+      },
+      "node_id": "zone-57ea16df"
+    },
     {
       "id": "device-57ef2140",
       "bounds": {
@@ -16649,6 +16817,26 @@
       "node_id": "device-c82d7f72"
     },
     {
+      "id": "ant-389cd396",
+      "bounds": {
+        "x": 217.5,
+        "y": 147.0,
+        "width": 43.0,
+        "height": 20.0
+      },
+      "node_id": "ant-389cd396"
+    },
+    {
+      "id": "antennaReceiverSymbol-a5f48657",
+      "bounds": {
+        "x": 166.5,
+        "y": 156.0,
+        "width": 43.0,
+        "height": 20.0
+      },
+      "node_id": "antennaReceiverSymbol-a5f48657"
+    },
+    {
       "id": "device-a7d8fa54",
       "bounds": {
         "x": 498.0,
@@ -16899,6 +17087,36 @@
       "node_id": "device-bf36a3ea"
     },
     {
+      "id": "flyoff-fd953216",
+      "bounds": {
+        "x": 994.5,
+        "y": 414.0,
+        "width": 60.0,
+        "height": 12.0
+      },
+      "node_id": "flyoff-fd953216"
+    },
+    {
+      "id": "spk-cfe86b51",
+      "bounds": {
+        "x": 1095.0,
+        "y": 117.0,
+        "width": 240.0,
+        "height": 50.0
+      },
+      "node_id": "spk-cfe86b51"
+    },
+    {
+      "id": "spk-d527bfce",
+      "bounds": {
+        "x": 1094.0,
+        "y": 243.0,
+        "width": 240.0,
+        "height": 50.0
+      },
+      "node_id": "spk-d527bfce"
+    },
+    {
       "id": "avPlate-e14b8e32",
       "bounds": {
         "x": 346.5,
@@ -17057,6 +17275,116 @@
         "height": 9.0
       },
       "node_id": "avPlate-7e4e91d3"
+    },
+    {
+      "id": "speakerBlock-2f1a8d6a",
+      "bounds": {
+        "x": 1169.0,
+        "y": 117.0,
+        "width": 240.0,
+        "height": 50.0
+      },
+      "node_id": "speakerBlock-2f1a8d6a"
+    },
+    {
+      "id": "speakerBlock-c9f8c968",
+      "bounds": {
+        "x": 1244.0,
+        "y": 117.0,
+        "width": 240.0,
+        "height": 50.0
+      },
+      "node_id": "speakerBlock-c9f8c968"
+    },
+    {
+      "id": "speakerBlock-e8b0bb77",
+      "bounds": {
+        "x": 1319.0,
+        "y": 117.0,
+        "width": 240.0,
+        "height": 50.0
+      },
+      "node_id": "speakerBlock-e8b0bb77"
+    },
+    {
+      "id": "speakerBlock-e1617408",
+      "bounds": {
+        "x": 1095.0,
+        "y": 159.0,
+        "width": 240.0,
+        "height": 50.0
+      },
+      "node_id": "speakerBlock-e1617408"
+    },
+    {
+      "id": "speakerBlock-9ce597ed",
+      "bounds": {
+        "x": 1169.0,
+        "y": 159.0,
+        "width": 240.0,
+        "height": 50.0
+      },
+      "node_id": "speakerBlock-9ce597ed"
+    },
+    {
+      "id": "speakerBlock-4fe8654b",
+      "bounds": {
+        "x": 1245.0,
+        "y": 159.0,
+        "width": 240.0,
+        "height": 50.0
+      },
+      "node_id": "speakerBlock-4fe8654b"
+    },
+    {
+      "id": "speakerBlock-13ddc7aa",
+      "bounds": {
+        "x": 1320.0,
+        "y": 159.0,
+        "width": 240.0,
+        "height": 50.0
+      },
+      "node_id": "speakerBlock-13ddc7aa"
+    },
+    {
+      "id": "speakerBlock-0801b172",
+      "bounds": {
+        "x": 1097.0,
+        "y": 201.0,
+        "width": 240.0,
+        "height": 50.0
+      },
+      "node_id": "speakerBlock-0801b172"
+    },
+    {
+      "id": "speakerBlock-3ea565fd",
+      "bounds": {
+        "x": 1172.0,
+        "y": 201.0,
+        "width": 240.0,
+        "height": 50.0
+      },
+      "node_id": "speakerBlock-3ea565fd"
+    },
+    {
+      "id": "speakerBlock-7d79d6d8",
+      "bounds": {
+        "x": 1247.0,
+        "y": 201.0,
+        "width": 240.0,
+        "height": 50.0
+      },
+      "node_id": "speakerBlock-7d79d6d8"
+    },
+    {
+      "id": "speakerBlock-23acf13d",
+      "bounds": {
+        "x": 1322.0,
+        "y": 201.0,
+        "width": 240.0,
+        "height": 50.0
+      },
+      "node_id": "speakerBlock-23acf13d"
     },
     {
       "id": "deviceV2-60f0f322",
@@ -17417,6 +17745,16 @@
         "height": 6.0
       },
       "node_id": "wiretag-950b7690"
+    },
+    {
+      "id": "flyoff-7e4cbdd6",
+      "bounds": {
+        "x": 670.5,
+        "y": 312.0,
+        "width": 60.0,
+        "height": 12.0
+      },
+      "node_id": "flyoff-7e4cbdd6"
     }
   ]
 }

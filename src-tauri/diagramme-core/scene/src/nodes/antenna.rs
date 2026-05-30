@@ -7,7 +7,7 @@ use diagramme_geometry::{
 };
 use diagramme_schema::Node;
 
-use crate::nodes::emit::{push_line, push_text, scene_text_from_role, node_width};
+use crate::nodes::emit::{push_line, push_node_body_hit, push_text, scene_text_from_role, node_width};
 use crate::scene::Scene;
 use crate::text::sanitize_text;
 
@@ -102,4 +102,6 @@ pub fn append_antenna_symbol_scene(scene: &mut Scene, node: &Node, role: Antenna
             None,
         ),
     );
+
+    push_node_body_hit(scene, node, antenna_scene_bounds(node));
 }

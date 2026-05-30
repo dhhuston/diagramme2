@@ -3,7 +3,7 @@
 use diagramme_geometry::{RectPx, TextHAlign, TextRole, TextVAlign};
 use diagramme_schema::Node;
 
-use crate::nodes::emit::{local_to_diagram, push_line, push_text, scene_text_from_role, node_height, node_width};
+use crate::nodes::emit::{local_to_diagram, push_line, push_node_body_hit, push_text, scene_text_from_role, node_height, node_width};
 use crate::scene::Scene;
 use crate::text::sanitize_text;
 
@@ -67,4 +67,5 @@ pub fn append_text_block_scene(scene: &mut Scene, node: &Node) {
         }
     }
 
+    push_node_body_hit(scene, node, text_block_scene_bounds(node));
 }
