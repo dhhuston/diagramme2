@@ -1,6 +1,6 @@
-import { Line, Rect, Shape } from 'react-konva'
+import { Group, Line, Rect, Shape } from 'react-konva'
 
-import { dragVisualDelta, nodeBodyBounds, type NodeDragTarget } from './interaction/dragNode'
+import { dragOffset, nodeBodyBounds, type NodeDragTarget } from './interaction/dragNode'
 import { SceneTextNode } from './SceneTextNode'
 import {
   colorRgbToCss,
@@ -88,13 +88,12 @@ function dragTargetOutline(
   nodeDrag: NodeDragTarget,
 ): { x: number; y: number; width: number; height: number } | null {
   const body = nodeBodyBounds(hits, nodeDrag.nodeId)
-  const delta = dragVisualDelta(hits, nodeDrag.nodeId, nodeDrag.targetOrigin)
-  if (!body || !delta) {
+  if (!body) {
     return null
   }
   return {
-    x: body.x + delta.x,
-    y: body.y + delta.y,
+    x: nodeDrag.targetOrigin.x,
+    y: nodeDrag.targetOrigin.y,
     width: body.width,
     height: body.height,
   }
@@ -103,10 +102,24 @@ function dragTargetOutline(
 /** Renders authoritative Rust scene primitives in diagram px (Y-down). */
 export function SceneRenderer({ scene, nodeDrag }: SceneRendererProps) {
   const outline = nodeDrag ? dragTargetOutline(scene.hits, nodeDrag) : null
+  const localIndices = new Set(nodeDrag?.localPrimitiveIndices ?? [])
+  const offset = nodeDrag != null ? dragOffset(nodeDrag.startOrigin, nodeDrag.targetOrigin) : null
+  const hasOffset =
+    offset != null && (Math.abs(offset.x) >= 0.01 || Math.abs(offset.y) >= 0.01)
 
   return (
     <>
-      {scene.primitives.map((primitive, index) => renderPrimitive(primitive, index))}
+      {scene.primitives.map((primitive, index) => {
+        const el = renderPrimitive(primitive, index)
+        if (hasOffset && localIndices.has(index)) {
+          return (
+            <Group key={`local-${index}`} x={offset.x} y={offset.y} listening={false}>
+              {el}
+            </Group>
+          )
+        }
+        return el
+      })}
       {outline ? (
         <Rect
           key="drag-target-outline"

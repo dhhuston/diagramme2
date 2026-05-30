@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 
-import { getDiagramScene, openDiagram } from '../tauriIpc'
+import { getDiagramScene, getDiagramScenePatch, openDiagram } from '../tauriIpc'
 import type { SceneJson } from './sceneTypes'
+import { applyScenePatch } from './scenePatch'
 
 const DEFAULT_DEBOUNCE_MS = 120
 
@@ -35,6 +36,20 @@ export function useDiagramScene() {
     publishScene(next)
     return next
   }, [publishScene])
+
+  /** Wire + hit patch during drag — avoids full scene rebuild. */
+  const applyScenePatchQuiet = useCallback(
+    async (nodeId: string, generation?: number) => {
+      const patch = await getDiagramScenePatch(nodeId)
+      if (generation != null && generation !== previewGeneration.current) {
+        return patch
+      }
+      setScene((current) => (current ? applyScenePatch(current, patch) : current))
+      setError(null)
+      return patch
+    },
+    [],
+  )
 
   const beginDragPreview = useCallback(() => {
     previewGeneration.current += 1
@@ -92,6 +107,7 @@ export function useDiagramScene() {
     beginDragPreview,
     refreshScene,
     refreshSceneQuiet,
+    applyScenePatchQuiet,
     refreshSceneDebounced,
     loadDiagramJson,
   }

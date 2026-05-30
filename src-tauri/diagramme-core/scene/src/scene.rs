@@ -90,3 +90,12 @@ impl Default for Scene {
         }
     }
 }
+
+/// Partial scene update for throttled drag preview (wires + moved-node hits).
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+pub struct ScenePatch {
+    pub node_ids: Vec<String>,
+    pub edge_ids: Vec<String>,
+    pub primitives: Vec<ScenePrimitive>,
+    pub hits: Vec<HitTarget>,
+}

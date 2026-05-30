@@ -59,7 +59,18 @@ export function dragVisualDelta(
   return { x: dx, y: dy }
 }
 
+export function dragOffset(startOrigin: PointPx, targetOrigin: PointPx): PointPx {
+  return {
+    x: targetOrigin.x - startOrigin.x,
+    y: targetOrigin.y - startOrigin.y,
+  }
+}
+
 export type NodeDragTarget = {
   nodeId: string
   targetOrigin: PointPx
+  /** Body origin when the drag gesture started — local Konva translate baseline. */
+  startOrigin: PointPx
+  /** Non-wire primitive indices captured at drag start. */
+  localPrimitiveIndices: number[]
 }

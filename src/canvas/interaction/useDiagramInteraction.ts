@@ -2,9 +2,10 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import type { KonvaEventObject } from 'konva/lib/Node'
 
 import { hitTestScene, stagePointerToDiagramPx } from '../hitTest'
+import { captureNodePrimitiveIndices } from '../scenePatch'
 import type { HitTarget, PointPx, SceneJson } from '../sceneTypes'
 import type { Viewport } from '../useViewport'
-import { nodeBodyOrigin, snapPoint, type NodeDragTarget } from './dragNode'
+import { nodeBodyBounds, nodeBodyOrigin, snapPoint, type NodeDragTarget } from './dragNode'
 
 const WIRE_PREVIEW_MS = 60
 
@@ -26,6 +27,8 @@ type PanSession = {
 type DragSession = {
   nodeId: string
   targetOrigin: PointPx
+  startOrigin: PointPx
+  localPrimitiveIndices: number[]
 }
 
 export function useDiagramInteraction({
@@ -86,6 +89,8 @@ export function useDiagramInteraction({
       setNodeDrag({
         nodeId: session.nodeId,
         targetOrigin: { ...session.targetOrigin },
+        startOrigin: { ...session.startOrigin },
+        localPrimitiveIndices: session.localPrimitiveIndices,
       })
     })
   }, [])
@@ -178,10 +183,17 @@ export function useDiagramInteraction({
         dragSession.current = {
           nodeId: hit.node_id,
           targetOrigin: { ...origin },
+          startOrigin: { ...origin },
+          localPrimitiveIndices: captureNodePrimitiveIndices(
+            scene,
+            nodeBodyBounds(scene.hits, hit.node_id) ?? hit.bounds,
+          ),
         }
         setNodeDrag({
           nodeId: hit.node_id,
           targetOrigin: { ...origin },
+          startOrigin: { ...origin },
+          localPrimitiveIndices: dragSession.current.localPrimitiveIndices,
         })
         onHit?.(hit)
         return
