@@ -1,0 +1,23 @@
+.split-instance-control {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 0;
+}
+
+.split-instance-control__toggle {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.85em;
+  user-select: none;
+}
+
+.split-instance-control__select {
+  font-size: 0.85em;
+  padding: 1px 4px;
+  border: 1px solid var(--clr-border, #ccc);
+  border-radius: 3px;
+  background: var(--clr-surface, #fff);
+}

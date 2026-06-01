@@ -100,6 +100,11 @@ export function useDiagramScene() {
 
   useEffect(() => clearDebounce, [clearDebounce])
 
+  // Rust starts with ProjectState::default() (Main sheet); load scene on first paint.
+  useEffect(() => {
+    void refreshScene().then(() => bumpFitToScene())
+  }, [bumpFitToScene, refreshScene])
+
   return {
     scene,
     error,

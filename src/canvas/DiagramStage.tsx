@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState, type MutableRefObject } from 'react'
 import type { KonvaEventObject } from 'konva/lib/Node'
 import { Layer, Stage } from 'react-konva'
 
@@ -49,6 +49,8 @@ type DiagramStageProps = {
   onNodeMoveCommit?: (nodeId: string, position: PointPx) => void | Promise<void>
   onPortConnect?: (from: PortEndpoint, to: PortEndpoint) => void | Promise<void>
   wireSegmentAdjust?: WireSegmentAdjustHandlers
+  /** Updated with a function that returns the diagram point at the stage center. */
+  insertPositionRef?: MutableRefObject<(() => PointPx | null) | null>
 }
 
 /** Konva stage: 1 diagram px = 1 unit at scale 1; wheel zoom + drag pan. */
@@ -63,6 +65,7 @@ export function DiagramStage({
   onNodeMoveCommit,
   onPortConnect,
   wireSegmentAdjust,
+  insertPositionRef,
 }: DiagramStageProps) {
   const hostRef = useRef<HTMLDivElement>(null)
   const [size, setSize] = useState({ width: 800, height: 600 })
@@ -186,6 +189,17 @@ export function DiagramStage({
     window.addEventListener('pointerup', onWindowPointerUp)
     return () => window.removeEventListener('pointerup', onWindowPointerUp)
   }, [shapeEdit.isEditing, shapeEdit.handlePointerUp])
+
+  useEffect(() => {
+    if (!insertPositionRef) return
+    insertPositionRef.current = () => {
+      const center = { x: size.width / 2, y: size.height / 2 }
+      return stagePointerToDiagramPx(center, viewport)
+    }
+    return () => {
+      insertPositionRef.current = null
+    }
+  }, [insertPositionRef, size.width, size.height, viewport])
 
   const handlePointerDown = (event: KonvaEventObject<PointerEvent>) => {
     const diagramPoint = diagramPointFromEvent(event)

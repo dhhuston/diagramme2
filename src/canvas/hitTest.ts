@@ -44,6 +44,15 @@ export function isNodeBodyHit(hit: HitTarget): boolean {
   )
 }
 
+/** Top-most body hit for a node (selection after palette insert). */
+export function findNodeBodyHit(hits: HitTarget[], nodeId: string): HitTarget | null {
+  for (let i = hits.length - 1; i >= 0; i--) {
+    const hit = hits[i]
+    if (hit.node_id === nodeId && isNodeBodyHit(hit)) return hit
+  }
+  return null
+}
+
 /** Double-click entry: top-most grouping zone boundary strip under the pointer. */
 export function hitTestSceneForGroupingZoneBoundary(
   hits: HitTarget[],

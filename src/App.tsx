@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import { AppShell } from './AppShell'
 import { DiagramStage } from './canvas/DiagramStage'
@@ -6,11 +6,14 @@ import type { HitTarget, PointPx } from './canvas/sceneTypes'
 import { deleteLabelForTarget, deleteTargetFromHit } from './canvas/selectionDelete'
 import type { DiagramRect } from './canvas/groupingZoneRectResize'
 import type { GroupingZoneShapeEditHandlers } from './canvas/interaction/useGroupingZoneShapeEdit'
+import { findNodeBodyHit } from './canvas/hitTest'
 import { useDiagramScene } from './canvas/useDiagramScene'
 import type { PortEndpoint } from './canvas/interaction/connectPorts'
 import type { AppMenuCommand } from './appMenuCommands'
 import { DEV_FIXTURES, fetchDevFixture } from './devFixtures'
 import type { WireSegmentArm } from './canvas/interaction/useWireSegmentAdjust'
+import { useNodeCreation } from './hooks/useNodeCreation'
+import type { PaletteNodeActions } from './components/LeftPalette'
 import {
   exportRevitDxf,
   addEdge,
@@ -20,13 +23,18 @@ import {
   dragWireSegment,
   cancelDragPreview,
   getState,
+  getDiagramScene,
   getWireInnerChain,
   deleteNode,
   deleteEdge,
   updateDims,
   updateGroupingZone,
+  type DiagramState,
+  type FlowEdge,
 } from './tauriIpc'
 import type { FlowNode } from './tauriIpc'
+import { deriveNodeLabel, resolvePropertiesSelection } from './propertiesSelection'
+import { usePropertiesUpdate } from './hooks/usePropertiesUpdate'
 
 function isEditableTarget(target: EventTarget | null): boolean {
   if (!(target instanceof HTMLElement)) return false
@@ -50,15 +58,18 @@ export default function App() {
   const [status, setStatus] = useState<string | null>(null)
   const [selectedHit, setSelectedHit] = useState<HitTarget | null>(null)
   const [diagramNodes, setDiagramNodes] = useState<FlowNode[]>([])
+  const [diagramEdges, setDiagramEdges] = useState<FlowEdge[]>([])
+  const insertPositionRef = useRef<(() => PointPx | null) | null>(null)
 
-  const syncDiagramNodes = useCallback(async () => {
+  const syncDiagramState = useCallback(async () => {
     const state = await getState()
     setDiagramNodes(state.nodes)
+    setDiagramEdges(state.edges)
   }, [])
 
   useEffect(() => {
-    if (scene) void syncDiagramNodes()
-  }, [scene, syncDiagramNodes])
+    if (scene) void syncDiagramState()
+  }, [scene, syncDiagramState])
 
   const loadDevFixture = useCallback(
     async (path: string, label: string) => {
@@ -102,17 +113,96 @@ export default function App() {
     setSelectedHit(hit)
   }, [])
 
+  const applyRustState = useCallback(
+    async (result: DiagramState) => {
+      setDiagramNodes(result.nodes)
+      setDiagramEdges(result.edges)
+      await refreshScene()
+    },
+    [refreshScene],
+  )
+
+  const propertiesUpdate = usePropertiesUpdate({
+    diagramNodes,
+    setDiagramNodes,
+    applyRustState,
+    onSelectionCleared: () => setSelectedHit(null),
+  })
+
+  const propertiesSelection = useMemo(
+    () => resolvePropertiesSelection(selectedHit, diagramNodes),
+    [diagramNodes, selectedHit],
+  )
+
+  const selectedEdge = useMemo(() => {
+    if (!selectedHit?.edge_id) return null
+    return diagramEdges.find((e) => e.id === selectedHit.edge_id) ?? null
+  }, [diagramEdges, selectedHit?.edge_id])
+
+  const propertiesLabel = useMemo(() => {
+    if (selectedEdge) return `Wire ${selectedEdge.id}`
+    return deriveNodeLabel(propertiesSelection)
+  }, [propertiesSelection, selectedEdge])
+
+  const selectCreatedNode = useCallback(
+    async (nodeId: string) => {
+      const next = await getDiagramScene()
+      const hit = findNodeBodyHit(next.hits, nodeId)
+      if (hit) setSelectedHit(hit)
+    },
+    [],
+  )
+
+  const getInsertPosition = useCallback(
+    () => insertPositionRef.current?.() ?? null,
+    [],
+  )
+
+  const { createWiretagPair, nodeActions } = useNodeCreation({
+    nodes: diagramNodes,
+    applyRustState,
+    getInsertPosition,
+  })
+
+  const paletteNodeActions = useMemo<PaletteNodeActions>(
+    () => ({
+      onAddDevice: () => void nodeActions.device().then((n) => n && selectCreatedNode(n.id)),
+      onAddAvPlate: () => void nodeActions.avPlate().then((n) => n && selectCreatedNode(n.id)),
+      onAddMicBlock: () => void nodeActions.micBlock().then((n) => n && selectCreatedNode(n.id)),
+      onAddSpeakerBlock: () =>
+        void nodeActions.speakerBlock().then((n) => n && selectCreatedNode(n.id)),
+      onAddVolumeControl: () =>
+        void nodeActions.volumeControl().then((n) => n && selectCreatedNode(n.id)),
+      onAddAntennaSymbol: () => void nodeActions.antenna().then((n) => n && selectCreatedNode(n.id)),
+      onAddLppPatchPanel: () =>
+        void nodeActions.lppPatchPanel().then((n) => n && selectCreatedNode(n.id)),
+      onAddDppPatchPanel: () =>
+        void nodeActions.dppPatchPanel().then((n) => n && selectCreatedNode(n.id)),
+      onAddMlpPatchPanel: () =>
+        void nodeActions.mlpPatchPanel().then((n) => n && selectCreatedNode(n.id)),
+      onAddVpbPatchPanel: () =>
+        void nodeActions.vpbPatchPanel().then((n) => n && selectCreatedNode(n.id)),
+      onAddTextBlock: () => void nodeActions.textBlock().then((n) => n && selectCreatedNode(n.id)),
+      onAddFlyoffNote: () => void nodeActions.flyoffNote().then((n) => n && selectCreatedNode(n.id)),
+      onAddWiretagPair: () =>
+        void createWiretagPair().then((n) => n && selectCreatedNode(n.id)),
+      onAddGroupingZone: () =>
+        void nodeActions.groupingZone().then((n) => n && selectCreatedNode(n.id)),
+    }),
+    [createWiretagPair, nodeActions, selectCreatedNode],
+  )
+
   const handleRefreshScene = useCallback(async () => {
     setStatus(null)
     try {
       const next = await refreshScene()
-      await syncDiagramNodes()
+      await syncDiagramState()
       bumpFitToScene()
       setStatus(`Scene refreshed (${next.primitives.length} primitives)`)
     } catch (err) {
       setStatus(`Refresh failed: ${String(err)}`)
     }
-  }, [bumpFitToScene, refreshScene, syncDiagramNodes])
+  }, [bumpFitToScene, refreshScene, syncDiagramState])
 
   const handleUndo = useCallback(async () => {
     setStatus(null)
@@ -261,11 +351,11 @@ export default function App() {
       }
       setSelectedHit(null)
       await refreshScene()
-      await syncDiagramNodes()
+      await syncDiagramState()
     } catch (err) {
       setStatus(`Delete failed: ${String(err)}`)
     }
-  }, [deleteTarget, refreshScene, syncDiagramNodes])
+  }, [deleteTarget, refreshScene, syncDiagramState])
 
   const handleGroupingZoneRectResizePreview = useCallback(
     async (nodeId: string, rect: DiagramRect) => {
@@ -297,10 +387,10 @@ export default function App() {
         },
       ])
       await refreshScene()
-      await syncDiagramNodes()
+      await syncDiagramState()
       setStatus(`Resized grouping zone ${nodeId}`)
     },
-    [refreshScene, syncDiagramNodes],
+    [refreshScene, syncDiagramState],
   )
 
   const handleGroupingZonePolylineCommit = useCallback(
@@ -320,9 +410,9 @@ export default function App() {
         { x: Math.round(position.x), y: Math.round(position.y) },
       )
       await refreshScene()
-      await syncDiagramNodes()
+      await syncDiagramState()
     },
-    [diagramNodes, refreshScene, syncDiagramNodes],
+    [diagramNodes, refreshScene, syncDiagramState],
   )
 
   const groupingZoneShapeEdit = useMemo<GroupingZoneShapeEditHandlers>(
@@ -372,6 +462,14 @@ export default function App() {
       onDeleteSelection={handleDeleteSelection}
       canDeleteSelection={deleteTarget != null}
       deleteLabel={deleteLabel}
+      paletteNodeActions={paletteNodeActions}
+      canvasIsEmpty={diagramNodes.length === 0}
+      propertiesSelection={propertiesSelection}
+      selectedEdge={selectedEdge}
+      propertiesLabel={propertiesLabel}
+      diagramNodes={diagramNodes}
+      diagramEdges={diagramEdges}
+      propertiesUpdate={propertiesUpdate}
       canvas={
         scene ? (
           <DiagramStage
@@ -385,6 +483,7 @@ export default function App() {
             onNodeMoveCommit={handleNodeMoveCommit}
             onPortConnect={handlePortConnect}
             wireSegmentAdjust={wireSegmentAdjust}
+            insertPositionRef={insertPositionRef}
           />
         ) : null
       }

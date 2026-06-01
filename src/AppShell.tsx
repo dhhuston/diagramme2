@@ -6,9 +6,11 @@ import { CanvasEmptyState } from './components/CanvasEmptyState'
 import { LeftPalette, type PaletteNodeActions } from './components/LeftPalette'
 import { PresetToolbox } from './components/PresetToolbox'
 import { PropertiesPanelFrame } from './components/PropertiesPanelFrame'
-import { PropertiesPlaceholder } from './components/PropertiesPlaceholder'
+import { PropertiesPanel } from './components/PropertiesPanel'
 import { TabStrip } from './components/TabStrip'
 import type { HitTarget } from './canvas/sceneTypes'
+import type { usePropertiesUpdate } from './hooks/usePropertiesUpdate'
+import type { PropertiesPanelSelection } from './propertiesSelection'
 import { useCanvasPreferences } from './hooks/useCanvasPreferences'
 import { useNativeAppMenu } from './hooks/useNativeAppMenu'
 import { useProject } from './hooks/useProject'
@@ -18,6 +20,8 @@ import {
   removeSheet,
   renameSheet,
   setActiveSheet,
+  type FlowEdge,
+  type FlowNode,
   type ProjectState,
 } from './tauriIpc'
 import { isTauriApp } from './utils/isTauri'
@@ -61,6 +65,14 @@ export type AppShellProps = {
   canDeleteSelection?: boolean
   deleteLabel?: string
   onMenuUnavailable?: (command: AppMenuCommand) => void
+  paletteNodeActions?: PaletteNodeActions
+  canvasIsEmpty?: boolean
+  propertiesSelection?: PropertiesPanelSelection | null
+  selectedEdge?: FlowEdge | null
+  propertiesLabel?: string
+  diagramNodes?: FlowNode[]
+  diagramEdges?: FlowEdge[]
+  propertiesUpdate?: ReturnType<typeof usePropertiesUpdate>
 }
 
 export function AppShell({
@@ -81,6 +93,14 @@ export function AppShell({
   canDeleteSelection = false,
   deleteLabel = 'Delete',
   onMenuUnavailable,
+  paletteNodeActions,
+  canvasIsEmpty = false,
+  propertiesSelection = null,
+  selectedEdge = null,
+  propertiesLabel,
+  diagramNodes = [],
+  diagramEdges = [],
+  propertiesUpdate,
 }: AppShellProps) {
   const {
     focusMode,
@@ -212,12 +232,10 @@ export function AppShell({
     setProject(p)
   }, [setProject])
 
-  const propsOpen = Boolean(selectedHit)
-  const nodeLabel = selectedHit?.edge_id
-    ? `Wire ${selectedHit.edge_id}`
-    : (selectedHit?.node_id ?? selectedHit?.id ?? 'Selection')
+  const propsOpen = Boolean(propertiesSelection || selectedEdge)
+  const nodeLabel = propertiesLabel ?? (selectedHit?.node_id ?? selectedHit?.id ?? 'Selection')
 
-  const showEmptyState = !scene && showEmptyHint
+  const showEmptyCanvasHint = Boolean(scene) && canvasIsEmpty && showEmptyHint
 
   const layoutClass = `app-layout${focusMode ? ' app-layout--focus' : ''}`
 
@@ -227,17 +245,23 @@ export function AppShell({
         <div className="app-main-column">
           {!isTauriApp() && menus.length > 0 ? <AppMenuBar menus={menus} /> : null}
           <div className="app-main-content">
-            <LeftPalette nodeActions={disabledPaletteActions} disabled />
+            <LeftPalette
+              nodeActions={paletteNodeActions ?? disabledPaletteActions}
+              disabled={!scene}
+            />
             <main className={`app-canvas${wiringMode ? ' app-canvas--wiring' : ''}`}>
               {scene ? (
-                <div className="diagram-stage-host">{canvas}</div>
-              ) : showEmptyState ? (
-                <CanvasEmptyState
-                  onDismiss={() => setShowEmptyHint(false)}
-                  onDismissForever={() => setShowEmptyHint(false)}
-                />
+                <>
+                  <div className="diagram-stage-host">{canvas}</div>
+                  {showEmptyCanvasHint ? (
+                    <CanvasEmptyState
+                      onDismiss={() => setShowEmptyHint(false)}
+                      onDismissForever={() => setShowEmptyHint(false)}
+                    />
+                  ) : null}
+                </>
               ) : (
-                <div className="diagram-stage-host" />
+                <div className="diagram-stage-host" aria-busy="true" />
               )}
               {project && tabs.length > 0 ? (
                 <TabStrip
@@ -259,7 +283,37 @@ export function AppShell({
               deleteLabel={deleteLabel}
               canDelete={canDeleteSelection}
             >
-              <PropertiesPlaceholder selection={selectedHit} />
+              {propertiesUpdate ? (
+                <PropertiesPanel
+                  selection={propertiesSelection}
+                  selectedEdge={selectedEdge}
+                  diagramNodes={diagramNodes}
+                  diagramEdges={diagramEdges}
+                  project={project}
+                  onUpdateDevice={propertiesUpdate.updateNodeData}
+                  onUpdateAvPlate={propertiesUpdate.updateNodeData}
+                  onUpdateMicBlock={propertiesUpdate.updateNodeData}
+                  onUpdateSpeakerBlock={propertiesUpdate.updateNodeData}
+                  onUpdateAntennaSymbol={propertiesUpdate.updateNodeData}
+                  onReplaceAntennaNodeType={propertiesUpdate.handleReplaceAntennaNodeType}
+                  onUpdateLppPatchPanel={propertiesUpdate.updateNodeData}
+                  onUpdateDppPatchPanel={propertiesUpdate.updateNodeData}
+                  onUpdateMlpPatchPanel={propertiesUpdate.updateNodeData}
+                  onUpdateVpbPatchPanel={propertiesUpdate.updateNodeData}
+                  onUpdateTextBlock={propertiesUpdate.handleUpdateTextBlock}
+                  onUpdateFlyoffNote={propertiesUpdate.updateNodeData}
+                  onUpdateJunction={propertiesUpdate.updateNodeData}
+                  onUpdateGroupingZone={propertiesUpdate.handleUpdateGroupingZone}
+                  onUpdateVolumeControl={propertiesUpdate.updateNodeData}
+                  onApplyWiretagPairIndex={propertiesUpdate.handleApplyWiretagPairIndex}
+                  onDeleteWiretagPair={propertiesUpdate.handleDeleteWiretagPair}
+                  onSetWiretagPairTagDescription={propertiesUpdate.handleSetWiretagPairTagDescription}
+                  onSetWiretagPairSheetName={propertiesUpdate.handleSetWiretagPairSheetName}
+                  onSetWiretagPairShowSheetName={propertiesUpdate.handleSetWiretagPairShowSheetName}
+                  onUpdateWiretag={propertiesUpdate.updateNodeData}
+                  onPatchNodeTagNotes={propertiesUpdate.patchNodeTagNotes}
+                />
+              ) : null}
             </PropertiesPanelFrame>
           </div>
           <PresetToolbox

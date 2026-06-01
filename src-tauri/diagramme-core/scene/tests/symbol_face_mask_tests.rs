@@ -72,6 +72,27 @@ fn antenna_has_no_opaque_face_mask() {
 }
 
 #[test]
+fn volume_control_face_mask_uses_hex_polygon() {
+    let node = Node {
+        id: "vc-1".into(),
+        node_type: "volumeControl".into(),
+        position: XY { x: 100.0, y: 200.0 },
+        data: serde_json::json!({}),
+        width: None,
+        height: None,
+        z_index: None,
+    };
+    let scene = build_scene(&DiagramState {
+        nodes: vec![node],
+        edges: vec![],
+    });
+    let hit = body_hit(&scene, "vc-1");
+    let poly = hit.face_mask_polygon.as_ref().expect("vc hex mask");
+    assert_eq!(poly.len(), 6);
+    assert!(hit.face_mask_bounds.is_none());
+}
+
+#[test]
 fn wiretag_face_mask_uses_hull_polygon() {
     let node = Node {
         id: "wt-1".into(),

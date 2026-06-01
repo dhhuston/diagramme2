@@ -6,9 +6,30 @@ use diagramme_geometry::{
 };
 use diagramme_schema::Node;
 
-use crate::nodes::emit::{push_polyline, push_node_body_hit, push_text, scene_text_from_role, DEFAULT_LAYER};
+use crate::nodes::emit::{
+    push_node_body_hit_with_face_mask, push_polyline, push_text, scene_text_from_role, DEFAULT_LAYER,
+};
 use crate::scene::Scene;
 use crate::text::sanitize_text;
+
+/// Hex vertices for the VC symbol (diagram px) — pointy top/bottom.
+pub fn volume_control_hex_points(nx: f64, ny: f64) -> Vec<PointPx> {
+    let row_top = ny + VC_SYMBOL_TOP_INSET_PX;
+    let anchor_left = nx + (PX_PER_INCH - VC_SCHEMATIC_SVG_WIDTH_PX) / 2.0;
+    let cx = anchor_left + VC_SCHEMATIC_SVG_WIDTH_PX * 0.5;
+    let cy = row_top + VOLUME_CONTROL_FRAME_HEIGHT_PX / 2.0;
+    let r = VOLUME_CONTROL_HEX_VERTEX_SPAN_PX / 2.0;
+
+    (0..6)
+        .map(|k| {
+            let a = (k as f64) * std::f64::consts::PI / 3.0 - std::f64::consts::PI / 2.0;
+            PointPx {
+                x: cx + r * a.cos(),
+                y: cy + r * a.sin(),
+            }
+        })
+        .collect()
+}
 
 /// Scene bounds (diagram px) — matches v6 export extents (symbol cluster).
 pub fn volume_control_scene_bounds(node: &Node) -> RectPx {
@@ -24,21 +45,13 @@ pub fn volume_control_scene_bounds(node: &Node) -> RectPx {
 pub fn append_volume_control_scene(scene: &mut Scene, node: &Node) {
     let nx = node.position.x;
     let ny = node.position.y;
+    let hex = volume_control_hex_points(nx, ny);
     let row_top = ny + VC_SYMBOL_TOP_INSET_PX;
     let anchor_left = nx + (PX_PER_INCH - VC_SCHEMATIC_SVG_WIDTH_PX) / 2.0;
     let cx = anchor_left + VC_SCHEMATIC_SVG_WIDTH_PX * 0.5;
     let cy = row_top + VOLUME_CONTROL_FRAME_HEIGHT_PX / 2.0;
-    let r = VOLUME_CONTROL_HEX_VERTEX_SPAN_PX / 2.0;
 
-    let mut pts = Vec::with_capacity(6);
-    for k in 0..6 {
-        let a = (k as f64) * std::f64::consts::PI / 3.0 - std::f64::consts::PI / 2.0;
-        pts.push(PointPx {
-            x: cx + r * a.cos(),
-            y: cy + r * a.sin(),
-        });
-    }
-    push_polyline(scene, pts, true, DEFAULT_LAYER);
+    push_polyline(scene, hex.clone(), true, DEFAULT_LAYER);
 
     push_text(
         scene,
@@ -51,5 +64,11 @@ pub fn append_volume_control_scene(scene: &mut Scene, node: &Node) {
         ),
     );
 
-    push_node_body_hit(scene, node, volume_control_scene_bounds(node));
+    push_node_body_hit_with_face_mask(
+        scene,
+        node,
+        volume_control_scene_bounds(node),
+        None,
+        Some(hex),
+    );
 }
