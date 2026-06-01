@@ -1,9 +1,17 @@
 import { useEffect, useRef, useState } from 'react'
+import type { KonvaEventObject } from 'konva/lib/Node'
 import { Layer, Stage } from 'react-konva'
 
 import { DiagramGrid } from './DiagramGrid'
+import { GroupingZoneShapeEditOverlay } from './GroupingZoneShapeEditOverlay'
 import { SchematicFaceMasks } from './SchematicFaceMasks'
+import { hitTestSceneForInteraction } from './hitTest'
+import { stagePointerToDiagramPx } from './hitTest'
 import { useDiagramInteraction } from './interaction/useDiagramInteraction'
+import {
+  useGroupingZoneShapeEdit,
+  type GroupingZoneShapeEditHandlers,
+} from './interaction/useGroupingZoneShapeEdit'
 import { useCanvasPreferences } from '../hooks/useCanvasPreferences'
 import type { PortEndpoint } from './interaction/connectPorts'
 import { fitExtentToStage } from './sceneRenderUtils'
@@ -19,6 +27,8 @@ type DiagramStageProps = {
   selectedHit?: HitTarget | null
   /** Increment when a new diagram loads to fit the viewport once. */
   fitRevision: number
+  diagramNodes?: import('../tauriIpc').FlowNode[]
+  groupingZoneShapeEdit?: GroupingZoneShapeEditHandlers
   onHit?: (hit: HitTarget | null) => void
   onNodeDragPreview?: (nodeId: string, position: PointPx) => void | Promise<void>
   onNodeMoveCommit?: (nodeId: string, position: PointPx) => void | Promise<void>
@@ -31,6 +41,8 @@ export function DiagramStage({
   scene,
   selectedHit = null,
   fitRevision,
+  diagramNodes = [],
+  groupingZoneShapeEdit,
   onHit,
   onNodeDragPreview,
   onNodeMoveCommit,
@@ -42,13 +54,27 @@ export function DiagramStage({
   const { viewport, setFit, setPan, onWheel } = useViewport()
   const { showGrid } = useCanvasPreferences()
 
+  const shapeEdit = useGroupingZoneShapeEdit(
+    groupingZoneShapeEdit ?? { nodes: diagramNodes },
+    viewport.scale,
+  )
+
+  const diagramPointFromEvent = (
+    event: KonvaEventObject<PointerEvent | MouseEvent>,
+  ): PointPx | null => {
+    const stage = event.target.getStage()
+    const pointer = stage?.getPointerPosition()
+    if (!pointer) return null
+    return stagePointerToDiagramPx(pointer, viewport)
+  }
+
   const {
     nodeDrag,
     wireConnect,
     activeWireGripId,
-    handlePointerDown,
-    handlePointerMove,
-    handlePointerUp,
+    handlePointerDown: interactionPointerDown,
+    handlePointerMove: interactionPointerMove,
+    handlePointerUp: interactionPointerUp,
     handleStageClick,
   } = useDiagramInteraction({
     scene,
@@ -62,6 +88,69 @@ export function DiagramStage({
     onPan: setPan,
     wireSegmentAdjust,
   })
+
+  useEffect(() => {
+    if (!shapeEdit.editingNodeId) return
+    if (!selectedHit?.node_id || selectedHit.node_id !== shapeEdit.editingNodeId) {
+      shapeEdit.exitEdit()
+    }
+  }, [selectedHit?.node_id, shapeEdit.editingNodeId, shapeEdit.exitEdit])
+
+  useEffect(() => {
+    if (!shapeEdit.isEditing) return
+    const onWindowPointerUp = () => {
+      void shapeEdit.handlePointerUp()
+    }
+    window.addEventListener('pointerup', onWindowPointerUp)
+    return () => window.removeEventListener('pointerup', onWindowPointerUp)
+  }, [shapeEdit.isEditing, shapeEdit.handlePointerUp])
+
+  const handlePointerDown = (event: KonvaEventObject<PointerEvent>) => {
+    const diagramPoint = diagramPointFromEvent(event)
+    if (
+      diagramPoint &&
+      shapeEdit.handlePointerDown(diagramPoint, event.evt.clientX, event.evt.clientY)
+    ) {
+      event.evt.preventDefault()
+      return
+    }
+    if (shapeEdit.isEditing) return
+    interactionPointerDown(event)
+  }
+
+  const handlePointerMove = (event: KonvaEventObject<PointerEvent>) => {
+    const diagramPoint = diagramPointFromEvent(event)
+    if (
+      diagramPoint &&
+      shapeEdit.handlePointerMove(diagramPoint, event.evt.clientX, event.evt.clientY)
+    ) {
+      return
+    }
+    interactionPointerMove(event)
+  }
+
+  const handlePointerUp = () => {
+    if (shapeEdit.isEditing) {
+      void shapeEdit.handlePointerUp()
+      return
+    }
+    interactionPointerUp()
+  }
+
+  const handleStageDoubleClick = (event: KonvaEventObject<MouseEvent>) => {
+    const diagramPoint = diagramPointFromEvent(event)
+    if (!diagramPoint) return
+
+    if (shapeEdit.editingNodeId) {
+      void shapeEdit.tryVertexDoubleClick(diagramPoint)
+      return
+    }
+
+    const hit = hitTestSceneForInteraction(scene.hits, diagramPoint, selectedHit?.edge_id ?? null)
+    if (shapeEdit.tryEnterOnDoubleClick(hit)) {
+      onHit?.(hit)
+    }
+  }
 
   useEffect(() => {
     const el = hostRef.current
@@ -92,6 +181,7 @@ export function DiagramStage({
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
         onClick={handleStageClick}
+        onDblClick={handleStageDoubleClick}
       >
         <Layer
           x={viewport.x}
@@ -116,6 +206,13 @@ export function DiagramStage({
             selectedEdgeId={selectedHit?.edge_id ?? null}
             activeGripId={activeWireGripId}
           />
+          {shapeEdit.editingNode ? (
+            <GroupingZoneShapeEditOverlay
+              node={shapeEdit.editingNode}
+              liveRect={shapeEdit.liveRect}
+              polyPairs={shapeEdit.currentPolyPairs()}
+            />
+          ) : null}
           <WireConnectOverlay preview={wireConnect} />
         </Layer>
       </Stage>

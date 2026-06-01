@@ -212,10 +212,12 @@ export const deleteNodes = (nodeIds: string[]) =>
 export const updateDims = (
   dims: NodeDimension[],
   handleAttachmentUpdates?: EdgeHandleAttachmentUpdate[] | null,
+  isDragPreview?: boolean,
 ) =>
   invoke<DiagramState>('update_dims', {
     dims,
     handleAttachmentUpdates: handleAttachmentUpdates ?? null,
+    isDragPreview: isDragPreview ?? null,
   })
 
 // ─── History ───────────────────────────────────────────────────────────────

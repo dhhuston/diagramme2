@@ -56,6 +56,21 @@ describe('hitTest', () => {
     expect(hitTestSceneForSelection(hits, { x: 10, y: 4 })?.node_id).toBe('zone-1')
   })
 
+  it('hitTestSceneForSelection prefers wire segment over overlapping speaker body', () => {
+    const speaker: HitTarget = {
+      id: 'speakerBlock-1',
+      bounds: { x: 850, y: 20, width: 120, height: 40 },
+      node_id: 'speakerBlock-1',
+    }
+    const wire: HitTarget = {
+      id: 'e-spk:seg:2',
+      bounds: { x: 900, y: 38, width: 60, height: 8 },
+      edge_id: 'e-spk',
+    }
+    const hits = [speaker, wire]
+    expect(hitTestSceneForSelection(hits, { x: 920, y: 42 })?.edge_id).toBe('e-spk')
+  })
+
   it('hitTestSceneForSelection prefers node body over port strip on same node', () => {
     const body: HitTarget = {
       id: 'n1',

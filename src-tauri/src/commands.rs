@@ -403,8 +403,41 @@ pub fn drag_wire_segment(
 #[tauri::command]
 pub fn delete_edge(app: AppHandle, state: State<'_, AppState>, edge_id: String) -> DiagramState {
     mutate_active_diagram(&state, &app, |diagram| {
-        diagram.edges.retain(|e| e.id != edge_id);
+        let ids = edge_ids_to_delete_together(diagram, &edge_id);
+        diagram.edges.retain(|e| !ids.contains(&e.id));
     })
+}
+
+fn edge_ids_to_delete_together(diagram: &DiagramState, edge_id: &str) -> Vec<String> {
+    let Some(edge) = diagram.edges.iter().find(|e| e.id == edge_id) else {
+        return vec![edge_id.to_string()];
+    };
+
+    if let Some(rep_id) = edge.data.get("bundledBy").and_then(|v| v.as_str()) {
+        return collect_bundle_edge_ids(diagram, rep_id);
+    }
+
+    if edge.data.get("bundled").and_then(|v| v.as_bool()) == Some(true) {
+        return collect_bundle_edge_ids(diagram, edge_id);
+    }
+
+    vec![edge_id.to_string()]
+}
+
+fn collect_bundle_edge_ids(diagram: &DiagramState, rep_id: &str) -> Vec<String> {
+    let mut ids = vec![rep_id.to_string()];
+    if let Some(rep) = diagram.edges.iter().find(|e| e.id == rep_id) {
+        if let Some(members) = rep.data.get("bundledEdgeIds").and_then(|v| v.as_array()) {
+            for member in members {
+                if let Some(id) = member.as_str() {
+                    ids.push(id.to_string());
+                }
+            }
+        }
+    }
+    ids.sort();
+    ids.dedup();
+    ids
 }
 
 #[tauri::command]
@@ -459,8 +492,9 @@ pub fn update_dims(
     state: State<'_, AppState>,
     dims: Vec<NodeDimension>,
     handle_attachment_updates: Option<Vec<EdgeHandleAttachmentUpdate>>,
+    is_drag_preview: Option<bool>,
 ) -> DiagramState {
-    mutate_active_diagram_no_history(&state, &app, |diagram| {
+    let apply = |diagram: &mut DiagramState| {
         for dim in &dims {
             if let Some(node) = diagram.nodes.iter_mut().find(|n| n.id == dim.id) {
                 node.width = Some(dim.width);
@@ -471,7 +505,14 @@ pub fn update_dims(
             }
         }
         maybe_apply_edge_handle_attachments(diagram, handle_attachment_updates);
-    })
+    };
+    if is_drag_preview == Some(true) {
+        let mut project = state.0.lock().unwrap();
+        let diagram = &mut project.active_sheet_mut().state;
+        apply(diagram);
+        return diagram.clone();
+    }
+    mutate_active_diagram(&state, &app, apply)
 }
 
 // ─── File I/O ────────────────────────────────────────────────────────────────

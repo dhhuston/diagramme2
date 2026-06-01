@@ -37,30 +37,45 @@ function hitsAtPoint(hits: HitTarget[], point: PointPx): HitTarget[] {
   return hits.filter((hit) => pointInRect(point, hit.bounds))
 }
 
+/** Wire routing grips are not selected by click — only after the edge is selected. */
+function isWireGripSelectionHit(hit: HitTarget): boolean {
+  return hit.wire_grip_segment != null
+}
+
 /**
- * Selection: prefer real node geometry over grouping-zone frames; prefer node body over port strips.
+ * Selection: top-most eligible hit in paint order (wires above nodes), except
+ * port strips lose to their node body (same node).
  */
 export function hitTestSceneForSelection(hits: HitTarget[], point: PointPx): HitTarget | null {
   const matches = hitsAtPoint(hits, point)
   if (matches.length === 0) return null
 
-  const content = matches.filter((h) => !isGroupingZoneBoundaryHit(h))
-  const pool = content.length > 0 ? content : matches
+  const hasNonBoundary = matches.some((h) => !isGroupingZoneBoundaryHit(h))
+  const eligible = matches.filter((h) => {
+    if (hasNonBoundary && isGroupingZoneBoundaryHit(h)) return false
+    if (isWireGripSelectionHit(h)) return false
+    return true
+  })
+  if (eligible.length === 0) return null
 
-  const bodies = pool.filter((h) => h.node_id != null && h.handle_id == null && h.edge_id == null)
-  const candidates = bodies.length > 0 ? bodies : pool
+  const eligibleIds = new Set(eligible.map((h) => h.id))
 
-  let best = candidates[0]
-  let bestArea = hitArea(best)
-  for (let i = 1; i < candidates.length; i++) {
-    const hit = candidates[i]
-    const area = hitArea(hit)
-    if (area < bestArea) {
-      best = hit
-      bestArea = area
+  // Port handle strips lose to the node body on the same node.
+  for (const hit of eligible) {
+    if (hit.node_id != null && hit.handle_id == null && hit.edge_id == null) {
+      const portOnSameNode = eligible.some(
+        (h) => h.node_id === hit.node_id && h.handle_id != null,
+      )
+      if (portOnSameNode) return hit
     }
   }
-  return best
+
+  for (let i = hits.length - 1; i >= 0; i--) {
+    const hit = hits[i]
+    if (eligibleIds.has(hit.id)) return hit
+  }
+
+  return eligible[eligible.length - 1] ?? null
 }
 
 function wireGripHitActive(hit: HitTarget, selectedEdgeId?: string | null): boolean {

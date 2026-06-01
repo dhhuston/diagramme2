@@ -4,6 +4,8 @@ import { AppShell } from './AppShell'
 import { DiagramStage } from './canvas/DiagramStage'
 import type { HitTarget, PointPx } from './canvas/sceneTypes'
 import { deleteLabelForTarget, deleteTargetFromHit } from './canvas/selectionDelete'
+import type { DiagramRect } from './canvas/groupingZoneRectResize'
+import type { GroupingZoneShapeEditHandlers } from './canvas/interaction/useGroupingZoneShapeEdit'
 import { useDiagramScene } from './canvas/useDiagramScene'
 import type { PortEndpoint } from './canvas/interaction/connectPorts'
 import type { AppMenuCommand } from './appMenuCommands'
@@ -21,7 +23,10 @@ import {
   getWireInnerChain,
   deleteNode,
   deleteEdge,
+  updateDims,
+  updateNode,
 } from './tauriIpc'
+import type { FlowNode } from './tauriIpc'
 
 function isEditableTarget(target: EventTarget | null): boolean {
   if (!(target instanceof HTMLElement)) return false
@@ -44,6 +49,16 @@ export default function App() {
   } = useDiagramScene()
   const [status, setStatus] = useState<string | null>(null)
   const [selectedHit, setSelectedHit] = useState<HitTarget | null>(null)
+  const [diagramNodes, setDiagramNodes] = useState<FlowNode[]>([])
+
+  const syncDiagramNodes = useCallback(async () => {
+    const state = await getState()
+    setDiagramNodes(state.nodes)
+  }, [])
+
+  useEffect(() => {
+    if (scene) void syncDiagramNodes()
+  }, [scene, syncDiagramNodes])
 
   const loadDevFixture = useCallback(
     async (path: string, label: string) => {
@@ -91,12 +106,13 @@ export default function App() {
     setStatus(null)
     try {
       const next = await refreshScene()
+      await syncDiagramNodes()
       bumpFitToScene()
       setStatus(`Scene refreshed (${next.primitives.length} primitives)`)
     } catch (err) {
       setStatus(`Refresh failed: ${String(err)}`)
     }
-  }, [bumpFitToScene, refreshScene])
+  }, [bumpFitToScene, refreshScene, syncDiagramNodes])
 
   const handleUndo = useCallback(async () => {
     setStatus(null)
@@ -253,10 +269,86 @@ export default function App() {
       }
       setSelectedHit(null)
       await refreshScene()
+      await syncDiagramNodes()
     } catch (err) {
       setStatus(`Delete failed: ${String(err)}`)
     }
-  }, [deleteTarget, refreshScene])
+  }, [deleteTarget, refreshScene, syncDiagramNodes])
+
+  const handleGroupingZoneRectResizePreview = useCallback(
+    async (nodeId: string, rect: DiagramRect) => {
+      await updateDims(
+        [
+          {
+            id: nodeId,
+            width: Math.round(rect.width),
+            height: Math.round(rect.height),
+            position: { x: Math.round(rect.x), y: Math.round(rect.y) },
+          },
+        ],
+        null,
+        true,
+      )
+      await refreshScene()
+    },
+    [refreshScene],
+  )
+
+  const handleGroupingZoneRectResizeCommit = useCallback(
+    async (nodeId: string, rect: DiagramRect) => {
+      await updateDims([
+        {
+          id: nodeId,
+          width: Math.round(rect.width),
+          height: Math.round(rect.height),
+          position: { x: Math.round(rect.x), y: Math.round(rect.y) },
+        },
+      ])
+      await refreshScene()
+      await syncDiagramNodes()
+      setStatus(`Resized grouping zone ${nodeId}`)
+    },
+    [refreshScene, syncDiagramNodes],
+  )
+
+  const handleGroupingZonePolylineCommit = useCallback(
+    async (
+      nodeId: string,
+      polylinePoints: number[],
+      position: PointPx,
+      size: { width: number; height: number },
+    ) => {
+      const node = diagramNodes.find((n) => n.id === nodeId)
+      if (!node) return
+      await updateNode(nodeId, { ...(node.data as object), polylinePoints })
+      await updateDims([
+        {
+          id: nodeId,
+          width: Math.round(size.width),
+          height: Math.round(size.height),
+          position: { x: Math.round(position.x), y: Math.round(position.y) },
+        },
+      ])
+      await refreshScene()
+      await syncDiagramNodes()
+    },
+    [diagramNodes, refreshScene, syncDiagramNodes],
+  )
+
+  const groupingZoneShapeEdit = useMemo<GroupingZoneShapeEditHandlers>(
+    () => ({
+      nodes: diagramNodes,
+      onRectResizePreview: handleGroupingZoneRectResizePreview,
+      onRectResizeCommit: handleGroupingZoneRectResizeCommit,
+      onPolylineCommit: handleGroupingZonePolylineCommit,
+    }),
+    [
+      diagramNodes,
+      handleGroupingZonePolylineCommit,
+      handleGroupingZoneRectResizeCommit,
+      handleGroupingZoneRectResizePreview,
+    ],
+  )
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -296,6 +388,8 @@ export default function App() {
             scene={scene}
             selectedHit={selectedHit}
             fitRevision={fitRevision}
+            diagramNodes={diagramNodes}
+            groupingZoneShapeEdit={groupingZoneShapeEdit}
             onHit={handleHit}
             onNodeDragPreview={handleNodeDragPreview}
             onNodeMoveCommit={handleNodeMoveCommit}
