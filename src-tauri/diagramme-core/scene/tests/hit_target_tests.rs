@@ -19,6 +19,9 @@ fn assert_all_nodes_draggable(project: &diagramme_schema::ProjectState) {
         .nodes
         .iter()
         .filter(|n| {
+            if n.node_type == "groupingZone" {
+                return false;
+            }
             if n.node_type == "junction" {
                 return n.data.get("rowCount").and_then(|v| v.as_u64()).unwrap_or(0) == 0;
             }
@@ -56,10 +59,11 @@ fn grouping_zone_hits_sit_behind_other_nodes() {
         .map(|n| n.id.as_str())
         .collect();
 
-    let first_zone_hit = scene
-        .hits
-        .iter()
-        .position(|h| h.node_id.as_deref().is_some_and(|id| zone_ids.contains(id)));
+    let first_zone_hit = scene.hits.iter().position(|h| {
+        h.node_id
+            .as_deref()
+            .is_some_and(|id| zone_ids.contains(id) && h.id.contains(":boundary:"))
+    });
     let first_device_hit = scene
         .hits
         .iter()

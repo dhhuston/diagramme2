@@ -9,10 +9,12 @@ import {
   primitiveKey,
   solidLayerFillCss,
 } from './sceneRenderUtils'
+import { SelectionOverlay } from './SelectionOverlay'
 import type { HitTarget, SceneJson, ScenePrimitive } from './sceneTypes'
 
 type SceneRendererProps = {
   scene: SceneJson
+  selectedHit?: HitTarget | null
   /** Pointer target while dragging — used for a dashed outline only, never geometry clone. */
   nodeDrag?: NodeDragTarget | null
 }
@@ -101,12 +103,13 @@ function dragTargetOutline(
 }
 
 /** Renders authoritative Rust scene primitives in diagram px (Y-down). */
-export function SceneRenderer({ scene, nodeDrag }: SceneRendererProps) {
+export function SceneRenderer({ scene, selectedHit = null, nodeDrag }: SceneRendererProps) {
   const outline = nodeDrag ? dragTargetOutline(scene.hits, nodeDrag) : null
 
   return (
     <>
       {scene.primitives.map((primitive, index) => renderPrimitive(primitive, index))}
+      <SelectionOverlay scene={scene} selectedHit={selectedHit} nodeDrag={nodeDrag} />
       {outline ? (
         <Rect
           key="drag-target-outline"

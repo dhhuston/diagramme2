@@ -159,18 +159,24 @@ pub fn with_split_suffix(base: &str, split_instance: Option<u64>) -> String {
     }
 }
 
-/// Draggable node body hit — grouping zones insert at front so they sit behind other nodes.
+/// Draggable node body hit with opaque face mask matching `bounds` (enclosed symbols).
 pub fn push_node_body_hit(scene: &mut Scene, node: &Node, bounds: RectPx) {
-    let hit = HitTarget {
+    push_node_body_hit_with_face_mask(scene, node, bounds, Some(bounds));
+}
+
+/// Body hit; `face_mask_bounds` is `None` when only external text/tags sit outside a filled frame.
+pub fn push_node_body_hit_with_face_mask(
+    scene: &mut Scene,
+    node: &Node,
+    bounds: RectPx,
+    face_mask_bounds: Option<RectPx>,
+) {
+    scene.hits.push(HitTarget {
         id: node.id.clone(),
         bounds,
         node_id: Some(node.id.clone()),
         edge_id: None,
         handle_id: None,
-    };
-    if node.node_type == "groupingZone" {
-        scene.hits.insert(0, hit);
-    } else {
-        scene.hits.push(hit);
-    }
+        face_mask_bounds,
+    });
 }

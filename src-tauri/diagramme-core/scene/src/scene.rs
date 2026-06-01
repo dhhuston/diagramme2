@@ -79,6 +79,9 @@ pub struct HitTarget {
     /// React Flow handle id for port hits (`L-0-in-1`, `T-0-hdmi`, etc.).
     #[serde(skip_serializing_if = "Option::is_none")]
     pub handle_id: Option<String>,
+    /// Opaque canvas face under this node; omit for tags / external annotation text.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub face_mask_bounds: Option<RectPx>,
 }
 
 /// Full scene for one sheet — single geometric truth for canvas and export.

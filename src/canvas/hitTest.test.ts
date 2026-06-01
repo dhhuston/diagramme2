@@ -1,6 +1,13 @@
 import { describe, expect, it } from 'vitest'
 
-import { hitTestScene, pointInRect, stagePointerToDiagramPx } from './hitTest'
+import {
+  hitArea,
+  hitTestSceneForInteraction,
+  hitTestSceneForSelection,
+  isGroupingZoneBoundaryHit,
+  pointInRect,
+  stagePointerToDiagramPx,
+} from './hitTest'
 import type { HitTarget } from './sceneTypes'
 
 describe('hitTest', () => {
@@ -19,13 +26,60 @@ describe('hitTest', () => {
     expect(pointInRect({ x: 41, y: 60 }, rect)).toBe(false)
   })
 
-  it('hitTestScene returns top-most target', () => {
+  it('hitTestSceneForInteraction returns top-most target', () => {
     const hits: HitTarget[] = [
       { id: 'back', bounds: { x: 0, y: 0, width: 100, height: 100 } },
-      { id: 'front', bounds: { x: 10, y: 10, width: 20, height: 20 }, node_id: 'node-a' },
+      {
+        id: 'front',
+        bounds: { x: 10, y: 10, width: 20, height: 20 },
+        node_id: 'node-a',
+      },
     ]
-    expect(hitTestScene(hits, { x: 15, y: 15 })?.id).toBe('front')
-    expect(hitTestScene(hits, { x: 90, y: 90 })?.id).toBe('back')
-    expect(hitTestScene(hits, { x: 200, y: 200 })).toBeNull()
+    expect(hitTestSceneForInteraction(hits, { x: 15, y: 15 })?.id).toBe('front')
+    expect(hitTestSceneForInteraction(hits, { x: 90, y: 90 })?.id).toBe('back')
+  })
+
+  it('hitTestSceneForSelection prefers node over grouping zone interior', () => {
+    const zone: HitTarget = {
+      id: 'zone-1:boundary:0',
+      bounds: { x: 0, y: 0, width: 200, height: 8 },
+      node_id: 'zone-1',
+    }
+    const device: HitTarget = {
+      id: 'device-1',
+      bounds: { x: 50, y: 50, width: 80, height: 60 },
+      node_id: 'device-1',
+    }
+    const hits = [zone, device]
+    expect(isGroupingZoneBoundaryHit(zone)).toBe(true)
+    expect(hitTestSceneForSelection(hits, { x: 80, y: 80 })?.node_id).toBe('device-1')
+    expect(hitTestSceneForSelection(hits, { x: 10, y: 4 })?.node_id).toBe('zone-1')
+  })
+
+  it('hitTestSceneForSelection prefers node body over port strip on same node', () => {
+    const body: HitTarget = {
+      id: 'n1',
+      bounds: { x: 100, y: 100, width: 80, height: 50 },
+      node_id: 'n1',
+    }
+    const port: HitTarget = {
+      id: 'n1:L-0-in',
+      bounds: { x: 100, y: 120, width: 40, height: 9 },
+      node_id: 'n1',
+      handle_id: 'L-0-in',
+    }
+    const hits = [body, port]
+    expect(hitArea(body)).toBeGreaterThan(hitArea(port))
+    expect(hitTestSceneForSelection(hits, { x: 110, y: 122 })?.id).toBe('n1')
+    expect(hitTestSceneForInteraction(hits, { x: 110, y: 122 })?.handle_id).toBe('L-0-in')
+  })
+
+  it('hitTestSceneForSelection picks wire segment when no node at point', () => {
+    const wire: HitTarget = {
+      id: 'edge-1:seg:0',
+      bounds: { x: 40, y: 98, width: 80, height: 8 },
+      edge_id: 'edge-1',
+    }
+    expect(hitTestSceneForSelection([wire], { x: 80, y: 102 })?.edge_id).toBe('edge-1')
   })
 })

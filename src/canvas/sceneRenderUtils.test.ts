@@ -23,8 +23,8 @@ describe('sceneRenderUtils', () => {
     expect(solidLayerFillCss('INKFILL')).toBe('#000000')
   })
 
-  it('konvaStrokeWidthPx keeps wires at scene px and thins schematic ink', () => {
-    expect(konvaStrokeWidthPx(1.0, 'edge-1')).toBe(1)
+  it('konvaStrokeWidthPx uses schematic hairline for ink and wires', () => {
+    expect(konvaStrokeWidthPx(1.0, 'edge-1')).toBe(0.5)
     expect(konvaStrokeWidthPx(1.0)).toBe(0.5)
   })
 

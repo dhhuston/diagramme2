@@ -1,0 +1,126 @@
+import type { ReactNode } from 'react'
+import { Line, Rect } from 'react-konva'
+
+import { getCanvasSelectionStroke } from './canvasTokens'
+import { dragVisualDelta } from './interaction/dragNode'
+import type { NodeDragTarget } from './interaction/dragNode'
+import { nodeSelectionBounds } from './selectionBounds'
+import {
+  konvaStrokeWidthPx,
+  polylineToKonvaPoints,
+  primitiveKey,
+} from './sceneRenderUtils'
+import type { HitTarget, SceneJson } from './sceneTypes'
+
+const SELECTION_STROKE_PX = 2
+
+type SelectionOverlayProps = {
+  scene: SceneJson
+  selectedHit: HitTarget | null
+  nodeDrag?: NodeDragTarget | null
+}
+
+function selectionOffset(
+  hits: HitTarget[],
+  nodeId: string,
+  nodeDrag: NodeDragTarget | null | undefined,
+) {
+  if (!nodeDrag || nodeDrag.nodeId !== nodeId) {
+    return { x: 0, y: 0 }
+  }
+  return dragVisualDelta(hits, nodeId, nodeDrag.targetOrigin) ?? { x: 0, y: 0 }
+}
+
+function NodeSelectionOutline({
+  bounds,
+  offsetX,
+  offsetY,
+}: {
+  bounds: { x: number; y: number; width: number; height: number }
+  offsetX: number
+  offsetY: number
+}) {
+  return (
+    <Rect
+      key="selection-node"
+      x={bounds.x + offsetX}
+      y={bounds.y + offsetY}
+      width={bounds.width}
+      height={bounds.height}
+      stroke={getCanvasSelectionStroke()}
+      strokeWidth={SELECTION_STROKE_PX}
+      listening={false}
+      perfectDrawEnabled={false}
+    />
+  )
+}
+
+function WireSelectionHighlight({ scene, edgeId }: { scene: SceneJson; edgeId: string }) {
+  const stroke = getCanvasSelectionStroke()
+  const lines: ReactNode[] = []
+  scene.primitives.forEach((primitive, index) => {
+    if (!('Polyline' in primitive)) {
+      return
+    }
+    const p = primitive.Polyline
+    if (p.edge_id !== edgeId || p.points.length < 2) {
+      return
+    }
+    const baseWidth = konvaStrokeWidthPx(p.stroke_px, p.edge_id)
+    lines.push(
+      <Line
+        key={primitiveKey('selection-wire', index, p)}
+        points={polylineToKonvaPoints(p.points)}
+        stroke={stroke}
+        strokeWidth={baseWidth}
+        closed={p.closed ?? false}
+        lineJoin="miter"
+        lineCap="square"
+        listening={false}
+        perfectDrawEnabled={false}
+      />,
+    )
+  })
+  return <>{lines}</>
+}
+
+/** Accent outline for the current selection (nodes, ports, wires). */
+export function SelectionOverlay({ scene, selectedHit, nodeDrag }: SelectionOverlayProps) {
+  if (!selectedHit) {
+    return null
+  }
+
+  if (selectedHit.edge_id) {
+    return <WireSelectionHighlight scene={scene} edgeId={selectedHit.edge_id} />
+  }
+
+  if (selectedHit.handle_id && selectedHit.node_id) {
+    const { bounds } = selectedHit
+    return (
+      <NodeSelectionOutline
+        bounds={bounds}
+        offsetX={0}
+        offsetY={0}
+      />
+    )
+  }
+
+  const nodeId = selectedHit.node_id
+  if (!nodeId) {
+    return null
+  }
+
+  const bounds = nodeSelectionBounds(scene.hits, nodeId)
+  if (!bounds) {
+    return null
+  }
+
+  const offset = selectionOffset(scene.hits, nodeId, nodeDrag)
+  return (
+    <NodeSelectionOutline
+      bounds={bounds}
+      offsetX={offset.x}
+      offsetY={offset.y}
+    />
+  )
+}

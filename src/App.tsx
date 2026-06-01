@@ -145,6 +145,7 @@ export default function App() {
         scene ? (
           <DiagramStage
             scene={scene}
+            selectedHit={selectedHit}
             fitRevision={fitRevision}
             onHit={handleHit}
             onNodeDragPreview={handleNodeDragPreview}

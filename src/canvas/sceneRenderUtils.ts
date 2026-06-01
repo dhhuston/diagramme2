@@ -20,11 +20,8 @@ export function sceneCapHeightToFontSizePx(capHeightPx: number): number {
 /** Konva hairline for schematic ink — v6 SVG uses 0.5px; DXF emits CAD hairline (same optical weight). */
 export const SCHEMATIC_INK_STROKE_PX = 0.5
 
-/** Map scene stroke to Konva width (wires stay full px; frame/rules use schematic hairline). */
-export function konvaStrokeWidthPx(strokePx: number, edgeId?: string): number {
-  if (edgeId) {
-    return strokePx
-  }
+/** Konva stroke width — schematic ink and wires use the same 0.5px hairline as v6 SVG. */
+export function konvaStrokeWidthPx(_strokePx: number, _edgeId?: string): number {
   return SCHEMATIC_INK_STROKE_PX
 }
 

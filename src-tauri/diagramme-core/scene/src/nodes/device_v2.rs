@@ -445,13 +445,14 @@ pub fn append_device_v2_scene(
     draw_bracket_list(scene, nx, ny, &left_brackets, Side::Left, 0.0, w);
     draw_bracket_list(scene, nx, ny, &right_brackets, Side::Right, w, w);
 
-    // Hit target: node body (full frame width)
+    // Hit target: body includes tag band; face mask is inset frame only (tag stays transparent).
     scene.hits.push(HitTarget {
         id: node.id.clone(),
-        bounds: RectPx::new(nx, ny, w, total_height),
+        bounds: device_v2_scene_bounds(node),
         node_id: Some(node.id.clone()),
         edge_id: None,
         handle_id: None,
+        face_mask_bounds: Some(RectPx::new(nx, ny, w, total_height)),
     });
 
     // Port hit targets (one per port row per side)
@@ -472,6 +473,7 @@ pub fn append_device_v2_scene(
                     node_id: Some(node.id.clone()),
                     edge_id: None,
                     handle_id: Some(handle_id),
+                    face_mask_bounds: None,
                 });
             }
         }

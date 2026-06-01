@@ -35,13 +35,26 @@ fn move_node_translates_persisted_inner_corners_on_connected_edge() {
         }],
     };
 
-    apply_node_move_geometry(&mut diagram, "a", XY { x: 130.0, y: 100.0 });
+    apply_node_move_geometry(&mut diagram, "a", XY { x: 132.0, y: 100.0 });
 
     let corners = diagram.edges[0]
         .data
         .get("innerCorners")
         .and_then(|v| v.as_array())
         .expect("corners preserved");
-    assert_eq!(corners[0]["x"].as_f64(), Some(264.0));
-    assert_eq!(diagram.nodes[0].position.x, 130.0);
+    assert_eq!(corners[0]["x"].as_f64(), Some(267.0));
+    assert_eq!(diagram.nodes[0].position.x, 132.0);
+}
+
+#[test]
+fn move_node_snaps_unaligned_position_to_placement_grid() {
+    let mut diagram = DiagramState {
+        nodes: vec![node("a", "flyoffNote", 100.0, 100.0)],
+        edges: vec![],
+    };
+
+    apply_node_move_geometry(&mut diagram, "a", XY { x: 107.0, y: 199.0 });
+
+    assert_eq!(diagram.nodes[0].position.x, 106.5);
+    assert_eq!(diagram.nodes[0].position.y, 199.5);
 }

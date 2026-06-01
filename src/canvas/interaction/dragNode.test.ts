@@ -3,16 +3,22 @@ import { describe, expect, it } from 'vitest'
 import {
   dragVisualDelta,
   nodeBodyOrigin,
+  snappedNodeOriginFromPointer,
   snapPlacementCoord,
   snapPoint,
 } from './dragNode'
+import { CONNECTOR_LINE_PITCH_PX, SNAP_HALF_STEP_PX } from '../paperScale'
 import type { HitTarget } from '../sceneTypes'
 
 describe('dragNode', () => {
-  it('snapPlacementCoord snaps to 3px grid', () => {
+  it('snapPlacementCoord uses 1.5px half grid (v6 placement)', () => {
+    expect(SNAP_HALF_STEP_PX).toBe(1.5)
+    expect(CONNECTOR_LINE_PITCH_PX).toBe(9)
     expect(snapPlacementCoord(0)).toBe(0)
-    expect(snapPlacementCoord(7)).toBe(6)
-    expect(snapPlacementCoord(8)).toBe(9)
+    expect(snapPlacementCoord(7)).toBe(7.5)
+    expect(snapPlacementCoord(8)).toBe(7.5)
+    expect(snapPlacementCoord(8.2)).toBe(7.5)
+    expect(snapPlacementCoord(121.5)).toBe(121.5)
   })
 
   it('nodeBodyOrigin picks the largest hit target for a node', () => {
@@ -53,7 +59,14 @@ describe('dragNode', () => {
     expect(dragVisualDelta(hits, 'n1', { x: 107, y: 198 })).toEqual({ x: 7, y: -2 })
   })
 
-  it('snapPoint snaps both axes', () => {
-    expect(snapPoint({ x: 107, y: 198 })).toEqual({ x: 108, y: 198 })
+  it('snapPoint snaps both axes to half grid', () => {
+    expect(snapPoint({ x: 107, y: 198 })).toEqual({ x: 106.5, y: 198 })
+  })
+
+  it('snappedNodeOriginFromPointer snaps after grab offset', () => {
+    expect(snappedNodeOriginFromPointer({ x: 110, y: 201 }, { x: 3, y: 3 })).toEqual({
+      x: 106.5,
+      y: 198,
+    })
   })
 })

@@ -61,6 +61,8 @@ export interface HitTarget {
   node_id?: string
   edge_id?: string
   handle_id?: string
+  /** Opaque canvas face; omitted when tags/text sit outside the filled frame. */
+  face_mask_bounds?: RectPx
 }
 
 export interface SceneJson {

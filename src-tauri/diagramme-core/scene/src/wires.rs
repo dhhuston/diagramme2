@@ -7,9 +7,11 @@ use diagramme_wires::{
     SchematicFilletCorner, WireGeometryModel, WireGeometryOptions,
 };
 
-use crate::scene::{Scene, ScenePrimitive};
+use crate::scene::{HitTarget, Scene, ScenePrimitive};
 
 const WIRE_STROKE_PX: f64 = 1.0;
+/// Pick band around wire centerline (not full routing corridor).
+const WIRE_PICK_PX: f64 = 4.0;
 const FILLET_ARC_STEPS: usize = 8;
 
 /// Wire signal categories (mirrors v6 `WireCategory` / `SchematicEdge` `CATEGORY_COLOR`).
@@ -321,6 +323,26 @@ fn tessellate_fillet_arc(arc: &SchematicFilletCorner, steps: usize) -> Vec<Point
     out
 }
 
+fn push_wire_segment_hits(scene: &mut Scene, points: &[PointPx], edge_id: &str) {
+    let p = WIRE_PICK_PX;
+    for i in 0..points.len().saturating_sub(1) {
+        let p0 = &points[i];
+        let p1 = &points[i + 1];
+        let min_x = p0.x.min(p1.x) - p;
+        let min_y = p0.y.min(p1.y) - p;
+        let max_x = p0.x.max(p1.x) + p;
+        let max_y = p0.y.max(p1.y) + p;
+        scene.hits.push(HitTarget {
+            id: format!("{edge_id}:seg:{i}"),
+            bounds: RectPx::new(min_x, min_y, (max_x - min_x).max(p), (max_y - min_y).max(p)),
+            node_id: None,
+            edge_id: Some(edge_id.to_string()),
+            handle_id: None,
+            face_mask_bounds: None,
+        });
+    }
+}
+
 fn push_wire_polyline(
     scene: &mut Scene,
     points: Vec<PointPx>,
@@ -331,6 +353,7 @@ fn push_wire_polyline(
     if points.len() < 2 {
         return;
     }
+    push_wire_segment_hits(scene, &points, edge_id);
     scene.primitives.push(ScenePrimitive::Polyline {
         points,
         stroke_px: WIRE_STROKE_PX,

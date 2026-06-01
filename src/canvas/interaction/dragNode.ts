@@ -1,17 +1,23 @@
 import type { HitTarget, PointPx } from '../sceneTypes'
+import { snapPoint } from '../paperScale'
 
-/** Matches Rust `SNAP_GRID_PX` — 1/8" pitch / 3 at 72 dpi. */
-export const SNAP_GRID_PX = 3
+export {
+  CONNECTOR_LINE_PITCH_PX,
+  SNAP_GRID_PX,
+  SNAP_HALF_STEP_PX,
+  snapPlacementCoord,
+  snapPoint,
+} from '../paperScale'
 
-export function snapPlacementCoord(v: number): number {
-  return Math.round(v / SNAP_GRID_PX) * SNAP_GRID_PX
-}
-
-export function snapPoint(point: PointPx): PointPx {
-  return {
-    x: snapPlacementCoord(point.x),
-    y: snapPlacementCoord(point.y),
-  }
+/** Raw pointer position → snapped node origin using grab offset from body origin. */
+export function snappedNodeOriginFromPointer(
+  diagramPoint: PointPx,
+  grabOffset: PointPx,
+): PointPx {
+  return snapPoint({
+    x: diagramPoint.x - grabOffset.x,
+    y: diagramPoint.y - grabOffset.y,
+  })
 }
 
 /** Node root position for `move_node` — body hit has the largest bounds for a node. */

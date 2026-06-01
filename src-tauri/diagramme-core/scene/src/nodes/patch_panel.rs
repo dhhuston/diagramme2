@@ -551,6 +551,7 @@ pub fn append_patch_panel_scene(
                 node_id: Some(node.id.clone()),
                 edge_id: None,
                 handle_id: Some(l_handle),
+                face_mask_bounds: None,
             });
             scene.hits.push(HitTarget {
                 id: format!("{}:{}", node.id, r_handle),
@@ -558,15 +559,17 @@ pub fn append_patch_panel_scene(
                 node_id: Some(node.id.clone()),
                 edge_id: None,
                 handle_id: Some(r_handle),
+                face_mask_bounds: None,
             });
         }
     }
 
     scene.hits.push(HitTarget {
         id: node.id.clone(),
-        bounds: RectPx::new(nx, ny, w, total_height),
+        bounds: patch_panel_scene_bounds(node),
         node_id: Some(node.id.clone()),
         edge_id: None,
         handle_id: None,
+        face_mask_bounds: Some(RectPx::new(nx, ny, w, total_height)),
     });
 }

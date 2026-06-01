@@ -301,11 +301,13 @@ pub fn append_wiretag_scene(
         draw_main_with_optional_sheet(scene, main_left);
     }
 
+    let bounds = RectPx::new(nx, ny, w, h);
     scene.hits.push(HitTarget {
         id: node.id.clone(),
-        bounds: RectPx::new(nx, ny, w, h),
+        bounds,
         node_id: Some(node.id.clone()),
         edge_id: None,
         handle_id: None,
+        face_mask_bounds: Some(bounds),
     });
 }

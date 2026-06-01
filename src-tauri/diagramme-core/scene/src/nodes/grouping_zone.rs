@@ -1,15 +1,13 @@
 //! Grouping zone scene primitives — ported from v6 `appendGroupingZoneRevitDxf`.
 
 use diagramme_geometry::{
-    get_label_anchor, polyline_flat_bounds, to_pairs, PointPx, RectPx, TextHAlign, TextRole,
+    get_label_anchor, polyline_flat_bounds, to_pairs, PointPx, Pt, RectPx, TextHAlign, TextRole,
     TextVAlign, GROUPING_ZONE_DEFAULT_H, GROUPING_ZONE_DEFAULT_W,
 };
 use diagramme_schema::Node;
 
-use crate::nodes::emit::{
-    push_dashed_line_px, push_node_body_hit, push_text, scene_text_from_role, node_height, node_width,
-};
-use crate::scene::Scene;
+use crate::nodes::emit::{push_dashed_line_px, push_text, scene_text_from_role, node_height, node_width};
+use crate::scene::{HitTarget, Scene};
 use crate::text::sanitize_text;
 
 /// Scene bounds (diagram px).
@@ -104,5 +102,98 @@ pub fn append_grouping_zone_scene(scene: &mut Scene, node: &Node) {
         );
     }
 
-    push_node_body_hit(scene, node, grouping_zone_scene_bounds(node));
+    push_grouping_zone_boundary_hits(scene, node, nx, ny, w, h, shape, data);
+}
+
+/// Matches v6 `grouping-zone__boundary-hit` stroke width (12px) — pick band in diagram px.
+const BOUNDARY_PICK_PX: f64 = 6.0;
+
+fn push_boundary_strip(
+    scene: &mut Scene,
+    node_id: &str,
+    index: usize,
+    x: f64,
+    y: f64,
+    width: f64,
+    height: f64,
+) {
+    if width <= 0.0 || height <= 0.0 {
+        return;
+    }
+    scene.hits.insert(
+        0,
+        HitTarget {
+            id: format!("{node_id}:boundary:{index}"),
+            bounds: RectPx::new(x, y, width, height),
+            node_id: Some(node_id.to_string()),
+            edge_id: None,
+            handle_id: None,
+            face_mask_bounds: None,
+        },
+    );
+}
+
+fn push_rect_boundary_hits(scene: &mut Scene, node: &Node, nx: f64, ny: f64, w: f64, h: f64) {
+    let p = BOUNDARY_PICK_PX.min(w / 2.0).min(h / 2.0);
+    let strips = [
+        (nx, ny, w, p),
+        (nx, ny + h - p, w, p),
+        (nx, ny, p, h),
+        (nx + w - p, ny, p, h),
+    ];
+    for (i, (x, y, bw, bh)) in strips.iter().enumerate() {
+        push_boundary_strip(scene, &node.id, i, *x, *y, *bw, *bh);
+    }
+}
+
+fn push_polyline_boundary_hits(scene: &mut Scene, node: &Node, nx: f64, ny: f64, pairs: &[Pt]) {
+    let n = pairs.len();
+    if n < 2 {
+        return;
+    }
+    let p = BOUNDARY_PICK_PX;
+    for i in 0..n {
+        let (ax, ay) = pairs[i];
+        let (bx, by) = pairs[(i + 1) % n];
+        let x1 = nx + ax;
+        let y1 = ny + ay;
+        let x2 = nx + bx;
+        let y2 = ny + by;
+        let min_x = x1.min(x2) - p;
+        let min_y = y1.min(y2) - p;
+        let max_x = x1.max(x2) + p;
+        let max_y = y1.max(y2) + p;
+        push_boundary_strip(
+            scene,
+            &node.id,
+            i,
+            min_x,
+            min_y,
+            (max_x - min_x).max(p),
+            (max_y - min_y).max(p),
+        );
+    }
+}
+
+fn push_grouping_zone_boundary_hits(
+    scene: &mut Scene,
+    node: &Node,
+    nx: f64,
+    ny: f64,
+    w: f64,
+    h: f64,
+    shape: &str,
+    data: &serde_json::Value,
+) {
+    if shape == "polyline" {
+        if let Some(pts) = data.get("polylinePoints").and_then(|v| v.as_array()) {
+            let flat: Vec<f64> = pts.iter().filter_map(|v| v.as_f64()).collect();
+            let pairs = to_pairs(&flat);
+            if pairs.len() >= 2 {
+                push_polyline_boundary_hits(scene, node, nx, ny, &pairs);
+                return;
+            }
+        }
+    }
+    push_rect_boundary_hits(scene, node, nx, ny, w, h);
 }

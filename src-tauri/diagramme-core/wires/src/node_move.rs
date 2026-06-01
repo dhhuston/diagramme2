@@ -1,6 +1,6 @@
 //! Update edge wire geometry when a node moves (inner corners + handle centers).
 
-use diagramme_geometry::get_analytical_port_xy;
+use diagramme_geometry::{get_analytical_port_xy, snap_placement_half_grid};
 use diagramme_schema::{DiagramState, Edge, Node, XY};
 
 use crate::inner_corners::{
@@ -108,6 +108,10 @@ pub fn apply_node_move_geometry(
     node_id: &str,
     new_position: XY,
 ) -> bool {
+    let new_position = XY {
+        x: snap_placement_half_grid(new_position.x),
+        y: snap_placement_half_grid(new_position.y),
+    };
     let Some(old_position) = diagram
         .nodes
         .iter()

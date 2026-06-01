@@ -1,7 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import { Layer, Stage } from 'react-konva'
 
+import { DiagramGrid } from './DiagramGrid'
+import { SchematicFaceMasks } from './SchematicFaceMasks'
 import { useDiagramInteraction } from './interaction/useDiagramInteraction'
+import { useCanvasPreferences } from '../hooks/useCanvasPreferences'
 import type { PortEndpoint } from './interaction/connectPorts'
 import { fitExtentToStage } from './sceneRenderUtils'
 import { SceneRenderer } from './SceneRenderer'
@@ -11,6 +14,7 @@ import { WireConnectOverlay } from './WireConnectOverlay'
 
 type DiagramStageProps = {
   scene: SceneJson
+  selectedHit?: HitTarget | null
   /** Increment when a new diagram loads to fit the viewport once. */
   fitRevision: number
   onHit?: (hit: HitTarget | null) => void
@@ -22,6 +26,7 @@ type DiagramStageProps = {
 /** Konva stage: 1 diagram px = 1 unit at scale 1; wheel zoom + drag pan. */
 export function DiagramStage({
   scene,
+  selectedHit = null,
   fitRevision,
   onHit,
   onNodeDragPreview,
@@ -31,6 +36,7 @@ export function DiagramStage({
   const hostRef = useRef<HTMLDivElement>(null)
   const [size, setSize] = useState({ width: 800, height: 600 })
   const { viewport, setFit, setPan, onWheel } = useViewport()
+  const { showGrid } = useCanvasPreferences()
 
   const {
     nodeDrag,
@@ -87,7 +93,16 @@ export function DiagramStage({
           clearBeforeDraw
           hitGraphEnabled={false}
         >
-          <SceneRenderer scene={scene} nodeDrag={nodeDrag} />
+          {showGrid ? (
+            <DiagramGrid
+              extent={scene.extent}
+              viewport={viewport}
+              stageWidth={size.width}
+              stageHeight={size.height}
+            />
+          ) : null}
+          <SchematicFaceMasks hits={scene.hits} />
+          <SceneRenderer scene={scene} selectedHit={selectedHit} nodeDrag={nodeDrag} />
           <WireConnectOverlay preview={wireConnect} />
         </Layer>
       </Stage>

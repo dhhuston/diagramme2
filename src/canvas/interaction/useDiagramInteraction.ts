@@ -1,10 +1,14 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import type { KonvaEventObject } from 'konva/lib/Node'
 
-import { hitTestScene, stagePointerToDiagramPx } from '../hitTest'
+import {
+  hitTestSceneForInteraction,
+  hitTestSceneForSelection,
+  stagePointerToDiagramPx,
+} from '../hitTest'
 import type { HitTarget, PointPx, SceneJson } from '../sceneTypes'
 import type { Viewport } from '../useViewport'
-import { nodeBodyOrigin, snapPoint, type NodeDragTarget } from './dragNode'
+import { nodeBodyOrigin, snappedNodeOriginFromPointer, type NodeDragTarget } from './dragNode'
 import {
   canConnectPorts,
   portCenterFromHit,
@@ -177,7 +181,7 @@ export function useDiagramInteraction({
       endWireConnect()
       const diagramPoint = lastDiagramPoint.current
       if (diagramPoint && onPortConnect) {
-        const hit = hitTestScene(scene.hits, diagramPoint)
+        const hit = hitTestSceneForInteraction(scene.hits, diagramPoint)
         const to = portFromHit(hit)
         if (to && canConnectPorts(wire.from, to)) {
           void onPortConnect(wire.from, to)
@@ -196,7 +200,7 @@ export function useDiagramInteraction({
     ) {
       return
     }
-    void onNodeMoveCommit(session.nodeId, snapPoint(session.targetOrigin))
+    void onNodeMoveCommit(session.nodeId, session.targetOrigin)
   }, [endDrag, endWireConnect, onNodeMoveCommit, onPortConnect, scene.hits])
 
   const handlePointerDown = useCallback(
@@ -206,7 +210,7 @@ export function useDiagramInteraction({
       const diagramPoint = pointerOnStage(stage)
       if (!diagramPoint) return
 
-      const hit = hitTestScene(scene.hits, diagramPoint)
+      const hit = hitTestSceneForInteraction(scene.hits, diagramPoint)
       lastDiagramPoint.current = diagramPoint
 
       const port = portFromHit(hit)
@@ -277,13 +281,11 @@ export function useDiagramInteraction({
       const session = dragSession.current
       if (session && dragGrabOffset.current) {
         movedDuringGesture.current = true
-        session.targetOrigin = {
-          x: diagramPoint.x - dragGrabOffset.current.x,
-          y: diagramPoint.y - dragGrabOffset.current.y,
-        }
+        const snapped = snappedNodeOriginFromPointer(diagramPoint, dragGrabOffset.current)
+        session.targetOrigin = snapped
         queueVisualUpdate()
         if (onNodeDragPreview) {
-          schedulePreview(session.targetOrigin)
+          schedulePreview(snapped)
         }
         return
       }
@@ -306,7 +308,7 @@ export function useDiagramInteraction({
       const stage = event.target.getStage()
       const diagramPoint = pointerOnStage(stage)
       if (!diagramPoint) return
-      onHit(hitTestScene(scene.hits, diagramPoint))
+      onHit(hitTestSceneForSelection(scene.hits, diagramPoint))
     },
     [onHit, pointerOnStage, scene.hits],
   )
