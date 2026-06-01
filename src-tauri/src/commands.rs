@@ -29,8 +29,18 @@ fn emit_debug(app: &AppHandle) {
     }
 }
 
+/// Capture diagram state before the first preview frame of a drag gesture.
+fn begin_drag_preview(sheet: &mut Sheet) {
+    if sheet.preview_baseline.is_none() {
+        sheet.preview_baseline = Some(sheet.state.clone());
+    }
+}
+
 fn push_history(sheet: &mut Sheet) {
-    let snapshot = sheet.state.clone();
+    let snapshot = sheet
+        .preview_baseline
+        .take()
+        .unwrap_or_else(|| sheet.state.clone());
     if sheet.redo_depth > 0 {
         let keep = sheet.undo_stack.len() - sheet.redo_depth;
         sheet.undo_stack.truncate(keep);
@@ -40,6 +50,18 @@ fn push_history(sheet: &mut Sheet) {
     if sheet.undo_stack.len() > HISTORY_LIMIT {
         sheet.undo_stack.pop_front();
     }
+}
+
+fn cancel_drag_preview_on_sheet(sheet: &mut Sheet) {
+    if let Some(baseline) = sheet.preview_baseline.take() {
+        sheet.state = baseline;
+    }
+}
+
+fn clear_sheet_session(sheet: &mut Sheet) {
+    sheet.undo_stack.clear();
+    sheet.redo_depth = 0;
+    sheet.preview_baseline = None;
 }
 
 fn mutate_active_diagram(
@@ -114,7 +136,7 @@ fn apply_edge_handle_attachments(s: &mut DiagramState, updates: &[EdgeHandleAtta
     }
 }
 
-/// Parse project JSON (`.diagramme` document) and clear undo stacks (same as [`open_diagram`]).
+/// Parse project JSON (`.diagramme` document) and discard any embedded undo history.
 pub fn open_diagram_from_json(json: &str) -> Result<ProjectState, String> {
     let parsed: serde_json::Value = serde_json::from_str(json).map_err(|e| e.to_string())?;
     validate_diagram_envelope(&parsed)?;
@@ -122,8 +144,7 @@ pub fn open_diagram_from_json(json: &str) -> Result<ProjectState, String> {
     let mut project: ProjectState =
         serde_json::from_value(parsed).map_err(|e| format!("project: {e}"))?;
     for sheet in &mut project.sheets {
-        sheet.undo_stack.clear();
-        sheet.redo_depth = 0;
+        clear_sheet_session(sheet);
     }
     Ok(project)
 }
@@ -212,6 +233,27 @@ pub fn update_node(
     })
 }
 
+/// Update grouping-zone geometry (data + bounds) in a single undo step.
+#[tauri::command]
+pub fn update_grouping_zone(
+    app: AppHandle,
+    state: State<'_, AppState>,
+    node_id: String,
+    data: serde_json::Value,
+    width: f64,
+    height: f64,
+    position: XY,
+) -> DiagramState {
+    mutate_active_diagram(&state, &app, |diagram| {
+        if let Some(node) = diagram.nodes.iter_mut().find(|n| n.id == node_id) {
+            node.data = data;
+            node.width = Some(width);
+            node.height = Some(height);
+            node.position = position;
+        }
+    })
+}
+
 #[tauri::command]
 pub fn replace_node_type(
     app: AppHandle,
@@ -239,7 +281,9 @@ pub fn move_node(
 ) -> DiagramState {
     if is_drag_preview == Some(true) {
         let mut project = state.0.lock().unwrap();
-        let diagram = &mut project.active_sheet_mut().state;
+        let sheet = project.active_sheet_mut();
+        begin_drag_preview(sheet);
+        let diagram = &mut sheet.state;
         apply_node_move_geometry(diagram, &node_id, position);
         maybe_apply_edge_handle_attachments(diagram, handle_attachment_updates);
         return diagram.clone();
@@ -332,11 +376,12 @@ pub fn update_edge_inner_corners(
     });
     if is_drag_preview == Some(true) {
         let mut project = state.0.lock().unwrap();
-        let diagram = &mut project.active_sheet_mut().state;
-        if let Some(edge) = diagram.edges.iter_mut().find(|e| e.id == edge_id) {
+        let sheet = project.active_sheet_mut();
+        begin_drag_preview(sheet);
+        if let Some(edge) = sheet.state.edges.iter_mut().find(|e| e.id == edge_id) {
             set_inner_corners_on_edge(edge, corners);
         }
-        return diagram.clone();
+        return sheet.state.clone();
     }
     mutate_active_diagram(&state, &app, |diagram| {
         if let Some(edge) = diagram.edges.iter_mut().find(|e| e.id == edge_id) {
@@ -385,7 +430,19 @@ pub fn drag_wire_segment(
     });
     if is_drag_preview == Some(true) {
         let mut project = state.0.lock().unwrap();
-        let diagram = &mut project.active_sheet_mut().state;
+        let sheet = project.active_sheet_mut();
+        begin_drag_preview(sheet);
+        apply_wire_segment_drag(
+            &mut sheet.state,
+            &edge_id,
+            segment_index,
+            &orientation,
+            delta,
+            base,
+        );
+        return sheet.state.clone();
+    }
+    mutate_active_diagram(&state, &app, |diagram| {
         apply_wire_segment_drag(
             diagram,
             &edge_id,
@@ -394,10 +451,7 @@ pub fn drag_wire_segment(
             delta,
             base,
         );
-        return diagram.clone();
-    }
-    // Preview already wrote innerCorners; commit records undo without re-applying delta.
-    mutate_active_diagram(&state, &app, |_| {})
+    })
 }
 
 #[tauri::command]
@@ -508,9 +562,10 @@ pub fn update_dims(
     };
     if is_drag_preview == Some(true) {
         let mut project = state.0.lock().unwrap();
-        let diagram = &mut project.active_sheet_mut().state;
-        apply(diagram);
-        return diagram.clone();
+        let sheet = project.active_sheet_mut();
+        begin_drag_preview(sheet);
+        apply(&mut sheet.state);
+        return sheet.state.clone();
     }
     mutate_active_diagram(&state, &app, apply)
 }
@@ -564,6 +619,16 @@ pub fn save_diagram_compact(state: State<'_, AppState>) -> Result<String, String
 // ─── Undo / Redo ────────────────────────────────────────────────────────────
 
 #[tauri::command]
+pub fn cancel_drag_preview(app: AppHandle, state: State<'_, AppState>) -> DiagramState {
+    let mut project = state.0.lock().unwrap();
+    cancel_drag_preview_on_sheet(project.active_sheet_mut());
+    let result = project.active_sheet().state.clone();
+    drop(project);
+    emit_debug(&app);
+    result
+}
+
+#[tauri::command]
 pub fn undo(state: State<'_, AppState>) -> DiagramState {
     let mut project = state.0.lock().unwrap();
     let sheet = project.active_sheet_mut();
@@ -603,6 +668,7 @@ pub fn add_sheet(state: State<'_, AppState>, name: String) -> ProjectState {
         state: DiagramState::default(),
         undo_stack: std::collections::VecDeque::new(),
         redo_depth: 0,
+        preview_baseline: None,
     });
     p.active_sheet_id = new_id;
     p.clone()
@@ -743,6 +809,32 @@ pub fn apply_move_node(project: &mut ProjectState, node_id: &str, position: XY) 
         node_id,
         position,
     );
+}
+
+/// Drag preview then commit, mirroring the UI gesture (used by integration tests).
+pub fn apply_move_node_preview_then_commit(
+    project: &mut ProjectState,
+    node_id: &str,
+    position: XY,
+) {
+    let sheet = project.active_sheet_mut();
+    begin_drag_preview(sheet);
+    apply_node_move_geometry(&mut sheet.state, node_id, position);
+    push_history(sheet);
+    // State already reflects the committed position.
+}
+
+/// Undo the active sheet in-memory (used by integration tests).
+pub fn undo_active_sheet(project: &mut ProjectState) -> DiagramState {
+    let sheet = project.active_sheet_mut();
+    let available = sheet.undo_stack.len().saturating_sub(sheet.redo_depth);
+    if available == 0 {
+        return sheet.state.clone();
+    }
+    sheet.redo_depth += 1;
+    let target_index = sheet.undo_stack.len() - sheet.redo_depth;
+    sheet.state = sheet.undo_stack[target_index].clone();
+    sheet.state.clone()
 }
 
 /// Shared test harness wrapping [`AppState`].

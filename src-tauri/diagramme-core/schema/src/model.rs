@@ -69,13 +69,17 @@ pub struct DiagramState {
 pub struct Sheet {
     pub id: String,
     pub name: String,
+    /// Current diagram snapshot — the only sheet payload written to `.diagramme` files.
     pub state: DiagramState,
-    /// Undo stack: snapshots taken before each mutation, oldest first.
-    #[serde(default, skip_serializing_if = "VecDeque::is_empty")]
+    /// Session-only undo stack (never persisted; cleared on open/save).
+    #[serde(default, skip)]
     pub undo_stack: VecDeque<DiagramState>,
-    /// How many redo steps are available at the tail of `undo_stack`.
-    #[serde(default, skip_serializing)]
+    /// Session-only redo cursor into `undo_stack`.
+    #[serde(default, skip)]
     pub redo_depth: usize,
+    /// Pre-preview diagram captured at the start of a drag preview gesture.
+    #[serde(default, skip)]
+    pub preview_baseline: Option<DiagramState>,
 }
 
 /// Single device or AV-plate template stored in the project for reuse (not a canvas node).
@@ -112,6 +116,7 @@ impl Default for ProjectState {
                 state: DiagramState::default(),
                 undo_stack: VecDeque::new(),
                 redo_depth: 0,
+                preview_baseline: None,
             }],
             active_sheet_id: main_id,
             preset_library: Vec::new(),

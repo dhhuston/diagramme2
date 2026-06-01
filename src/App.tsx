@@ -18,13 +18,13 @@ import {
   undo,
   redo,
   dragWireSegment,
-  updateEdgeInnerCorners,
+  cancelDragPreview,
   getState,
   getWireInnerChain,
   deleteNode,
   deleteEdge,
   updateDims,
-  updateNode,
+  updateGroupingZone,
 } from './tauriIpc'
 import type { FlowNode } from './tauriIpc'
 
@@ -208,14 +208,6 @@ export default function App() {
         arm.orientation,
         delta,
         arm.chain0,
-        true,
-      )
-      await dragWireSegment(
-        arm.edgeId,
-        arm.segmentIndex,
-        arm.orientation,
-        delta,
-        arm.chain0,
         false,
       )
       const next = await refreshScene()
@@ -225,8 +217,8 @@ export default function App() {
   )
 
   const handleWireSegmentCancel = useCallback(
-    async (arm: WireSegmentArm) => {
-      await updateEdgeInnerCorners(arm.edgeId, arm.priorCorners ?? null, false)
+    async (_arm: WireSegmentArm) => {
+      await cancelDragPreview()
       await refreshScene()
     },
     [refreshScene],
@@ -320,15 +312,13 @@ export default function App() {
     ) => {
       const node = diagramNodes.find((n) => n.id === nodeId)
       if (!node) return
-      await updateNode(nodeId, { ...(node.data as object), polylinePoints })
-      await updateDims([
-        {
-          id: nodeId,
-          width: Math.round(size.width),
-          height: Math.round(size.height),
-          position: { x: Math.round(position.x), y: Math.round(position.y) },
-        },
-      ])
+      await updateGroupingZone(
+        nodeId,
+        { ...(node.data as object), polylinePoints },
+        Math.round(size.width),
+        Math.round(size.height),
+        { x: Math.round(position.x), y: Math.round(position.y) },
+      )
       await refreshScene()
       await syncDiagramNodes()
     },

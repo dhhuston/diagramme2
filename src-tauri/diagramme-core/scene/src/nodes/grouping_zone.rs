@@ -105,7 +105,7 @@ pub fn append_grouping_zone_scene(scene: &mut Scene, node: &Node) {
     push_grouping_zone_boundary_hits(scene, node, nx, ny, w, h, shape, data);
 }
 
-/// Matches v6 `grouping-zone__boundary-hit` stroke width (12px) — pick band in diagram px.
+/// Pick band half-width along each grouping zone edge (diagram px).
 const BOUNDARY_PICK_PX: f64 = 6.0;
 
 fn push_boundary_strip(

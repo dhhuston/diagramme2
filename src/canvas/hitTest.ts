@@ -33,6 +33,30 @@ export function isGroupingZoneBoundaryHit(hit: HitTarget): boolean {
   return hit.id.includes(':boundary:')
 }
 
+/** Draggable node body — not port, wire, grip, or grouping-zone boundary strip. */
+export function isNodeBodyHit(hit: HitTarget): boolean {
+  return (
+    hit.node_id != null &&
+    hit.handle_id == null &&
+    hit.edge_id == null &&
+    hit.wire_grip_segment == null &&
+    !isGroupingZoneBoundaryHit(hit)
+  )
+}
+
+/** Double-click entry: top-most grouping zone boundary strip under the pointer. */
+export function hitTestSceneForGroupingZoneBoundary(
+  hits: HitTarget[],
+  point: PointPx,
+): HitTarget | null {
+  for (let i = hits.length - 1; i >= 0; i--) {
+    const hit = hits[i]
+    if (!isGroupingZoneBoundaryHit(hit)) continue
+    if (pointInRect(point, hit.bounds)) return hit
+  }
+  return null
+}
+
 function hitsAtPoint(hits: HitTarget[], point: PointPx): HitTarget[] {
   return hits.filter((hit) => pointInRect(point, hit.bounds))
 }

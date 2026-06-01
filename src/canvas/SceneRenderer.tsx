@@ -17,6 +17,7 @@ type SceneRendererProps = {
   selectedHit?: HitTarget | null
   /** Pointer target while dragging — used for a dashed outline only, never geometry clone. */
   nodeDrag?: NodeDragTarget | null
+  diagramNodes?: import('../tauriIpc').FlowNode[]
 }
 
 function renderPrimitive(primitive: ScenePrimitive, index: number) {
@@ -97,13 +98,23 @@ function dragTargetOutline(
 }
 
 /** Renders authoritative Rust scene primitives in diagram px (Y-down). */
-export function SceneRenderer({ scene, selectedHit = null, nodeDrag }: SceneRendererProps) {
+export function SceneRenderer({
+  scene,
+  selectedHit = null,
+  nodeDrag,
+  diagramNodes = [],
+}: SceneRendererProps) {
   const outline = nodeDrag ? dragTargetOutline(scene.hits, nodeDrag) : null
 
   return (
     <>
       {scene.primitives.map((primitive, index) => renderPrimitive(primitive, index))}
-      <SelectionOverlay scene={scene} selectedHit={selectedHit} nodeDrag={nodeDrag} />
+      <SelectionOverlay
+        scene={scene}
+        selectedHit={selectedHit}
+        nodeDrag={nodeDrag}
+        diagramNodes={diagramNodes}
+      />
       {outline ? (
         <Rect
           key="drag-target-outline"

@@ -4,6 +4,7 @@ import type { KonvaEventObject } from 'konva/lib/Node'
 import {
   hitTestSceneForInteraction,
   hitTestSceneForSelection,
+  isNodeBodyHit,
   stagePointerToDiagramPx,
   clientToDiagramPx,
 } from '../hitTest'
@@ -23,6 +24,8 @@ import {
 } from './useWireSegmentAdjust'
 
 const WIRE_PREVIEW_MS = 60
+/** Ignore sub-pixel jitter so clicks / double-clicks are not treated as pans or drags. */
+const GESTURE_MOVE_THRESHOLD_PX = 5
 
 export type WireConnectPreview = {
   from: PortEndpoint
@@ -81,6 +84,7 @@ export function useDiagramInteraction({
   const lastDiagramPoint = useRef<PointPx | null>(null)
   const panSession = useRef<PanSession | null>(null)
   const movedDuringGesture = useRef(false)
+  const gestureStartPointer = useRef<PointPx | null>(null)
   const previewFrame = useRef<number | null>(null)
   const previewTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const visualFrame = useRef<number | null>(null)
@@ -221,6 +225,8 @@ export function useDiagramInteraction({
     (event: KonvaEventObject<PointerEvent>) => {
       movedDuringGesture.current = false
       const stage = event.target.getStage()
+      const stagePointer = stage?.getPointerPosition() ?? null
+      gestureStartPointer.current = stagePointer
       const diagramPoint = pointerOnStage(stage)
       if (!diagramPoint) return
 
@@ -253,7 +259,7 @@ export function useDiagramInteraction({
         return
       }
 
-      if (hit?.node_id && onNodeMoveCommit && !hit.handle_id) {
+      if (hit?.node_id && onNodeMoveCommit && isNodeBodyHit(hit)) {
         event.evt.preventDefault()
         endWireConnect()
         const origin = nodeBodyOrigin(scene.hits, hit.node_id) ?? {
@@ -313,6 +319,15 @@ export function useDiagramInteraction({
 
       const session = dragSession.current
       if (session && dragGrabOffset.current) {
+        const pointer = stage?.getPointerPosition()
+        const start = gestureStartPointer.current
+        if (pointer && start) {
+          const dx = pointer.x - start.x
+          const dy = pointer.y - start.y
+          if (dx * dx + dy * dy < GESTURE_MOVE_THRESHOLD_PX * GESTURE_MOVE_THRESHOLD_PX) {
+            return
+          }
+        }
         movedDuringGesture.current = true
         const snapped = snappedNodeOriginFromPointer(diagramPoint, dragGrabOffset.current)
         session.targetOrigin = snapped
@@ -326,10 +341,15 @@ export function useDiagramInteraction({
       const pan = panSession.current
       const pointer = stage?.getPointerPosition()
       if (!pan || !pointer) return
+      const dx = pointer.x - pan.startPointer.x
+      const dy = pointer.y - pan.startPointer.y
+      if (dx * dx + dy * dy < GESTURE_MOVE_THRESHOLD_PX * GESTURE_MOVE_THRESHOLD_PX) {
+        return
+      }
       movedDuringGesture.current = true
       onPan({
-        x: pan.startViewport.x + (pointer.x - pan.startPointer.x),
-        y: pan.startViewport.y + (pointer.y - pan.startPointer.y),
+        x: pan.startViewport.x + dx,
+        y: pan.startViewport.y + dy,
       })
     },
     [onNodeDragPreview, onPan, pointerOnStage, queueVisualUpdate, schedulePreview, wireSegment],

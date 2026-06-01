@@ -1,12 +1,16 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import type { KonvaEventObject } from 'konva/lib/Node'
 import { Layer, Stage } from 'react-konva'
 
 import { DiagramGrid } from './DiagramGrid'
 import { GroupingZoneShapeEditOverlay } from './GroupingZoneShapeEditOverlay'
 import { SchematicFaceMasks } from './SchematicFaceMasks'
-import { hitTestSceneForInteraction } from './hitTest'
-import { stagePointerToDiagramPx } from './hitTest'
+import {
+  hitTestGroupingZoneBoundary,
+} from './groupingZoneHitTest'
+import {
+  stagePointerToDiagramPx,
+} from './hitTest'
 import { useDiagramInteraction } from './interaction/useDiagramInteraction'
 import {
   useGroupingZoneShapeEdit,
@@ -17,10 +21,21 @@ import type { PortEndpoint } from './interaction/connectPorts'
 import { fitExtentToStage } from './sceneRenderUtils'
 import { SceneRenderer } from './SceneRenderer'
 import type { HitTarget, PointPx, SceneJson } from './sceneTypes'
-import { useViewport } from './useViewport'
 import { WireConnectOverlay } from './WireConnectOverlay'
 import { WireRoutingGrips } from './WireRoutingGrips'
 import type { WireSegmentAdjustHandlers } from './interaction/useWireSegmentAdjust'
+import { useViewport } from './useViewport'
+
+const BOUNDARY_TAP_MOVE_PX = 5
+const BOUNDARY_DOUBLE_TAP_MS = 450
+const BOUNDARY_DOUBLE_TAP_DIAGRAM_PX = 12
+
+type BoundaryTapSession = {
+  hit: HitTarget
+  diagramPoint: PointPx
+  startClientX: number
+  startClientY: number
+}
 
 type DiagramStageProps = {
   scene: SceneJson
@@ -57,6 +72,70 @@ export function DiagramStage({
   const shapeEdit = useGroupingZoneShapeEdit(
     groupingZoneShapeEdit ?? { nodes: diagramNodes },
     viewport.scale,
+    scene.hits,
+  )
+
+  const skipExitEditOnceRef = useRef(false)
+  const boundaryTapRef = useRef<BoundaryTapSession | null>(null)
+  const lastBoundaryTapRef = useRef<{
+    at: number
+    nodeId: string
+    x: number
+    y: number
+  } | null>(null)
+  const suppressNextStageClickRef = useRef(false)
+
+  const zoneNodes = groupingZoneShapeEdit?.nodes ?? diagramNodes
+
+  const boundaryHitAt = useCallback(
+    (diagramPoint: PointPx) =>
+      hitTestGroupingZoneBoundary(scene.hits, diagramPoint, zoneNodes),
+    [scene.hits, zoneNodes],
+  )
+
+  const tryEnterGroupingZoneEdit = useCallback(
+    (diagramPoint: PointPx, boundaryHit?: HitTarget | null) => {
+      if (shapeEdit.editingNodeId) return false
+      const hit = boundaryHit ?? boundaryHitAt(diagramPoint)
+      if (!hit) return false
+      onHit?.(hit)
+      skipExitEditOnceRef.current = true
+      return shapeEdit.tryEnterOnDoubleClick(hit)
+    },
+    [boundaryHitAt, onHit, shapeEdit.editingNodeId, shapeEdit.tryEnterOnDoubleClick],
+  )
+
+  const finishBoundaryTap = useCallback(
+    (session: BoundaryTapSession) => {
+      const { hit, diagramPoint } = session
+      if (!hit.node_id) return
+
+      onHit?.(hit)
+      suppressNextStageClickRef.current = true
+
+      const now = Date.now()
+      const last = lastBoundaryTapRef.current
+      const isDoubleTap =
+        last != null &&
+        last.nodeId === hit.node_id &&
+        now - last.at <= BOUNDARY_DOUBLE_TAP_MS &&
+        Math.hypot(diagramPoint.x - last.x, diagramPoint.y - last.y) <=
+          BOUNDARY_DOUBLE_TAP_DIAGRAM_PX
+
+      if (isDoubleTap) {
+        lastBoundaryTapRef.current = null
+        tryEnterGroupingZoneEdit(diagramPoint, hit)
+        return
+      }
+
+      lastBoundaryTapRef.current = {
+        at: now,
+        nodeId: hit.node_id,
+        x: diagramPoint.x,
+        y: diagramPoint.y,
+      }
+    },
+    [onHit, tryEnterGroupingZoneEdit],
   )
 
   const diagramPointFromEvent = (
@@ -75,7 +154,7 @@ export function DiagramStage({
     handlePointerDown: interactionPointerDown,
     handlePointerMove: interactionPointerMove,
     handlePointerUp: interactionPointerUp,
-    handleStageClick,
+    handleStageClick: interactionStageClick,
   } = useDiagramInteraction({
     scene,
     viewport,
@@ -91,9 +170,12 @@ export function DiagramStage({
 
   useEffect(() => {
     if (!shapeEdit.editingNodeId) return
-    if (!selectedHit?.node_id || selectedHit.node_id !== shapeEdit.editingNodeId) {
-      shapeEdit.exitEdit()
+    if (skipExitEditOnceRef.current) {
+      skipExitEditOnceRef.current = false
+      return
     }
+    if (selectedHit?.node_id === shapeEdit.editingNodeId) return
+    shapeEdit.exitEdit()
   }, [selectedHit?.node_id, shapeEdit.editingNodeId, shapeEdit.exitEdit])
 
   useEffect(() => {
@@ -115,10 +197,39 @@ export function DiagramStage({
       return
     }
     if (shapeEdit.isEditing) return
+
+    if (diagramPoint) {
+      const boundaryHit = boundaryHitAt(diagramPoint)
+      if (boundaryHit) {
+        boundaryTapRef.current = {
+          hit: boundaryHit,
+          diagramPoint,
+          startClientX: event.evt.clientX,
+          startClientY: event.evt.clientY,
+        }
+        event.evt.preventDefault()
+        return
+      }
+    }
+
+    boundaryTapRef.current = null
     interactionPointerDown(event)
   }
 
   const handlePointerMove = (event: KonvaEventObject<PointerEvent>) => {
+    const boundaryTap = boundaryTapRef.current
+    if (boundaryTap) {
+      const dx = event.evt.clientX - boundaryTap.startClientX
+      const dy = event.evt.clientY - boundaryTap.startClientY
+      if (dx * dx + dy * dy > BOUNDARY_TAP_MOVE_PX * BOUNDARY_TAP_MOVE_PX) {
+        boundaryTapRef.current = null
+        lastBoundaryTapRef.current = null
+        interactionPointerDown(event)
+        interactionPointerMove(event)
+      }
+      return
+    }
+
     const diagramPoint = diagramPointFromEvent(event)
     if (
       diagramPoint &&
@@ -129,12 +240,27 @@ export function DiagramStage({
     interactionPointerMove(event)
   }
 
-  const handlePointerUp = () => {
+  const handlePointerUp = (_event: KonvaEventObject<PointerEvent>) => {
+    const boundaryTap = boundaryTapRef.current
+    if (boundaryTap) {
+      boundaryTapRef.current = null
+      finishBoundaryTap(boundaryTap)
+      return
+    }
+
     if (shapeEdit.isEditing) {
       void shapeEdit.handlePointerUp()
       return
     }
     interactionPointerUp()
+  }
+
+  const handleStageClick = (event: KonvaEventObject<MouseEvent>) => {
+    if (suppressNextStageClickRef.current) {
+      suppressNextStageClickRef.current = false
+      return
+    }
+    interactionStageClick(event)
   }
 
   const handleStageDoubleClick = (event: KonvaEventObject<MouseEvent>) => {
@@ -146,9 +272,13 @@ export function DiagramStage({
       return
     }
 
-    const hit = hitTestSceneForInteraction(scene.hits, diagramPoint, selectedHit?.edge_id ?? null)
-    if (shapeEdit.tryEnterOnDoubleClick(hit)) {
-      onHit?.(hit)
+    const boundaryHit = boundaryHitAt(diagramPoint)
+    if (boundaryHit) {
+      lastBoundaryTapRef.current = null
+      if (tryEnterGroupingZoneEdit(diagramPoint, boundaryHit)) {
+        suppressNextStageClickRef.current = true
+        event.evt.preventDefault()
+      }
     }
   }
 
@@ -179,7 +309,7 @@ export function DiagramStage({
         onWheel={onWheel}
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
-        onPointerUp={handlePointerUp}
+        onPointerUp={(event) => handlePointerUp(event)}
         onClick={handleStageClick}
         onDblClick={handleStageDoubleClick}
       >
@@ -200,7 +330,12 @@ export function DiagramStage({
             />
           ) : null}
           <SchematicFaceMasks hits={scene.hits} />
-          <SceneRenderer scene={scene} selectedHit={selectedHit} nodeDrag={nodeDrag} />
+          <SceneRenderer
+            scene={scene}
+            selectedHit={selectedHit}
+            nodeDrag={nodeDrag}
+            diagramNodes={groupingZoneShapeEdit?.nodes ?? diagramNodes}
+          />
           <WireRoutingGrips
             hits={scene.hits}
             selectedEdgeId={selectedHit?.edge_id ?? null}

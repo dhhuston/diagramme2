@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 
 import {
   hitArea,
+  hitTestSceneForGroupingZoneBoundary,
   hitTestSceneForInteraction,
   hitTestSceneForSelection,
   isGroupingZoneBoundaryHit,
@@ -87,6 +88,22 @@ describe('hitTest', () => {
     expect(hitArea(body)).toBeGreaterThan(hitArea(port))
     expect(hitTestSceneForSelection(hits, { x: 110, y: 122 })?.id).toBe('n1')
     expect(hitTestSceneForInteraction(hits, { x: 110, y: 122 })?.handle_id).toBe('L-0-in')
+  })
+
+  it('hitTestSceneForGroupingZoneBoundary finds zone line under overlapping wire', () => {
+    const zone: HitTarget = {
+      id: 'zone-1:boundary:0',
+      bounds: { x: 0, y: 0, width: 200, height: 12 },
+      node_id: 'zone-1',
+    }
+    const wire: HitTarget = {
+      id: 'edge-1:seg:0',
+      bounds: { x: 40, y: 2, width: 120, height: 8 },
+      edge_id: 'edge-1',
+    }
+    const hits = [zone, wire]
+    expect(hitTestSceneForInteraction(hits, { x: 80, y: 6 })?.edge_id).toBe('edge-1')
+    expect(hitTestSceneForGroupingZoneBoundary(hits, { x: 80, y: 6 })?.node_id).toBe('zone-1')
   })
 
   it('hitTestSceneForInteraction skips wire grips unless edge is selected', () => {

@@ -1,8 +1,9 @@
 use app_lib::commands::{
-    apply_move_node, export_revit_dxf_for_state, get_diagram_scene_for_state,
-    open_diagram_from_json, save_diagram_compact_from, test_app_state,
+    apply_move_node, apply_move_node_preview_then_commit, export_revit_dxf_for_state,
+    get_diagram_scene_for_state, open_diagram_from_json, save_diagram_compact_from,
+    test_app_state, undo_active_sheet,
 };
-use diagramme_schema::XY;
+use diagramme_schema::{DiagramState, XY};
 use diagramme_scene::ScenePrimitive;
 
 fn wire_polyline_count(scene: &diagramme_scene::Scene) -> usize {
@@ -48,6 +49,66 @@ fn open_move_save_compact_roundtrip() {
 
     assert_eq!(moved.position.x, new_position.x);
     assert_eq!(moved.position.y, new_position.y);
+}
+
+#[test]
+fn save_compact_omits_undo_history() {
+    let json = diagramme_schema::GOLDEN_DIAGRAM_JSON;
+    let mut project = open_diagram_from_json(json).expect("parse golden fixture");
+    let node_id = project.active_sheet().state.nodes[0].id.clone();
+    apply_move_node(&mut project, &node_id, XY { x: 1.0, y: 2.0 });
+    project.active_sheet_mut().undo_stack.push_back(DiagramState::default());
+
+    let compact = save_diagram_compact_from(&project).expect("save compact");
+    assert!(
+        !compact.contains("undo_stack"),
+        "saved files must not embed undo history"
+    );
+}
+
+#[test]
+fn undo_restores_node_move_after_preview_commit() {
+    let json = diagramme_schema::GOLDEN_DIAGRAM_JSON;
+    let mut project = open_diagram_from_json(json).expect("parse golden fixture");
+    let node_id = project.active_sheet().state.nodes[0].id.clone();
+    let original = project.active_sheet().state.nodes[0].position;
+    let moved = XY {
+        x: original.x + 24.0,
+        y: original.y + 12.0,
+    };
+
+    apply_move_node_preview_then_commit(&mut project, &node_id, moved);
+    assert_eq!(project.active_sheet().state.nodes[0].position, moved);
+
+    let restored = undo_active_sheet(&mut project);
+    let node = restored
+        .nodes
+        .iter()
+        .find(|n| n.id == node_id)
+        .expect("node still present");
+    assert_eq!(node.position, original);
+}
+
+#[test]
+fn open_diagram_strips_embedded_undo_history() {
+    let json = diagramme_schema::GOLDEN_DIAGRAM_JSON;
+    let project = open_diagram_from_json(json).expect("parse golden fixture");
+    let mut payload: serde_json::Value =
+        serde_json::from_str(&save_diagram_compact_from(&project).unwrap()).unwrap();
+    if let Some(sheet) = payload
+        .get_mut("sheets")
+        .and_then(|s| s.as_array_mut())
+        .and_then(|s| s.first_mut())
+    {
+        sheet["undo_stack"] = serde_json::json!([{ "nodes": [], "edges": [] }]);
+        sheet["redo_depth"] = serde_json::json!(1);
+    }
+    let with_history = serde_json::to_string(&payload).unwrap();
+    assert!(with_history.contains("undo_stack"));
+
+    let opened = open_diagram_from_json(&with_history).expect("re-open with embedded history");
+    assert!(opened.active_sheet().undo_stack.is_empty());
+    assert_eq!(opened.active_sheet().redo_depth, 0);
 }
 
 #[test]

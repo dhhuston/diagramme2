@@ -125,6 +125,21 @@ export const addNode = (node: FlowNode) => invoke<DiagramState>('add_node', { no
 export const updateNode = (nodeId: string, data: unknown) =>
   invoke<DiagramState>('update_node', { nodeId, data })
 
+export const updateGroupingZone = (
+  nodeId: string,
+  data: unknown,
+  width: number,
+  height: number,
+  position: RustXY,
+) =>
+  invoke<DiagramState>('update_grouping_zone', {
+    nodeId,
+    data,
+    width,
+    height,
+    position,
+  })
+
 /** Swap `type` while preserving node id and all edges. */
 export const replaceNodeType = (nodeId: string, nodeType: string, data: unknown) =>
   invoke<DiagramState>('replace_node_type', { nodeId, nodeType, data })
@@ -224,6 +239,9 @@ export const updateDims = (
 
 export const undo = () => invoke<DiagramState>('undo')
 export const redo = () => invoke<DiagramState>('redo')
+
+/** Revert an in-progress drag preview without recording undo. */
+export const cancelDragPreview = () => invoke<DiagramState>('cancel_drag_preview')
 
 // ─── Sheets ────────────────────────────────────────────────────────────────
 

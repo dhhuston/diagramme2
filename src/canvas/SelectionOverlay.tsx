@@ -4,9 +4,15 @@ import { Line, Rect } from 'react-konva'
 import { getCanvasSelectionStroke } from './canvasTokens'
 import { dragVisualDelta } from './interaction/dragNode'
 import type { NodeDragTarget } from './interaction/dragNode'
+import {
+  findGroupingZoneNode,
+  GroupingZoneSelectionOutline,
+  isGroupingZoneSelectionTarget,
+} from './GroupingZoneSelectionOutline'
 import { nodeSelectionBounds } from './selectionBounds'
 import { polylineToKonvaPoints, primitiveKey, SCHEMATIC_STROKE_PROPS } from './sceneRenderUtils'
 import type { HitTarget, SceneJson } from './sceneTypes'
+import type { FlowNode } from '../tauriIpc'
 
 const SELECTION_STROKE_PX = 2
 
@@ -14,6 +20,7 @@ type SelectionOverlayProps = {
   scene: SceneJson
   selectedHit: HitTarget | null
   nodeDrag?: NodeDragTarget | null
+  diagramNodes?: FlowNode[]
 }
 
 function selectionOffset(
@@ -76,7 +83,12 @@ function WireSelectionHighlight({ scene, edgeId }: { scene: SceneJson; edgeId: s
 }
 
 /** Accent outline for the current selection (nodes, ports, wires). */
-export function SelectionOverlay({ scene, selectedHit, nodeDrag }: SelectionOverlayProps) {
+export function SelectionOverlay({
+  scene,
+  selectedHit,
+  nodeDrag,
+  diagramNodes = [],
+}: SelectionOverlayProps) {
   if (!selectedHit) {
     return null
   }
@@ -99,6 +111,26 @@ export function SelectionOverlay({ scene, selectedHit, nodeDrag }: SelectionOver
   const nodeId = selectedHit.node_id
   if (!nodeId) {
     return null
+  }
+
+  if (isGroupingZoneSelectionTarget(scene.hits, nodeId)) {
+    const zoneNode =
+      findGroupingZoneNode(nodeId, diagramNodes) ??
+      (() => {
+        const bounds = nodeSelectionBounds(scene.hits, nodeId)
+        if (!bounds) return undefined
+        return {
+          id: nodeId,
+          type: 'groupingZone',
+          position: { x: bounds.x, y: bounds.y },
+          width: bounds.width,
+          height: bounds.height,
+          data: {},
+        } satisfies FlowNode
+      })()
+    if (zoneNode) {
+      return <GroupingZoneSelectionOutline node={zoneNode} />
+    }
   }
 
   const bounds = nodeSelectionBounds(scene.hits, nodeId)

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import type { FlowNode } from '../../tauriIpc'
 import {
@@ -15,6 +15,7 @@ import {
   type Pt,
 } from '../groupingZoneGeometry'
 import { isGroupingZoneBoundaryHit, pointInRect } from '../hitTest'
+import { nodeSelectionBounds } from '../selectionBounds'
 import {
   GROUPING_ZONE_MIN_H,
   GROUPING_ZONE_MIN_W,
@@ -98,12 +99,14 @@ type SegmentDragSession = {
 export function useGroupingZoneShapeEdit(
   handlers: GroupingZoneShapeEditHandlers,
   viewportScale: number,
+  sceneHits: import('../sceneTypes').HitTarget[] = [],
 ) {
   const [editingNodeId, setEditingNodeId] = useState<string | null>(null)
   const [liveRect, setLiveRect] = useState<DiagramRect | null>(null)
   const [dragPolyPairs, setDragPolyPairs] = useState<Pt[] | null>(null)
 
   const rectResizeRef = useRef<RectResizeSession | null>(null)
+  const liveRectRef = useRef<DiagramRect | null>(null)
   const vtxDragRef = useRef<VertexDragSession | null>(null)
   const segDragRef = useRef<SegmentDragSession | null>(null)
   const segDidDragRef = useRef(false)
@@ -114,9 +117,22 @@ export function useGroupingZoneShapeEdit(
   const handlersRef = useRef(handlers)
   handlersRef.current = handlers
 
-  const editingNode = editingNodeId
-    ? handlers.nodes.find((n) => n.id === editingNodeId)
-    : undefined
+  const editingNode = useMemo((): FlowNode | undefined => {
+    if (!editingNodeId) return undefined
+    const fromDiagram = handlers.nodes.find((n) => n.id === editingNodeId)
+    if (fromDiagram && isGroupingZoneNode(fromDiagram)) return fromDiagram
+    const bounds = nodeSelectionBounds(sceneHits, editingNodeId)
+    if (!bounds) return undefined
+    const data = handlers.nodes.find((n) => n.id === editingNodeId)?.data ?? {}
+    return {
+      id: editingNodeId,
+      type: 'groupingZone',
+      position: { x: bounds.x, y: bounds.y },
+      width: bounds.width,
+      height: bounds.height,
+      data,
+    }
+  }, [editingNodeId, handlers.nodes, sceneHits])
 
   const cancelPreviewTimer = useCallback(() => {
     if (previewTimer.current != null) {
@@ -129,6 +145,7 @@ export function useGroupingZoneShapeEdit(
     cancelPreviewTimer()
     setEditingNodeId(null)
     setLiveRect(null)
+    liveRectRef.current = null
     setDragPolyPairs(null)
     rectResizeRef.current = null
     vtxDragRef.current = null
@@ -138,22 +155,22 @@ export function useGroupingZoneShapeEdit(
   const enterEdit = useCallback((nodeId: string) => {
     setEditingNodeId(nodeId)
     setLiveRect(null)
+    liveRectRef.current = null
     setDragPolyPairs(null)
   }, [])
 
   const tryEnterOnDoubleClick = useCallback(
     (hit: HitTarget | null) => {
       if (!hit?.node_id || !isGroupingZoneBoundaryHit(hit)) return false
-      const node = handlers.nodes.find((n) => n.id === hit.node_id)
-      if (!isGroupingZoneNode(node)) return false
       enterEdit(hit.node_id)
       return true
     },
-    [enterEdit, handlers.nodes],
+    [enterEdit],
   )
 
   const scheduleRectPreview = useCallback(
     (nodeId: string, rect: DiagramRect) => {
+      liveRectRef.current = rect
       setLiveRect(rect)
       cancelPreviewTimer()
       previewTimer.current = setTimeout(() => {
@@ -351,13 +368,19 @@ export function useGroupingZoneShapeEdit(
   )
 
   const handlePointerUp = useCallback(async () => {
+    const pendingPreview = previewTimer.current
     cancelPreviewTimer()
 
     const rectSession = rectResizeRef.current
     if (rectSession) {
       rectResizeRef.current = null
-      const rect = liveRect ?? rectSession.startRect
+      const rect = liveRectRef.current ?? rectSession.startRect
+      liveRectRef.current = null
       setLiveRect(null)
+      // Flush the last preview frame if pointer up beat the throttle timer.
+      if (pendingPreview) {
+        await handlersRef.current.onRectResizePreview?.(rectSession.nodeId, rect)
+      }
       await handlersRef.current.onRectResizeCommit?.(rectSession.nodeId, rect)
       return true
     }
@@ -391,7 +414,7 @@ export function useGroupingZoneShapeEdit(
     }
 
     return false
-  }, [cancelPreviewTimer, dragPolyPairs, editingNode, handleSegmentClick, liveRect, persistPolyline])
+  }, [cancelPreviewTimer, dragPolyPairs, editingNode, handleSegmentClick, persistPolyline])
 
   const tryVertexDoubleClick = useCallback(
     async (diagramPoint: PointPx) => {
