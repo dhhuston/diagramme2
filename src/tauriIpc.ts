@@ -144,6 +144,8 @@ export const moveNode = (
 
 export const deleteNode = (nodeId: string) => invoke<DiagramState>('delete_node', { nodeId })
 
+export const deleteEdge = (edgeId: string) => invoke<DiagramState>('delete_edge', { edgeId })
+
 export interface SchematicEdgeConnect {
   source: string
   target: string

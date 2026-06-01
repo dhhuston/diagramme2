@@ -70,6 +70,7 @@ pub fn run() {
             commands::replace_node_type,
             commands::move_node,
             commands::add_edge,
+            commands::delete_edge,
             commands::get_wire_inner_chain,
             commands::drag_wire_segment,
             commands::update_edge_inner_corners,

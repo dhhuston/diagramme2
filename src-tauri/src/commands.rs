@@ -401,6 +401,13 @@ pub fn drag_wire_segment(
 }
 
 #[tauri::command]
+pub fn delete_edge(app: AppHandle, state: State<'_, AppState>, edge_id: String) -> DiagramState {
+    mutate_active_diagram(&state, &app, |diagram| {
+        diagram.edges.retain(|e| e.id != edge_id);
+    })
+}
+
+#[tauri::command]
 pub fn delete_node(app: AppHandle, state: State<'_, AppState>, node_id: String) -> DiagramState {
     mutate_active_diagram(&state, &app, |diagram| {
         diagram.nodes.retain(|n| n.id != node_id);

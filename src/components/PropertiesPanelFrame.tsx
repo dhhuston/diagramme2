@@ -20,7 +20,7 @@ function loadWidth(): number {
   return DEFAULT_W
 }
 
-function DeleteFooterButton({ onDelete }: { onDelete: () => void }) {
+function DeleteFooterButton({ label, onDelete }: { label: string; onDelete: () => void }) {
   const [confirming, setConfirming] = useState(false)
 
   const handleClick = () => {
@@ -47,9 +47,9 @@ function DeleteFooterButton({ onDelete }: { onDelete: () => void }) {
       onClick={handleClick}
       onBlur={handleBlur}
       onKeyDown={handleKeyDown}
-      aria-label={confirming ? 'Confirm delete node' : 'Delete node'}
+      aria-label={confirming ? `Confirm ${label.toLowerCase()}` : label}
     >
-      {confirming ? 'Confirm delete?' : 'Delete node'}
+      {confirming ? 'Confirm delete?' : label}
     </button>
   )
 }
@@ -58,12 +58,21 @@ type Props = {
   open: boolean
   nodeLabel: string
   onClose: () => void
-  onDeleteNode: () => void
+  onDelete?: () => void
+  deleteLabel?: string
   canDelete: boolean
   children: React.ReactNode
 }
 
-export function PropertiesPanelFrame({ open, nodeLabel, onClose, onDeleteNode, canDelete, children }: Props) {
+export function PropertiesPanelFrame({
+  open,
+  nodeLabel,
+  onClose,
+  onDelete,
+  deleteLabel = 'Delete node',
+  canDelete,
+  children,
+}: Props) {
   const [width, setWidth] = useState(loadWidth)
   const widthRef = useRef(width)
   const resizeRef = useRef<{ startX: number; startW: number } | null>(null)
@@ -171,11 +180,11 @@ export function PropertiesPanelFrame({ open, nodeLabel, onClose, onDeleteNode, c
           <div className="props-frame__scroll">
             {children}
           </div>
-          {canDelete && (
+          {canDelete && onDelete ? (
             <div className="props-frame__footer">
-              <DeleteFooterButton onDelete={onDeleteNode} />
+              <DeleteFooterButton label={deleteLabel} onDelete={onDelete} />
             </div>
-          )}
+          ) : null}
         </>
       )}
     </aside>

@@ -1,14 +1,34 @@
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 
 import { AppShell } from './AppShell'
 import { DiagramStage } from './canvas/DiagramStage'
 import type { HitTarget, PointPx } from './canvas/sceneTypes'
+import { deleteLabelForTarget, deleteTargetFromHit } from './canvas/selectionDelete'
 import { useDiagramScene } from './canvas/useDiagramScene'
 import type { PortEndpoint } from './canvas/interaction/connectPorts'
 import type { AppMenuCommand } from './appMenuCommands'
 import { DEV_FIXTURES, fetchDevFixture } from './devFixtures'
 import type { WireSegmentArm } from './canvas/interaction/useWireSegmentAdjust'
-import { exportRevitDxf, addEdge, moveNode, undo, redo, dragWireSegment, updateEdgeInnerCorners, getState, getWireInnerChain } from './tauriIpc'
+import {
+  exportRevitDxf,
+  addEdge,
+  moveNode,
+  undo,
+  redo,
+  dragWireSegment,
+  updateEdgeInnerCorners,
+  getState,
+  getWireInnerChain,
+  deleteNode,
+  deleteEdge,
+} from './tauriIpc'
+
+function isEditableTarget(target: EventTarget | null): boolean {
+  if (!(target instanceof HTMLElement)) return false
+  const tag = target.tagName
+  if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return true
+  return target.isContentEditable
+}
 
 export default function App() {
   const {
@@ -217,6 +237,39 @@ export default function App() {
     setStatus(`Not available yet (${command})`)
   }, [])
 
+  const deleteTarget = useMemo(() => deleteTargetFromHit(selectedHit), [selectedHit])
+  const deleteLabel = useMemo(() => deleteLabelForTarget(deleteTarget), [deleteTarget])
+
+  const handleDeleteSelection = useCallback(async () => {
+    if (!deleteTarget) return
+    setStatus(null)
+    try {
+      if (deleteTarget.kind === 'node') {
+        await deleteNode(deleteTarget.nodeId)
+        setStatus(`Deleted node ${deleteTarget.nodeId}`)
+      } else {
+        await deleteEdge(deleteTarget.edgeId)
+        setStatus(`Deleted wire ${deleteTarget.edgeId}`)
+      }
+      setSelectedHit(null)
+      await refreshScene()
+    } catch (err) {
+      setStatus(`Delete failed: ${String(err)}`)
+    }
+  }, [deleteTarget, refreshScene])
+
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== 'Delete' && event.key !== 'Backspace') return
+      if (isEditableTarget(event.target)) return
+      if (!deleteTarget) return
+      event.preventDefault()
+      void handleDeleteSelection()
+    }
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [deleteTarget, handleDeleteSelection])
+
   const displayStatus = error ?? status
 
   return (
@@ -234,6 +287,9 @@ export default function App() {
       onLoadSplitFaceDemoDiagram={loadSplitFaceDemoDiagram}
       onMenuUnavailable={handleMenuUnavailable}
       onClearSelection={() => setSelectedHit(null)}
+      onDeleteSelection={handleDeleteSelection}
+      canDeleteSelection={deleteTarget != null}
+      deleteLabel={deleteLabel}
       canvas={
         scene ? (
           <DiagramStage

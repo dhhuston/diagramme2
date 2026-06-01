@@ -57,6 +57,9 @@ export type AppShellProps = {
   onLoadCafeteriaDiagram?: () => void | Promise<void>
   onLoadSplitFaceDemoDiagram?: () => void | Promise<void>
   onClearSelection?: () => void
+  onDeleteSelection?: () => void | Promise<void>
+  canDeleteSelection?: boolean
+  deleteLabel?: string
   onMenuUnavailable?: (command: AppMenuCommand) => void
 }
 
@@ -74,6 +77,9 @@ export function AppShell({
   onLoadCafeteriaDiagram,
   onLoadSplitFaceDemoDiagram,
   onClearSelection,
+  onDeleteSelection,
+  canDeleteSelection = false,
+  deleteLabel = 'Delete',
   onMenuUnavailable,
 }: AppShellProps) {
   const {
@@ -207,7 +213,9 @@ export function AppShell({
   }, [setProject])
 
   const propsOpen = Boolean(selectedHit)
-  const nodeLabel = selectedHit?.node_id ?? selectedHit?.id ?? 'Selection'
+  const nodeLabel = selectedHit?.edge_id
+    ? `Wire ${selectedHit.edge_id}`
+    : (selectedHit?.node_id ?? selectedHit?.id ?? 'Selection')
 
   const showEmptyState = !scene && showEmptyHint
 
@@ -247,8 +255,9 @@ export function AppShell({
               open={propsOpen}
               nodeLabel={nodeLabel}
               onClose={() => onClearSelection?.()}
-              onDeleteNode={noop}
-              canDelete={false}
+              onDelete={onDeleteSelection}
+              deleteLabel={deleteLabel}
+              canDelete={canDeleteSelection}
             >
               <PropertiesPlaceholder selection={selectedHit} />
             </PropertiesPanelFrame>
