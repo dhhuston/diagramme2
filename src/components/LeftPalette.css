@@ -1,0 +1,330 @@
+/* ─── Left Palette ────────────────────────────────────────────────────── */
+
+.left-palette {
+  /* Icon-only: two columns of ~30px for 20px glyphs — 5px breathing room each side */
+  --left-palette-w: 60px;
+  position: relative;
+  flex-shrink: 0;
+  width: var(--left-palette-w);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--clr-surface);
+  border-right: 1px solid var(--clr-border);
+  z-index: var(--z-palette);
+  overflow: hidden;
+  contain: layout paint;
+  transition: width var(--dur-slow) var(--ease-out-expo),
+              transform var(--dur-slow) var(--ease-out-expo);
+}
+
+.left-palette--expanded {
+  --left-palette-w: 220px;
+  width: var(--left-palette-w);
+}
+
+/* ─── Pin button ──────────────────────────────────────────────────────── */
+
+.left-palette__pin {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 44px;
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--clr-border);
+  cursor: pointer;
+  color: var(--clr-mid);
+  padding: 0;
+  transition: color var(--dur-fast) var(--ease-out-quart);
+}
+
+.left-palette__pin:hover {
+  color: var(--clr-ink);
+}
+
+.left-palette__pin:focus-visible {
+  outline: 2px solid var(--clr-accent);
+  outline-offset: -2px;
+}
+
+.left-palette__pin svg {
+  flex-shrink: 0;
+  transition: transform var(--dur-mid) var(--ease-out-quart);
+}
+
+.left-palette--expanded .left-palette__pin svg {
+  color: var(--clr-accent);
+}
+
+/* ─── Scroll region ───────────────────────────────────────────────────── */
+
+.left-palette__scroll {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+}
+
+.left-palette__scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* ─── Sections ────────────────────────────────────────────────────────── */
+
+.left-palette__section {
+  display: flex;
+  flex-direction: column;
+}
+
+.left-palette__section + .left-palette__section {
+  border-top: 1px solid var(--clr-border);
+}
+
+.left-palette__section--dragging {
+  opacity: 0.48;
+}
+
+.left-palette__section-head {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 0;
+  min-width: 0;
+}
+
+/* Drag handle (expanded palette): reorder sections */
+.left-palette__section-grip {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  margin: 0 0 3px 4px;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  color: var(--clr-mid);
+  cursor: grab;
+  user-select: none;
+  transition: color var(--dur-fast) var(--ease-out-quart),
+              background var(--dur-fast) var(--ease-out-quart);
+}
+
+.left-palette__section-grip:hover {
+  color: var(--clr-ink);
+  background: color-mix(in oklch, var(--clr-accent-subtle) 45%, transparent);
+}
+
+.left-palette__section-grip:active {
+  cursor: grabbing;
+}
+
+.left-palette__section-grip:focus-visible {
+  outline: 2px solid var(--clr-accent);
+  outline-offset: -2px;
+}
+
+/* Outer span is the grid container; inner span collapses to min-height: 0 */
+.left-palette__section-label {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows var(--dur-mid) var(--ease-out-quart),
+              opacity var(--dur-mid) var(--ease-out-quart);
+}
+
+.left-palette__section-label > span {
+  min-height: 0;
+  overflow: hidden;
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--clr-mid);
+  padding: 0 var(--sp-3) 0 0;
+  white-space: nowrap;
+  display: flex;
+  align-items: flex-end;
+}
+
+.left-palette--expanded .left-palette__section-label {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.left-palette--expanded .left-palette__section-label > span {
+  padding-bottom: var(--sp-1);
+}
+
+/* Tool buttons: two columns collapsed, single column expanded */
+.left-palette__section-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  padding: 0 var(--sp-2);
+}
+
+.left-palette--expanded .left-palette__section-grid {
+  grid-template-columns: 1fr;
+  padding: 0;
+}
+
+/* ─── Buttons ─────────────────────────────────────────────────────────── */
+
+.left-palette__btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+  width: 100%;
+  min-width: 0;
+  height: 44px;
+  padding: 0;
+  padding-left: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--clr-ink);
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: background var(--dur-fast) var(--ease-out-quart),
+              color var(--dur-fast) var(--ease-out-quart);
+}
+
+.left-palette__btn:hover {
+  background: color-mix(in oklch, var(--clr-accent-subtle) 60%, transparent);
+  color: var(--clr-ink);
+}
+
+.left-palette__btn:active {
+  background: var(--clr-accent-subtle);
+}
+
+.left-palette__btn:focus-visible {
+  outline: 2px solid var(--clr-accent);
+  outline-offset: -2px;
+}
+
+.left-palette__btn--active {
+  background: var(--clr-accent);
+  color: var(--clr-accent-on);
+}
+
+.left-palette__btn--active:hover {
+  background: var(--clr-accent-hover);
+  color: var(--clr-accent-on);
+}
+
+.left-palette__btn svg {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.left-palette__btn-label {
+  opacity: 0;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: opacity var(--dur-mid) var(--ease-out-quart);
+}
+
+.left-palette--expanded .left-palette__btn-label {
+  opacity: 1;
+}
+
+/* Collapsed: center icon in grid cell (label hidden) */
+.left-palette:not(.left-palette--expanded) .left-palette__btn {
+  justify-content: center;
+  padding-left: 0;
+}
+
+/* ─── Tooltip ─────────────────────────────────────────────────────────── */
+
+.left-palette__tooltip {
+  position: fixed;
+  left: calc(var(--left-palette-w, 60px) + 6px);
+  z-index: var(--z-tooltip);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-1) var(--sp-2);
+  background: var(--clr-ink);
+  color: var(--clr-accent-on);
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 400;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity var(--dur-fast) var(--ease-out-quart),
+              transform var(--dur-fast) var(--ease-out-quart);
+}
+
+.left-palette__tooltip--visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.left-palette__tooltip kbd {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--clr-accent);
+  opacity: 0.9;
+}
+
+/* Hidden file input */
+.left-palette__file-input {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ─── macOS fullscreen: clear traffic lights ──────────────────────────── */
+
+.is-fullscreen .left-palette {
+  padding-top: var(--titlebar-height);
+}
+
+/* ─── Narrow viewport: collapse palette by default ───────────────────── */
+
+@media (max-width: 768px) {
+  .left-palette {
+    width: 44px;
+    pointer-events: auto;
+  }
+
+  .left-palette:not(.left-palette--expanded) .left-palette__scroll {
+    display: none;
+  }
+
+  .left-palette--expanded {
+    width: var(--left-palette-w);
+  }
+
+  .left-palette:not(.left-palette--expanded) .left-palette__pin {
+    height: 100%;
+    border-bottom: none;
+  }
+
+  .left-palette--expanded .left-palette__pin {
+    height: 44px;
+    border-bottom: 1px solid var(--clr-border);
+  }
+}

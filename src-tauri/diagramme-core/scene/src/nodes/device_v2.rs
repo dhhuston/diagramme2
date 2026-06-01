@@ -451,23 +451,27 @@ pub fn append_device_v2_scene(
         bounds: RectPx::new(nx, ny, w, total_height),
         node_id: Some(node.id.clone()),
         edge_id: None,
+        handle_id: None,
     });
 
-    // Port hit targets (one per port row)
+    // Port hit targets (one per port row per side)
     for (side, rows) in [("left", &left_rows), ("right", &right_rows)] {
+        let side_char = if side == "left" { 'L' } else { 'R' };
         for (row_index, slot) in rows.iter().enumerate() {
-            if let DeviceV2BodySlot::Port { row, .. } = slot {
+            if let DeviceV2BodySlot::Port { row, group_index, .. } = slot {
                 let row_top = body_top + row_index as f64 * row_px;
                 let (x, width) = if side == "left" {
                     (nx, col_w)
                 } else {
                     (nx + right_col_x, w - right_col_x)
                 };
+                let handle_id = format!("{side_char}-{group_index}-{}", row.id);
                 scene.hits.push(HitTarget {
-                    id: format!("{}:{}", node.id, row.id),
+                    id: format!("{}:{}", node.id, handle_id),
                     bounds: RectPx::new(x, ny + row_top, width, row_px),
                     node_id: Some(node.id.clone()),
                     edge_id: None,
+                    handle_id: Some(handle_id),
                 });
             }
         }

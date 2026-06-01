@@ -335,7 +335,7 @@ Manual signoff: v6 `docs/cad-export-1to1-validation.md` checklist on ≥2 real p
 - Drag chrome only: dashed body outline during node drag (`dragVisualDelta`) — not authoritative geometry
 - Load **Arial Narrow** for canvas text (same face as DXF STYLE table)
 
-**Hit targets (as built):** Every node type emits a body hit for drag. Frame nodes (deviceV2, avPlate, patch panels) also emit per-row port hits. Grouping zone hits are lowest pick priority. Wire/port connect gestures not yet wired.
+**Hit targets (as built):** Every node type emits a body hit for drag. Frame nodes (deviceV2, avPlate, patch panels) emit per-port hits with `handle_id` for wire connect. Grouping zone hits are lowest pick priority.
 
 ### Konva must NOT
 

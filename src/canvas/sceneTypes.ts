@@ -60,6 +60,7 @@ export interface HitTarget {
   bounds: RectPx
   node_id?: string
   edge_id?: string
+  handle_id?: string
 }
 
 export interface SceneJson {

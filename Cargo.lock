@@ -716,6 +716,7 @@ dependencies = [
  "diagramme-wires",
  "serde",
  "serde_json",
+ "uuid",
 ]
 
 [[package]]

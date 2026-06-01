@@ -9,7 +9,7 @@ use crate::debug_channel;
 use crate::state::AppState;
 use diagramme_dxf::build_revit_dxf_from_diagram;
 use diagramme_wires::apply_node_move_geometry;
-use diagramme_scene::{build_scene, build_scene_patch, Scene, SceneBuildOptions, ScenePatch};
+use diagramme_scene::{build_scene, build_scene_patch, build_schematic_edge, Scene, SceneBuildOptions, ScenePatch};
 use diagramme_schema::{
     validate_diagram_envelope, DiagramState, EmbeddedPreset, Node, NodeDimension, ProjectState,
     Sheet, XY, normalize_project_for_persist,
@@ -245,6 +245,30 @@ pub fn move_node(
         apply_node_move_geometry(diagram, &node_id, position);
         maybe_apply_edge_handle_attachments(diagram, handle_attachment_updates);
     })
+}
+
+#[tauri::command]
+pub fn add_edge(
+    app: AppHandle,
+    state: State<'_, AppState>,
+    source: String,
+    target: String,
+    source_handle: Option<String>,
+    target_handle: Option<String>,
+) -> Result<DiagramState, String> {
+    let edge = {
+        let project = state.0.lock().unwrap();
+        build_schematic_edge(
+            &project.active_sheet().state,
+            &source,
+            &target,
+            source_handle.as_deref(),
+            target_handle.as_deref(),
+        )?
+    };
+    Ok(mutate_active_diagram(&state, &app, |diagram| {
+        diagram.edges.push(edge);
+    }))
 }
 
 #[tauri::command]

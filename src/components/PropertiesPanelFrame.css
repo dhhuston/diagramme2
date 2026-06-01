@@ -1,0 +1,213 @@
+/* ─── Properties placeholder (v2 shell) ───────────────────────────────── */
+
+.props-placeholder {
+  padding: var(--sp-4);
+  color: var(--clr-mid);
+  font-size: 12px;
+}
+
+.props-placeholder__lead {
+  margin: 0 0 var(--sp-2);
+  font-weight: 600;
+  color: var(--clr-ink);
+}
+
+.props-placeholder__hint {
+  margin: 0;
+  line-height: 1.45;
+}
+
+.props-placeholder__dl {
+  margin: var(--sp-3) 0 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--sp-1) var(--sp-3);
+  font-size: 11px;
+}
+
+.props-placeholder__dl dt {
+  margin: 0;
+  font-weight: 600;
+  color: var(--clr-mid);
+}
+
+.props-placeholder__dl dd {
+  margin: 0;
+  font-family: var(--font-mono);
+  color: var(--clr-ink);
+  word-break: break-all;
+}
+
+/* ─── Properties Frame ────────────────────────────────────────────────── */
+
+.props-frame {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--clr-surface);
+  border-left: 1px solid var(--clr-border);
+  z-index: var(--z-palette);
+  box-sizing: border-box;
+  transform: translateX(100%);
+  transition: transform var(--dur-slow) var(--ease-out-expo);
+  pointer-events: none;
+}
+
+.props-frame--open {
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+/* ─── Resize handle ───────────────────────────────────────────────────── */
+
+.props-frame__resize {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  cursor: ew-resize;
+  z-index: 2;
+  transition: background var(--dur-fast) var(--ease-out-quart);
+}
+
+.props-frame__resize:hover,
+.props-frame__resize:active {
+  background: var(--clr-accent-subtle);
+}
+
+.props-frame__resize:focus-visible {
+  outline: 2px solid var(--clr-accent);
+  outline-offset: -2px;
+}
+
+/* ─── Header ──────────────────────────────────────────────────────────── */
+
+.props-frame__header {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 var(--sp-2) 0 var(--sp-4);
+  border-bottom: 1px solid var(--clr-border);
+  gap: var(--sp-2);
+}
+
+.props-frame__node-label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--clr-ink);
+  letter-spacing: 0.01em;
+}
+
+.props-frame__close {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--clr-mid);
+  transition: color var(--dur-fast) var(--ease-out-quart),
+              background var(--dur-fast) var(--ease-out-quart);
+}
+
+.props-frame__close:hover {
+  color: var(--clr-ink);
+  background: var(--clr-accent-subtle);
+}
+
+.props-frame__close:focus-visible {
+  outline: 2px solid var(--clr-accent);
+  outline-offset: -2px;
+}
+
+/* ─── Scroll region ───────────────────────────────────────────────────── */
+
+.props-frame__scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--clr-border) transparent;
+}
+
+@media (pointer: coarse) {
+  .props-frame__resize {
+    width: 14px;
+  }
+
+  .props-frame__close {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* ─── Delete footer ───────────────────────────────────────────────── */
+
+.props-frame__footer {
+  flex-shrink: 0;
+  padding: var(--sp-2) var(--sp-3);
+  border-top: 1px solid var(--clr-border);
+}
+
+.props-frame__delete-btn {
+  width: 100%;
+  padding: 6px var(--sp-2);
+  background: transparent;
+  border: 1px solid var(--clr-border);
+  border-radius: 4px;
+  color: var(--clr-mid);
+  font-family: var(--font-ui);
+  font-size: 11px;
+  cursor: pointer;
+  transition: color var(--dur-fast) var(--ease-out-quart),
+              background var(--dur-fast) var(--ease-out-quart),
+              border-color var(--dur-fast) var(--ease-out-quart);
+}
+
+.props-frame__delete-btn:hover {
+  color: var(--clr-ink);
+  background: var(--clr-accent-subtle);
+  border-color: var(--clr-accent);
+}
+
+.props-frame__delete-btn:focus-visible {
+  outline: 2px solid var(--clr-accent);
+  outline-offset: -2px;
+}
+
+.props-frame__delete-btn--confirm {
+  background: var(--clr-error-subtle);
+  border-color: var(--clr-error);
+  color: var(--clr-error);
+  font-weight: 600;
+}
+
+.props-frame__delete-btn--confirm:focus-visible {
+  outline-color: var(--clr-error);
+}
+
+.props-frame__delete-btn--confirm:hover {
+  background: var(--clr-error-subtle);
+  border-color: var(--clr-error);
+  color: var(--clr-error);
+}

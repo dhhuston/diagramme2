@@ -1,0 +1,98 @@
+.canvas-empty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.canvas-empty__card {
+  pointer-events: all;
+  background: var(--clr-white);
+  border: 1px solid var(--clr-border);
+  padding: var(--sp-6) var(--sp-8);
+  max-width: 320px;
+  animation: empty-in 340ms var(--ease-out-expo) both;
+}
+
+@keyframes empty-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.canvas-empty__hints {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-6);
+}
+
+.canvas-empty__hint {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-3);
+  font-size: 12px;
+  color: var(--clr-mid);
+  line-height: 1.4;
+}
+
+.canvas-empty__hint-key {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--clr-ink);
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  padding: 1px 5px;
+  min-width: 48px;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+.canvas-empty__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+}
+
+.canvas-empty__got-it {
+  background: var(--clr-accent);
+  color: var(--clr-accent-on);
+  border: none;
+  padding: var(--sp-2) var(--sp-4);
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-out-quart);
+}
+
+.canvas-empty__got-it:hover {
+  background: var(--clr-accent-hover);
+}
+
+.canvas-empty__got-it:focus-visible {
+  outline: 2px solid var(--clr-accent);
+  outline-offset: 2px;
+}
+
+.canvas-empty__skip {
+  background: none;
+  border: none;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  color: var(--clr-mid);
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.canvas-empty__skip:hover {
+  color: var(--clr-ink);
+}

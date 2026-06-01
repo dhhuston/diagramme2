@@ -76,6 +76,9 @@ pub struct HitTarget {
     pub node_id: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub edge_id: Option<String>,
+    /// React Flow handle id for port hits (`L-0-in-1`, `T-0-hdmi`, etc.).
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub handle_id: Option<String>,
 }
 
 /// Full scene for one sheet — single geometric truth for canvas and export.

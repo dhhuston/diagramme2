@@ -84,14 +84,18 @@ export function useDiagramScene() {
     [clearDebounce, refreshScene],
   )
 
+  const bumpFitToScene = useCallback(() => {
+    setFitRevision((revision) => revision + 1)
+  }, [])
+
   const loadDiagramJson = useCallback(
     async (json: string) => {
       await openDiagram(json)
       const next = await refreshScene()
-      setFitRevision((revision) => revision + 1)
+      bumpFitToScene()
       return next
     },
-    [refreshScene],
+    [bumpFitToScene, refreshScene],
   )
 
   useEffect(() => clearDebounce, [clearDebounce])
@@ -102,6 +106,7 @@ export function useDiagramScene() {
     busy,
     fitRevision,
     beginDragPreview,
+    bumpFitToScene,
     refreshScene,
     refreshSceneQuiet,
     refreshScenePatchQuiet,

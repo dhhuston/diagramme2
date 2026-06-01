@@ -461,3 +461,13 @@ pub fn append_wires_for_edges(
         }
     }
 }
+
+/// Wire category string for a new schematic connection.
+pub fn resolve_port_category_for_connect(node: &Node, handle_id: Option<&str>) -> Option<String> {
+    resolve_port_category(node, handle_id).map(|c| c.as_str().to_string())
+}
+
+/// Comparable category token for mismatch detection on new connections.
+pub fn resolve_port_comparable_for_connect(node: &Node, handle_id: Option<&str>) -> Option<String> {
+    resolve_port_comparable(node, handle_id)
+}

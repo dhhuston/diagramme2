@@ -144,6 +144,21 @@ export const moveNode = (
 
 export const deleteNode = (nodeId: string) => invoke<DiagramState>('delete_node', { nodeId })
 
+export interface SchematicEdgeConnect {
+  source: string
+  target: string
+  sourceHandle?: string
+  targetHandle?: string
+}
+
+export const addEdge = (connect: SchematicEdgeConnect) =>
+  invoke<DiagramState>('add_edge', {
+    source: connect.source,
+    target: connect.target,
+    sourceHandle: connect.sourceHandle ?? null,
+    targetHandle: connect.targetHandle ?? null,
+  })
+
 export interface NodeMove {
   nodeId: string
   position: RustXY

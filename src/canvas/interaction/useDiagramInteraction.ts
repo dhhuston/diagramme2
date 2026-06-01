@@ -5,8 +5,20 @@ import { hitTestScene, stagePointerToDiagramPx } from '../hitTest'
 import type { HitTarget, PointPx, SceneJson } from '../sceneTypes'
 import type { Viewport } from '../useViewport'
 import { nodeBodyOrigin, snapPoint, type NodeDragTarget } from './dragNode'
+import {
+  canConnectPorts,
+  portCenterFromHit,
+  portFromHit,
+  type PortEndpoint,
+} from './connectPorts'
 
 const WIRE_PREVIEW_MS = 60
+
+export type WireConnectPreview = {
+  from: PortEndpoint
+  fromPoint: PointPx
+  toPoint: PointPx
+}
 
 type UseDiagramInteractionOptions = {
   scene: SceneJson
@@ -15,6 +27,7 @@ type UseDiagramInteractionOptions = {
   /** Coalesced Rust preview — updates node position + wire routing in scene. */
   onNodeDragPreview?: (nodeId: string, position: PointPx) => void | Promise<void>
   onNodeMoveCommit?: (nodeId: string, position: PointPx) => void | Promise<void>
+  onPortConnect?: (from: PortEndpoint, to: PortEndpoint) => void | Promise<void>
   onPan: (next: Pick<Viewport, 'x' | 'y'>) => void
 }
 
@@ -28,17 +41,26 @@ type DragSession = {
   targetOrigin: PointPx
 }
 
+type WireConnectSession = {
+  from: PortEndpoint
+  fromPoint: PointPx
+}
+
 export function useDiagramInteraction({
   scene,
   viewport,
   onHit,
   onNodeDragPreview,
   onNodeMoveCommit,
+  onPortConnect,
   onPan,
 }: UseDiagramInteractionOptions) {
   const dragSession = useRef<DragSession | null>(null)
   const dragGrabOffset = useRef<PointPx | null>(null)
   const [nodeDrag, setNodeDrag] = useState<NodeDragTarget | null>(null)
+  const wireSession = useRef<WireConnectSession | null>(null)
+  const [wireConnect, setWireConnect] = useState<WireConnectPreview | null>(null)
+  const lastDiagramPoint = useRef<PointPx | null>(null)
   const panSession = useRef<PanSession | null>(null)
   const movedDuringGesture = useRef(false)
   const previewFrame = useRef<number | null>(null)
@@ -71,6 +93,11 @@ export function useDiagramInteraction({
       cancelAnimationFrame(visualFrame.current)
       visualFrame.current = null
     }
+  }, [])
+
+  const endWireConnect = useCallback(() => {
+    wireSession.current = null
+    setWireConnect(null)
   }, [])
 
   const queueVisualUpdate = useCallback(() => {
@@ -144,6 +171,21 @@ export function useDiagramInteraction({
 
   const handlePointerUp = useCallback(() => {
     panSession.current = null
+
+    const wire = wireSession.current
+    if (wire) {
+      endWireConnect()
+      const diagramPoint = lastDiagramPoint.current
+      if (diagramPoint && onPortConnect) {
+        const hit = hitTestScene(scene.hits, diagramPoint)
+        const to = portFromHit(hit)
+        if (to && canConnectPorts(wire.from, to)) {
+          void onPortConnect(wire.from, to)
+        }
+      }
+      return
+    }
+
     const session = endDrag()
     if (!session || !onNodeMoveCommit) return
     const start = nodeBodyOrigin(scene.hits, session.nodeId)
@@ -155,7 +197,7 @@ export function useDiagramInteraction({
       return
     }
     void onNodeMoveCommit(session.nodeId, snapPoint(session.targetOrigin))
-  }, [endDrag, onNodeMoveCommit, scene.hits])
+  }, [endDrag, endWireConnect, onNodeMoveCommit, onPortConnect, scene.hits])
 
   const handlePointerDown = useCallback(
     (event: KonvaEventObject<PointerEvent>) => {
@@ -165,8 +207,23 @@ export function useDiagramInteraction({
       if (!diagramPoint) return
 
       const hit = hitTestScene(scene.hits, diagramPoint)
-      if (hit?.node_id && onNodeMoveCommit) {
+      lastDiagramPoint.current = diagramPoint
+
+      const port = portFromHit(hit)
+      if (port && hit && onPortConnect) {
         event.evt.preventDefault()
+        endDrag()
+        endWireConnect()
+        const fromPoint = portCenterFromHit(hit)
+        wireSession.current = { from: port, fromPoint }
+        setWireConnect({ from: port, fromPoint, toPoint: fromPoint })
+        onHit?.(hit)
+        return
+      }
+
+      if (hit?.node_id && onNodeMoveCommit && !hit.handle_id) {
+        event.evt.preventDefault()
+        endWireConnect()
         const origin = nodeBodyOrigin(scene.hits, hit.node_id) ?? {
           x: hit.bounds.x,
           y: hit.bounds.y,
@@ -189,13 +246,14 @@ export function useDiagramInteraction({
 
       const pointer = stage?.getPointerPosition()
       if (!pointer) return
+      endWireConnect()
       panSession.current = {
         startPointer: pointer,
         startViewport: { x: viewport.x, y: viewport.y },
       }
       onHit?.(hit)
     },
-    [onHit, onNodeMoveCommit, pointerOnStage, scene.hits, viewport.x, viewport.y],
+    [onHit, onNodeMoveCommit, onPortConnect, pointerOnStage, scene.hits, viewport.x, viewport.y, endDrag, endWireConnect],
   )
 
   const handlePointerMove = useCallback(
@@ -203,6 +261,18 @@ export function useDiagramInteraction({
       const stage = event.target.getStage()
       const diagramPoint = pointerOnStage(stage)
       if (!diagramPoint) return
+      lastDiagramPoint.current = diagramPoint
+
+      if (wireSession.current) {
+        movedDuringGesture.current = true
+        const session = wireSession.current
+        setWireConnect({
+          from: session.from,
+          fromPoint: session.fromPoint,
+          toPoint: diagramPoint,
+        })
+        return
+      }
 
       const session = dragSession.current
       if (session && dragGrabOffset.current) {
@@ -243,7 +313,7 @@ export function useDiagramInteraction({
 
   useEffect(() => {
     const onWindowPointerUp = () => {
-      if (dragSession.current || panSession.current) {
+      if (dragSession.current || panSession.current || wireSession.current) {
         handlePointerUp()
       }
     }
@@ -260,6 +330,7 @@ export function useDiagramInteraction({
 
   return {
     nodeDrag,
+    wireConnect,
     handlePointerDown,
     handlePointerMove,
     handlePointerUp,

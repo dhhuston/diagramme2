@@ -1,10 +1,12 @@
 import { useCallback, useState } from 'react'
 
+import { AppShell } from './AppShell'
 import { DiagramStage } from './canvas/DiagramStage'
 import type { HitTarget, PointPx } from './canvas/sceneTypes'
 import { useDiagramScene } from './canvas/useDiagramScene'
-import { exportRevitDxf, moveNode } from './tauriIpc'
-import './App.css'
+import type { PortEndpoint } from './canvas/interaction/connectPorts'
+import type { AppMenuCommand } from './appMenuCommands'
+import { exportRevitDxf, addEdge, moveNode, undo, redo } from './tauriIpc'
 
 export default function App() {
   const {
@@ -16,6 +18,7 @@ export default function App() {
     loadDiagramJson,
     refreshScene,
     refreshScenePatchQuiet,
+    bumpFitToScene,
   } = useDiagramScene()
   const [status, setStatus] = useState<string | null>(null)
   const [selectedHit, setSelectedHit] = useState<HitTarget | null>(null)
@@ -47,22 +50,42 @@ export default function App() {
 
   const handleHit = useCallback((hit: HitTarget | null) => {
     setSelectedHit(hit)
-    if (hit?.node_id) {
-      setStatus(`Selected node ${hit.node_id}`)
-    } else if (hit) {
-      setStatus(`Selected ${hit.id}`)
-    }
   }, [])
 
   const handleRefreshScene = useCallback(async () => {
     setStatus(null)
     try {
       const next = await refreshScene()
+      bumpFitToScene()
       setStatus(`Scene refreshed (${next.primitives.length} primitives)`)
     } catch (err) {
       setStatus(`Refresh failed: ${String(err)}`)
     }
-  }, [refreshScene])
+  }, [bumpFitToScene, refreshScene])
+
+  const handleUndo = useCallback(async () => {
+    setStatus(null)
+    try {
+      await undo()
+      const next = await refreshScene()
+      bumpFitToScene()
+      setStatus(`Undo (${next.primitives.length} primitives)`)
+    } catch (err) {
+      setStatus(`Undo failed: ${String(err)}`)
+    }
+  }, [bumpFitToScene, refreshScene])
+
+  const handleRedo = useCallback(async () => {
+    setStatus(null)
+    try {
+      await redo()
+      const next = await refreshScene()
+      bumpFitToScene()
+      setStatus(`Redo (${next.primitives.length} primitives)`)
+    } catch (err) {
+      setStatus(`Redo failed: ${String(err)}`)
+    }
+  }, [bumpFitToScene, refreshScene])
 
   const handleNodeDragPreview = useCallback(
     async (nodeId: string, position: PointPx) => {
@@ -83,43 +106,53 @@ export default function App() {
     [beginDragPreview, refreshScene],
   )
 
+  const handlePortConnect = useCallback(
+    async (from: PortEndpoint, to: PortEndpoint) => {
+      await addEdge({
+        source: from.nodeId,
+        target: to.nodeId,
+        sourceHandle: from.handleId,
+        targetHandle: to.handleId,
+      })
+      const next = await refreshScene()
+      setStatus(
+        `Connected ${from.handleId} → ${to.handleId}; ${next.primitives.length} primitives`,
+      )
+    },
+    [refreshScene],
+  )
+
+  const handleMenuUnavailable = useCallback((command: AppMenuCommand) => {
+    setStatus(`Not available yet (${command})`)
+  }, [])
+
   const displayStatus = error ?? status
 
   return (
-    <div className="app-shell">
-      <header className="app-toolbar">
-        <h1>Diagramme v2</h1>
-        <div className="app-toolbar-actions">
-          <button type="button" disabled={busy} onClick={() => void loadGoldenDiagram()}>
-            Load Comp Gym
-          </button>
-          <button type="button" disabled={busy || !scene} onClick={() => void handleRefreshScene()}>
-            Refresh scene
-          </button>
-          <button type="button" disabled={busy || !scene} onClick={() => void handleExportDxf()}>
-            Export DXF
-          </button>
-        </div>
-        {displayStatus ? <p className="app-status">{displayStatus}</p> : null}
-        {selectedHit?.node_id ? (
-          <p className="app-status">Hit: {selectedHit.node_id}</p>
-        ) : null}
-      </header>
-      <main className="app-canvas">
-        {scene ? (
+    <AppShell
+      scene={scene}
+      selectedHit={selectedHit}
+      status={displayStatus}
+      busy={busy}
+      onExportDxf={handleExportDxf}
+      onUndo={handleUndo}
+      onRedo={handleRedo}
+      onRefreshScene={handleRefreshScene}
+      onLoadGoldenDiagram={loadGoldenDiagram}
+      onMenuUnavailable={handleMenuUnavailable}
+      onClearSelection={() => setSelectedHit(null)}
+      canvas={
+        scene ? (
           <DiagramStage
             scene={scene}
             fitRevision={fitRevision}
             onHit={handleHit}
             onNodeDragPreview={handleNodeDragPreview}
             onNodeMoveCommit={handleNodeMoveCommit}
+            onPortConnect={handlePortConnect}
           />
-        ) : (
-          <div className="app-placeholder">
-            <p>Load Comp Gym to render the Rust scene on Konva.</p>
-          </div>
-        )}
-      </main>
-    </div>
+        ) : null
+      }
+    />
   )
 }

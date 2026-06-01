@@ -353,17 +353,34 @@ pub fn append_av_plate_scene(
         bounds: RectPx::new(nx, ny, w, total_height),
         node_id: Some(node.id.clone()),
         edge_id: None,
+        handle_id: None,
     });
 
-    // Port hit targets
+    // Port hit targets — left (T) and right (S) halves per v6 handle ids
     for (row_index, row) in rows.iter().enumerate() {
-        if let AvPlateBodyRow::Port { row_id, .. } = row {
+        if let AvPlateBodyRow::Port {
+            group_index,
+            row_id,
+            ..
+        } = row
+        {
             let row_top = body_top + row_index as f64 * row_px;
+            let half_w = (w - 2.0 * inset) / 2.0;
+            let t_handle = format!("T-{group_index}-{row_id}");
+            let s_handle = format!("S-{group_index}-{row_id}");
             scene.hits.push(HitTarget {
-                id: format!("{}:{}", node.id, row_id),
-                bounds: RectPx::new(nx + inset, ny + row_top, w - 2.0 * inset, row_px),
+                id: format!("{}:{}", node.id, t_handle),
+                bounds: RectPx::new(nx + inset, ny + row_top, half_w, row_px),
                 node_id: Some(node.id.clone()),
                 edge_id: None,
+                handle_id: Some(t_handle),
+            });
+            scene.hits.push(HitTarget {
+                id: format!("{}:{}", node.id, s_handle),
+                bounds: RectPx::new(nx + inset + half_w, ny + row_top, half_w, row_px),
+                node_id: Some(node.id.clone()),
+                edge_id: None,
+                handle_id: Some(s_handle),
             });
         }
     }

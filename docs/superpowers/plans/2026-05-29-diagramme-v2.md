@@ -16,6 +16,8 @@
 
 ## Progress snapshot (2026-05-29)
 
+> **⚠️ Execution superseded for canvas/interaction:** See [`2026-05-30-v2-parity-recovery.md`](2026-05-30-v2-parity-recovery.md) and [`specs/2026-05-30-v2-parity-recovery-design.md`](../specs/2026-05-30-v2-parity-recovery-design.md). Tasks 17–19c checkboxes below are **archival** — several were marked done prematurely.
+
 | Phase | Status | Notes |
 |-------|--------|-------|
 | 0–1 Bootstrap + fixtures | **Done** | Tauri/Vite workspace, Comp Gym + palette fixtures |
@@ -23,7 +25,7 @@
 | 4 Scene + `scene_to_cad` | **Done** | All node types except `wireSplit`; Comp Gym golden scene |
 | 5 DXF export | **Done** | `export_revit_dxf`, strict-mirror emit |
 | 6 Reports | **Not started** | Crates are stubs |
-| **7 Konva canvas** | **Partial** | Renderer + viewport + node drag; see [Drawing pipeline — as built](#drawing-pipeline--as-built) |
+| **7 Konva canvas** | **Render only** | Renderer + drag OK; **interaction parity not achieved** — see parity recovery plan |
 | 8 React shell | **Not started** | Dev shell only (`Load Comp Gym` button) |
 | 9–10 CI + perf | **Partial** | `ScenePatch` drag preview done; profiling TBD |
 
@@ -547,7 +549,8 @@ Implement **one node type per commit** in this order (each with golden scene JSO
 ### Task 19: Interaction controller — **PARTIAL**
 
 **Files (as built):** `interaction/useDiagramInteraction.ts`, `dragNode.ts`, `hitTest.ts`  
-**Planned but not created:** `InteractionController.tsx`, `connectPorts.ts`
+**Planned but not created:** `InteractionController.tsx`  
+**As built:** `connectPorts.ts`, `WireConnectOverlay.tsx`
 
 #### 19a — Hit test + node drag — **DONE**
 
@@ -565,9 +568,9 @@ Implement **one node type per commit** in this order (each with golden scene JSO
 - [x] Frontend merges patch into cached scene (`applyScenePatch`) instead of full rebuild during drag.
 - [ ] Profile Comp Gym / Cafeteria: justify patch vs full rebuild.
 
-#### 19c — Remaining gestures — **NOT STARTED**
+#### 19c — Remaining gestures — **PARTIAL**
 
-- [ ] Port connect (wire creation IPC + gesture).
+- [x] Port connect (wire creation IPC + gesture): drag port-to-port, `add_edge`, rubber-band preview.
 - [ ] Node resize (`update_dims` + handle UI).
 - [ ] Wire inner-corner drag (`update_edge` / inner-corner commands).
 - [ ] Multi-select drag (`move_nodes`).
@@ -687,7 +690,8 @@ Drag preview currently uses full `get_diagram_scene` throttled to ~60ms with gen
 
 ### Known gaps (track during execution)
 
-- **ScenePatch IPC:** Task 19b — interim full-scene preview during drag is implemented; patch is next perf milestone.
+- **ScenePatch IPC:** Task 19b done.
+- **Port connect:** Task 19c partial — deviceV2, avPlate, patch panel port hits with `handle_id`; mic/speaker/wiretag port hits not yet added.
 - **Konva text:** Cap-height → em calibration in `sceneRenderUtils.ts` (`ARIAL_NARROW_CAP_TO_EM = 0.75`); not an export scale. Bundle Arial Narrow TTF if system font insufficient.
 - **wireSplit node:** Not in `build_scene` (Task 10f gap).
 - **Full v6 command parity:** Task 3 lists core commands; diff `commands.rs` line-by-line before UI phase complete.
@@ -695,9 +699,8 @@ Drag preview currently uses full `get_diagram_scene` throttled to ~60ms with gen
 
 ### Next recommended work (drawing)
 
-1. **Task 19b** — `ScenePatch` to stop full Comp Gym rebuilds during drag.
-2. **Task 19c** — connect ports (highest UX gap after drag).
-3. **Task 10f** — `wireSplit` scene dispatch (if fixtures need it).
+1. **Task 19c (continued)** — node resize, wire inner-corner drag, multi-select drag; mic/speaker/wiretag port hits.
+2. **Task 10f** — `wireSplit` scene dispatch (if fixtures need it).
 
 ### Placeholder scan
 

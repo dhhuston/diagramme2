@@ -306,5 +306,6 @@ pub fn append_wiretag_scene(
         bounds: RectPx::new(nx, ny, w, h),
         node_id: Some(node.id.clone()),
         edge_id: None,
+        handle_id: None,
     });
 }

@@ -3,12 +3,15 @@
 pub mod close_gate;
 pub mod commands;
 pub mod debug_channel;
+pub mod native_menu;
 pub mod state;
 
 use close_gate::AllowNextClose;
 use diagramme_schema::ProjectState;
 use state::AppState;
 use std::sync::Mutex;
+use tauri::Emitter;
+use tauri::Manager;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
@@ -28,6 +31,8 @@ pub fn run() {
         .manage(AppState(Mutex::new(ProjectState::default())))
         .manage(AllowNextClose::default())
         .setup(|app| {
+            native_menu::install_native_menu(app)?;
+
             if cfg!(debug_assertions) {
                 app.handle().plugin(
                     tauri_plugin_log::Builder::default()
@@ -36,6 +41,19 @@ pub fn run() {
                 )?;
             }
             Ok(())
+        })
+        .on_menu_event(|app, event| {
+            native_menu::on_native_menu_event(app, event.id().as_ref());
+        })
+        .on_window_event(|window, event| {
+            if let tauri::WindowEvent::CloseRequested { api, .. } = event {
+                let gate = window.state::<AllowNextClose>();
+                if gate.consume_if_allowed() {
+                    return;
+                }
+                api.prevent_close();
+                let _ = window.app_handle().emit("diagramme-close-request", ());
+            }
         })
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_fs::init())
@@ -51,6 +69,7 @@ pub fn run() {
             commands::update_node,
             commands::replace_node_type,
             commands::move_node,
+            commands::add_edge,
             commands::move_nodes,
             commands::delete_node,
             commands::delete_nodes,

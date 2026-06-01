@@ -166,6 +166,7 @@ pub fn push_node_body_hit(scene: &mut Scene, node: &Node, bounds: RectPx) {
         bounds,
         node_id: Some(node.id.clone()),
         edge_id: None,
+        handle_id: None,
     };
     if node.node_type == "groupingZone" {
         scene.hits.insert(0, hit);

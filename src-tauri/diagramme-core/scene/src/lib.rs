@@ -7,6 +7,7 @@ mod build;
 mod bundle_brackets;
 mod cad_transform;
 mod nodes;
+mod edge_connect;
 mod patch;
 mod scene;
 mod text;
@@ -16,6 +17,7 @@ pub use build::{
     append_node_to_scene, build_scene, build_scene_with_options, tag_node_primitives,
     SceneBuildOptions,
 };
+pub use edge_connect::build_schematic_edge;
 pub use patch::build_scene_patch;
 pub use nodes::{resolve_pair_main_display_text, wiretag_scene_bounds};
 pub use wires::{append_wires_for_edges, append_wires_to_scene, wire_extent_rect, WireCategory};

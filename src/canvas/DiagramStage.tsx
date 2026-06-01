@@ -2,10 +2,12 @@ import { useEffect, useRef, useState } from 'react'
 import { Layer, Stage } from 'react-konva'
 
 import { useDiagramInteraction } from './interaction/useDiagramInteraction'
+import type { PortEndpoint } from './interaction/connectPorts'
 import { fitExtentToStage } from './sceneRenderUtils'
 import { SceneRenderer } from './SceneRenderer'
 import type { HitTarget, PointPx, SceneJson } from './sceneTypes'
 import { useViewport } from './useViewport'
+import { WireConnectOverlay } from './WireConnectOverlay'
 
 type DiagramStageProps = {
   scene: SceneJson
@@ -14,6 +16,7 @@ type DiagramStageProps = {
   onHit?: (hit: HitTarget | null) => void
   onNodeDragPreview?: (nodeId: string, position: PointPx) => void | Promise<void>
   onNodeMoveCommit?: (nodeId: string, position: PointPx) => void | Promise<void>
+  onPortConnect?: (from: PortEndpoint, to: PortEndpoint) => void | Promise<void>
 }
 
 /** Konva stage: 1 diagram px = 1 unit at scale 1; wheel zoom + drag pan. */
@@ -23,6 +26,7 @@ export function DiagramStage({
   onHit,
   onNodeDragPreview,
   onNodeMoveCommit,
+  onPortConnect,
 }: DiagramStageProps) {
   const hostRef = useRef<HTMLDivElement>(null)
   const [size, setSize] = useState({ width: 800, height: 600 })
@@ -30,6 +34,7 @@ export function DiagramStage({
 
   const {
     nodeDrag,
+    wireConnect,
     handlePointerDown,
     handlePointerMove,
     handlePointerUp,
@@ -40,6 +45,7 @@ export function DiagramStage({
     onHit,
     onNodeDragPreview,
     onNodeMoveCommit,
+    onPortConnect,
     onPan: setPan,
   })
 
@@ -82,6 +88,7 @@ export function DiagramStage({
           hitGraphEnabled={false}
         >
           <SceneRenderer scene={scene} nodeDrag={nodeDrag} />
+          <WireConnectOverlay preview={wireConnect} />
         </Layer>
       </Stage>
     </div>

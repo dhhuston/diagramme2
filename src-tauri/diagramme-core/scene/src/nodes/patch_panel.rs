@@ -536,16 +536,28 @@ pub fn append_patch_panel_scene(
         }
 
         if let Some(row_id) = row.get("id").and_then(|v| v.as_str()) {
+            let row_bounds = RectPx::new(
+                nx + inset,
+                ny + row_top,
+                w - 2.0 * inset,
+                PATCH_CIRCUIT_HEIGHT_PX,
+            );
+            let half_w = row_bounds.width / 2.0;
+            let l_handle = format!("L-{row_id}");
+            let r_handle = format!("R-{row_id}");
             scene.hits.push(HitTarget {
-                id: format!("{}:{}", node.id, row_id),
-                bounds: RectPx::new(
-                    nx + inset,
-                    ny + row_top,
-                    w - 2.0 * inset,
-                    PATCH_CIRCUIT_HEIGHT_PX,
-                ),
+                id: format!("{}:{}", node.id, l_handle),
+                bounds: RectPx::new(row_bounds.x, row_bounds.y, half_w, row_bounds.height),
                 node_id: Some(node.id.clone()),
                 edge_id: None,
+                handle_id: Some(l_handle),
+            });
+            scene.hits.push(HitTarget {
+                id: format!("{}:{}", node.id, r_handle),
+                bounds: RectPx::new(row_bounds.x + half_w, row_bounds.y, half_w, row_bounds.height),
+                node_id: Some(node.id.clone()),
+                edge_id: None,
+                handle_id: Some(r_handle),
             });
         }
     }
@@ -555,5 +567,6 @@ pub fn append_patch_panel_scene(
         bounds: RectPx::new(nx, ny, w, total_height),
         node_id: Some(node.id.clone()),
         edge_id: None,
+        handle_id: None,
     });
 }

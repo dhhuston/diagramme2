@@ -1,55 +1,118 @@
+/* ─── App shell (v6 layout, Konva canvas) ───────────────────────────── */
+
 .app-shell {
+  width: 100%;
+  height: 100%;
+}
+
+.app-layout {
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  background: #ececec;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
 }
 
-.app-toolbar {
+.app-main-column {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.75rem 1rem;
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid #ccc;
-  background: #fafafa;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
 }
 
-.app-toolbar h1 {
-  margin: 0;
-  font-size: 1.25rem;
-}
-
-.app-toolbar-actions {
+.app-main-content {
+  position: relative;
+  z-index: 0;
   display: flex;
-  gap: 0.5rem;
-}
-
-.app-status {
-  margin: 0;
-  color: #444;
-  font-size: 0.875rem;
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .app-canvas {
+  position: relative;
   flex: 1;
+  min-width: 0;
   min-height: 0;
+  overflow: hidden;
+  background: var(--clr-canvas);
+}
+
+.app-canvas--wiring {
+  cursor: crosshair;
 }
 
 .diagram-stage-host {
   width: 100%;
   height: 100%;
-  background: #fff;
 }
 
-.app-placeholder {
+.app-layout--focus .left-palette {
+  width: 0;
+  pointer-events: none;
+}
+
+.canvas-status {
+  position: fixed;
+  right: var(--sp-4);
+  bottom: calc(var(--sp-4) + 36px);
+  z-index: var(--z-tooltip);
+  max-width: min(360px, calc(100vw - 32px));
+  padding: 7px 10px;
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  color: var(--clr-ink);
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.25;
+  box-shadow: 0 6px 18px color-mix(in oklch, var(--clr-ink) 18%, transparent);
+}
+
+.focus-hud {
+  position: fixed;
+  bottom: var(--sp-4);
+  right: var(--sp-4);
+  z-index: var(--z-focus-hud);
   display: flex;
   align-items: center;
-  justify-content: center;
-  height: 100%;
-  color: #666;
+  gap: var(--sp-2);
+  padding: var(--sp-1) var(--sp-3);
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--clr-mid);
+  cursor: pointer;
+  user-select: none;
 }
 
-.app-placeholder p {
-  margin: 0;
+.focus-hud:hover {
+  color: var(--clr-ink);
+  background: var(--clr-accent-subtle);
+}
+
+.focus-hud kbd {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--clr-accent);
+}
+
+.left-palette__btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.preset-toolbox--shell-disabled .preset-toolbox__import,
+.preset-toolbox--shell-disabled .preset-toolbox__preset-row button,
+.preset-toolbox--shell-disabled .preset-toolbox__save-selection {
+  pointer-events: none;
+  opacity: 0.45;
 }
