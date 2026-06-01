@@ -69,6 +69,118 @@ fn combine_stub_motion_for_corners(delta_s1: FlowXY, delta_t1: FlowXY) -> FlowXY
     }
 }
 
+fn is_horizontal(a: FlowXY, b: FlowXY) -> bool {
+    snap_coord(a.y) == snap_coord(b.y) && snap_coord(a.x) != snap_coord(b.x)
+}
+
+fn is_vertical(a: FlowXY, b: FlowXY) -> bool {
+    snap_coord(a.x) == snap_coord(b.x) && snap_coord(a.y) != snap_coord(b.y)
+}
+
+fn same_snapped_point(a: FlowXY, b: FlowXY) -> bool {
+    snap_coord(a.x) == snap_coord(b.x) && snap_coord(a.y) == snap_coord(b.y)
+}
+
+/// Re-anchor the first corner after a moved source stub (segment S1 → corner).
+fn reflow_corner_at_source(corner: FlowXY, prev_s1: FlowXY, new_s1: FlowXY) -> FlowXY {
+    if is_horizontal(prev_s1, corner) {
+        snap_point(FlowXY {
+            x: corner.x,
+            y: new_s1.y,
+        })
+    } else if is_vertical(prev_s1, corner) {
+        snap_point(FlowXY {
+            x: new_s1.x,
+            y: corner.y,
+        })
+    } else {
+        snap_point(corner)
+    }
+}
+
+/// Re-anchor the last corner before a moved target stub (segment corner → T1).
+fn reflow_corner_at_target(corner: FlowXY, prev_t1: FlowXY, new_t1: FlowXY) -> FlowXY {
+    if is_horizontal(corner, prev_t1) {
+        snap_point(FlowXY {
+            x: new_t1.x,
+            y: corner.y,
+        })
+    } else if is_vertical(corner, prev_t1) {
+        snap_point(FlowXY {
+            x: corner.x,
+            y: new_t1.y,
+        })
+    } else {
+        snap_point(corner)
+    }
+}
+
+/**
+ * Reflow interior corners when one stub moves: stretch/shrink the leg from the moved
+ * endpoint while pinning vertical x / horizontal y on interior bus segments.
+ * (Replaces elastic translation for asymmetric stub motion — avoids loops on node drag.)
+ */
+pub fn reflow_inner_corners_for_stub_move(
+    corners: &[FlowXY],
+    prev_s1: FlowXY,
+    prev_t1: FlowXY,
+    new_s1: FlowXY,
+    new_t1: FlowXY,
+) -> Vec<FlowXY> {
+    if corners.is_empty() {
+        return Vec::new();
+    }
+
+    let source_moved = !same_snapped_point(new_s1, prev_s1);
+    let target_moved = !same_snapped_point(new_t1, prev_t1);
+
+    if corners.len() == 1 && source_moved && target_moved {
+        let c = corners[0];
+        return vec![if is_horizontal(prev_s1, c) && is_vertical(c, prev_t1) {
+            snap_point(FlowXY {
+                x: new_t1.x,
+                y: new_s1.y,
+            })
+        } else if is_vertical(prev_s1, c) && is_horizontal(c, prev_t1) {
+            snap_point(FlowXY {
+                x: new_s1.x,
+                y: new_t1.y,
+            })
+        } else {
+            reflow_corner_at_target(reflow_corner_at_source(c, prev_s1, new_s1), prev_t1, new_t1)
+        }];
+    }
+
+    let mut out = corners.to_vec();
+    if source_moved {
+        out[0] = reflow_corner_at_source(corners[0], prev_s1, new_s1);
+    }
+    if target_moved {
+        let last = corners.len() - 1;
+        out[last] = reflow_corner_at_target(corners[last], prev_t1, new_t1);
+    }
+    out
+}
+
+/// Choose corner input for stub motion: uniform translate vs endpoint reflow.
+pub fn inner_corners_for_stub_move(
+    corners: &[FlowXY],
+    delta_s1: FlowXY,
+    delta_t1: FlowXY,
+    prev_s1: FlowXY,
+    prev_t1: FlowXY,
+    new_s1: FlowXY,
+    new_t1: FlowXY,
+) -> Vec<FlowXY> {
+    let same_motion =
+        (delta_s1.x - delta_t1.x).abs() < 1e-3 && (delta_s1.y - delta_t1.y).abs() < 1e-3;
+    if same_motion {
+        translate_inner_corners(corners, delta_s1, delta_t1, Some(prev_s1), Some(prev_t1))
+    } else {
+        reflow_inner_corners_for_stub_move(corners, prev_s1, prev_t1, new_s1, new_t1)
+    }
+}
+
 /// Translate interior corners when stub endpoints move (preserve edited shape).
 pub fn translate_inner_corners(
     corners: &[FlowXY],

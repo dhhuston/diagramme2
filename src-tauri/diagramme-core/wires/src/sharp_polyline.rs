@@ -664,6 +664,98 @@ pub fn node_lookup_for_wire_geometry(nodes: &[Node]) -> HashMap<String, Node> {
     nodes.iter().map(|n| (n.id.clone(), n.clone())).collect()
 }
 
+/// Stub routing inputs for inner-chain rebuild (S1/T1, handle sides, nearby obstacles).
+pub struct WireInnerRouting {
+    pub s1: FlowXY,
+    pub t1: FlowXY,
+    pub source_position: HandleSide,
+    pub target_position: HandleSide,
+    pub nearby_obstacles: Vec<WireObstacleBox>,
+}
+
+fn wire_routing_aabb(
+    source: FlowXY,
+    target: FlowXY,
+    s1: FlowXY,
+    t1: FlowXY,
+    aabb_stub_expand: Option<(FlowXY, FlowXY)>,
+) -> (f64, f64, f64, f64) {
+    let mut xs = vec![source.x, target.x, s1.x, t1.x];
+    let mut ys = vec![source.y, target.y, s1.y, t1.y];
+    if let Some((prev_s1, prev_t1)) = aabb_stub_expand {
+        xs.extend([prev_s1.x, prev_t1.x]);
+        ys.extend([prev_s1.y, prev_t1.y]);
+    }
+    let wire_lo_x = xs.iter().copied().fold(f64::INFINITY, f64::min);
+    let wire_hi_x = xs.iter().copied().fold(f64::NEG_INFINITY, f64::max);
+    let wire_lo_y = ys.iter().copied().fold(f64::INFINITY, f64::min);
+    let wire_hi_y = ys.iter().copied().fold(f64::NEG_INFINITY, f64::max);
+    (wire_lo_x, wire_lo_y, wire_hi_x, wire_hi_y)
+}
+
+/// Resolve S1/T1, handle sides, and obstacle set for inner-chain routing.
+pub fn wire_inner_routing_for_edge(
+    edge: &Edge,
+    nodes: &[Node],
+    edges: &[Edge],
+    aabb_stub_expand: Option<(FlowXY, FlowXY)>,
+) -> Option<WireInnerRouting> {
+    if is_bundle_member(edge) || !is_schematic_wire_edge_type(edge.edge_type.as_deref()) {
+        return None;
+    }
+
+    let nodes_by_id = node_lookup_for_wire_geometry(nodes);
+    let src = nodes_by_id.get(&edge.source)?;
+    let tgt = nodes_by_id.get(&edge.target)?;
+    let sh = edge.source_handle.as_deref();
+    let th = edge.target_handle.as_deref();
+    let sc = read_handle_center(&edge.data, "sourceHandleCenter");
+    let tc = read_handle_center(&edge.data, "targetHandleCenter");
+
+    let src_port = sh.and_then(|h| analytical_port_xy(src, h, nodes, edges));
+    let tgt_port = th.and_then(|h| analytical_port_xy(tgt, h, nodes, edges));
+    let source = endpoint_for_export(src_port, sc, &src.node_type)?;
+    let target = endpoint_for_export(tgt_port, tc, &tgt.node_type)?;
+
+    let dx = target.x - source.x;
+    let dy = target.y - source.y;
+    let inferred_source = infer_handle_side(dx, dy, true);
+    let inferred_target = infer_handle_side(dx, dy, false);
+    let source_position = sh
+        .and_then(|h| known_handle_position(&src.node_type, Some(h)))
+        .unwrap_or(inferred_source);
+    let target_position = th
+        .and_then(|h| known_handle_position(&tgt.node_type, Some(h)))
+        .unwrap_or(inferred_target);
+
+    let stubs = compute_stub_endpoints(
+        source.x,
+        source.y,
+        target.x,
+        target.y,
+        source_position,
+        target_position,
+    )?;
+
+    let obstacles = collect_wire_obstacles(
+        &nodes_by_id,
+        &edge.source,
+        &edge.target,
+        WIRE_OBSTACLE_CLEARANCE_PX,
+    );
+    let (wire_lo_x, wire_lo_y, wire_hi_x, wire_hi_y) =
+        wire_routing_aabb(source, target, stubs.s1, stubs.t1, aabb_stub_expand);
+    let nearby = obstacles_near_wire_aabb(&obstacles, wire_lo_x, wire_lo_y, wire_hi_x, wire_hi_y);
+
+    Some(WireInnerRouting {
+        s1: stubs.s1,
+        t1: stubs.t1,
+        source_position,
+        target_position,
+        nearby_obstacles: nearby,
+    })
+}
+
 pub fn fallback_polyline_from_ports(
     edge: &Edge,
     src: &Node,
@@ -784,15 +876,7 @@ pub fn wire_inner_chain_for_edge_with_corners(
     corner_override: Option<Vec<FlowXY>>,
     options: WireGeometryOptions,
 ) -> Option<Vec<FlowXY>> {
-    if is_bundle_member(edge) || !is_schematic_wire_edge_type(edge.edge_type.as_deref()) {
-        return None;
-    }
-
-    let nodes_by_id = node_lookup_for_wire_geometry(nodes);
-    let src = nodes_by_id.get(&edge.source)?;
-    let tgt = nodes_by_id.get(&edge.target)?;
-    let sh = edge.source_handle.as_deref();
-    let th = edge.target_handle.as_deref();
+    let routing = wire_inner_routing_for_edge(edge, nodes, edges, None)?;
     let inner_corners = if let Some(corners) = corner_override {
         if corners.is_empty() {
             None
@@ -804,53 +888,14 @@ pub fn wire_inner_chain_for_edge_with_corners(
     } else {
         None
     };
-    let sc = read_handle_center(&edge.data, "sourceHandleCenter");
-    let tc = read_handle_center(&edge.data, "targetHandleCenter");
-
-    let src_port = sh.and_then(|h| analytical_port_xy(src, h, nodes, edges));
-    let tgt_port = th.and_then(|h| analytical_port_xy(tgt, h, nodes, edges));
-    let source = endpoint_for_export(src_port, sc, &src.node_type)?;
-    let target = endpoint_for_export(tgt_port, tc, &tgt.node_type)?;
-
-    let dx = target.x - source.x;
-    let dy = target.y - source.y;
-    let inferred_source = infer_handle_side(dx, dy, true);
-    let inferred_target = infer_handle_side(dx, dy, false);
-    let source_position = sh
-        .and_then(|h| known_handle_position(&src.node_type, Some(h)))
-        .unwrap_or(inferred_source);
-    let target_position = th
-        .and_then(|h| known_handle_position(&tgt.node_type, Some(h)))
-        .unwrap_or(inferred_target);
-
-    let stubs = compute_stub_endpoints(
-        source.x,
-        source.y,
-        target.x,
-        target.y,
-        source_position,
-        target_position,
-    )?;
-
-    let obstacles = collect_wire_obstacles(
-        &nodes_by_id,
-        &edge.source,
-        &edge.target,
-        WIRE_OBSTACLE_CLEARANCE_PX,
-    );
-    let wire_lo_x = source.x.min(target.x);
-    let wire_hi_x = source.x.max(target.x);
-    let wire_lo_y = source.y.min(target.y);
-    let wire_hi_y = source.y.max(target.y);
-    let nearby = obstacles_near_wire_aabb(&obstacles, wire_lo_x, wire_lo_y, wire_hi_x, wire_hi_y);
 
     Some(build_inner_chain_points(
-        stubs.s1,
-        stubs.t1,
-        source_position,
-        target_position,
+        routing.s1,
+        routing.t1,
+        routing.source_position,
+        routing.target_position,
         inner_corners.as_deref(),
-        Some(&nearby),
+        Some(&routing.nearby_obstacles),
     ))
 }
 

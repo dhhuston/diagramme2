@@ -4,10 +4,16 @@ use diagramme_geometry::{get_analytical_port_xy, snap_placement_half_grid};
 use diagramme_schema::{DiagramState, Edge, Node, XY};
 
 use crate::inner_corners::{
-    get_inner_corners_from_edge_data, set_inner_corners_on_edge, translate_inner_corners,
+    get_inner_corners_from_edge_data, inner_corners_equal, inner_corners_for_stub_move,
+    set_inner_corners_on_edge,
 };
-use crate::sharp_polyline::wire_chain_stub_ends;
+use crate::inner_segment::inner_corners_from_chain;
+use crate::sharp_polyline::{
+    build_inner_chain_points, is_bundle_member, is_schematic_wire_edge_type,
+    wire_chain_stub_ends, wire_inner_routing_for_edge,
+};
 use crate::types::FlowXY;
+use crate::wire_avoidance::chain_needs_avoidance;
 
 fn nodes_with_position(nodes: &[Node], node_id: &str, position: XY) -> Vec<Node> {
     nodes
@@ -36,6 +42,99 @@ fn analytical_handle_center(node: &Node, handle_id: &str) -> Option<FlowXY> {
     get_analytical_port_xy(node, handle_id).map(|p| FlowXY { x: p.x, y: p.y })
 }
 
+/// Rebuild and persist simplified inner corners when stub endpoints move (v6 `SchematicEdge` layout effect).
+fn sync_inner_corners_on_stub_move(
+    edge: &mut Edge,
+    nodes: &[Node],
+    edges: &[Edge],
+    prev_s1: FlowXY,
+    prev_t1: FlowXY,
+) {
+    if is_bundle_member(edge) || !is_schematic_wire_edge_type(edge.edge_type.as_deref()) {
+        return;
+    }
+
+    let Some(routing) =
+        wire_inner_routing_for_edge(edge, nodes, edges, Some((prev_s1, prev_t1)))
+    else {
+        return;
+    };
+
+    let delta_s1 = FlowXY {
+        x: routing.s1.x - prev_s1.x,
+        y: routing.s1.y - prev_s1.y,
+    };
+    let delta_t1 = FlowXY {
+        x: routing.t1.x - prev_t1.x,
+        y: routing.t1.y - prev_t1.y,
+    };
+    if delta_s1.x.abs() < 1e-6
+        && delta_s1.y.abs() < 1e-6
+        && delta_t1.x.abs() < 1e-6
+        && delta_t1.y.abs() < 1e-6
+    {
+        return;
+    }
+
+    let inner_corners = get_inner_corners_from_edge_data(&edge.data);
+    let has_corners = inner_corners.is_some();
+
+    let corner_input = inner_corners.as_ref().map(|corners| {
+        inner_corners_for_stub_move(
+            corners,
+            delta_s1,
+            delta_t1,
+            prev_s1,
+            prev_t1,
+            routing.s1,
+            routing.t1,
+        )
+    });
+
+    let chain = build_inner_chain_points(
+        routing.s1,
+        routing.t1,
+        routing.source_position,
+        routing.target_position,
+        corner_input.as_deref().filter(|c| !c.is_empty()),
+        Some(&routing.nearby_obstacles),
+    );
+    let next_corners = inner_corners_from_chain(&chain);
+    let corners_arg = if next_corners.is_empty() {
+        None
+    } else {
+        Some(next_corners)
+    };
+
+    if inner_corners_equal(corners_arg.as_deref(), inner_corners.as_deref()) {
+        if has_corners || routing.nearby_obstacles.is_empty() {
+            return;
+        }
+        let plain_chain = build_inner_chain_points(
+            routing.s1,
+            routing.t1,
+            routing.source_position,
+            routing.target_position,
+            None,
+            None,
+        );
+        if !chain_needs_avoidance(&plain_chain, &routing.nearby_obstacles) {
+            return;
+        }
+        let plain_corners = inner_corners_from_chain(&plain_chain);
+        let plain_arg = if plain_corners.is_empty() {
+            None
+        } else {
+            Some(plain_corners)
+        };
+        if inner_corners_equal(corners_arg.as_deref(), plain_arg.as_deref()) {
+            return;
+        }
+    }
+
+    set_inner_corners_on_edge(edge, corners_arg);
+}
+
 fn update_edge_for_node_move(
     edge: &mut Edge,
     nodes: &[Node],
@@ -51,36 +150,10 @@ fn update_edge_for_node_move(
     let old_nodes = nodes_with_position(nodes, moved_node_id, old_position);
     let new_nodes = nodes_with_position(nodes, moved_node_id, new_position);
 
-    let node_delta = FlowXY {
-        x: new_position.x - old_position.x,
-        y: new_position.y - old_position.y,
-    };
-    let delta_s1 = if edge.source == moved_node_id {
-        node_delta
-    } else {
-        FlowXY { x: 0.0, y: 0.0 }
-    };
-    let delta_t1 = if edge.target == moved_node_id {
-        node_delta
-    } else {
-        FlowXY { x: 0.0, y: 0.0 }
-    };
-
     let (prev_s1, prev_t1) = match wire_chain_stub_ends(edge, &old_nodes, edges) {
         Some(stubs) => stubs,
-        None => (FlowXY { x: 0.0, y: 0.0 }, FlowXY { x: 0.0, y: 0.0 }),
+        None => return,
     };
-
-    if let Some(corners) = get_inner_corners_from_edge_data(&edge.data) {
-        let translated = translate_inner_corners(
-            &corners,
-            delta_s1,
-            delta_t1,
-            Some(prev_s1),
-            Some(prev_t1),
-        );
-        set_inner_corners_on_edge(edge, Some(translated));
-    }
 
     if edge.source == moved_node_id {
         if let Some(handle_id) = edge.source_handle.as_deref() {
@@ -100,6 +173,8 @@ fn update_edge_for_node_move(
             }
         }
     }
+
+    sync_inner_corners_on_stub_move(edge, &new_nodes, edges, prev_s1, prev_t1);
 }
 
 /// Move `node_id` to `new_position` and update wire bend/handle metadata on connected edges.
