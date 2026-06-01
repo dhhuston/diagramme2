@@ -463,6 +463,8 @@ pub fn append_device_v2_scene(
             inset,
             split_zone,
         )),
+        wire_grip_segment: None,
+        wire_grip_orientation: None,
     });
 
     // Port hit targets (one per port row per side)
@@ -485,6 +487,8 @@ pub fn append_device_v2_scene(
                     handle_id: Some(handle_id),
                     face_mask_bounds: None,
                     face_mask_polygon: None,
+                    wire_grip_segment: None,
+                    wire_grip_orientation: None,
                 });
             }
         }

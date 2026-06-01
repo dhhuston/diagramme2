@@ -314,5 +314,7 @@ pub fn append_wiretag_scene(
         handle_id: None,
         face_mask_bounds: None,
         face_mask_polygon: Some(face_mask_polygon),
+        wire_grip_segment: None,
+        wire_grip_orientation: None,
     });
 }

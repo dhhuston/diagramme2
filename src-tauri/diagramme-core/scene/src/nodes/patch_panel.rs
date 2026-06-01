@@ -554,6 +554,8 @@ pub fn append_patch_panel_scene(
                 handle_id: Some(l_handle),
                 face_mask_bounds: None,
                 face_mask_polygon: None,
+                wire_grip_segment: None,
+                wire_grip_orientation: None,
             });
             scene.hits.push(HitTarget {
                 id: format!("{}:{}", node.id, r_handle),
@@ -563,6 +565,8 @@ pub fn append_patch_panel_scene(
                 handle_id: Some(r_handle),
                 face_mask_bounds: None,
                 face_mask_polygon: None,
+                wire_grip_segment: None,
+                wire_grip_orientation: None,
             });
         }
     }
@@ -583,5 +587,7 @@ pub fn append_patch_panel_scene(
             inset,
             split_zone,
         )),
+        wire_grip_segment: None,
+        wire_grip_orientation: None,
     });
 }

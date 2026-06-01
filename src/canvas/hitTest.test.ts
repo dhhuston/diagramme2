@@ -74,12 +74,23 @@ describe('hitTest', () => {
     expect(hitTestSceneForInteraction(hits, { x: 110, y: 122 })?.handle_id).toBe('L-0-in')
   })
 
-  it('hitTestSceneForSelection picks wire segment when no node at point', () => {
+  it('hitTestSceneForInteraction skips wire grips unless edge is selected', () => {
     const wire: HitTarget = {
       id: 'edge-1:seg:0',
       bounds: { x: 40, y: 98, width: 80, height: 8 },
       edge_id: 'edge-1',
     }
-    expect(hitTestSceneForSelection([wire], { x: 80, y: 102 })?.edge_id).toBe('edge-1')
+    const grip: HitTarget = {
+      id: 'edge-1:grip:0:h',
+      bounds: { x: 76, y: 96, width: 8, height: 8 },
+      edge_id: 'edge-1',
+      wire_grip_segment: 0,
+      wire_grip_orientation: 'h',
+    }
+    const hits = [wire, grip]
+    expect(hitTestSceneForInteraction(hits, { x: 80, y: 100 })?.id).toBe('edge-1:seg:0')
+    expect(hitTestSceneForInteraction(hits, { x: 80, y: 100 }, 'edge-1')?.id).toBe(
+      'edge-1:grip:0:h',
+    )
   })
 })

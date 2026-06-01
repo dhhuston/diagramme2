@@ -20224,6 +20224,78 @@
       "edge_id": "e-e0b47a6c-c686-4b14-9b94-275396e350d5"
     },
     {
+      "id": "e-e0b47a6c-c686-4b14-9b94-275396e350d5:grip:0:v",
+      "bounds": {
+        "x": 1160.0,
+        "y": 155.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-e0b47a6c-c686-4b14-9b94-275396e350d5",
+      "wire_grip_segment": 0,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-e0b47a6c-c686-4b14-9b94-275396e350d5:grip:1:h",
+      "bounds": {
+        "x": 1124.0,
+        "y": 167.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-e0b47a6c-c686-4b14-9b94-275396e350d5",
+      "wire_grip_segment": 1,
+      "wire_grip_orientation": "h"
+    },
+    {
+      "id": "e-e0b47a6c-c686-4b14-9b94-275396e350d5:grip:2:v",
+      "bounds": {
+        "x": 1088.0,
+        "y": 161.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-e0b47a6c-c686-4b14-9b94-275396e350d5",
+      "wire_grip_segment": 2,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-e0b47a6c-c686-4b14-9b94-275396e350d5:grip:3:h",
+      "bounds": {
+        "x": 1160.0,
+        "y": 152.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-e0b47a6c-c686-4b14-9b94-275396e350d5",
+      "wire_grip_segment": 3,
+      "wire_grip_orientation": "h"
+    },
+    {
+      "id": "e-e0b47a6c-c686-4b14-9b94-275396e350d5:grip:4:v",
+      "bounds": {
+        "x": 1232.0,
+        "y": 146.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-e0b47a6c-c686-4b14-9b94-275396e350d5",
+      "wire_grip_segment": 4,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-e0b47a6c-c686-4b14-9b94-275396e350d5:grip:5:h",
+      "bounds": {
+        "x": 1235.0,
+        "y": 137.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-e0b47a6c-c686-4b14-9b94-275396e350d5",
+      "wire_grip_segment": 5,
+      "wire_grip_orientation": "h"
+    },
+    {
       "id": "e-b716c2f6-5153-4fae-b4d7-98a893e24e79:seg:0",
       "bounds": {
         "x": 1085.0,
@@ -20272,6 +20344,54 @@
         "height": 8.0
       },
       "edge_id": "e-b716c2f6-5153-4fae-b4d7-98a893e24e79"
+    },
+    {
+      "id": "e-b716c2f6-5153-4fae-b4d7-98a893e24e79:grip:0:v",
+      "bounds": {
+        "x": 1085.0,
+        "y": 188.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-b716c2f6-5153-4fae-b4d7-98a893e24e79",
+      "wire_grip_segment": 0,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-b716c2f6-5153-4fae-b4d7-98a893e24e79:grip:1:h",
+      "bounds": {
+        "x": 1121.0,
+        "y": 194.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-b716c2f6-5153-4fae-b4d7-98a893e24e79",
+      "wire_grip_segment": 1,
+      "wire_grip_orientation": "h"
+    },
+    {
+      "id": "e-b716c2f6-5153-4fae-b4d7-98a893e24e79:grip:2:v",
+      "bounds": {
+        "x": 1157.0,
+        "y": 188.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-b716c2f6-5153-4fae-b4d7-98a893e24e79",
+      "wire_grip_segment": 2,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-b716c2f6-5153-4fae-b4d7-98a893e24e79:grip:3:h",
+      "bounds": {
+        "x": 1160.0,
+        "y": 179.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-b716c2f6-5153-4fae-b4d7-98a893e24e79",
+      "wire_grip_segment": 3,
+      "wire_grip_orientation": "h"
     },
     {
       "id": "e-9344bacd-5d06-4a8c-be48-109b341e7c3c:seg:0",
@@ -20364,6 +20484,90 @@
       "edge_id": "e-9344bacd-5d06-4a8c-be48-109b341e7c3c"
     },
     {
+      "id": "e-9344bacd-5d06-4a8c-be48-109b341e7c3c:grip:0:v",
+      "bounds": {
+        "x": 1235.0,
+        "y": 197.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-9344bacd-5d06-4a8c-be48-109b341e7c3c",
+      "wire_grip_segment": 0,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-9344bacd-5d06-4a8c-be48-109b341e7c3c:grip:1:h",
+      "bounds": {
+        "x": 1199.0,
+        "y": 209.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-9344bacd-5d06-4a8c-be48-109b341e7c3c",
+      "wire_grip_segment": 1,
+      "wire_grip_orientation": "h"
+    },
+    {
+      "id": "e-9344bacd-5d06-4a8c-be48-109b341e7c3c:grip:2:v",
+      "bounds": {
+        "x": 1163.0,
+        "y": 206.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-9344bacd-5d06-4a8c-be48-109b341e7c3c",
+      "wire_grip_segment": 2,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-9344bacd-5d06-4a8c-be48-109b341e7c3c:grip:3:h",
+      "bounds": {
+        "x": 1211.0,
+        "y": 200.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-9344bacd-5d06-4a8c-be48-109b341e7c3c",
+      "wire_grip_segment": 3,
+      "wire_grip_orientation": "h"
+    },
+    {
+      "id": "e-9344bacd-5d06-4a8c-be48-109b341e7c3c:grip:4:v",
+      "bounds": {
+        "x": 1259.0,
+        "y": 197.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-9344bacd-5d06-4a8c-be48-109b341e7c3c",
+      "wire_grip_segment": 4,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-9344bacd-5d06-4a8c-be48-109b341e7c3c:grip:5:h",
+      "bounds": {
+        "x": 1286.0,
+        "y": 194.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-9344bacd-5d06-4a8c-be48-109b341e7c3c",
+      "wire_grip_segment": 5,
+      "wire_grip_orientation": "h"
+    },
+    {
+      "id": "e-9344bacd-5d06-4a8c-be48-109b341e7c3c:grip:6:v",
+      "bounds": {
+        "x": 1310.0,
+        "y": 188.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-9344bacd-5d06-4a8c-be48-109b341e7c3c",
+      "wire_grip_segment": 6,
+      "wire_grip_orientation": "v"
+    },
+    {
       "id": "e-a3b14b44-6d95-4ff8-93f4-eca4d5a6b1e4:seg:0",
       "bounds": {
         "x": 1091.0,
@@ -20444,6 +20648,78 @@
       "edge_id": "e-a3b14b44-6d95-4ff8-93f4-eca4d5a6b1e4"
     },
     {
+      "id": "e-a3b14b44-6d95-4ff8-93f4-eca4d5a6b1e4:grip:0:v",
+      "bounds": {
+        "x": 1163.0,
+        "y": 239.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-a3b14b44-6d95-4ff8-93f4-eca4d5a6b1e4",
+      "wire_grip_segment": 0,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-a3b14b44-6d95-4ff8-93f4-eca4d5a6b1e4:grip:1:h",
+      "bounds": {
+        "x": 1127.0,
+        "y": 251.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-a3b14b44-6d95-4ff8-93f4-eca4d5a6b1e4",
+      "wire_grip_segment": 1,
+      "wire_grip_orientation": "h"
+    },
+    {
+      "id": "e-a3b14b44-6d95-4ff8-93f4-eca4d5a6b1e4:grip:2:v",
+      "bounds": {
+        "x": 1091.0,
+        "y": 245.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-a3b14b44-6d95-4ff8-93f4-eca4d5a6b1e4",
+      "wire_grip_segment": 2,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-a3b14b44-6d95-4ff8-93f4-eca4d5a6b1e4:grip:3:h",
+      "bounds": {
+        "x": 1163.0,
+        "y": 236.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-a3b14b44-6d95-4ff8-93f4-eca4d5a6b1e4",
+      "wire_grip_segment": 3,
+      "wire_grip_orientation": "h"
+    },
+    {
+      "id": "e-a3b14b44-6d95-4ff8-93f4-eca4d5a6b1e4:grip:4:v",
+      "bounds": {
+        "x": 1235.0,
+        "y": 230.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-a3b14b44-6d95-4ff8-93f4-eca4d5a6b1e4",
+      "wire_grip_segment": 4,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-a3b14b44-6d95-4ff8-93f4-eca4d5a6b1e4:grip:5:h",
+      "bounds": {
+        "x": 1238.0,
+        "y": 221.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-a3b14b44-6d95-4ff8-93f4-eca4d5a6b1e4",
+      "wire_grip_segment": 5,
+      "wire_grip_orientation": "h"
+    },
+    {
       "id": "e-023e949e-0412-4ac8-afe9-ada7cee9eae0:seg:0",
       "bounds": {
         "x": 1337.0,
@@ -20504,6 +20780,66 @@
       "edge_id": "e-023e949e-0412-4ac8-afe9-ada7cee9eae0"
     },
     {
+      "id": "e-023e949e-0412-4ac8-afe9-ada7cee9eae0:grip:0:v",
+      "bounds": {
+        "x": 1238.0,
+        "y": 239.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-023e949e-0412-4ac8-afe9-ada7cee9eae0",
+      "wire_grip_segment": 0,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-023e949e-0412-4ac8-afe9-ada7cee9eae0:grip:1:h",
+      "bounds": {
+        "x": 1289.0,
+        "y": 251.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-023e949e-0412-4ac8-afe9-ada7cee9eae0",
+      "wire_grip_segment": 1,
+      "wire_grip_orientation": "h"
+    },
+    {
+      "id": "e-023e949e-0412-4ac8-afe9-ada7cee9eae0:grip:2:v",
+      "bounds": {
+        "x": 1337.0,
+        "y": 245.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-023e949e-0412-4ac8-afe9-ada7cee9eae0",
+      "wire_grip_segment": 2,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-023e949e-0412-4ac8-afe9-ada7cee9eae0:grip:3:h",
+      "bounds": {
+        "x": 1325.0,
+        "y": 236.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-023e949e-0412-4ac8-afe9-ada7cee9eae0",
+      "wire_grip_segment": 3,
+      "wire_grip_orientation": "h"
+    },
+    {
+      "id": "e-023e949e-0412-4ac8-afe9-ada7cee9eae0:grip:4:v",
+      "bounds": {
+        "x": 1313.0,
+        "y": 230.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-023e949e-0412-4ac8-afe9-ada7cee9eae0",
+      "wire_grip_segment": 4,
+      "wire_grip_orientation": "v"
+    },
+    {
       "id": "e-adc427da-7543-439e-a6c6-a1c4019de3a4:seg:0",
       "bounds": {
         "x": 1088.0,
@@ -20554,6 +20890,54 @@
       "edge_id": "e-adc427da-7543-439e-a6c6-a1c4019de3a4"
     },
     {
+      "id": "e-adc427da-7543-439e-a6c6-a1c4019de3a4:grip:0:v",
+      "bounds": {
+        "x": 1088.0,
+        "y": 230.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-adc427da-7543-439e-a6c6-a1c4019de3a4",
+      "wire_grip_segment": 0,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-adc427da-7543-439e-a6c6-a1c4019de3a4:grip:1:h",
+      "bounds": {
+        "x": 1124.0,
+        "y": 236.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-adc427da-7543-439e-a6c6-a1c4019de3a4",
+      "wire_grip_segment": 1,
+      "wire_grip_orientation": "h"
+    },
+    {
+      "id": "e-adc427da-7543-439e-a6c6-a1c4019de3a4:grip:2:v",
+      "bounds": {
+        "x": 1160.0,
+        "y": 230.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-adc427da-7543-439e-a6c6-a1c4019de3a4",
+      "wire_grip_segment": 2,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-adc427da-7543-439e-a6c6-a1c4019de3a4:grip:3:h",
+      "bounds": {
+        "x": 1163.0,
+        "y": 221.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-adc427da-7543-439e-a6c6-a1c4019de3a4",
+      "wire_grip_segment": 3,
+      "wire_grip_orientation": "h"
+    },
+    {
       "id": "e-ee43e9e3-f5ab-4953-a4c8-668e9a67f9ee:seg:0",
       "bounds": {
         "x": 1091.0,
@@ -20572,6 +20956,30 @@
         "height": 8.0
       },
       "edge_id": "e-ee43e9e3-f5ab-4953-a4c8-668e9a67f9ee"
+    },
+    {
+      "id": "e-ee43e9e3-f5ab-4953-a4c8-668e9a67f9ee:grip:0:h",
+      "bounds": {
+        "x": 1067.0,
+        "y": 167.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-ee43e9e3-f5ab-4953-a4c8-668e9a67f9ee",
+      "wire_grip_segment": 0,
+      "wire_grip_orientation": "h"
+    },
+    {
+      "id": "e-ee43e9e3-f5ab-4953-a4c8-668e9a67f9ee:grip:1:v",
+      "bounds": {
+        "x": 1085.0,
+        "y": 173.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-ee43e9e3-f5ab-4953-a4c8-668e9a67f9ee",
+      "wire_grip_segment": 1,
+      "wire_grip_orientation": "v"
     },
     {
       "id": "e-8712ae3c-7686-4db3-8385-7ccc25ff3df5:seg:0",
@@ -20604,6 +21012,42 @@
       "edge_id": "e-8712ae3c-7686-4db3-8385-7ccc25ff3df5"
     },
     {
+      "id": "e-8712ae3c-7686-4db3-8385-7ccc25ff3df5:grip:0:h",
+      "bounds": {
+        "x": 1067.0,
+        "y": 176.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-8712ae3c-7686-4db3-8385-7ccc25ff3df5",
+      "wire_grip_segment": 0,
+      "wire_grip_orientation": "h"
+    },
+    {
+      "id": "e-8712ae3c-7686-4db3-8385-7ccc25ff3df5:grip:1:v",
+      "bounds": {
+        "x": 1082.0,
+        "y": 200.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-8712ae3c-7686-4db3-8385-7ccc25ff3df5",
+      "wire_grip_segment": 1,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-8712ae3c-7686-4db3-8385-7ccc25ff3df5:grip:2:h",
+      "bounds": {
+        "x": 1085.0,
+        "y": 221.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-8712ae3c-7686-4db3-8385-7ccc25ff3df5",
+      "wire_grip_segment": 2,
+      "wire_grip_orientation": "h"
+    },
+    {
       "id": "e-d2f86275-5141-45ff-99ab-2af7c7cb6971:seg:0",
       "bounds": {
         "x": 1079.0,
@@ -20632,6 +21076,42 @@
         "height": 8.0
       },
       "edge_id": "e-d2f86275-5141-45ff-99ab-2af7c7cb6971"
+    },
+    {
+      "id": "e-d2f86275-5141-45ff-99ab-2af7c7cb6971:grip:0:h",
+      "bounds": {
+        "x": 1064.0,
+        "y": 185.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-d2f86275-5141-45ff-99ab-2af7c7cb6971",
+      "wire_grip_segment": 0,
+      "wire_grip_orientation": "h"
+    },
+    {
+      "id": "e-d2f86275-5141-45ff-99ab-2af7c7cb6971:grip:1:v",
+      "bounds": {
+        "x": 1079.0,
+        "y": 224.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-d2f86275-5141-45ff-99ab-2af7c7cb6971",
+      "wire_grip_segment": 1,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-d2f86275-5141-45ff-99ab-2af7c7cb6971:grip:2:h",
+      "bounds": {
+        "x": 1082.0,
+        "y": 263.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-d2f86275-5141-45ff-99ab-2af7c7cb6971",
+      "wire_grip_segment": 2,
+      "wire_grip_orientation": "h"
     },
     {
       "id": "e-b5142259-0d67-46fe-8cb4-5fce343986c8:seg:0",
@@ -20684,6 +21164,54 @@
       "edge_id": "e-b5142259-0d67-46fe-8cb4-5fce343986c8"
     },
     {
+      "id": "e-b5142259-0d67-46fe-8cb4-5fce343986c8:grip:0:v",
+      "bounds": {
+        "x": 1085.0,
+        "y": 146.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-b5142259-0d67-46fe-8cb4-5fce343986c8",
+      "wire_grip_segment": 0,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-b5142259-0d67-46fe-8cb4-5fce343986c8:grip:1:h",
+      "bounds": {
+        "x": 1121.0,
+        "y": 152.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-b5142259-0d67-46fe-8cb4-5fce343986c8",
+      "wire_grip_segment": 1,
+      "wire_grip_orientation": "h"
+    },
+    {
+      "id": "e-b5142259-0d67-46fe-8cb4-5fce343986c8:grip:2:v",
+      "bounds": {
+        "x": 1157.0,
+        "y": 146.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-b5142259-0d67-46fe-8cb4-5fce343986c8",
+      "wire_grip_segment": 2,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-b5142259-0d67-46fe-8cb4-5fce343986c8:grip:3:h",
+      "bounds": {
+        "x": 1160.0,
+        "y": 137.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-b5142259-0d67-46fe-8cb4-5fce343986c8",
+      "wire_grip_segment": 3,
+      "wire_grip_orientation": "h"
+    },
+    {
       "id": "e-e59d9b05-8298-44bc-9009-347d894f6d2e:seg:0",
       "bounds": {
         "x": 631.0,
@@ -20692,6 +21220,18 @@
         "height": 8.0
       },
       "edge_id": "e-e59d9b05-8298-44bc-9009-347d894f6d2e"
+    },
+    {
+      "id": "e-e59d9b05-8298-44bc-9009-347d894f6d2e:grip:0:h",
+      "bounds": {
+        "x": 659.0,
+        "y": 158.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-e59d9b05-8298-44bc-9009-347d894f6d2e",
+      "wire_grip_segment": 0,
+      "wire_grip_orientation": "h"
     },
     {
       "id": "e-287bad14-642b-4a27-9bb9-d4ecd80c52ea:seg:0",
@@ -20704,6 +21244,18 @@
       "edge_id": "e-287bad14-642b-4a27-9bb9-d4ecd80c52ea"
     },
     {
+      "id": "e-287bad14-642b-4a27-9bb9-d4ecd80c52ea:grip:0:h",
+      "bounds": {
+        "x": 869.0,
+        "y": 158.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-287bad14-642b-4a27-9bb9-d4ecd80c52ea",
+      "wire_grip_segment": 0,
+      "wire_grip_orientation": "h"
+    },
+    {
       "id": "e-eb1db0ae-6f3e-4a5b-9e99-52f2f32ca211:seg:0",
       "bounds": {
         "x": 414.5,
@@ -20712,6 +21264,18 @@
         "height": 8.0
       },
       "edge_id": "e-eb1db0ae-6f3e-4a5b-9e99-52f2f32ca211"
+    },
+    {
+      "id": "e-eb1db0ae-6f3e-4a5b-9e99-52f2f32ca211:grip:0:h",
+      "bounds": {
+        "x": 455.0,
+        "y": 158.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-eb1db0ae-6f3e-4a5b-9e99-52f2f32ca211",
+      "wire_grip_segment": 0,
+      "wire_grip_orientation": "h"
     },
     {
       "id": "e-bf6f626a-8b61-4954-9924-3246ae511b8f:seg:0",
@@ -20744,6 +21308,30 @@
       "edge_id": "e-bf6f626a-8b61-4954-9924-3246ae511b8f"
     },
     {
+      "id": "e-bf6f626a-8b61-4954-9924-3246ae511b8f:grip:0:v",
+      "bounds": {
+        "x": 422.0,
+        "y": 206.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-bf6f626a-8b61-4954-9924-3246ae511b8f",
+      "wire_grip_segment": 0,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-bf6f626a-8b61-4954-9924-3246ae511b8f:grip:1:h",
+      "bounds": {
+        "x": 455.0,
+        "y": 167.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-bf6f626a-8b61-4954-9924-3246ae511b8f",
+      "wire_grip_segment": 1,
+      "wire_grip_orientation": "h"
+    },
+    {
       "id": "e-f2f095ca-10ce-45b0-a3a2-228e0186bd08:seg:0",
       "bounds": {
         "x": 425.0,
@@ -20772,6 +21360,42 @@
         "height": 8.0
       },
       "edge_id": "e-f2f095ca-10ce-45b0-a3a2-228e0186bd08"
+    },
+    {
+      "id": "e-f2f095ca-10ce-45b0-a3a2-228e0186bd08:grip:0:h",
+      "bounds": {
+        "x": 425.0,
+        "y": 254.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-f2f095ca-10ce-45b0-a3a2-228e0186bd08",
+      "wire_grip_segment": 0,
+      "wire_grip_orientation": "h"
+    },
+    {
+      "id": "e-f2f095ca-10ce-45b0-a3a2-228e0186bd08:grip:1:v",
+      "bounds": {
+        "x": 425.0,
+        "y": 215.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-f2f095ca-10ce-45b0-a3a2-228e0186bd08",
+      "wire_grip_segment": 1,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-f2f095ca-10ce-45b0-a3a2-228e0186bd08:grip:2:h",
+      "bounds": {
+        "x": 458.0,
+        "y": 176.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-f2f095ca-10ce-45b0-a3a2-228e0186bd08",
+      "wire_grip_segment": 2,
+      "wire_grip_orientation": "h"
     },
     {
       "id": "e-407b881a-d4b3-40ee-92f5-bd5832efef36:seg:0",
@@ -20804,6 +21428,42 @@
       "edge_id": "e-407b881a-d4b3-40ee-92f5-bd5832efef36"
     },
     {
+      "id": "e-407b881a-d4b3-40ee-92f5-bd5832efef36:grip:0:h",
+      "bounds": {
+        "x": 425.0,
+        "y": 359.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-407b881a-d4b3-40ee-92f5-bd5832efef36",
+      "wire_grip_segment": 0,
+      "wire_grip_orientation": "h"
+    },
+    {
+      "id": "e-407b881a-d4b3-40ee-92f5-bd5832efef36:grip:1:v",
+      "bounds": {
+        "x": 428.0,
+        "y": 272.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-407b881a-d4b3-40ee-92f5-bd5832efef36",
+      "wire_grip_segment": 1,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-407b881a-d4b3-40ee-92f5-bd5832efef36:grip:2:h",
+      "bounds": {
+        "x": 458.0,
+        "y": 185.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-407b881a-d4b3-40ee-92f5-bd5832efef36",
+      "wire_grip_segment": 2,
+      "wire_grip_orientation": "h"
+    },
+    {
       "id": "e-638481fc-15d0-4291-9c48-072f6ad38e14:seg:0",
       "bounds": {
         "x": 431.0,
@@ -20832,6 +21492,42 @@
         "height": 8.0
       },
       "edge_id": "e-638481fc-15d0-4291-9c48-072f6ad38e14"
+    },
+    {
+      "id": "e-638481fc-15d0-4291-9c48-072f6ad38e14:grip:0:h",
+      "bounds": {
+        "x": 428.0,
+        "y": 368.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-638481fc-15d0-4291-9c48-072f6ad38e14",
+      "wire_grip_segment": 0,
+      "wire_grip_orientation": "h"
+    },
+    {
+      "id": "e-638481fc-15d0-4291-9c48-072f6ad38e14:grip:1:v",
+      "bounds": {
+        "x": 431.0,
+        "y": 281.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-638481fc-15d0-4291-9c48-072f6ad38e14",
+      "wire_grip_segment": 1,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-638481fc-15d0-4291-9c48-072f6ad38e14:grip:2:h",
+      "bounds": {
+        "x": 461.0,
+        "y": 194.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-638481fc-15d0-4291-9c48-072f6ad38e14",
+      "wire_grip_segment": 2,
+      "wire_grip_orientation": "h"
     },
     {
       "id": "e-a11f564b-16dc-450e-a9fc-0bacef5c0297:seg:0",
@@ -20864,6 +21560,42 @@
       "edge_id": "e-a11f564b-16dc-450e-a9fc-0bacef5c0297"
     },
     {
+      "id": "e-a11f564b-16dc-450e-a9fc-0bacef5c0297:grip:0:h",
+      "bounds": {
+        "x": 428.0,
+        "y": 476.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-a11f564b-16dc-450e-a9fc-0bacef5c0297",
+      "wire_grip_segment": 0,
+      "wire_grip_orientation": "h"
+    },
+    {
+      "id": "e-a11f564b-16dc-450e-a9fc-0bacef5c0297:grip:1:v",
+      "bounds": {
+        "x": 434.0,
+        "y": 341.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-a11f564b-16dc-450e-a9fc-0bacef5c0297",
+      "wire_grip_segment": 1,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-a11f564b-16dc-450e-a9fc-0bacef5c0297:grip:2:h",
+      "bounds": {
+        "x": 461.0,
+        "y": 203.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-a11f564b-16dc-450e-a9fc-0bacef5c0297",
+      "wire_grip_segment": 2,
+      "wire_grip_orientation": "h"
+    },
+    {
       "id": "e-c959e243-db9c-4bd2-b16f-24b703103ae1:seg:0",
       "bounds": {
         "x": 437.0,
@@ -20892,6 +21624,42 @@
         "height": 8.0
       },
       "edge_id": "e-c959e243-db9c-4bd2-b16f-24b703103ae1"
+    },
+    {
+      "id": "e-c959e243-db9c-4bd2-b16f-24b703103ae1:grip:0:h",
+      "bounds": {
+        "x": 431.0,
+        "y": 485.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-c959e243-db9c-4bd2-b16f-24b703103ae1",
+      "wire_grip_segment": 0,
+      "wire_grip_orientation": "h"
+    },
+    {
+      "id": "e-c959e243-db9c-4bd2-b16f-24b703103ae1:grip:1:v",
+      "bounds": {
+        "x": 437.0,
+        "y": 350.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-c959e243-db9c-4bd2-b16f-24b703103ae1",
+      "wire_grip_segment": 1,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-c959e243-db9c-4bd2-b16f-24b703103ae1:grip:2:h",
+      "bounds": {
+        "x": 464.0,
+        "y": 212.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-c959e243-db9c-4bd2-b16f-24b703103ae1",
+      "wire_grip_segment": 2,
+      "wire_grip_orientation": "h"
     },
     {
       "id": "e-8e6c687f-4bce-4576-bb9c-4230cbaca073:seg:0",
@@ -20924,6 +21692,42 @@
       "edge_id": "e-8e6c687f-4bce-4576-bb9c-4230cbaca073"
     },
     {
+      "id": "e-8e6c687f-4bce-4576-bb9c-4230cbaca073:grip:0:h",
+      "bounds": {
+        "x": 431.0,
+        "y": 593.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-8e6c687f-4bce-4576-bb9c-4230cbaca073",
+      "wire_grip_segment": 0,
+      "wire_grip_orientation": "h"
+    },
+    {
+      "id": "e-8e6c687f-4bce-4576-bb9c-4230cbaca073:grip:1:v",
+      "bounds": {
+        "x": 440.0,
+        "y": 407.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-8e6c687f-4bce-4576-bb9c-4230cbaca073",
+      "wire_grip_segment": 1,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-8e6c687f-4bce-4576-bb9c-4230cbaca073:grip:2:h",
+      "bounds": {
+        "x": 464.0,
+        "y": 221.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-8e6c687f-4bce-4576-bb9c-4230cbaca073",
+      "wire_grip_segment": 2,
+      "wire_grip_orientation": "h"
+    },
+    {
       "id": "e-f9d2af44-75c2-4acb-a9c8-d152d591b935:seg:0",
       "bounds": {
         "x": 443.0,
@@ -20952,6 +21756,42 @@
         "height": 8.0
       },
       "edge_id": "e-f9d2af44-75c2-4acb-a9c8-d152d591b935"
+    },
+    {
+      "id": "e-f9d2af44-75c2-4acb-a9c8-d152d591b935:grip:0:h",
+      "bounds": {
+        "x": 434.0,
+        "y": 602.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-f9d2af44-75c2-4acb-a9c8-d152d591b935",
+      "wire_grip_segment": 0,
+      "wire_grip_orientation": "h"
+    },
+    {
+      "id": "e-f9d2af44-75c2-4acb-a9c8-d152d591b935:grip:1:v",
+      "bounds": {
+        "x": 443.0,
+        "y": 416.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-f9d2af44-75c2-4acb-a9c8-d152d591b935",
+      "wire_grip_segment": 1,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-f9d2af44-75c2-4acb-a9c8-d152d591b935:grip:2:h",
+      "bounds": {
+        "x": 467.0,
+        "y": 230.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-f9d2af44-75c2-4acb-a9c8-d152d591b935",
+      "wire_grip_segment": 2,
+      "wire_grip_orientation": "h"
     },
     {
       "id": "e-ea7b1c6d-2165-4b6d-b85c-1d61e9acb8f5:seg:0",
@@ -20984,6 +21824,42 @@
       "edge_id": "e-ea7b1c6d-2165-4b6d-b85c-1d61e9acb8f5"
     },
     {
+      "id": "e-ea7b1c6d-2165-4b6d-b85c-1d61e9acb8f5:grip:0:h",
+      "bounds": {
+        "x": 437.0,
+        "y": 713.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-ea7b1c6d-2165-4b6d-b85c-1d61e9acb8f5",
+      "wire_grip_segment": 0,
+      "wire_grip_orientation": "h"
+    },
+    {
+      "id": "e-ea7b1c6d-2165-4b6d-b85c-1d61e9acb8f5:grip:1:v",
+      "bounds": {
+        "x": 446.0,
+        "y": 476.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-ea7b1c6d-2165-4b6d-b85c-1d61e9acb8f5",
+      "wire_grip_segment": 1,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-ea7b1c6d-2165-4b6d-b85c-1d61e9acb8f5:grip:2:h",
+      "bounds": {
+        "x": 467.0,
+        "y": 239.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-ea7b1c6d-2165-4b6d-b85c-1d61e9acb8f5",
+      "wire_grip_segment": 2,
+      "wire_grip_orientation": "h"
+    },
+    {
       "id": "e-33589fd3-c946-4f5c-aeaa-b5114b75bd3f:seg:0",
       "bounds": {
         "x": 449.0,
@@ -21012,6 +21888,42 @@
         "height": 8.0
       },
       "edge_id": "e-33589fd3-c946-4f5c-aeaa-b5114b75bd3f"
+    },
+    {
+      "id": "e-33589fd3-c946-4f5c-aeaa-b5114b75bd3f:grip:0:h",
+      "bounds": {
+        "x": 437.0,
+        "y": 722.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-33589fd3-c946-4f5c-aeaa-b5114b75bd3f",
+      "wire_grip_segment": 0,
+      "wire_grip_orientation": "h"
+    },
+    {
+      "id": "e-33589fd3-c946-4f5c-aeaa-b5114b75bd3f:grip:1:v",
+      "bounds": {
+        "x": 449.0,
+        "y": 485.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-33589fd3-c946-4f5c-aeaa-b5114b75bd3f",
+      "wire_grip_segment": 1,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-33589fd3-c946-4f5c-aeaa-b5114b75bd3f:grip:2:h",
+      "bounds": {
+        "x": 470.0,
+        "y": 248.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-33589fd3-c946-4f5c-aeaa-b5114b75bd3f",
+      "wire_grip_segment": 2,
+      "wire_grip_orientation": "h"
     },
     {
       "id": "e-525e546b-3d2d-4655-bbf4-562decd8d698:seg:0",
@@ -21044,6 +21956,42 @@
       "edge_id": "e-525e546b-3d2d-4655-bbf4-562decd8d698"
     },
     {
+      "id": "e-525e546b-3d2d-4655-bbf4-562decd8d698:grip:0:h",
+      "bounds": {
+        "x": 440.0,
+        "y": 830.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-525e546b-3d2d-4655-bbf4-562decd8d698",
+      "wire_grip_segment": 0,
+      "wire_grip_orientation": "h"
+    },
+    {
+      "id": "e-525e546b-3d2d-4655-bbf4-562decd8d698:grip:1:v",
+      "bounds": {
+        "x": 452.0,
+        "y": 545.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-525e546b-3d2d-4655-bbf4-562decd8d698",
+      "wire_grip_segment": 1,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-525e546b-3d2d-4655-bbf4-562decd8d698:grip:2:h",
+      "bounds": {
+        "x": 470.0,
+        "y": 257.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-525e546b-3d2d-4655-bbf4-562decd8d698",
+      "wire_grip_segment": 2,
+      "wire_grip_orientation": "h"
+    },
+    {
       "id": "e-2826406d-6fd5-4dd8-b9ca-a1f80c80ad87:seg:0",
       "bounds": {
         "x": 455.0,
@@ -21074,6 +22022,42 @@
       "edge_id": "e-2826406d-6fd5-4dd8-b9ca-a1f80c80ad87"
     },
     {
+      "id": "e-2826406d-6fd5-4dd8-b9ca-a1f80c80ad87:grip:0:h",
+      "bounds": {
+        "x": 440.0,
+        "y": 839.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-2826406d-6fd5-4dd8-b9ca-a1f80c80ad87",
+      "wire_grip_segment": 0,
+      "wire_grip_orientation": "h"
+    },
+    {
+      "id": "e-2826406d-6fd5-4dd8-b9ca-a1f80c80ad87:grip:1:v",
+      "bounds": {
+        "x": 455.0,
+        "y": 554.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-2826406d-6fd5-4dd8-b9ca-a1f80c80ad87",
+      "wire_grip_segment": 1,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-2826406d-6fd5-4dd8-b9ca-a1f80c80ad87:grip:2:h",
+      "bounds": {
+        "x": 473.0,
+        "y": 266.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-2826406d-6fd5-4dd8-b9ca-a1f80c80ad87",
+      "wire_grip_segment": 2,
+      "wire_grip_orientation": "h"
+    },
+    {
       "id": "e-8cf079de-e0de-4cff-9794-6f561b84d49d:seg:0",
       "bounds": {
         "x": 832.0,
@@ -21082,6 +22066,18 @@
         "height": 8.0
       },
       "edge_id": "e-8cf079de-e0de-4cff-9794-6f561b84d49d"
+    },
+    {
+      "id": "e-8cf079de-e0de-4cff-9794-6f561b84d49d:grip:0:h",
+      "bounds": {
+        "x": 845.0,
+        "y": 194.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-8cf079de-e0de-4cff-9794-6f561b84d49d",
+      "wire_grip_segment": 0,
+      "wire_grip_orientation": "h"
     },
     {
       "id": "e-bfb14c51-e307-4bc6-823e-9bedd56a4d68:seg:0",
@@ -21114,6 +22110,42 @@
       "edge_id": "e-bfb14c51-e307-4bc6-823e-9bedd56a4d68"
     },
     {
+      "id": "e-bfb14c51-e307-4bc6-823e-9bedd56a4d68:grip:0:h",
+      "bounds": {
+        "x": 830.0,
+        "y": 266.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-bfb14c51-e307-4bc6-823e-9bedd56a4d68",
+      "wire_grip_segment": 0,
+      "wire_grip_orientation": "h"
+    },
+    {
+      "id": "e-bfb14c51-e307-4bc6-823e-9bedd56a4d68:grip:1:v",
+      "bounds": {
+        "x": 833.0,
+        "y": 338.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-bfb14c51-e307-4bc6-823e-9bedd56a4d68",
+      "wire_grip_segment": 1,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-bfb14c51-e307-4bc6-823e-9bedd56a4d68:grip:2:h",
+      "bounds": {
+        "x": 836.0,
+        "y": 407.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-bfb14c51-e307-4bc6-823e-9bedd56a4d68",
+      "wire_grip_segment": 2,
+      "wire_grip_orientation": "h"
+    },
+    {
       "id": "e-3a1301ad-5a6c-4ca6-943b-96cc61658e1f:seg:0",
       "bounds": {
         "x": 641.0,
@@ -21142,6 +22174,42 @@
         "height": 8.0
       },
       "edge_id": "e-3a1301ad-5a6c-4ca6-943b-96cc61658e1f"
+    },
+    {
+      "id": "e-3a1301ad-5a6c-4ca6-943b-96cc61658e1f:grip:0:h",
+      "bounds": {
+        "x": 635.0,
+        "y": 266.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-3a1301ad-5a6c-4ca6-943b-96cc61658e1f",
+      "wire_grip_segment": 0,
+      "wire_grip_orientation": "h"
+    },
+    {
+      "id": "e-3a1301ad-5a6c-4ca6-943b-96cc61658e1f:grip:1:v",
+      "bounds": {
+        "x": 641.0,
+        "y": 341.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-3a1301ad-5a6c-4ca6-943b-96cc61658e1f",
+      "wire_grip_segment": 1,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-3a1301ad-5a6c-4ca6-943b-96cc61658e1f:grip:2:h",
+      "bounds": {
+        "x": 740.0,
+        "y": 416.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-3a1301ad-5a6c-4ca6-943b-96cc61658e1f",
+      "wire_grip_segment": 2,
+      "wire_grip_orientation": "h"
     },
     {
       "id": "e-80cc14bb-ecf4-4d68-a80e-0e9b6d3a3eb0:seg:0",
@@ -21174,6 +22242,42 @@
       "edge_id": "e-80cc14bb-ecf4-4d68-a80e-0e9b6d3a3eb0"
     },
     {
+      "id": "e-80cc14bb-ecf4-4d68-a80e-0e9b6d3a3eb0:grip:0:h",
+      "bounds": {
+        "x": 680.0,
+        "y": 470.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-80cc14bb-ecf4-4d68-a80e-0e9b6d3a3eb0",
+      "wire_grip_segment": 0,
+      "wire_grip_orientation": "h"
+    },
+    {
+      "id": "e-80cc14bb-ecf4-4d68-a80e-0e9b6d3a3eb0:grip:1:v",
+      "bounds": {
+        "x": 731.0,
+        "y": 449.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-80cc14bb-ecf4-4d68-a80e-0e9b6d3a3eb0",
+      "wire_grip_segment": 1,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-80cc14bb-ecf4-4d68-a80e-0e9b6d3a3eb0:grip:2:h",
+      "bounds": {
+        "x": 785.0,
+        "y": 425.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-80cc14bb-ecf4-4d68-a80e-0e9b6d3a3eb0",
+      "wire_grip_segment": 2,
+      "wire_grip_orientation": "h"
+    },
+    {
       "id": "e-3bcbe103-edc4-4ec3-9659-312257fcdf6a:seg:0",
       "bounds": {
         "x": 740.0,
@@ -21204,6 +22308,42 @@
       "edge_id": "e-3bcbe103-edc4-4ec3-9659-312257fcdf6a"
     },
     {
+      "id": "e-3bcbe103-edc4-4ec3-9659-312257fcdf6a:grip:0:h",
+      "bounds": {
+        "x": 683.0,
+        "y": 557.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-3bcbe103-edc4-4ec3-9659-312257fcdf6a",
+      "wire_grip_segment": 0,
+      "wire_grip_orientation": "h"
+    },
+    {
+      "id": "e-3bcbe103-edc4-4ec3-9659-312257fcdf6a:grip:1:v",
+      "bounds": {
+        "x": 740.0,
+        "y": 497.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-3bcbe103-edc4-4ec3-9659-312257fcdf6a",
+      "wire_grip_segment": 1,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-3bcbe103-edc4-4ec3-9659-312257fcdf6a:grip:2:h",
+      "bounds": {
+        "x": 791.0,
+        "y": 434.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-3bcbe103-edc4-4ec3-9659-312257fcdf6a",
+      "wire_grip_segment": 2,
+      "wire_grip_orientation": "h"
+    },
+    {
       "id": "e-9b5a907c-e6cf-48d5-b246-f59905144472:seg:0",
       "bounds": {
         "x": 1067.0,
@@ -21232,6 +22372,42 @@
         "height": 8.0
       },
       "edge_id": "e-9b5a907c-e6cf-48d5-b246-f59905144472"
+    },
+    {
+      "id": "e-9b5a907c-e6cf-48d5-b246-f59905144472:grip:0:h",
+      "bounds": {
+        "x": 1058.0,
+        "y": 158.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-9b5a907c-e6cf-48d5-b246-f59905144472",
+      "wire_grip_segment": 0,
+      "wire_grip_orientation": "h"
+    },
+    {
+      "id": "e-9b5a907c-e6cf-48d5-b246-f59905144472:grip:1:v",
+      "bounds": {
+        "x": 1067.0,
+        "y": 149.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-9b5a907c-e6cf-48d5-b246-f59905144472",
+      "wire_grip_segment": 1,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-9b5a907c-e6cf-48d5-b246-f59905144472:grip:2:h",
+      "bounds": {
+        "x": 1076.0,
+        "y": 137.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-9b5a907c-e6cf-48d5-b246-f59905144472",
+      "wire_grip_segment": 2,
+      "wire_grip_orientation": "h"
     },
     {
       "id": "e-39ceaec2-ee5c-4cc6-a8c4-13f5ac562914:seg:0",
@@ -21284,6 +22460,66 @@
       "edge_id": "e-39ceaec2-ee5c-4cc6-a8c4-13f5ac562914"
     },
     {
+      "id": "e-39ceaec2-ee5c-4cc6-a8c4-13f5ac562914:grip:0:h",
+      "bounds": {
+        "x": 983.0,
+        "y": 407.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-39ceaec2-ee5c-4cc6-a8c4-13f5ac562914",
+      "wire_grip_segment": 0,
+      "wire_grip_orientation": "h"
+    },
+    {
+      "id": "e-39ceaec2-ee5c-4cc6-a8c4-13f5ac562914:grip:1:v",
+      "bounds": {
+        "x": 989.0,
+        "y": 359.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-39ceaec2-ee5c-4cc6-a8c4-13f5ac562914",
+      "wire_grip_segment": 1,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-39ceaec2-ee5c-4cc6-a8c4-13f5ac562914:grip:2:h",
+      "bounds": {
+        "x": 941.0,
+        "y": 308.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-39ceaec2-ee5c-4cc6-a8c4-13f5ac562914",
+      "wire_grip_segment": 2,
+      "wire_grip_orientation": "h"
+    },
+    {
+      "id": "e-39ceaec2-ee5c-4cc6-a8c4-13f5ac562914:grip:3:v",
+      "bounds": {
+        "x": 893.0,
+        "y": 260.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-39ceaec2-ee5c-4cc6-a8c4-13f5ac562914",
+      "wire_grip_segment": 3,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-39ceaec2-ee5c-4cc6-a8c4-13f5ac562914:grip:4:h",
+      "bounds": {
+        "x": 902.0,
+        "y": 212.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-39ceaec2-ee5c-4cc6-a8c4-13f5ac562914",
+      "wire_grip_segment": 4,
+      "wire_grip_orientation": "h"
+    },
+    {
       "id": "e-1533fb75-64f6-4ea4-8b5d-8508934aa1ab:seg:0",
       "bounds": {
         "x": 250.5,
@@ -21294,6 +22530,18 @@
       "edge_id": "e-1533fb75-64f6-4ea4-8b5d-8508934aa1ab"
     },
     {
+      "id": "e-1533fb75-64f6-4ea4-8b5d-8508934aa1ab:grip:0:h",
+      "bounds": {
+        "x": 272.0,
+        "y": 158.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-1533fb75-64f6-4ea4-8b5d-8508934aa1ab",
+      "wire_grip_segment": 0,
+      "wire_grip_orientation": "h"
+    },
+    {
       "id": "e-fb4698a5-c896-4c9e-9e92-ed05716ff5ab:seg:0",
       "bounds": {
         "x": 199.5,
@@ -21302,6 +22550,18 @@
         "height": 8.0
       },
       "edge_id": "e-fb4698a5-c896-4c9e-9e92-ed05716ff5ab"
+    },
+    {
+      "id": "e-fb4698a5-c896-4c9e-9e92-ed05716ff5ab:grip:0:h",
+      "bounds": {
+        "x": 245.0,
+        "y": 167.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-fb4698a5-c896-4c9e-9e92-ed05716ff5ab",
+      "wire_grip_segment": 0,
+      "wire_grip_orientation": "h"
     },
     {
       "id": "e-492fc5d5-889a-4846-a81d-c22ab0f017b4:seg:0",
@@ -21324,6 +22584,30 @@
       "edge_id": "e-492fc5d5-889a-4846-a81d-c22ab0f017b4"
     },
     {
+      "id": "e-492fc5d5-889a-4846-a81d-c22ab0f017b4:grip:0:h",
+      "bounds": {
+        "x": 320.0,
+        "y": 281.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-492fc5d5-889a-4846-a81d-c22ab0f017b4",
+      "wire_grip_segment": 0,
+      "wire_grip_orientation": "h"
+    },
+    {
+      "id": "e-492fc5d5-889a-4846-a81d-c22ab0f017b4:grip:1:h",
+      "bounds": {
+        "x": 332.0,
+        "y": 281.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-492fc5d5-889a-4846-a81d-c22ab0f017b4",
+      "wire_grip_segment": 1,
+      "wire_grip_orientation": "h"
+    },
+    {
       "id": "e-e35aa3ce-8d5d-48de-bbf3-6e6806722b59:seg:0",
       "bounds": {
         "x": 969.5,
@@ -21332,6 +22616,18 @@
         "height": 8.0
       },
       "edge_id": "e-e35aa3ce-8d5d-48de-bbf3-6e6806722b59"
+    },
+    {
+      "id": "e-e35aa3ce-8d5d-48de-bbf3-6e6806722b59:grip:0:h",
+      "bounds": {
+        "x": 983.0,
+        "y": 416.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-e35aa3ce-8d5d-48de-bbf3-6e6806722b59",
+      "wire_grip_segment": 0,
+      "wire_grip_orientation": "h"
     },
     {
       "id": "e-d319e691-964a-41ef-b42a-ceb0b687e1f5:seg:0",
@@ -21364,6 +22660,42 @@
       "edge_id": "e-d319e691-964a-41ef-b42a-ceb0b687e1f5"
     },
     {
+      "id": "e-d319e691-964a-41ef-b42a-ceb0b687e1f5:grip:0:h",
+      "bounds": {
+        "x": 320.0,
+        "y": 281.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-d319e691-964a-41ef-b42a-ceb0b687e1f5",
+      "wire_grip_segment": 0,
+      "wire_grip_orientation": "h"
+    },
+    {
+      "id": "e-d319e691-964a-41ef-b42a-ceb0b687e1f5:grip:1:v",
+      "bounds": {
+        "x": 323.0,
+        "y": 398.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-d319e691-964a-41ef-b42a-ceb0b687e1f5",
+      "wire_grip_segment": 1,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-d319e691-964a-41ef-b42a-ceb0b687e1f5:grip:2:h",
+      "bounds": {
+        "x": 332.0,
+        "y": 512.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-d319e691-964a-41ef-b42a-ceb0b687e1f5",
+      "wire_grip_segment": 2,
+      "wire_grip_orientation": "h"
+    },
+    {
       "id": "e-a7a47396-ecb2-4425-8e4b-8c41bd9d31e6:seg:0",
       "bounds": {
         "x": 311.0,
@@ -21392,6 +22724,42 @@
         "height": 8.0
       },
       "edge_id": "e-a7a47396-ecb2-4425-8e4b-8c41bd9d31e6"
+    },
+    {
+      "id": "e-a7a47396-ecb2-4425-8e4b-8c41bd9d31e6:grip:0:h",
+      "bounds": {
+        "x": 320.0,
+        "y": 281.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-a7a47396-ecb2-4425-8e4b-8c41bd9d31e6",
+      "wire_grip_segment": 0,
+      "wire_grip_orientation": "h"
+    },
+    {
+      "id": "e-a7a47396-ecb2-4425-8e4b-8c41bd9d31e6:grip:1:v",
+      "bounds": {
+        "x": 323.0,
+        "y": 338.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-a7a47396-ecb2-4425-8e4b-8c41bd9d31e6",
+      "wire_grip_segment": 1,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-a7a47396-ecb2-4425-8e4b-8c41bd9d31e6:grip:2:h",
+      "bounds": {
+        "x": 332.0,
+        "y": 395.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-a7a47396-ecb2-4425-8e4b-8c41bd9d31e6",
+      "wire_grip_segment": 2,
+      "wire_grip_orientation": "h"
     },
     {
       "id": "e-3ed3caac-13b5-4d75-85fd-cf0e171e40c9:seg:0",
@@ -21424,6 +22792,42 @@
       "edge_id": "e-3ed3caac-13b5-4d75-85fd-cf0e171e40c9"
     },
     {
+      "id": "e-3ed3caac-13b5-4d75-85fd-cf0e171e40c9:grip:0:h",
+      "bounds": {
+        "x": 320.0,
+        "y": 281.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-3ed3caac-13b5-4d75-85fd-cf0e171e40c9",
+      "wire_grip_segment": 0,
+      "wire_grip_orientation": "h"
+    },
+    {
+      "id": "e-3ed3caac-13b5-4d75-85fd-cf0e171e40c9:grip:1:v",
+      "bounds": {
+        "x": 323.0,
+        "y": 455.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-3ed3caac-13b5-4d75-85fd-cf0e171e40c9",
+      "wire_grip_segment": 1,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-3ed3caac-13b5-4d75-85fd-cf0e171e40c9:grip:2:h",
+      "bounds": {
+        "x": 332.0,
+        "y": 629.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-3ed3caac-13b5-4d75-85fd-cf0e171e40c9",
+      "wire_grip_segment": 2,
+      "wire_grip_orientation": "h"
+    },
+    {
       "id": "e-cf4bf35b-bee6-46bc-b352-fac6432fafeb:seg:0",
       "bounds": {
         "x": 311.0,
@@ -21454,6 +22858,42 @@
       "edge_id": "e-cf4bf35b-bee6-46bc-b352-fac6432fafeb"
     },
     {
+      "id": "e-cf4bf35b-bee6-46bc-b352-fac6432fafeb:grip:0:h",
+      "bounds": {
+        "x": 320.0,
+        "y": 281.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-cf4bf35b-bee6-46bc-b352-fac6432fafeb",
+      "wire_grip_segment": 0,
+      "wire_grip_orientation": "h"
+    },
+    {
+      "id": "e-cf4bf35b-bee6-46bc-b352-fac6432fafeb:grip:1:v",
+      "bounds": {
+        "x": 323.0,
+        "y": 515.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-cf4bf35b-bee6-46bc-b352-fac6432fafeb",
+      "wire_grip_segment": 1,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-cf4bf35b-bee6-46bc-b352-fac6432fafeb:grip:2:h",
+      "bounds": {
+        "x": 332.0,
+        "y": 749.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-cf4bf35b-bee6-46bc-b352-fac6432fafeb",
+      "wire_grip_segment": 2,
+      "wire_grip_orientation": "h"
+    },
+    {
       "id": "e-67c53702-bcc8-4a32-b0bc-dc88fed5ebd8:seg:0",
       "bounds": {
         "x": 311.0,
@@ -21482,6 +22922,42 @@
         "height": 8.0
       },
       "edge_id": "e-67c53702-bcc8-4a32-b0bc-dc88fed5ebd8"
+    },
+    {
+      "id": "e-67c53702-bcc8-4a32-b0bc-dc88fed5ebd8:grip:0:h",
+      "bounds": {
+        "x": 320.0,
+        "y": 281.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-67c53702-bcc8-4a32-b0bc-dc88fed5ebd8",
+      "wire_grip_segment": 0,
+      "wire_grip_orientation": "h"
+    },
+    {
+      "id": "e-67c53702-bcc8-4a32-b0bc-dc88fed5ebd8:grip:1:v",
+      "bounds": {
+        "x": 323.0,
+        "y": 575.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-67c53702-bcc8-4a32-b0bc-dc88fed5ebd8",
+      "wire_grip_segment": 1,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-67c53702-bcc8-4a32-b0bc-dc88fed5ebd8:grip:2:h",
+      "bounds": {
+        "x": 332.0,
+        "y": 866.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-67c53702-bcc8-4a32-b0bc-dc88fed5ebd8",
+      "wire_grip_segment": 2,
+      "wire_grip_orientation": "h"
     },
     {
       "id": "e-ec931774-9e47-48fe-9984-60a84cb8c92e:seg:0",
@@ -21522,6 +22998,42 @@
         "height": 8.0
       },
       "edge_id": "e-ec931774-9e47-48fe-9984-60a84cb8c92e"
+    },
+    {
+      "id": "e-ec931774-9e47-48fe-9984-60a84cb8c92e:grip:0:v",
+      "bounds": {
+        "x": 734.0,
+        "y": 302.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-ec931774-9e47-48fe-9984-60a84cb8c92e",
+      "wire_grip_segment": 0,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-ec931774-9e47-48fe-9984-60a84cb8c92e:grip:1:h",
+      "bounds": {
+        "x": 713.0,
+        "y": 290.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-ec931774-9e47-48fe-9984-60a84cb8c92e",
+      "wire_grip_segment": 1,
+      "wire_grip_orientation": "h"
+    },
+    {
+      "id": "e-ec931774-9e47-48fe-9984-60a84cb8c92e:grip:2:v",
+      "bounds": {
+        "x": 689.0,
+        "y": 278.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-ec931774-9e47-48fe-9984-60a84cb8c92e",
+      "wire_grip_segment": 2,
+      "wire_grip_orientation": "v"
     },
     {
       "id": "e-8011ca67-958f-4d4f-bc96-5034bee6aeb2:seg:0",
@@ -21604,6 +23116,78 @@
       "edge_id": "e-8011ca67-958f-4d4f-bc96-5034bee6aeb2"
     },
     {
+      "id": "e-8011ca67-958f-4d4f-bc96-5034bee6aeb2:grip:0:v",
+      "bounds": {
+        "x": 1160.0,
+        "y": 197.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-8011ca67-958f-4d4f-bc96-5034bee6aeb2",
+      "wire_grip_segment": 0,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-8011ca67-958f-4d4f-bc96-5034bee6aeb2:grip:1:h",
+      "bounds": {
+        "x": 1124.0,
+        "y": 209.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-8011ca67-958f-4d4f-bc96-5034bee6aeb2",
+      "wire_grip_segment": 1,
+      "wire_grip_orientation": "h"
+    },
+    {
+      "id": "e-8011ca67-958f-4d4f-bc96-5034bee6aeb2:grip:2:v",
+      "bounds": {
+        "x": 1088.0,
+        "y": 203.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-8011ca67-958f-4d4f-bc96-5034bee6aeb2",
+      "wire_grip_segment": 2,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-8011ca67-958f-4d4f-bc96-5034bee6aeb2:grip:3:h",
+      "bounds": {
+        "x": 1160.0,
+        "y": 194.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-8011ca67-958f-4d4f-bc96-5034bee6aeb2",
+      "wire_grip_segment": 3,
+      "wire_grip_orientation": "h"
+    },
+    {
+      "id": "e-8011ca67-958f-4d4f-bc96-5034bee6aeb2:grip:4:v",
+      "bounds": {
+        "x": 1232.0,
+        "y": 188.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-8011ca67-958f-4d4f-bc96-5034bee6aeb2",
+      "wire_grip_segment": 4,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-8011ca67-958f-4d4f-bc96-5034bee6aeb2:grip:5:h",
+      "bounds": {
+        "x": 1235.0,
+        "y": 179.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-8011ca67-958f-4d4f-bc96-5034bee6aeb2",
+      "wire_grip_segment": 5,
+      "wire_grip_orientation": "h"
+    },
+    {
       "id": "e-eef0dcf4-a91a-49da-839e-42a7e67fa2b0:seg:0",
       "bounds": {
         "x": 1163.0,
@@ -21672,6 +23256,66 @@
         "height": 8.0
       },
       "edge_id": "e-eef0dcf4-a91a-49da-839e-42a7e67fa2b0"
+    },
+    {
+      "id": "e-eef0dcf4-a91a-49da-839e-42a7e67fa2b0:grip:0:v",
+      "bounds": {
+        "x": 1235.0,
+        "y": 155.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-eef0dcf4-a91a-49da-839e-42a7e67fa2b0",
+      "wire_grip_segment": 0,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-eef0dcf4-a91a-49da-839e-42a7e67fa2b0:grip:1:h",
+      "bounds": {
+        "x": 1199.0,
+        "y": 167.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-eef0dcf4-a91a-49da-839e-42a7e67fa2b0",
+      "wire_grip_segment": 1,
+      "wire_grip_orientation": "h"
+    },
+    {
+      "id": "e-eef0dcf4-a91a-49da-839e-42a7e67fa2b0:grip:2:v",
+      "bounds": {
+        "x": 1163.0,
+        "y": 161.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-eef0dcf4-a91a-49da-839e-42a7e67fa2b0",
+      "wire_grip_segment": 2,
+      "wire_grip_orientation": "v"
+    },
+    {
+      "id": "e-eef0dcf4-a91a-49da-839e-42a7e67fa2b0:grip:3:h",
+      "bounds": {
+        "x": 1238.0,
+        "y": 152.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-eef0dcf4-a91a-49da-839e-42a7e67fa2b0",
+      "wire_grip_segment": 3,
+      "wire_grip_orientation": "h"
+    },
+    {
+      "id": "e-eef0dcf4-a91a-49da-839e-42a7e67fa2b0:grip:4:v",
+      "bounds": {
+        "x": 1310.0,
+        "y": 146.0,
+        "width": 8.0,
+        "height": 8.0
+      },
+      "edge_id": "e-eef0dcf4-a91a-49da-839e-42a7e67fa2b0",
+      "wire_grip_segment": 4,
+      "wire_grip_orientation": "v"
     }
   ]
 }

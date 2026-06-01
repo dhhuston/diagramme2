@@ -130,6 +130,8 @@ fn push_boundary_strip(
             handle_id: None,
             face_mask_bounds: None,
             face_mask_polygon: None,
+            wire_grip_segment: None,
+            wire_grip_orientation: None,
         },
     );
 }

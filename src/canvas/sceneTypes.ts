@@ -65,6 +65,10 @@ export interface HitTarget {
   face_mask_bounds?: RectPx
   /** Closed polygon face (diagram px) for non-rectangular symbols. */
   face_mask_polygon?: PointPx[]
+  /** Wire routing grip segment index on the S1→T1 chain. */
+  wire_grip_segment?: number
+  /** `"h"` horizontal segment, `"v"` vertical. */
+  wire_grip_orientation?: 'h' | 'v'
 }
 
 export interface SceneJson {

@@ -63,17 +63,56 @@ export function hitTestSceneForSelection(hits: HitTarget[], point: PointPx): Hit
   return best
 }
 
+function wireGripHitActive(hit: HitTarget, selectedEdgeId?: string | null): boolean {
+  return (
+    hit.wire_grip_segment == null ||
+    (selectedEdgeId != null && hit.edge_id === selectedEdgeId)
+  )
+}
+
 /**
  * Interaction (wiring, drag): top-most hit in paint order — port handles beat node body.
+ * Wire routing grips are only pickable when their edge is selected.
  */
-export function hitTestSceneForInteraction(hits: HitTarget[], point: PointPx): HitTarget | null {
+export function hitTestSceneForInteraction(
+  hits: HitTarget[],
+  point: PointPx,
+  selectedEdgeId?: string | null,
+): HitTarget | null {
   for (let i = hits.length - 1; i >= 0; i--) {
     const hit = hits[i]
+    if (!wireGripHitActive(hit, selectedEdgeId)) continue
     if (pointInRect(point, hit.bounds)) {
       return hit
     }
   }
   return null
+}
+
+/** Stage-relative pointer → diagram px (for window-level pointer events). */
+export function stageRelativeToDiagramPx(
+  stageX: number,
+  stageY: number,
+  viewport: Viewport,
+): PointPx {
+  return {
+    x: (stageX - viewport.x) / viewport.scale,
+    y: (stageY - viewport.y) / viewport.scale,
+  }
+}
+
+/** Client coordinates → diagram px using the stage host element's bounding rect. */
+export function clientToDiagramPx(
+  clientX: number,
+  clientY: number,
+  hostRect: DOMRect,
+  viewport: Viewport,
+): PointPx {
+  return stageRelativeToDiagramPx(
+    clientX - hostRect.left,
+    clientY - hostRect.top,
+    viewport,
+  )
 }
 
 /** @deprecated Use hitTestSceneForSelection or hitTestSceneForInteraction */

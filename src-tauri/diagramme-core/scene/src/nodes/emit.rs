@@ -180,5 +180,7 @@ pub fn push_node_body_hit_with_face_mask(
         handle_id: None,
         face_mask_bounds,
         face_mask_polygon,
+        wire_grip_segment: None,
+        wire_grip_orientation: None,
     });
 }

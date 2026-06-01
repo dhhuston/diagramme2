@@ -85,6 +85,12 @@ pub struct HitTarget {
     /// Closed polygon face (diagram px); used when the filled shape is not axis-aligned.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub face_mask_polygon: Option<Vec<PointPx>>,
+    /// Wire routing grip: inner segment index on the S1→T1 chain.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub wire_grip_segment: Option<u32>,
+    /// Wire routing grip orientation: `"h"` horizontal segment, `"v"` vertical.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub wire_grip_orientation: Option<String>,
 }
 
 /// Full scene for one sheet — single geometric truth for canvas and export.

@@ -8,7 +8,10 @@ use crate::close_gate::AllowNextClose;
 use crate::debug_channel;
 use crate::state::AppState;
 use diagramme_dxf::build_revit_dxf_from_diagram;
-use diagramme_wires::apply_node_move_geometry;
+use diagramme_wires::{
+    apply_node_move_geometry, drag_inner_segment, inner_corners_from_chain, set_inner_corners_on_edge,
+    wire_inner_chain_for_edge, FlowXY, WireGeometryOptions, WireSegmentOrientation,
+};
 use diagramme_scene::{build_scene, build_scene_patch, build_schematic_edge, Scene, SceneBuildOptions, ScenePatch};
 use diagramme_schema::{
     validate_diagram_envelope, DiagramState, EmbeddedPreset, Node, NodeDimension, ProjectState,
@@ -269,6 +272,132 @@ pub fn add_edge(
     Ok(mutate_active_diagram(&state, &app, |diagram| {
         diagram.edges.push(edge);
     }))
+}
+
+fn apply_wire_segment_drag(
+    diagram: &mut DiagramState,
+    edge_id: &str,
+    segment_index: u32,
+    orientation: &str,
+    delta: XY,
+    base_chain: Option<Vec<FlowXY>>,
+) -> bool {
+    let Some(orient) = WireSegmentOrientation::from_str(orientation) else {
+        return false;
+    };
+    let Some(edge_idx) = diagram.edges.iter().position(|e| e.id == edge_id) else {
+        return false;
+    };
+    let edge = diagram.edges[edge_idx].clone();
+    let chain = base_chain.or_else(|| {
+        wire_inner_chain_for_edge(
+            &edge,
+            &diagram.nodes,
+            &diagram.edges,
+            WireGeometryOptions::default(),
+        )
+    });
+    let Some(chain) = chain else {
+        return false;
+    };
+    let next_chain = drag_inner_segment(
+        &chain,
+        segment_index as usize,
+        orient,
+        delta.x,
+        delta.y,
+    );
+    let corners = inner_corners_from_chain(&next_chain);
+    let corners_opt = if corners.is_empty() {
+        None
+    } else {
+        Some(corners)
+    };
+    set_inner_corners_on_edge(&mut diagram.edges[edge_idx], corners_opt);
+    true
+}
+
+#[tauri::command]
+pub fn update_edge_inner_corners(
+    app: AppHandle,
+    state: State<'_, AppState>,
+    edge_id: String,
+    inner_corners: Option<Vec<XY>>,
+    is_drag_preview: Option<bool>,
+) -> DiagramState {
+    let corners = inner_corners.map(|pts| {
+        pts.into_iter()
+            .map(|p| FlowXY { x: p.x, y: p.y })
+            .collect::<Vec<_>>()
+    });
+    if is_drag_preview == Some(true) {
+        let mut project = state.0.lock().unwrap();
+        let diagram = &mut project.active_sheet_mut().state;
+        if let Some(edge) = diagram.edges.iter_mut().find(|e| e.id == edge_id) {
+            set_inner_corners_on_edge(edge, corners);
+        }
+        return diagram.clone();
+    }
+    mutate_active_diagram(&state, &app, |diagram| {
+        if let Some(edge) = diagram.edges.iter_mut().find(|e| e.id == edge_id) {
+            set_inner_corners_on_edge(edge, corners);
+        }
+    })
+}
+
+#[tauri::command]
+pub fn get_wire_inner_chain(
+    state: State<'_, AppState>,
+    edge_id: String,
+) -> Option<Vec<XY>> {
+    let project = state.0.lock().unwrap();
+    let diagram = &project.active_sheet().state;
+    let edge = diagram.edges.iter().find(|e| e.id == edge_id)?;
+    wire_inner_chain_for_edge(
+        edge,
+        &diagram.nodes,
+        &diagram.edges,
+        WireGeometryOptions::default(),
+    )
+    .map(|chain| {
+        chain
+            .into_iter()
+            .map(|p| XY { x: p.x, y: p.y })
+            .collect()
+    })
+}
+
+#[tauri::command]
+pub fn drag_wire_segment(
+    app: AppHandle,
+    state: State<'_, AppState>,
+    edge_id: String,
+    segment_index: u32,
+    orientation: String,
+    delta: XY,
+    base_chain: Option<Vec<XY>>,
+    is_drag_preview: Option<bool>,
+) -> DiagramState {
+    let base = base_chain.map(|pts| {
+        pts.into_iter()
+            .map(|p| FlowXY { x: p.x, y: p.y })
+            .collect::<Vec<_>>()
+    });
+    if is_drag_preview == Some(true) {
+        let mut project = state.0.lock().unwrap();
+        let diagram = &mut project.active_sheet_mut().state;
+        apply_wire_segment_drag(
+            diagram,
+            &edge_id,
+            segment_index,
+            &orientation,
+            delta,
+            base,
+        );
+        return diagram.clone();
+    }
+    // Preview already wrote innerCorners; commit records undo without re-applying delta.
+    mutate_active_diagram(&state, &app, |_| {})
 }
 
 #[tauri::command]

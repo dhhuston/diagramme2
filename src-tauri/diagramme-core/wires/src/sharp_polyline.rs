@@ -766,6 +766,94 @@ pub fn wire_sharp_polyline_for_edge(
     })
 }
 
+/// Inner routing chain between stub ends S1→T1 (for wire routing grips).
+pub fn wire_inner_chain_for_edge(
+    edge: &Edge,
+    nodes: &[Node],
+    edges: &[Edge],
+    options: WireGeometryOptions,
+) -> Option<Vec<FlowXY>> {
+    wire_inner_chain_for_edge_with_corners(edge, nodes, edges, None, options)
+}
+
+/// Like [`wire_inner_chain_for_edge`] but uses `corner_override` instead of persisted bends when set.
+pub fn wire_inner_chain_for_edge_with_corners(
+    edge: &Edge,
+    nodes: &[Node],
+    edges: &[Edge],
+    corner_override: Option<Vec<FlowXY>>,
+    options: WireGeometryOptions,
+) -> Option<Vec<FlowXY>> {
+    if is_bundle_member(edge) || !is_schematic_wire_edge_type(edge.edge_type.as_deref()) {
+        return None;
+    }
+
+    let nodes_by_id = node_lookup_for_wire_geometry(nodes);
+    let src = nodes_by_id.get(&edge.source)?;
+    let tgt = nodes_by_id.get(&edge.target)?;
+    let sh = edge.source_handle.as_deref();
+    let th = edge.target_handle.as_deref();
+    let inner_corners = if let Some(corners) = corner_override {
+        if corners.is_empty() {
+            None
+        } else {
+            Some(corners)
+        }
+    } else if options.use_persisted_inner_corners {
+        get_inner_corners_from_edge_data(&edge.data)
+    } else {
+        None
+    };
+    let sc = read_handle_center(&edge.data, "sourceHandleCenter");
+    let tc = read_handle_center(&edge.data, "targetHandleCenter");
+
+    let src_port = sh.and_then(|h| analytical_port_xy(src, h, nodes, edges));
+    let tgt_port = th.and_then(|h| analytical_port_xy(tgt, h, nodes, edges));
+    let source = endpoint_for_export(src_port, sc, &src.node_type)?;
+    let target = endpoint_for_export(tgt_port, tc, &tgt.node_type)?;
+
+    let dx = target.x - source.x;
+    let dy = target.y - source.y;
+    let inferred_source = infer_handle_side(dx, dy, true);
+    let inferred_target = infer_handle_side(dx, dy, false);
+    let source_position = sh
+        .and_then(|h| known_handle_position(&src.node_type, Some(h)))
+        .unwrap_or(inferred_source);
+    let target_position = th
+        .and_then(|h| known_handle_position(&tgt.node_type, Some(h)))
+        .unwrap_or(inferred_target);
+
+    let stubs = compute_stub_endpoints(
+        source.x,
+        source.y,
+        target.x,
+        target.y,
+        source_position,
+        target_position,
+    )?;
+
+    let obstacles = collect_wire_obstacles(
+        &nodes_by_id,
+        &edge.source,
+        &edge.target,
+        WIRE_OBSTACLE_CLEARANCE_PX,
+    );
+    let wire_lo_x = source.x.min(target.x);
+    let wire_hi_x = source.x.max(target.x);
+    let wire_lo_y = source.y.min(target.y);
+    let wire_hi_y = source.y.max(target.y);
+    let nearby = obstacles_near_wire_aabb(&obstacles, wire_lo_x, wire_lo_y, wire_hi_x, wire_hi_y);
+
+    Some(build_inner_chain_points(
+        stubs.s1,
+        stubs.t1,
+        source_position,
+        target_position,
+        inner_corners.as_deref(),
+        Some(&nearby),
+    ))
+}
+
 /// Build per-edge sharp polylines and DXF-ready pieces (crossing gaps + bundle fillets).
 pub fn build_wire_geometry_model(
     nodes: &[Node],

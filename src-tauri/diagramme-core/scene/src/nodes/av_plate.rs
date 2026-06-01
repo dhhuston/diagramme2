@@ -365,6 +365,8 @@ pub fn append_av_plate_scene(
             inset,
             split_zone,
         )),
+        wire_grip_segment: None,
+        wire_grip_orientation: None,
     });
 
     // Port hit targets — left (T) and right (S) halves per v6 handle ids
@@ -387,6 +389,8 @@ pub fn append_av_plate_scene(
                 handle_id: Some(t_handle),
                 face_mask_bounds: None,
                 face_mask_polygon: None,
+                wire_grip_segment: None,
+                wire_grip_orientation: None,
             });
             scene.hits.push(HitTarget {
                 id: format!("{}:{}", node.id, s_handle),
@@ -396,6 +400,8 @@ pub fn append_av_plate_scene(
                 handle_id: Some(s_handle),
                 face_mask_bounds: None,
                 face_mask_polygon: None,
+                wire_grip_segment: None,
+                wire_grip_orientation: None,
             });
         }
     }

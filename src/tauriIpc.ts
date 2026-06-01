@@ -159,6 +159,37 @@ export const addEdge = (connect: SchematicEdgeConnect) =>
     targetHandle: connect.targetHandle ?? null,
   })
 
+export const getWireInnerChain = (edgeId: string) =>
+  invoke<RustXY[] | null>('get_wire_inner_chain', { edgeId })
+
+export const dragWireSegment = (
+  edgeId: string,
+  segmentIndex: number,
+  orientation: 'h' | 'v',
+  delta: RustXY,
+  baseChain: RustXY[] | null | undefined,
+  isDragPreview?: boolean,
+) =>
+  invoke<DiagramState>('drag_wire_segment', {
+    edgeId,
+    segmentIndex,
+    orientation,
+    delta,
+    baseChain: baseChain ?? null,
+    isDragPreview: isDragPreview ?? null,
+  })
+
+export const updateEdgeInnerCorners = (
+  edgeId: string,
+  innerCorners: RustXY[] | null,
+  isDragPreview?: boolean,
+) =>
+  invoke<DiagramState>('update_edge_inner_corners', {
+    edgeId,
+    innerCorners,
+    isDragPreview: isDragPreview ?? null,
+  })
+
 export interface NodeMove {
   nodeId: string
   position: RustXY

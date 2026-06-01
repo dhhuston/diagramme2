@@ -3,8 +3,9 @@
 use diagramme_geometry::{PointPx, RectPx};
 use diagramme_schema::{DiagramState, Edge, Node};
 use diagramme_wires::{
-    build_wire_geometry_model, node_lookup_for_wire_geometry, FlowXY, RevitDxfWirePiece,
-    SchematicFilletCorner, WireGeometryModel, WireGeometryOptions,
+    build_wire_geometry_model, inner_segment_midpoints, is_bundle_member, node_lookup_for_wire_geometry,
+    wire_inner_chain_for_edge, FlowXY, RevitDxfWirePiece, SchematicFilletCorner, WireGeometryModel,
+    WireGeometryOptions,
 };
 
 use crate::scene::{HitTarget, Scene, ScenePrimitive};
@@ -323,6 +324,40 @@ fn tessellate_fillet_arc(arc: &SchematicFilletCorner, steps: usize) -> Vec<Point
     out
 }
 
+const WIRE_GRIP_RADIUS_PX: f64 = 4.0;
+
+fn push_wire_grip_hits(scene: &mut Scene, edge: &Edge, diagram: &DiagramState) {
+    if is_bundle_member(edge) {
+        return;
+    }
+    let Some(chain) =
+        wire_inner_chain_for_edge(edge, &diagram.nodes, &diagram.edges, WireGeometryOptions::default())
+    else {
+        return;
+    };
+    let grips = inner_segment_midpoints(&chain);
+    let r = WIRE_GRIP_RADIUS_PX;
+    for grip in grips {
+        let px = flow_to_px(grip.mid);
+        scene.hits.push(HitTarget {
+            id: format!(
+                "{}:grip:{}:{}",
+                edge.id,
+                grip.segment_index,
+                grip.orientation.as_str()
+            ),
+            bounds: RectPx::new(px.x - r, px.y - r, r * 2.0, r * 2.0),
+            node_id: None,
+            edge_id: Some(edge.id.clone()),
+            handle_id: None,
+            face_mask_bounds: None,
+            face_mask_polygon: None,
+            wire_grip_segment: Some(grip.segment_index as u32),
+            wire_grip_orientation: Some(grip.orientation.as_str().to_string()),
+        });
+    }
+}
+
 fn push_wire_segment_hits(scene: &mut Scene, points: &[PointPx], edge_id: &str) {
     let p = WIRE_PICK_PX;
     for i in 0..points.len().saturating_sub(1) {
@@ -340,6 +375,8 @@ fn push_wire_segment_hits(scene: &mut Scene, points: &[PointPx], edge_id: &str) 
             handle_id: None,
             face_mask_bounds: None,
             face_mask_polygon: None,
+            wire_grip_segment: None,
+            wire_grip_orientation: None,
         });
     }
 }
@@ -404,6 +441,7 @@ pub fn append_wires_to_scene(scene: &mut Scene, model: &WireGeometryModel, diagr
         for points in polylines {
             push_wire_polyline(scene, points, &layer, color, &edge.id);
         }
+        push_wire_grip_hits(scene, edge, diagram);
     }
 }
 

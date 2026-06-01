@@ -1,13 +1,15 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState, type RefObject } from 'react'
 import type { KonvaEventObject } from 'konva/lib/Node'
 
 import {
   hitTestSceneForInteraction,
   hitTestSceneForSelection,
   stagePointerToDiagramPx,
+  clientToDiagramPx,
 } from '../hitTest'
 import type { HitTarget, PointPx, SceneJson } from '../sceneTypes'
 import type { Viewport } from '../useViewport'
+import { isWireGripHit } from '../wireGripUtils'
 import { nodeBodyOrigin, snappedNodeOriginFromPointer, type NodeDragTarget } from './dragNode'
 import {
   canConnectPorts,
@@ -15,6 +17,10 @@ import {
   portFromHit,
   type PortEndpoint,
 } from './connectPorts'
+import {
+  useWireSegmentAdjust,
+  type WireSegmentAdjustHandlers,
+} from './useWireSegmentAdjust'
 
 const WIRE_PREVIEW_MS = 60
 
@@ -27,12 +33,16 @@ export type WireConnectPreview = {
 type UseDiagramInteractionOptions = {
   scene: SceneJson
   viewport: Viewport
+  /** When set, wire routing grips on this edge are visible and pickable. */
+  selectedEdgeId?: string | null
+  hostRef?: RefObject<HTMLDivElement | null>
   onHit?: (hit: HitTarget | null) => void
   /** Coalesced Rust preview — updates node position + wire routing in scene. */
   onNodeDragPreview?: (nodeId: string, position: PointPx) => void | Promise<void>
   onNodeMoveCommit?: (nodeId: string, position: PointPx) => void | Promise<void>
   onPortConnect?: (from: PortEndpoint, to: PortEndpoint) => void | Promise<void>
   onPan: (next: Pick<Viewport, 'x' | 'y'>) => void
+  wireSegmentAdjust?: WireSegmentAdjustHandlers
 }
 
 type PanSession = {
@@ -53,12 +63,16 @@ type WireConnectSession = {
 export function useDiagramInteraction({
   scene,
   viewport,
+  selectedEdgeId = null,
+  hostRef,
   onHit,
   onNodeDragPreview,
   onNodeMoveCommit,
   onPortConnect,
   onPan,
+  wireSegmentAdjust,
 }: UseDiagramInteractionOptions) {
+  const wireSegment = useWireSegmentAdjust(wireSegmentAdjust ?? {})
   const dragSession = useRef<DragSession | null>(null)
   const dragGrabOffset = useRef<PointPx | null>(null)
   const [nodeDrag, setNodeDrag] = useState<NodeDragTarget | null>(null)
@@ -181,7 +195,7 @@ export function useDiagramInteraction({
       endWireConnect()
       const diagramPoint = lastDiagramPoint.current
       if (diagramPoint && onPortConnect) {
-        const hit = hitTestSceneForInteraction(scene.hits, diagramPoint)
+        const hit = hitTestSceneForInteraction(scene.hits, diagramPoint, selectedEdgeId)
         const to = portFromHit(hit)
         if (to && canConnectPorts(wire.from, to)) {
           void onPortConnect(wire.from, to)
@@ -201,7 +215,7 @@ export function useDiagramInteraction({
       return
     }
     void onNodeMoveCommit(session.nodeId, session.targetOrigin)
-  }, [endDrag, endWireConnect, onNodeMoveCommit, onPortConnect, scene.hits])
+  }, [endDrag, endWireConnect, onNodeMoveCommit, onPortConnect, scene.hits, selectedEdgeId])
 
   const handlePointerDown = useCallback(
     (event: KonvaEventObject<PointerEvent>) => {
@@ -210,8 +224,22 @@ export function useDiagramInteraction({
       const diagramPoint = pointerOnStage(stage)
       if (!diagramPoint) return
 
-      const hit = hitTestSceneForInteraction(scene.hits, diagramPoint)
+      const hit = hitTestSceneForInteraction(scene.hits, diagramPoint, selectedEdgeId)
       lastDiagramPoint.current = diagramPoint
+
+      if (wireSegment.isArmed()) {
+        event.evt.preventDefault()
+        return
+      }
+
+      if (isWireGripHit(hit)) {
+        event.evt.preventDefault()
+        onHit?.(hit)
+        if (wireSegmentAdjust && hit.edge_id === selectedEdgeId) {
+          void wireSegment.tryArmOnGripPointerDown(hit, diagramPoint)
+        }
+        return
+      }
 
       const port = portFromHit(hit)
       if (port && hit && onPortConnect) {
@@ -257,7 +285,7 @@ export function useDiagramInteraction({
       }
       onHit?.(hit)
     },
-    [onHit, onNodeMoveCommit, onPortConnect, pointerOnStage, scene.hits, viewport.x, viewport.y, endDrag, endWireConnect],
+    [onHit, onNodeMoveCommit, onPortConnect, pointerOnStage, scene.hits, selectedEdgeId, viewport.x, viewport.y, endDrag, endWireConnect, wireSegment, wireSegmentAdjust],
   )
 
   const handlePointerMove = useCallback(
@@ -275,6 +303,11 @@ export function useDiagramInteraction({
           fromPoint: session.fromPoint,
           toPoint: diagramPoint,
         })
+        return
+      }
+
+      if (wireSegment.onPointerMoveWhileArmed(diagramPoint)) {
+        movedDuringGesture.current = true
         return
       }
 
@@ -299,19 +332,40 @@ export function useDiagramInteraction({
         y: pan.startViewport.y + (pointer.y - pan.startPointer.y),
       })
     },
-    [onNodeDragPreview, onPan, pointerOnStage, queueVisualUpdate, schedulePreview],
+    [onNodeDragPreview, onPan, pointerOnStage, queueVisualUpdate, schedulePreview, wireSegment],
   )
 
   const handleStageClick = useCallback(
     (event: KonvaEventObject<MouseEvent>) => {
-      if (movedDuringGesture.current || !onHit) return
+      if (movedDuringGesture.current) return
       const stage = event.target.getStage()
       const diagramPoint = pointerOnStage(stage)
       if (!diagramPoint) return
+
+      if (!onHit) return
       onHit(hitTestSceneForSelection(scene.hits, diagramPoint))
     },
     [onHit, pointerOnStage, scene.hits],
   )
+
+  useEffect(() => {
+    if (!wireSegment.activeGripId) return
+    const host = hostRef?.current
+    if (!host) return
+
+    const onMove = (event: PointerEvent) => {
+      const diagramPoint = clientToDiagramPx(
+        event.clientX,
+        event.clientY,
+        host.getBoundingClientRect(),
+        viewport,
+      )
+      wireSegment.onPointerMoveWhileArmed(diagramPoint)
+    }
+
+    window.addEventListener('pointermove', onMove)
+    return () => window.removeEventListener('pointermove', onMove)
+  }, [wireSegment.activeGripId, hostRef, viewport, wireSegment])
 
   useEffect(() => {
     const onWindowPointerUp = () => {
@@ -333,6 +387,7 @@ export function useDiagramInteraction({
   return {
     nodeDrag,
     wireConnect,
+    activeWireGripId: wireSegment.activeGripId,
     handlePointerDown,
     handlePointerMove,
     handlePointerUp,

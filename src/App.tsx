@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 
 import { AppShell } from './AppShell'
 import { DiagramStage } from './canvas/DiagramStage'
@@ -7,7 +7,8 @@ import { useDiagramScene } from './canvas/useDiagramScene'
 import type { PortEndpoint } from './canvas/interaction/connectPorts'
 import type { AppMenuCommand } from './appMenuCommands'
 import { DEV_FIXTURES, fetchDevFixture } from './devFixtures'
-import { exportRevitDxf, addEdge, moveNode, undo, redo } from './tauriIpc'
+import type { WireSegmentArm } from './canvas/interaction/useWireSegmentAdjust'
+import { exportRevitDxf, addEdge, moveNode, undo, redo, dragWireSegment, updateEdgeInnerCorners, getState, getWireInnerChain } from './tauriIpc'
 
 export default function App() {
   const {
@@ -136,6 +137,82 @@ export default function App() {
     [refreshScene],
   )
 
+  const readEdgeInnerCorners = useCallback(async (edgeId: string) => {
+    const state = await getState()
+    const edge = state.edges.find((e) => e.id === edgeId)
+    const data = edge?.data as { innerCorners?: PointPx[] } | undefined
+    return data?.innerCorners
+  }, [])
+
+  const readWireInnerChain = useCallback(async (edgeId: string) => {
+    const chain = await getWireInnerChain(edgeId)
+    return chain ?? undefined
+  }, [])
+
+  const handleWireSegmentPreview = useCallback(
+    async (arm: WireSegmentArm, delta: PointPx) => {
+      await dragWireSegment(
+        arm.edgeId,
+        arm.segmentIndex,
+        arm.orientation,
+        delta,
+        arm.chain0,
+        true,
+      )
+      await refreshScene()
+    },
+    [refreshScene],
+  )
+
+  const handleWireSegmentCommit = useCallback(
+    async (arm: WireSegmentArm, delta: PointPx) => {
+      await dragWireSegment(
+        arm.edgeId,
+        arm.segmentIndex,
+        arm.orientation,
+        delta,
+        arm.chain0,
+        true,
+      )
+      await dragWireSegment(
+        arm.edgeId,
+        arm.segmentIndex,
+        arm.orientation,
+        delta,
+        arm.chain0,
+        false,
+      )
+      const next = await refreshScene()
+      setStatus(`Wire route updated; ${next.primitives.length} primitives`)
+    },
+    [refreshScene],
+  )
+
+  const handleWireSegmentCancel = useCallback(
+    async (arm: WireSegmentArm) => {
+      await updateEdgeInnerCorners(arm.edgeId, arm.priorCorners ?? null, false)
+      await refreshScene()
+    },
+    [refreshScene],
+  )
+
+  const wireSegmentAdjust = useMemo(
+    () => ({
+      readEdgeInnerCorners,
+      readWireInnerChain,
+      onWireSegmentPreview: handleWireSegmentPreview,
+      onWireSegmentCommit: handleWireSegmentCommit,
+      onWireSegmentCancel: handleWireSegmentCancel,
+    }),
+    [
+      handleWireSegmentCancel,
+      handleWireSegmentCommit,
+      handleWireSegmentPreview,
+      readEdgeInnerCorners,
+      readWireInnerChain,
+    ],
+  )
+
   const handleMenuUnavailable = useCallback((command: AppMenuCommand) => {
     setStatus(`Not available yet (${command})`)
   }, [])
@@ -167,6 +244,7 @@ export default function App() {
             onNodeDragPreview={handleNodeDragPreview}
             onNodeMoveCommit={handleNodeMoveCommit}
             onPortConnect={handlePortConnect}
+            wireSegmentAdjust={wireSegmentAdjust}
           />
         ) : null
       }

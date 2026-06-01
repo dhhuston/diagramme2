@@ -11,6 +11,8 @@ import { SceneRenderer } from './SceneRenderer'
 import type { HitTarget, PointPx, SceneJson } from './sceneTypes'
 import { useViewport } from './useViewport'
 import { WireConnectOverlay } from './WireConnectOverlay'
+import { WireRoutingGrips } from './WireRoutingGrips'
+import type { WireSegmentAdjustHandlers } from './interaction/useWireSegmentAdjust'
 
 type DiagramStageProps = {
   scene: SceneJson
@@ -21,6 +23,7 @@ type DiagramStageProps = {
   onNodeDragPreview?: (nodeId: string, position: PointPx) => void | Promise<void>
   onNodeMoveCommit?: (nodeId: string, position: PointPx) => void | Promise<void>
   onPortConnect?: (from: PortEndpoint, to: PortEndpoint) => void | Promise<void>
+  wireSegmentAdjust?: WireSegmentAdjustHandlers
 }
 
 /** Konva stage: 1 diagram px = 1 unit at scale 1; wheel zoom + drag pan. */
@@ -32,6 +35,7 @@ export function DiagramStage({
   onNodeDragPreview,
   onNodeMoveCommit,
   onPortConnect,
+  wireSegmentAdjust,
 }: DiagramStageProps) {
   const hostRef = useRef<HTMLDivElement>(null)
   const [size, setSize] = useState({ width: 800, height: 600 })
@@ -41,6 +45,7 @@ export function DiagramStage({
   const {
     nodeDrag,
     wireConnect,
+    activeWireGripId,
     handlePointerDown,
     handlePointerMove,
     handlePointerUp,
@@ -48,11 +53,14 @@ export function DiagramStage({
   } = useDiagramInteraction({
     scene,
     viewport,
+    selectedEdgeId: selectedHit?.edge_id ?? null,
+    hostRef,
     onHit,
     onNodeDragPreview,
     onNodeMoveCommit,
     onPortConnect,
     onPan: setPan,
+    wireSegmentAdjust,
   })
 
   useEffect(() => {
@@ -103,6 +111,11 @@ export function DiagramStage({
           ) : null}
           <SchematicFaceMasks hits={scene.hits} />
           <SceneRenderer scene={scene} selectedHit={selectedHit} nodeDrag={nodeDrag} />
+          <WireRoutingGrips
+            hits={scene.hits}
+            selectedEdgeId={selectedHit?.edge_id ?? null}
+            activeGripId={activeWireGripId}
+          />
           <WireConnectOverlay preview={wireConnect} />
         </Layer>
       </Stage>
