@@ -24,7 +24,37 @@
           {
             "x": 1045.25,
             "y": 121.75
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "0",
+        "color": 0,
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
+          {
+            "x": 1045.25,
+            "y": 121.75
           },
+          {
+            "x": 1045.25,
+            "y": 229.25
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "0",
+        "color": 0,
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
           {
             "x": 1045.25,
             "y": 229.25
@@ -37,7 +67,26 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": true,
+        "closed": false,
+        "owner_node_id": "device-57ef2140"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
+          {
+            "x": 919.75,
+            "y": 229.25
+          },
+          {
+            "x": 919.75,
+            "y": 121.75
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "0",
+        "color": 0,
+        "closed": false,
         "owner_node_id": "device-57ef2140"
       }
     },
@@ -1245,7 +1294,37 @@
           {
             "x": 973.25,
             "y": 370.75
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "0",
+        "color": 0,
+        "closed": false,
+        "owner_node_id": "device-8339f929"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
+          {
+            "x": 973.25,
+            "y": 370.75
           },
+          {
+            "x": 973.25,
+            "y": 469.25
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "0",
+        "color": 0,
+        "closed": false,
+        "owner_node_id": "device-8339f929"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
           {
             "x": 973.25,
             "y": 469.25
@@ -1258,7 +1337,26 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": true,
+        "closed": false,
+        "owner_node_id": "device-8339f929"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
+          {
+            "x": 847.75,
+            "y": 469.25
+          },
+          {
+            "x": 847.75,
+            "y": 370.75
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "0",
+        "color": 0,
+        "closed": false,
         "owner_node_id": "device-8339f929"
       }
     },
@@ -1905,7 +2003,37 @@
           {
             "x": 623.75,
             "y": 433.75
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "0",
+        "color": 0,
+        "closed": false,
+        "owner_node_id": "device-e2b5b6e5"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
+          {
+            "x": 623.75,
+            "y": 433.75
           },
+          {
+            "x": 623.75,
+            "y": 487.25
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "0",
+        "color": 0,
+        "closed": false,
+        "owner_node_id": "device-e2b5b6e5"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
           {
             "x": 623.75,
             "y": 487.25
@@ -1918,7 +2046,26 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": true,
+        "closed": false,
+        "owner_node_id": "device-e2b5b6e5"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
+          {
+            "x": 498.25,
+            "y": 487.25
+          },
+          {
+            "x": 498.25,
+            "y": 433.75
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "0",
+        "color": 0,
+        "closed": false,
         "owner_node_id": "device-e2b5b6e5"
       }
     },
@@ -2202,7 +2349,37 @@
           {
             "x": 418.25,
             "y": 121.75
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "0",
+        "color": 0,
+        "closed": false,
+        "owner_node_id": "device-c82d7f72"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
+          {
+            "x": 418.25,
+            "y": 121.75
           },
+          {
+            "x": 418.25,
+            "y": 184.25
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "0",
+        "color": 0,
+        "closed": false,
+        "owner_node_id": "device-c82d7f72"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
           {
             "x": 418.25,
             "y": 184.25
@@ -2215,7 +2392,26 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": true,
+        "closed": false,
+        "owner_node_id": "device-c82d7f72"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
+          {
+            "x": 292.75,
+            "y": 184.25
+          },
+          {
+            "x": 292.75,
+            "y": 121.75
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "0",
+        "color": 0,
+        "closed": false,
         "owner_node_id": "device-c82d7f72"
       }
     },
@@ -2778,7 +2974,37 @@
           {
             "x": 623.75,
             "y": 520.75
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "0",
+        "color": 0,
+        "closed": false,
+        "owner_node_id": "device-a7d8fa54"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
+          {
+            "x": 623.75,
+            "y": 520.75
           },
+          {
+            "x": 623.75,
+            "y": 574.25
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "0",
+        "color": 0,
+        "closed": false,
+        "owner_node_id": "device-a7d8fa54"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
           {
             "x": 623.75,
             "y": 574.25
@@ -2791,7 +3017,26 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": true,
+        "closed": false,
+        "owner_node_id": "device-a7d8fa54"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
+          {
+            "x": 498.25,
+            "y": 574.25
+          },
+          {
+            "x": 498.25,
+            "y": 520.75
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "0",
+        "color": 0,
+        "closed": false,
         "owner_node_id": "device-a7d8fa54"
       }
     },
@@ -3075,7 +3320,37 @@
           {
             "x": 824.75,
             "y": 121.75
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "0",
+        "color": 0,
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
+          {
+            "x": 824.75,
+            "y": 121.75
           },
+          {
+            "x": 824.75,
+            "y": 283.25
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "0",
+        "color": 0,
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
           {
             "x": 824.75,
             "y": 283.25
@@ -3088,7 +3363,26 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": true,
+        "closed": false,
+        "owner_node_id": "device-bf36a3ea"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
+          {
+            "x": 699.25,
+            "y": 283.25
+          },
+          {
+            "x": 699.25,
+            "y": 121.75
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "0",
+        "color": 0,
+        "closed": false,
         "owner_node_id": "device-bf36a3ea"
       }
     },
@@ -6152,7 +6446,37 @@
           {
             "x": 418.25,
             "y": 439.75
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "0",
+        "color": 0,
+        "closed": false,
+        "owner_node_id": "avPlate-e14b8e32"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
+          {
+            "x": 418.25,
+            "y": 439.75
           },
+          {
+            "x": 418.25,
+            "y": 529.25
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "0",
+        "color": 0,
+        "closed": false,
+        "owner_node_id": "avPlate-e14b8e32"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
           {
             "x": 418.25,
             "y": 529.25
@@ -6165,7 +6489,26 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": true,
+        "closed": false,
+        "owner_node_id": "avPlate-e14b8e32"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
+          {
+            "x": 346.75,
+            "y": 529.25
+          },
+          {
+            "x": 346.75,
+            "y": 439.75
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "0",
+        "color": 0,
+        "closed": false,
         "owner_node_id": "avPlate-e14b8e32"
       }
     },
@@ -6477,7 +6820,37 @@
           {
             "x": 418.25,
             "y": 556.75
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "0",
+        "color": 0,
+        "closed": false,
+        "owner_node_id": "avPlate-f42ca665"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
+          {
+            "x": 418.25,
+            "y": 556.75
           },
+          {
+            "x": 418.25,
+            "y": 646.25
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "0",
+        "color": 0,
+        "closed": false,
+        "owner_node_id": "avPlate-f42ca665"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
           {
             "x": 418.25,
             "y": 646.25
@@ -6490,7 +6863,26 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": true,
+        "closed": false,
+        "owner_node_id": "avPlate-f42ca665"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
+          {
+            "x": 346.75,
+            "y": 646.25
+          },
+          {
+            "x": 346.75,
+            "y": 556.75
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "0",
+        "color": 0,
+        "closed": false,
         "owner_node_id": "avPlate-f42ca665"
       }
     },
@@ -6802,7 +7194,37 @@
           {
             "x": 418.25,
             "y": 208.75
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "0",
+        "color": 0,
+        "closed": false,
+        "owner_node_id": "avPlate-70807746"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
+          {
+            "x": 418.25,
+            "y": 208.75
           },
+          {
+            "x": 418.25,
+            "y": 298.25
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "0",
+        "color": 0,
+        "closed": false,
+        "owner_node_id": "avPlate-70807746"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
           {
             "x": 418.25,
             "y": 298.25
@@ -6815,7 +7237,26 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": true,
+        "closed": false,
+        "owner_node_id": "avPlate-70807746"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
+          {
+            "x": 346.75,
+            "y": 298.25
+          },
+          {
+            "x": 346.75,
+            "y": 208.75
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "0",
+        "color": 0,
+        "closed": false,
         "owner_node_id": "avPlate-70807746"
       }
     },
@@ -7127,7 +7568,37 @@
           {
             "x": 418.25,
             "y": 322.75
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "0",
+        "color": 0,
+        "closed": false,
+        "owner_node_id": "avPlate-7e4e91d3"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
+          {
+            "x": 418.25,
+            "y": 322.75
           },
+          {
+            "x": 418.25,
+            "y": 412.25
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "0",
+        "color": 0,
+        "closed": false,
+        "owner_node_id": "avPlate-7e4e91d3"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
           {
             "x": 418.25,
             "y": 412.25
@@ -7140,7 +7611,26 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": true,
+        "closed": false,
+        "owner_node_id": "avPlate-7e4e91d3"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
+          {
+            "x": 346.75,
+            "y": 412.25
+          },
+          {
+            "x": 346.75,
+            "y": 322.75
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "0",
+        "color": 0,
+        "closed": false,
         "owner_node_id": "avPlate-7e4e91d3"
       }
     },
@@ -8354,7 +8844,37 @@
           {
             "x": 623.75,
             "y": 121.75
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "0",
+        "color": 0,
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
+          {
+            "x": 623.75,
+            "y": 121.75
           },
+          {
+            "x": 623.75,
+            "y": 292.25
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "0",
+        "color": 0,
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
           {
             "x": 623.75,
             "y": 292.25
@@ -8367,7 +8887,26 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": true,
+        "closed": false,
+        "owner_node_id": "deviceV2-60f0f322"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
+          {
+            "x": 498.25,
+            "y": 292.25
+          },
+          {
+            "x": 498.25,
+            "y": 121.75
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "0",
+        "color": 0,
+        "closed": false,
         "owner_node_id": "deviceV2-60f0f322"
       }
     },
@@ -10103,7 +10642,37 @@
           {
             "x": 421.25,
             "y": 676.75
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "0",
+        "color": 0,
+        "closed": false,
+        "owner_node_id": "avPlate-2ca3b6d2"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
+          {
+            "x": 421.25,
+            "y": 676.75
           },
+          {
+            "x": 421.25,
+            "y": 766.25
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "0",
+        "color": 0,
+        "closed": false,
+        "owner_node_id": "avPlate-2ca3b6d2"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
           {
             "x": 421.25,
             "y": 766.25
@@ -10116,7 +10685,26 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": true,
+        "closed": false,
+        "owner_node_id": "avPlate-2ca3b6d2"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
+          {
+            "x": 349.75,
+            "y": 766.25
+          },
+          {
+            "x": 349.75,
+            "y": 676.75
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "0",
+        "color": 0,
+        "closed": false,
         "owner_node_id": "avPlate-2ca3b6d2"
       }
     },
@@ -10428,7 +11016,37 @@
           {
             "x": 421.25,
             "y": 793.75
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "0",
+        "color": 0,
+        "closed": false,
+        "owner_node_id": "avPlate-88e2e31f"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
+          {
+            "x": 421.25,
+            "y": 793.75
           },
+          {
+            "x": 421.25,
+            "y": 883.25
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "0",
+        "color": 0,
+        "closed": false,
+        "owner_node_id": "avPlate-88e2e31f"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
           {
             "x": 421.25,
             "y": 883.25
@@ -10441,7 +11059,26 @@
         "stroke_px": 1.0,
         "layer": "0",
         "color": 0,
-        "closed": true,
+        "closed": false,
+        "owner_node_id": "avPlate-88e2e31f"
+      }
+    },
+    {
+      "Polyline": {
+        "points": [
+          {
+            "x": 349.75,
+            "y": 883.25
+          },
+          {
+            "x": 349.75,
+            "y": 793.75
+          }
+        ],
+        "stroke_px": 1.0,
+        "layer": "0",
+        "color": 0,
+        "closed": false,
         "owner_node_id": "avPlate-88e2e31f"
       }
     },
@@ -17349,12 +17986,24 @@
         "height": 123.0
       },
       "node_id": "device-57ef2140",
-      "face_mask_bounds": {
-        "x": 919.5,
-        "y": 121.5,
-        "width": 126.0,
-        "height": 108.0
-      }
+      "face_mask_polygon": [
+        {
+          "x": 919.75,
+          "y": 121.75
+        },
+        {
+          "x": 1045.25,
+          "y": 121.75
+        },
+        {
+          "x": 1045.25,
+          "y": 229.25
+        },
+        {
+          "x": 919.75,
+          "y": 229.25
+        }
+      ]
     },
     {
       "id": "device-57ef2140:L-0-leftColumn-e0308666",
@@ -17464,12 +18113,24 @@
         "height": 114.0
       },
       "node_id": "device-8339f929",
-      "face_mask_bounds": {
-        "x": 847.5,
-        "y": 370.5,
-        "width": 126.0,
-        "height": 99.0
-      }
+      "face_mask_polygon": [
+        {
+          "x": 847.75,
+          "y": 370.75
+        },
+        {
+          "x": 973.25,
+          "y": 370.75
+        },
+        {
+          "x": 973.25,
+          "y": 469.25
+        },
+        {
+          "x": 847.75,
+          "y": 469.25
+        }
+      ]
     },
     {
       "id": "device-8339f929:L-0-in-f454b2ad",
@@ -17612,12 +18273,24 @@
         "height": 69.0
       },
       "node_id": "device-e2b5b6e5",
-      "face_mask_bounds": {
-        "x": 498.0,
-        "y": 433.5,
-        "width": 126.0,
-        "height": 54.0
-      }
+      "face_mask_polygon": [
+        {
+          "x": 498.25,
+          "y": 433.75
+        },
+        {
+          "x": 623.75,
+          "y": 433.75
+        },
+        {
+          "x": 623.75,
+          "y": 487.25
+        },
+        {
+          "x": 498.25,
+          "y": 487.25
+        }
+      ]
     },
     {
       "id": "device-e2b5b6e5:R-0-out-6231f67c",
@@ -17639,12 +18312,24 @@
         "height": 78.0
       },
       "node_id": "device-c82d7f72",
-      "face_mask_bounds": {
-        "x": 292.5,
-        "y": 121.5,
-        "width": 126.0,
-        "height": 63.0
-      }
+      "face_mask_polygon": [
+        {
+          "x": 292.75,
+          "y": 121.75
+        },
+        {
+          "x": 418.25,
+          "y": 121.75
+        },
+        {
+          "x": 418.25,
+          "y": 184.25
+        },
+        {
+          "x": 292.75,
+          "y": 184.25
+        }
+      ]
     },
     {
       "id": "device-c82d7f72:L-0-in-74a66fe8",
@@ -17698,13 +18383,7 @@
         "width": 43.0,
         "height": 20.0
       },
-      "node_id": "ant-389cd396",
-      "face_mask_bounds": {
-        "x": 217.5,
-        "y": 147.0,
-        "width": 43.0,
-        "height": 20.0
-      }
+      "node_id": "ant-389cd396"
     },
     {
       "id": "antennaReceiverSymbol-a5f48657",
@@ -17714,13 +18393,7 @@
         "width": 43.0,
         "height": 20.0
       },
-      "node_id": "antennaReceiverSymbol-a5f48657",
-      "face_mask_bounds": {
-        "x": 166.5,
-        "y": 156.0,
-        "width": 43.0,
-        "height": 20.0
-      }
+      "node_id": "antennaReceiverSymbol-a5f48657"
     },
     {
       "id": "device-a7d8fa54",
@@ -17731,12 +18404,24 @@
         "height": 69.0
       },
       "node_id": "device-a7d8fa54",
-      "face_mask_bounds": {
-        "x": 498.0,
-        "y": 520.5,
-        "width": 126.0,
-        "height": 54.0
-      }
+      "face_mask_polygon": [
+        {
+          "x": 498.25,
+          "y": 520.75
+        },
+        {
+          "x": 623.75,
+          "y": 520.75
+        },
+        {
+          "x": 623.75,
+          "y": 574.25
+        },
+        {
+          "x": 498.25,
+          "y": 574.25
+        }
+      ]
     },
     {
       "id": "device-a7d8fa54:R-0-out-dd8a76cc",
@@ -17758,12 +18443,24 @@
         "height": 177.0
       },
       "node_id": "device-bf36a3ea",
-      "face_mask_bounds": {
-        "x": 699.0,
-        "y": 121.5,
-        "width": 126.0,
-        "height": 162.0
-      }
+      "face_mask_polygon": [
+        {
+          "x": 699.25,
+          "y": 121.75
+        },
+        {
+          "x": 824.75,
+          "y": 121.75
+        },
+        {
+          "x": 824.75,
+          "y": 283.25
+        },
+        {
+          "x": 699.25,
+          "y": 283.25
+        }
+      ]
     },
     {
       "id": "device-bf36a3ea:L-0-in-12259f97",
@@ -18026,12 +18723,32 @@
         "height": 50.0
       },
       "node_id": "spk-cfe86b51",
-      "face_mask_bounds": {
-        "x": 1095.0,
-        "y": 117.0,
-        "width": 240.0,
-        "height": 50.0
-      }
+      "face_mask_polygon": [
+        {
+          "x": 1095.25,
+          "y": 138.625
+        },
+        {
+          "x": 1099.75,
+          "y": 138.625
+        },
+        {
+          "x": 1108.75,
+          "y": 135.25
+        },
+        {
+          "x": 1108.75,
+          "y": 148.75
+        },
+        {
+          "x": 1099.75,
+          "y": 145.375
+        },
+        {
+          "x": 1095.25,
+          "y": 145.375
+        }
+      ]
     },
     {
       "id": "spk-d527bfce",
@@ -18042,12 +18759,32 @@
         "height": 50.0
       },
       "node_id": "spk-d527bfce",
-      "face_mask_bounds": {
-        "x": 1094.0,
-        "y": 243.0,
-        "width": 240.0,
-        "height": 50.0
-      }
+      "face_mask_polygon": [
+        {
+          "x": 1094.25,
+          "y": 264.625
+        },
+        {
+          "x": 1098.75,
+          "y": 264.625
+        },
+        {
+          "x": 1107.75,
+          "y": 261.25
+        },
+        {
+          "x": 1107.75,
+          "y": 274.75
+        },
+        {
+          "x": 1098.75,
+          "y": 271.375
+        },
+        {
+          "x": 1094.25,
+          "y": 271.375
+        }
+      ]
     },
     {
       "id": "avPlate-e14b8e32",
@@ -18058,12 +18795,24 @@
         "height": 105.0
       },
       "node_id": "avPlate-e14b8e32",
-      "face_mask_bounds": {
-        "x": 346.5,
-        "y": 439.5,
-        "width": 72.0,
-        "height": 90.0
-      }
+      "face_mask_polygon": [
+        {
+          "x": 346.75,
+          "y": 439.75
+        },
+        {
+          "x": 418.25,
+          "y": 439.75
+        },
+        {
+          "x": 418.25,
+          "y": 529.25
+        },
+        {
+          "x": 346.75,
+          "y": 529.25
+        }
+      ]
     },
     {
       "id": "avPlate-e14b8e32:T-0-p-0d2f4e11-a",
@@ -18140,12 +18889,24 @@
         "height": 105.0
       },
       "node_id": "avPlate-f42ca665",
-      "face_mask_bounds": {
-        "x": 346.5,
-        "y": 556.5,
-        "width": 72.0,
-        "height": 90.0
-      }
+      "face_mask_polygon": [
+        {
+          "x": 346.75,
+          "y": 556.75
+        },
+        {
+          "x": 418.25,
+          "y": 556.75
+        },
+        {
+          "x": 418.25,
+          "y": 646.25
+        },
+        {
+          "x": 346.75,
+          "y": 646.25
+        }
+      ]
     },
     {
       "id": "avPlate-f42ca665:T-0-p-0d2f4e11-a",
@@ -18222,12 +18983,24 @@
         "height": 105.0
       },
       "node_id": "avPlate-70807746",
-      "face_mask_bounds": {
-        "x": 346.5,
-        "y": 208.5,
-        "width": 72.0,
-        "height": 90.0
-      }
+      "face_mask_polygon": [
+        {
+          "x": 346.75,
+          "y": 208.75
+        },
+        {
+          "x": 418.25,
+          "y": 208.75
+        },
+        {
+          "x": 418.25,
+          "y": 298.25
+        },
+        {
+          "x": 346.75,
+          "y": 298.25
+        }
+      ]
     },
     {
       "id": "avPlate-70807746:T-0-p-0d2f4e11-a",
@@ -18304,12 +19077,24 @@
         "height": 105.0
       },
       "node_id": "avPlate-7e4e91d3",
-      "face_mask_bounds": {
-        "x": 346.5,
-        "y": 322.5,
-        "width": 72.0,
-        "height": 90.0
-      }
+      "face_mask_polygon": [
+        {
+          "x": 346.75,
+          "y": 322.75
+        },
+        {
+          "x": 418.25,
+          "y": 322.75
+        },
+        {
+          "x": 418.25,
+          "y": 412.25
+        },
+        {
+          "x": 346.75,
+          "y": 412.25
+        }
+      ]
     },
     {
       "id": "avPlate-7e4e91d3:T-0-p-0d2f4e11-a",
@@ -18386,12 +19171,32 @@
         "height": 50.0
       },
       "node_id": "speakerBlock-2f1a8d6a",
-      "face_mask_bounds": {
-        "x": 1169.0,
-        "y": 117.0,
-        "width": 240.0,
-        "height": 50.0
-      }
+      "face_mask_polygon": [
+        {
+          "x": 1169.25,
+          "y": 138.625
+        },
+        {
+          "x": 1173.75,
+          "y": 138.625
+        },
+        {
+          "x": 1182.75,
+          "y": 135.25
+        },
+        {
+          "x": 1182.75,
+          "y": 148.75
+        },
+        {
+          "x": 1173.75,
+          "y": 145.375
+        },
+        {
+          "x": 1169.25,
+          "y": 145.375
+        }
+      ]
     },
     {
       "id": "speakerBlock-c9f8c968",
@@ -18402,12 +19207,32 @@
         "height": 50.0
       },
       "node_id": "speakerBlock-c9f8c968",
-      "face_mask_bounds": {
-        "x": 1244.0,
-        "y": 117.0,
-        "width": 240.0,
-        "height": 50.0
-      }
+      "face_mask_polygon": [
+        {
+          "x": 1244.25,
+          "y": 138.625
+        },
+        {
+          "x": 1248.75,
+          "y": 138.625
+        },
+        {
+          "x": 1257.75,
+          "y": 135.25
+        },
+        {
+          "x": 1257.75,
+          "y": 148.75
+        },
+        {
+          "x": 1248.75,
+          "y": 145.375
+        },
+        {
+          "x": 1244.25,
+          "y": 145.375
+        }
+      ]
     },
     {
       "id": "speakerBlock-e8b0bb77",
@@ -18418,12 +19243,32 @@
         "height": 50.0
       },
       "node_id": "speakerBlock-e8b0bb77",
-      "face_mask_bounds": {
-        "x": 1319.0,
-        "y": 117.0,
-        "width": 240.0,
-        "height": 50.0
-      }
+      "face_mask_polygon": [
+        {
+          "x": 1319.25,
+          "y": 138.625
+        },
+        {
+          "x": 1323.75,
+          "y": 138.625
+        },
+        {
+          "x": 1332.75,
+          "y": 135.25
+        },
+        {
+          "x": 1332.75,
+          "y": 148.75
+        },
+        {
+          "x": 1323.75,
+          "y": 145.375
+        },
+        {
+          "x": 1319.25,
+          "y": 145.375
+        }
+      ]
     },
     {
       "id": "speakerBlock-e1617408",
@@ -18434,12 +19279,32 @@
         "height": 50.0
       },
       "node_id": "speakerBlock-e1617408",
-      "face_mask_bounds": {
-        "x": 1095.0,
-        "y": 159.0,
-        "width": 240.0,
-        "height": 50.0
-      }
+      "face_mask_polygon": [
+        {
+          "x": 1095.25,
+          "y": 180.625
+        },
+        {
+          "x": 1099.75,
+          "y": 180.625
+        },
+        {
+          "x": 1108.75,
+          "y": 177.25
+        },
+        {
+          "x": 1108.75,
+          "y": 190.75
+        },
+        {
+          "x": 1099.75,
+          "y": 187.375
+        },
+        {
+          "x": 1095.25,
+          "y": 187.375
+        }
+      ]
     },
     {
       "id": "speakerBlock-9ce597ed",
@@ -18450,12 +19315,32 @@
         "height": 50.0
       },
       "node_id": "speakerBlock-9ce597ed",
-      "face_mask_bounds": {
-        "x": 1169.0,
-        "y": 159.0,
-        "width": 240.0,
-        "height": 50.0
-      }
+      "face_mask_polygon": [
+        {
+          "x": 1169.25,
+          "y": 180.625
+        },
+        {
+          "x": 1173.75,
+          "y": 180.625
+        },
+        {
+          "x": 1182.75,
+          "y": 177.25
+        },
+        {
+          "x": 1182.75,
+          "y": 190.75
+        },
+        {
+          "x": 1173.75,
+          "y": 187.375
+        },
+        {
+          "x": 1169.25,
+          "y": 187.375
+        }
+      ]
     },
     {
       "id": "speakerBlock-4fe8654b",
@@ -18466,12 +19351,32 @@
         "height": 50.0
       },
       "node_id": "speakerBlock-4fe8654b",
-      "face_mask_bounds": {
-        "x": 1245.0,
-        "y": 159.0,
-        "width": 240.0,
-        "height": 50.0
-      }
+      "face_mask_polygon": [
+        {
+          "x": 1245.25,
+          "y": 180.625
+        },
+        {
+          "x": 1249.75,
+          "y": 180.625
+        },
+        {
+          "x": 1258.75,
+          "y": 177.25
+        },
+        {
+          "x": 1258.75,
+          "y": 190.75
+        },
+        {
+          "x": 1249.75,
+          "y": 187.375
+        },
+        {
+          "x": 1245.25,
+          "y": 187.375
+        }
+      ]
     },
     {
       "id": "speakerBlock-13ddc7aa",
@@ -18482,12 +19387,32 @@
         "height": 50.0
       },
       "node_id": "speakerBlock-13ddc7aa",
-      "face_mask_bounds": {
-        "x": 1320.0,
-        "y": 159.0,
-        "width": 240.0,
-        "height": 50.0
-      }
+      "face_mask_polygon": [
+        {
+          "x": 1320.25,
+          "y": 180.625
+        },
+        {
+          "x": 1324.75,
+          "y": 180.625
+        },
+        {
+          "x": 1333.75,
+          "y": 177.25
+        },
+        {
+          "x": 1333.75,
+          "y": 190.75
+        },
+        {
+          "x": 1324.75,
+          "y": 187.375
+        },
+        {
+          "x": 1320.25,
+          "y": 187.375
+        }
+      ]
     },
     {
       "id": "speakerBlock-0801b172",
@@ -18498,12 +19423,32 @@
         "height": 50.0
       },
       "node_id": "speakerBlock-0801b172",
-      "face_mask_bounds": {
-        "x": 1097.0,
-        "y": 201.0,
-        "width": 240.0,
-        "height": 50.0
-      }
+      "face_mask_polygon": [
+        {
+          "x": 1097.25,
+          "y": 222.625
+        },
+        {
+          "x": 1101.75,
+          "y": 222.625
+        },
+        {
+          "x": 1110.75,
+          "y": 219.25
+        },
+        {
+          "x": 1110.75,
+          "y": 232.75
+        },
+        {
+          "x": 1101.75,
+          "y": 229.375
+        },
+        {
+          "x": 1097.25,
+          "y": 229.375
+        }
+      ]
     },
     {
       "id": "speakerBlock-3ea565fd",
@@ -18514,12 +19459,32 @@
         "height": 50.0
       },
       "node_id": "speakerBlock-3ea565fd",
-      "face_mask_bounds": {
-        "x": 1172.0,
-        "y": 201.0,
-        "width": 240.0,
-        "height": 50.0
-      }
+      "face_mask_polygon": [
+        {
+          "x": 1172.25,
+          "y": 222.625
+        },
+        {
+          "x": 1176.75,
+          "y": 222.625
+        },
+        {
+          "x": 1185.75,
+          "y": 219.25
+        },
+        {
+          "x": 1185.75,
+          "y": 232.75
+        },
+        {
+          "x": 1176.75,
+          "y": 229.375
+        },
+        {
+          "x": 1172.25,
+          "y": 229.375
+        }
+      ]
     },
     {
       "id": "speakerBlock-7d79d6d8",
@@ -18530,12 +19495,32 @@
         "height": 50.0
       },
       "node_id": "speakerBlock-7d79d6d8",
-      "face_mask_bounds": {
-        "x": 1247.0,
-        "y": 201.0,
-        "width": 240.0,
-        "height": 50.0
-      }
+      "face_mask_polygon": [
+        {
+          "x": 1247.25,
+          "y": 222.625
+        },
+        {
+          "x": 1251.75,
+          "y": 222.625
+        },
+        {
+          "x": 1260.75,
+          "y": 219.25
+        },
+        {
+          "x": 1260.75,
+          "y": 232.75
+        },
+        {
+          "x": 1251.75,
+          "y": 229.375
+        },
+        {
+          "x": 1247.25,
+          "y": 229.375
+        }
+      ]
     },
     {
       "id": "speakerBlock-23acf13d",
@@ -18546,12 +19531,32 @@
         "height": 50.0
       },
       "node_id": "speakerBlock-23acf13d",
-      "face_mask_bounds": {
-        "x": 1322.0,
-        "y": 201.0,
-        "width": 240.0,
-        "height": 50.0
-      }
+      "face_mask_polygon": [
+        {
+          "x": 1322.25,
+          "y": 222.625
+        },
+        {
+          "x": 1326.75,
+          "y": 222.625
+        },
+        {
+          "x": 1335.75,
+          "y": 219.25
+        },
+        {
+          "x": 1335.75,
+          "y": 232.75
+        },
+        {
+          "x": 1326.75,
+          "y": 229.375
+        },
+        {
+          "x": 1322.25,
+          "y": 229.375
+        }
+      ]
     },
     {
       "id": "deviceV2-60f0f322",
@@ -18562,12 +19567,24 @@
         "height": 186.0
       },
       "node_id": "deviceV2-60f0f322",
-      "face_mask_bounds": {
-        "x": 498.0,
-        "y": 121.5,
-        "width": 126.0,
-        "height": 171.0
-      }
+      "face_mask_polygon": [
+        {
+          "x": 498.25,
+          "y": 121.75
+        },
+        {
+          "x": 623.75,
+          "y": 121.75
+        },
+        {
+          "x": 623.75,
+          "y": 292.25
+        },
+        {
+          "x": 498.25,
+          "y": 292.25
+        }
+      ]
     },
     {
       "id": "deviceV2-60f0f322:L-0-in-84b12e66",
@@ -18853,12 +19870,24 @@
         "height": 105.0
       },
       "node_id": "avPlate-2ca3b6d2",
-      "face_mask_bounds": {
-        "x": 349.5,
-        "y": 676.5,
-        "width": 72.0,
-        "height": 90.0
-      }
+      "face_mask_polygon": [
+        {
+          "x": 349.75,
+          "y": 676.75
+        },
+        {
+          "x": 421.25,
+          "y": 676.75
+        },
+        {
+          "x": 421.25,
+          "y": 766.25
+        },
+        {
+          "x": 349.75,
+          "y": 766.25
+        }
+      ]
     },
     {
       "id": "avPlate-2ca3b6d2:T-0-p-0d2f4e11-a",
@@ -18935,12 +19964,24 @@
         "height": 105.0
       },
       "node_id": "avPlate-88e2e31f",
-      "face_mask_bounds": {
-        "x": 349.5,
-        "y": 793.5,
-        "width": 72.0,
-        "height": 90.0
-      }
+      "face_mask_polygon": [
+        {
+          "x": 349.75,
+          "y": 793.75
+        },
+        {
+          "x": 421.25,
+          "y": 793.75
+        },
+        {
+          "x": 421.25,
+          "y": 883.25
+        },
+        {
+          "x": 349.75,
+          "y": 883.25
+        }
+      ]
     },
     {
       "id": "avPlate-88e2e31f:T-0-p-0d2f4e11-a",
@@ -19017,12 +20058,36 @@
         "height": 6.0
       },
       "node_id": "wiretag-0daac244",
-      "face_mask_bounds": {
-        "x": 279.0,
-        "y": 280.5,
-        "width": 36.0,
-        "height": 6.0
-      }
+      "face_mask_polygon": [
+        {
+          "x": 279.0,
+          "y": 280.5
+        },
+        {
+          "x": 306.0,
+          "y": 280.5
+        },
+        {
+          "x": 315.0,
+          "y": 280.5
+        },
+        {
+          "x": 315.0,
+          "y": 286.5
+        },
+        {
+          "x": 306.0,
+          "y": 286.5
+        },
+        {
+          "x": 279.0,
+          "y": 286.5
+        },
+        {
+          "x": 284.0,
+          "y": 283.5
+        }
+      ]
     },
     {
       "id": "wiretag-950b7690",
@@ -19033,12 +20098,40 @@
         "height": 6.0
       },
       "node_id": "wiretag-950b7690",
-      "face_mask_bounds": {
-        "x": 857.0,
-        "y": 195.0,
-        "width": 42.0,
-        "height": 6.0
-      }
+      "face_mask_polygon": [
+        {
+          "x": 857.0,
+          "y": 201.0
+        },
+        {
+          "x": 857.0,
+          "y": 195.0
+        },
+        {
+          "x": 866.0,
+          "y": 195.0
+        },
+        {
+          "x": 894.0,
+          "y": 195.0
+        },
+        {
+          "x": 899.0,
+          "y": 198.0
+        },
+        {
+          "x": 894.0,
+          "y": 201.0
+        },
+        {
+          "x": 866.0,
+          "y": 201.0
+        },
+        {
+          "x": 857.0,
+          "y": 201.0
+        }
+      ]
     },
     {
       "id": "flyoff-7e4cbdd6",

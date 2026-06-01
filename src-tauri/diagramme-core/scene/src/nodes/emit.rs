@@ -161,15 +161,16 @@ pub fn with_split_suffix(base: &str, split_instance: Option<u64>) -> String {
 
 /// Draggable node body hit with opaque face mask matching `bounds` (enclosed symbols).
 pub fn push_node_body_hit(scene: &mut Scene, node: &Node, bounds: RectPx) {
-    push_node_body_hit_with_face_mask(scene, node, bounds, Some(bounds));
+    push_node_body_hit_with_face_mask(scene, node, bounds, Some(bounds), None);
 }
 
-/// Body hit; `face_mask_bounds` is `None` when only external text/tags sit outside a filled frame.
+/// Body hit; omit face mask fields when only external text/tags sit outside a filled frame.
 pub fn push_node_body_hit_with_face_mask(
     scene: &mut Scene,
     node: &Node,
     bounds: RectPx,
     face_mask_bounds: Option<RectPx>,
+    face_mask_polygon: Option<Vec<PointPx>>,
 ) {
     scene.hits.push(HitTarget {
         id: node.id.clone(),
@@ -178,5 +179,6 @@ pub fn push_node_body_hit_with_face_mask(
         edge_id: None,
         handle_id: None,
         face_mask_bounds,
+        face_mask_polygon,
     });
 }

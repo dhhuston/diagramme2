@@ -29,7 +29,7 @@
   --clr-schematic-face: #fff;
   --clr-schematic-ink: #000;
   --clr-schematic-title: oklch(0.88 0.005 155);
-  --clr-schematic-header: oklch(0.79 0.005 155);
+  --clr-schematic-header: #c0c0c0;
 
   --font-ui: 'Geist', 'Helvetica Neue', Arial, sans-serif;
   --font-mono: 'Geist Mono', 'Courier New', monospace;

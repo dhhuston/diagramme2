@@ -6,6 +6,7 @@ import type { HitTarget, PointPx } from './canvas/sceneTypes'
 import { useDiagramScene } from './canvas/useDiagramScene'
 import type { PortEndpoint } from './canvas/interaction/connectPorts'
 import type { AppMenuCommand } from './appMenuCommands'
+import { DEV_FIXTURES, fetchDevFixture } from './devFixtures'
 import { exportRevitDxf, addEdge, moveNode, undo, redo } from './tauriIpc'
 
 export default function App() {
@@ -23,20 +24,33 @@ export default function App() {
   const [status, setStatus] = useState<string | null>(null)
   const [selectedHit, setSelectedHit] = useState<HitTarget | null>(null)
 
-  const loadGoldenDiagram = useCallback(async () => {
-    setStatus(null)
-    setSelectedHit(null)
-    try {
-      const json = await fetch('/fixtures/golden/Comp Gym F102A.diagramme').then((r) => {
-        if (!r.ok) throw new Error(`fixture fetch ${r.status}`)
-        return r.text()
-      })
-      const next = await loadDiagramJson(json)
-      setStatus(`Loaded Comp Gym (${next.primitives.length} primitives)`)
-    } catch (err) {
-      setStatus(`Load failed: ${String(err)}`)
-    }
-  }, [loadDiagramJson])
+  const loadDevFixture = useCallback(
+    async (path: string, label: string) => {
+      setStatus(null)
+      setSelectedHit(null)
+      try {
+        const json = await fetchDevFixture(path)
+        const next = await loadDiagramJson(json)
+        setStatus(`Loaded ${label} (${next.primitives.length} primitives)`)
+      } catch (err) {
+        setStatus(`Load failed: ${String(err)}`)
+      }
+    },
+    [loadDiagramJson],
+  )
+
+  const loadGoldenDiagram = useCallback(
+    () => loadDevFixture(DEV_FIXTURES.compGym, 'Comp Gym'),
+    [loadDevFixture],
+  )
+  const loadCafeteriaDiagram = useCallback(
+    () => loadDevFixture(DEV_FIXTURES.cafeteria, 'Cafeteria D104A'),
+    [loadDevFixture],
+  )
+  const loadSplitFaceDemoDiagram = useCallback(
+    () => loadDevFixture(DEV_FIXTURES.splitFaceDemo, 'Split face demo'),
+    [loadDevFixture],
+  )
 
   const handleExportDxf = useCallback(async () => {
     setStatus(null)
@@ -139,6 +153,8 @@ export default function App() {
       onRedo={handleRedo}
       onRefreshScene={handleRefreshScene}
       onLoadGoldenDiagram={loadGoldenDiagram}
+      onLoadCafeteriaDiagram={loadCafeteriaDiagram}
+      onLoadSplitFaceDemoDiagram={loadSplitFaceDemoDiagram}
       onMenuUnavailable={handleMenuUnavailable}
       onClearSelection={() => setSelectedHit(null)}
       canvas={

@@ -82,6 +82,9 @@ pub struct HitTarget {
     /// Opaque canvas face under this node; omit for tags / external annotation text.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub face_mask_bounds: Option<RectPx>,
+    /// Closed polygon face (diagram px); used when the filled shape is not axis-aligned.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub face_mask_polygon: Option<Vec<PointPx>>,
 }
 
 /// Full scene for one sheet — single geometric truth for canvas and export.

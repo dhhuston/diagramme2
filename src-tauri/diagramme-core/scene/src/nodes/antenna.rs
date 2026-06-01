@@ -7,7 +7,9 @@ use diagramme_geometry::{
 };
 use diagramme_schema::Node;
 
-use crate::nodes::emit::{push_line, push_node_body_hit, push_text, scene_text_from_role, node_width};
+use crate::nodes::emit::{
+    push_line, push_node_body_hit_with_face_mask, push_text, scene_text_from_role, node_width,
+};
 use crate::scene::Scene;
 use crate::text::sanitize_text;
 
@@ -103,5 +105,6 @@ pub fn append_antenna_symbol_scene(scene: &mut Scene, node: &Node, role: Antenna
         ),
     );
 
-    push_node_body_hit(scene, node, antenna_scene_bounds(node));
+    // Line-art symbol only — no opaque face (label and grid stay visible outside strokes).
+    push_node_body_hit_with_face_mask(scene, node, antenna_scene_bounds(node), None, None);
 }

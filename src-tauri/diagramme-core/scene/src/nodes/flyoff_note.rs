@@ -83,5 +83,5 @@ pub fn append_flyoff_note_scene(scene: &mut Scene, node: &Node) {
         crate::scene::HAlign::Right
     };
     push_text(scene, flyoff_text);
-    push_node_body_hit_with_face_mask(scene, node, flyoff_note_scene_bounds(node), None);
+    push_node_body_hit_with_face_mask(scene, node, flyoff_note_scene_bounds(node), None, None);
 }

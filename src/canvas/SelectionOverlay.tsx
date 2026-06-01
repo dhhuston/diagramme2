@@ -5,11 +5,7 @@ import { getCanvasSelectionStroke } from './canvasTokens'
 import { dragVisualDelta } from './interaction/dragNode'
 import type { NodeDragTarget } from './interaction/dragNode'
 import { nodeSelectionBounds } from './selectionBounds'
-import {
-  konvaStrokeWidthPx,
-  polylineToKonvaPoints,
-  primitiveKey,
-} from './sceneRenderUtils'
+import { polylineToKonvaPoints, primitiveKey, SCHEMATIC_STROKE_PROPS } from './sceneRenderUtils'
 import type { HitTarget, SceneJson } from './sceneTypes'
 
 const SELECTION_STROKE_PX = 2
@@ -66,18 +62,13 @@ function WireSelectionHighlight({ scene, edgeId }: { scene: SceneJson; edgeId: s
     if (p.edge_id !== edgeId || p.points.length < 2) {
       return
     }
-    const baseWidth = konvaStrokeWidthPx(p.stroke_px, p.edge_id)
     lines.push(
       <Line
         key={primitiveKey('selection-wire', index, p)}
         points={polylineToKonvaPoints(p.points)}
         stroke={stroke}
-        strokeWidth={baseWidth}
+        {...SCHEMATIC_STROKE_PROPS}
         closed={p.closed ?? false}
-        lineJoin="miter"
-        lineCap="square"
-        listening={false}
-        perfectDrawEnabled={false}
       />,
     )
   })

@@ -10,6 +10,8 @@ export type AppMenuActions = {
   toggleFocusMode: () => void
   toggleAlignmentGuides: () => void
   onLoadGoldenDiagram?: () => void
+  onLoadCafeteriaDiagram?: () => void
+  onLoadSplitFaceDemoDiagram?: () => void
   wiringMode: boolean
   focusMode: boolean
   alignmentGuides: boolean
@@ -110,6 +112,26 @@ export function buildAppMenus(actions: AppMenuActions): AppMenuBarBucket[] {
             id: 'help-load-golden',
             label: 'Load Comp Gym (dev)…',
             onSelect: actions.onLoadGoldenDiagram,
+          },
+        ]
+      : []),
+    ...(actions.onLoadCafeteriaDiagram
+      ? [
+          {
+            kind: 'item' as const,
+            id: 'help-load-cafeteria',
+            label: 'Load Cafeteria D104A (dev)…',
+            onSelect: actions.onLoadCafeteriaDiagram,
+          },
+        ]
+      : []),
+    ...(actions.onLoadSplitFaceDemoDiagram
+      ? [
+          {
+            kind: 'item' as const,
+            id: 'help-load-split-face-demo',
+            label: 'Load Split face demo (dev)…',
+            onSelect: actions.onLoadSplitFaceDemoDiagram,
           },
         ]
       : []),

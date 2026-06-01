@@ -16,6 +16,10 @@ const FIXTURES: &[(&str, &str)] = &[
         "dxf-export-test",
         include_str!("../../fixtures/diagrams/dxf-export-test.diagramme"),
     ),
+    (
+        "split-face-demo",
+        include_str!("../../fixtures/diagrams/split-face-demo.diagramme"),
+    ),
 ];
 
 #[test]

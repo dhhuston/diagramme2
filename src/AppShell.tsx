@@ -54,6 +54,8 @@ export type AppShellProps = {
   onRedo: () => void | Promise<void>
   onRefreshScene: () => void | Promise<void>
   onLoadGoldenDiagram?: () => void | Promise<void>
+  onLoadCafeteriaDiagram?: () => void | Promise<void>
+  onLoadSplitFaceDemoDiagram?: () => void | Promise<void>
   onClearSelection?: () => void
   onMenuUnavailable?: (command: AppMenuCommand) => void
 }
@@ -69,6 +71,8 @@ export function AppShell({
   onRedo,
   onRefreshScene,
   onLoadGoldenDiagram,
+  onLoadCafeteriaDiagram,
+  onLoadSplitFaceDemoDiagram,
   onClearSelection,
   onMenuUnavailable,
 }: AppShellProps) {
@@ -83,18 +87,43 @@ export function AppShell({
     wiringMode,
   } = useCanvasPreferences()
 
+  const { project, setProject, refreshProject } = useProject()
+
+  const wrapDiagramLoad = useCallback(
+    (load?: () => void | Promise<void>) => {
+      if (!load) return undefined
+      return async () => {
+        await load()
+        const next = await refreshProject()
+        setProject(next)
+      }
+    },
+    [refreshProject, setProject],
+  )
+
+  const handleLoadGoldenDiagram = useMemo(
+    () => wrapDiagramLoad(onLoadGoldenDiagram),
+    [onLoadGoldenDiagram, wrapDiagramLoad],
+  )
+  const handleLoadCafeteriaDiagram = useMemo(
+    () => wrapDiagramLoad(onLoadCafeteriaDiagram),
+    [onLoadCafeteriaDiagram, wrapDiagramLoad],
+  )
+  const handleLoadSplitFaceDemoDiagram = useMemo(
+    () => wrapDiagramLoad(onLoadSplitFaceDemoDiagram),
+    [onLoadSplitFaceDemoDiagram, wrapDiagramLoad],
+  )
+
   useNativeAppMenu({
     onExportDxf,
     onUndo,
     onRedo,
-    onLoadGoldenDiagram,
+    onLoadGoldenDiagram: handleLoadGoldenDiagram,
     toggleWiringMode,
     toggleFocusMode,
     toggleAlignmentGuides,
     onUnavailable: onMenuUnavailable,
   })
-
-  const { project, setProject } = useProject()
 
   const menus = useMemo(
     () =>
@@ -105,8 +134,14 @@ export function AppShell({
         toggleWiringMode,
         toggleFocusMode,
         toggleAlignmentGuides,
-        onLoadGoldenDiagram: onLoadGoldenDiagram
-          ? () => void onLoadGoldenDiagram()
+        onLoadGoldenDiagram: handleLoadGoldenDiagram
+          ? () => void handleLoadGoldenDiagram()
+          : undefined,
+        onLoadCafeteriaDiagram: handleLoadCafeteriaDiagram
+          ? () => void handleLoadCafeteriaDiagram()
+          : undefined,
+        onLoadSplitFaceDemoDiagram: handleLoadSplitFaceDemoDiagram
+          ? () => void handleLoadSplitFaceDemoDiagram()
           : undefined,
         wiringMode,
         focusMode,
@@ -115,8 +150,10 @@ export function AppShell({
     [
       alignmentGuides,
       focusMode,
+      handleLoadCafeteriaDiagram,
+      handleLoadGoldenDiagram,
+      handleLoadSplitFaceDemoDiagram,
       onExportDxf,
-      onLoadGoldenDiagram,
       onRedo,
       onUndo,
       toggleAlignmentGuides,

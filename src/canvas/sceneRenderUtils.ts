@@ -25,6 +25,16 @@ export function konvaStrokeWidthPx(_strokePx: number, _edgeId?: string): number 
   return SCHEMATIC_INK_STROKE_PX
 }
 
+/** Shared Konva stroke props — screen-pixel hairlines independent of diagram zoom. */
+export const SCHEMATIC_STROKE_PROPS = {
+  strokeWidth: SCHEMATIC_INK_STROKE_PX,
+  strokeScaleEnabled: false,
+  lineJoin: 'bevel' as const,
+  lineCap: 'butt' as const,
+  listening: false,
+  perfectDrawEnabled: false,
+}
+
 /** Scene/DXF text anchor offsets from measured Konva text metrics. */
 export function textAnchorOffsetX(halign: HAlign, width: number): number {
   switch (halign) {
@@ -57,8 +67,8 @@ export function applySceneTextAnchor(node: Konva.Text, halign: HAlign, valign: V
   node.offsetY(textAnchorOffsetY(valign, textHeight))
 }
 
-/** Header row fills — matches v6 `--clr-schematic-header` / DXF FILLS layer (ACI 9). */
-export const SCHEMATIC_HEADER_FILL = '#bfbfbf'
+/** Header / connector row fills — RGB 192,192,192 (DXF FILLS layer). */
+export const SCHEMATIC_HEADER_FILL = '#c0c0c0'
 
 /** Flyoff triangles and other ink fills — matches v6 `--clr-schematic-ink`. */
 export const SCHEMATIC_INK_FILL = '#000000'

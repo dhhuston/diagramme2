@@ -129,6 +129,7 @@ fn push_boundary_strip(
             edge_id: None,
             handle_id: None,
             face_mask_bounds: None,
+            face_mask_polygon: None,
         },
     );
 }

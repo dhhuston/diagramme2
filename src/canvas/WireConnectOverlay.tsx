@@ -1,11 +1,7 @@
 import { Line } from 'react-konva'
 
 import type { WireConnectPreview } from './interaction/useDiagramInteraction'
-import {
-  colorRgbToCss,
-  konvaStrokeWidthPx,
-  polylineToKonvaPoints,
-} from './sceneRenderUtils'
+import { colorRgbToCss, polylineToKonvaPoints, SCHEMATIC_STROKE_PROPS } from './sceneRenderUtils'
 
 type WireConnectOverlayProps = {
   preview: WireConnectPreview | null
@@ -21,9 +17,8 @@ export function WireConnectOverlay({ preview }: WireConnectOverlayProps) {
     <Line
       points={points}
       stroke={colorRgbToCss(0x494f4b)}
-      strokeWidth={konvaStrokeWidthPx(1, 'preview')}
+      {...SCHEMATIC_STROKE_PROPS}
       dash={[6, 4]}
-      listening={false}
     />
   )
 }

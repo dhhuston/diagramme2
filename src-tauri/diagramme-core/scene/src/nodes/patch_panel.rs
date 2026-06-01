@@ -11,7 +11,8 @@ use diagramme_geometry::{
 use diagramme_schema::{filter_bundled_side, Node};
 
 use crate::breakline::{
-    push_closed_inset_frame, push_closed_inset_frame_with_bottom_breakline,
+    inset_frame_face_mask_polygon, push_closed_inset_frame,
+    push_closed_inset_frame_with_bottom_breakline,
 };
 use crate::bundle_brackets::{draw_bracket_list, BracketDrawSlot};
 use crate::scene::{HitTarget, HAlign, Scene, ScenePrimitive, SceneText, VAlign};
@@ -552,6 +553,7 @@ pub fn append_patch_panel_scene(
                 edge_id: None,
                 handle_id: Some(l_handle),
                 face_mask_bounds: None,
+                face_mask_polygon: None,
             });
             scene.hits.push(HitTarget {
                 id: format!("{}:{}", node.id, r_handle),
@@ -560,16 +562,26 @@ pub fn append_patch_panel_scene(
                 edge_id: None,
                 handle_id: Some(r_handle),
                 face_mask_bounds: None,
+                face_mask_polygon: None,
             });
         }
     }
 
+    let split_zone = split_instance.map(|_| BREAKLINE_DEVICE_ZONE_WIDTH_PX);
     scene.hits.push(HitTarget {
         id: node.id.clone(),
         bounds: patch_panel_scene_bounds(node),
         node_id: Some(node.id.clone()),
         edge_id: None,
         handle_id: None,
-        face_mask_bounds: Some(RectPx::new(nx, ny, w, total_height)),
+        face_mask_bounds: None,
+        face_mask_polygon: Some(inset_frame_face_mask_polygon(
+            nx,
+            ny,
+            w,
+            total_height,
+            inset,
+            split_zone,
+        )),
     });
 }

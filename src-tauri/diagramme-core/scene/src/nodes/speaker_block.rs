@@ -9,7 +9,8 @@ use diagramme_geometry::{
 use diagramme_schema::Node;
 
 use crate::nodes::emit::{
-    push_line, push_node_body_hit, push_polyline, push_text, scene_text_from_role, DEFAULT_LAYER,
+    push_line, push_node_body_hit_with_face_mask, push_polyline, push_text, scene_text_from_role,
+    DEFAULT_LAYER,
 };
 use crate::scene::Scene;
 use crate::text::sanitize_text;
@@ -22,6 +23,32 @@ pub fn speaker_block_scene_bounds(node: &Node) -> RectPx {
         SPEAKER_BLOCK_DEFAULT_WIDTH_PX,
         MIC_SPEAKER_FRAME_HEIGHT_PX,
     )
+}
+
+/// Closed hull for the speaker icon (diagram px) — matches `push_polyline` outline.
+pub fn speaker_symbol_face_mask_polygon(nx: f64, ny: f64) -> Vec<PointPx> {
+    let sym_ny = ny + SPEAKER_SYMBOL_ROW_TOP_FROM_ROOT_PX;
+    let pad = 0.25;
+    let sq_left = pad;
+    let sq_right = pad + 4.5;
+    let mid_y = 7.0;
+    let sq_top = mid_y - 3.375;
+    let sq_bottom = mid_y + 3.375;
+    let cone_right = pad + 13.5;
+    let cone_top = mid_y - 6.75;
+    let cone_bottom = mid_y + 6.75;
+    let pt = |lx: f64, ly: f64| PointPx {
+        x: nx + lx,
+        y: sym_ny + ly,
+    };
+    vec![
+        pt(sq_left, sq_top),
+        pt(sq_right, sq_top),
+        pt(cone_right, cone_top),
+        pt(cone_right, cone_bottom),
+        pt(sq_right, sq_bottom),
+        pt(sq_left, sq_bottom),
+    ]
 }
 
 /// Append speaker block drawable primitives to `scene`.
@@ -134,5 +161,11 @@ pub fn append_speaker_block_scene(scene: &mut Scene, node: &Node) {
         ),
     );
 
-    push_node_body_hit(scene, node, speaker_block_scene_bounds(node));
+    push_node_body_hit_with_face_mask(
+        scene,
+        node,
+        speaker_block_scene_bounds(node),
+        None,
+        Some(speaker_symbol_face_mask_polygon(nx, ny)),
+    );
 }

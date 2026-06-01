@@ -339,6 +339,7 @@ fn push_wire_segment_hits(scene: &mut Scene, points: &[PointPx], edge_id: &str) 
             edge_id: Some(edge_id.to_string()),
             handle_id: None,
             face_mask_bounds: None,
+            face_mask_polygon: None,
         });
     }
 }

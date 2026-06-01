@@ -19,7 +19,7 @@ describe('sceneRenderUtils', () => {
   })
 
   it('solidLayerFillCss maps DXF layers to canvas fills', () => {
-    expect(solidLayerFillCss('FILLS')).toBe('#bfbfbf')
+    expect(solidLayerFillCss('FILLS')).toBe('#c0c0c0')
     expect(solidLayerFillCss('INKFILL')).toBe('#000000')
   })
 

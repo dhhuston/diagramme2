@@ -63,6 +63,8 @@ export interface HitTarget {
   handle_id?: string
   /** Opaque canvas face; omitted when tags/text sit outside the filled frame. */
   face_mask_bounds?: RectPx
+  /** Closed polygon face (diagram px) for non-rectangular symbols. */
+  face_mask_polygon?: PointPx[]
 }
 
 export interface SceneJson {

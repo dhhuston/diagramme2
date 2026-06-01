@@ -9,10 +9,29 @@ use diagramme_geometry::{
 use diagramme_schema::Node;
 
 use crate::nodes::emit::{
-    push_circle_polyline, push_line, push_node_body_hit, push_text, scene_text_from_role,
+    push_circle_polyline, push_line, push_node_body_hit_with_face_mask, push_text,
+    scene_text_from_role,
 };
 use crate::scene::Scene;
 use crate::text::sanitize_text;
+
+/// Filled circle matching the mic symbol (diagram px).
+pub fn mic_symbol_face_mask_polygon(nx: f64, ny: f64, outer_w: f64) -> Vec<PointPx> {
+    let row_top = ny + mic_block_strip_top_inset_px();
+    let sym_left = nx + outer_w - MIC_SCHEMATIC_SVG_WIDTH_PX;
+    let cx = sym_left + MIC_CX;
+    let cy = row_top + MIC_CY;
+    let steps = 32;
+    (0..steps)
+        .map(|i| {
+            let a = (2.0 * std::f64::consts::PI * i as f64) / steps as f64;
+            PointPx {
+                x: cx + MIC_R * a.cos(),
+                y: cy + MIC_R * a.sin(),
+            }
+        })
+        .collect()
+}
 
 /// Scene bounds (diagram px).
 pub fn mic_block_scene_bounds(node: &Node) -> RectPx {
@@ -99,5 +118,11 @@ pub fn append_mic_block_scene(scene: &mut Scene, node: &Node) {
 
     let _ = MIC_SPEAKER_VC_STRIP_HEIGHT_PX;
 
-    push_node_body_hit(scene, node, mic_block_scene_bounds(node));
+    push_node_body_hit_with_face_mask(
+        scene,
+        node,
+        mic_block_scene_bounds(node),
+        None,
+        Some(mic_symbol_face_mask_polygon(nx, ny, outer_w)),
+    );
 }

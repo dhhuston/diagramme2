@@ -4,9 +4,9 @@ import { dragVisualDelta, nodeBodyBounds, type NodeDragTarget } from './interact
 import { SceneTextNode } from './SceneTextNode'
 import {
   colorRgbToCss,
-  konvaStrokeWidthPx,
   polylineToKonvaPoints,
   primitiveKey,
+  SCHEMATIC_STROKE_PROPS,
   solidLayerFillCss,
 } from './sceneRenderUtils'
 import { SelectionOverlay } from './SelectionOverlay'
@@ -28,12 +28,8 @@ function renderPrimitive(primitive: ScenePrimitive, index: number) {
         key={primitiveKey('polyline', index, p)}
         points={polylineToKonvaPoints(p.points)}
         stroke={stroke}
-        strokeWidth={konvaStrokeWidthPx(p.stroke_px, p.edge_id)}
+        {...SCHEMATIC_STROKE_PROPS}
         closed={p.closed ?? false}
-        lineJoin="miter"
-        lineCap="square"
-        listening={false}
-        perfectDrawEnabled={false}
       />
     )
   }
@@ -50,10 +46,8 @@ function renderPrimitive(primitive: ScenePrimitive, index: number) {
         width={r.rect.width}
         height={r.rect.height}
         stroke={stroke}
-        strokeWidth={konvaStrokeWidthPx(r.stroke_px)}
+        {...SCHEMATIC_STROKE_PROPS}
         fill={fill}
-        listening={false}
-        perfectDrawEnabled={false}
       />
     )
   }

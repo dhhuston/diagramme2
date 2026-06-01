@@ -1,0 +1,195 @@
+{
+  "format": "diagramme",
+  "version": 2,
+  "activeSheetId": "sheet-split-face-demo",
+  "presetLibrary": [],
+  "sheets": [
+    {
+      "id": "sheet-split-face-demo",
+      "name": "Split face demo",
+      "state": {
+        "nodes": [
+          {
+            "id": "demo-label-split-face",
+            "type": "textBlock",
+            "position": {
+              "x": 1200.0,
+              "y": 84.0
+            },
+            "width": 320.0,
+            "height": 24.0,
+            "data": {
+              "text": "Split face demo \u2014 instances spaced so breaklines do not overlap",
+              "fontSizePx": 9.0
+            }
+          },
+          {
+            "id": "demo-split-device-1",
+            "type": "deviceV2",
+            "position": {
+              "x": 1200.0,
+              "y": 120.0
+            },
+            "width": 126.0,
+            "height": 54.0,
+            "data": {
+              "description": "split demo device",
+              "leftColumn": [
+                {
+                  "header": "Input",
+                  "rows": [
+                    {
+                      "direction": "input",
+                      "id": "demo-in-1",
+                      "label": "1",
+                      "wireCategory": "audio"
+                    }
+                  ]
+                }
+              ],
+              "rightColumn": [
+                {
+                  "header": "Output",
+                  "rows": [
+                    {
+                      "direction": "output",
+                      "id": "demo-out-d",
+                      "label": "2",
+                      "wireCategory": "audio"
+                    }
+                  ]
+                }
+              ],
+              "splitInstance": 1,
+              "tagCode": "DMO",
+              "tagNumber": "1"
+            }
+          },
+          {
+            "id": "demo-split-device-2",
+            "type": "deviceV2",
+            "position": {
+              "x": 1200.0,
+              "y": 210.0
+            },
+            "width": 126.0,
+            "height": 54.0,
+            "data": {
+              "description": "split demo device",
+              "leftColumn": [
+                {
+                  "header": "Input",
+                  "rows": [
+                    {
+                      "direction": "input",
+                      "id": "demo-in-1",
+                      "label": "1",
+                      "wireCategory": "audio"
+                    }
+                  ]
+                }
+              ],
+              "rightColumn": [
+                {
+                  "header": "Output",
+                  "rows": [
+                    {
+                      "direction": "output",
+                      "id": "demo-out-d",
+                      "label": "2",
+                      "wireCategory": "audio"
+                    }
+                  ]
+                }
+              ],
+              "splitInstance": 2,
+              "tagCode": "DMO",
+              "tagNumber": "2"
+            }
+          },
+          {
+            "id": "demo-split-plate-1",
+            "type": "avPlate",
+            "position": {
+              "x": 1400.0,
+              "y": 120.0
+            },
+            "width": 72.0,
+            "height": 54.0,
+            "data": {
+              "description": "SPLIT DEMO PLATE",
+              "groups": [
+                {
+                  "header": "inputs",
+                  "rows": [
+                    {
+                      "direction": "input",
+                      "id": "demo-in-1",
+                      "label": "1",
+                      "wireCategory": "audio"
+                    }
+                  ]
+                },
+                {
+                  "header": "outputs",
+                  "rows": [
+                    {
+                      "direction": "output",
+                      "id": "demo-out-1",
+                      "label": "2",
+                      "wireCategory": "audio"
+                    }
+                  ]
+                }
+              ],
+              "splitInstance": 1,
+              "tagCode": "DMO",
+              "tagNumber": "3"
+            }
+          },
+          {
+            "id": "demo-split-plate-2",
+            "type": "avPlate",
+            "position": {
+              "x": 1400.0,
+              "y": 210.0
+            },
+            "width": 72.0,
+            "height": 54.0,
+            "data": {
+              "description": "SPLIT DEMO PLATE",
+              "groups": [
+                {
+                  "header": "inputs",
+                  "rows": [
+                    {
+                      "direction": "input",
+                      "id": "demo-in-1",
+                      "label": "1",
+                      "wireCategory": "audio"
+                    }
+                  ]
+                },
+                {
+                  "header": "outputs",
+                  "rows": [
+                    {
+                      "direction": "output",
+                      "id": "demo-out-1",
+                      "label": "2",
+                      "wireCategory": "audio"
+                    }
+                  ]
+                }
+              ],
+              "splitInstance": 2,
+              "tagCode": "DMO",
+              "tagNumber": "4"
+            }
+          }
+        ],
+        "edges": []
+      }
+    }
+  ]
+}

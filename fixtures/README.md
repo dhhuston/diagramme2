@@ -43,4 +43,8 @@ Synthetic palette-exercise sheet (every node type in one place). Kept for manual
 
 **Source:** `Diagramme_v6/troubleshooting/Cafeteria D104A.diagramme`
 
-Real-world cafeteria AV schematic (room D104A): 52 nodes, 61 edges. Covered by the v6 compatibility test matrix (open, round-trip, DXF smoke).
+Real-world cafeteria AV schematic (room D104A): 52 nodes, 61 edges on the **Main** sheet, plus a second sheet **Split face demo** (`sheet-split-face-demo`, ~line 153866 — the Main sheet JSON is ~154k lines, so the demo sheet is only at the file tail). Spaced split `deviceV2` / `avPlate` instances for breakline mask overlap checks. In dev: **Help → Load Cafeteria D104A**, then switch to the **Split face demo** tab.
+
+## `diagrams/split-face-demo.diagramme`
+
+Small standalone copy of the cafeteria **Split face demo** sheet only (5 nodes). Use for quick editor review or **Help → Load Split face demo (dev)** in the web shell.

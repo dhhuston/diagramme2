@@ -57,21 +57,28 @@ fn device_v2_tag_text_height_is_node_title_font_px() {
 }
 
 #[test]
-fn device_v2_inset_frame_polyline_is_closed() {
+fn device_v2_inset_frame_edges_are_open_hairlines() {
     let project = load_golden_fixture();
     let scene = build_scene(&active_sheet(&project).state);
-    let has_closed_frame = scene.primitives.iter().any(|p| {
-        matches!(
-            p,
-            ScenePrimitive::Polyline {
-                closed: true,
-                points,
-                edge_id: None,
-                ..
-            } if points.len() == 4
-        )
-    });
-    assert!(has_closed_frame, "device frame should be a closed 4-point polyline");
+    let frame_edges = scene
+        .primitives
+        .iter()
+        .filter(|p| {
+            matches!(
+                p,
+                ScenePrimitive::Polyline {
+                    closed: false,
+                    points,
+                    edge_id: None,
+                    ..
+                } if points.len() == 2
+            )
+        })
+        .count();
+    assert!(
+        frame_edges >= 4,
+        "device frame should emit open 2-point edge segments (got {frame_edges})"
+    );
 }
 
 #[test]

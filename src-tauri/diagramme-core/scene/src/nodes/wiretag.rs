@@ -302,12 +302,17 @@ pub fn append_wiretag_scene(
     }
 
     let bounds = RectPx::new(nx, ny, w, h);
+    let face_mask_polygon: Vec<PointPx> = hull
+        .iter()
+        .map(|(lx, ly)| local_to_diagram(nx, ny, *lx, *ly))
+        .collect();
     scene.hits.push(HitTarget {
         id: node.id.clone(),
         bounds,
         node_id: Some(node.id.clone()),
         edge_id: None,
         handle_id: None,
-        face_mask_bounds: Some(bounds),
+        face_mask_bounds: None,
+        face_mask_polygon: Some(face_mask_polygon),
     });
 }
